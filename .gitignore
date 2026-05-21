@@ -8,3 +8,21 @@ vector_db/chroma/
 uploads/*
 !uploads/.gitkeep
 mysql_data/
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Temporary & Log files
+.tmp/
+*.log
+*.swp
+
+# IDEs
+.vscode/
+.idea/
+
+# Python & Testing
+.pytest_cache/
+.coverage
+htmlcov/

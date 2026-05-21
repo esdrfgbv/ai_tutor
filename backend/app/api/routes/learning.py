@@ -48,8 +48,8 @@ def list_chapters(
     ).all()
 
 
-@router.get("/class-9/{subject}/pdf/{pdf_slug}")
-def get_class_9_pdf(subject: str, pdf_slug: str):
+@router.get("/class-{grade}/{subject}/pdf/{pdf_slug}")
+def get_class_pdf(grade: int, subject: str, pdf_slug: str):
     if ".." in subject or "/" in subject or "\\" in subject:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -61,7 +61,17 @@ def get_class_9_pdf(subject: str, pdf_slug: str):
             detail="Invalid PDF slug",
         )
 
-    pdf_dir = get_settings().source_root / "class_9" / subject.lower().strip()
+    if grade == 9:
+        folder_name = "class_9"
+    elif grade == 6:
+        folder_name = "class 6"
+    else:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Grade not supported for PDFs",
+        )
+
+    pdf_dir = get_settings().source_root / folder_name / subject.lower().strip()
     file_path = pdf_dir / f"{pdf_slug}.pdf"
 
     if not file_path.exists() or not file_path.is_file():

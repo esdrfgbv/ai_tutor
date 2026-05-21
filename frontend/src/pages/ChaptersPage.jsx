@@ -3,50 +3,70 @@ import { Link } from "react-router-dom";
 import api from "../api/client";
 import ErrorNotice from "../components/ErrorNotice.jsx";
 import { modulesMap } from "../utils/modules";
+import { useAuth } from "../context/AuthContext.jsx";
 
 export default function ChaptersPage() {
+  const { user } = useAuth();
+  const [userGrade, setUserGrade] = useState(null);
   const [chapters, setChapters] = useState([]);
-  const [filters, setFilters] = useState({ grade: 6, subject: "maths" });
+  const [filters, setFilters] = useState({ subject: "maths" });
   const [error, setError] = useState("");
-  const isClass9 = Number(filters.grade) === 9;
-  const currentModules = isClass9 ? modulesMap[filters.subject] || [] : [];
 
   useEffect(() => {
-    if (isClass9) {
+    if (user?.role === "student") {
+      api.get("/learning/profile")
+        .then((res) => setUserGrade(res.data.grade))
+        .catch(() => setUserGrade(9));
+    } else {
+      setUserGrade(9);
+    }
+  }, [user]);
+
+  const hasModules = userGrade && modulesMap[userGrade] !== undefined;
+  const availableSubjects = hasModules ? Object.keys(modulesMap[userGrade]) : ["maths", "science", "english"];
+  const currentModules = hasModules ? modulesMap[userGrade][filters.subject] || [] : [];
+
+  useEffect(() => {
+    if (availableSubjects.length > 0 && !availableSubjects.includes(filters.subject)) {
+      setFilters(prev => ({ ...prev, subject: availableSubjects[0] }));
+    }
+  }, [availableSubjects, filters.subject]);
+
+  useEffect(() => {
+    if (!userGrade) return;
+    
+    if (hasModules) {
       setChapters([]);
       return;
     }
     setError("");
-    api.get("/learning/chapters", { params: filters })
+    api.get("/learning/chapters", { params: { ...filters, grade: userGrade } })
       .then((r) => setChapters(r.data))
       .catch((err) => setError(err.response?.data?.detail || "Could not load chapters."));
-  }, [filters, isClass9]);
+  }, [filters, hasModules, userGrade]);
+
+  if (!userGrade) {
+    return <div className="text-center py-12">Loading...</div>;
+  }
 
   return (
     <div className="space-y-4">
       <ErrorNotice message={error} />
       <div className="flex flex-wrap gap-3">
         <select
-          className="input max-w-40"
-          value={filters.grade}
-          onChange={(e) => setFilters({ ...filters, grade: Number(e.target.value) })}
-        >
-          {[4, 5, 6, 7, 8, 9].map((g) => (
-            <option key={g} value={g}>{g}</option>
-          ))}
-        </select>
-        <select
           className="input max-w-48"
           value={filters.subject}
           onChange={(e) => setFilters({ ...filters, subject: e.target.value })}
         >
-          <option value="maths">Maths</option>
-          <option value="science">Science</option>
-          <option value="english">English</option>
+          {availableSubjects.map((subject) => (
+            <option key={subject} value={subject}>
+              {subject.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ")}
+            </option>
+          ))}
         </select>
       </div>
 
-      {isClass9 ? (
+      {hasModules ? (
         currentModules.length > 0 ? (
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {currentModules.map((module, index) => (
@@ -66,7 +86,7 @@ export default function ChaptersPage() {
                     {module.title}
                   </h2>
                   <p className="text-xs text-black/60 dark:text-white/60">
-                    Interactive PDF study module for Class 9 {filters.subject.charAt(0).toUpperCase() + filters.subject.slice(1)}.
+                    Interactive PDF study module for Class {userGrade} {filters.subject.charAt(0).toUpperCase() + filters.subject.slice(1).replace("-", " ")}.
                   </p>
                 </div>
               </Link>
@@ -74,7 +94,7 @@ export default function ChaptersPage() {
           </div>
         ) : (
           <div className="card text-center py-12 text-black/60 dark:text-white/60">
-            No study modules available for Class 9 {filters.subject}.
+            No study modules available for Class {userGrade} {filters.subject.replace("-", " ")}.
           </div>
         )
       ) : (
