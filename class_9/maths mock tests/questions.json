@@ -1,0 +1,4248 @@
+[
+    {
+        "test_name": "Algebraic Expression Test - 1",
+        "question": "If ab = 6 and a + b = 5 then the value of a² + b² is.",
+        "options": [
+            "A) 11",
+            "B) 12",
+            "C) 13",
+            "D) 16"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Algebraic Expression Test - 1",
+        "question": "The remainder obtained on dividing x³ - 3x² - 5x + 4 by (x - 1) is:",
+        "options": [
+            "A) -1",
+            "B) 1",
+            "C) 2",
+            "D) 3"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Algebraic Expression Test - 1",
+        "question": "What must be subtracted from 4px² - 2qp - 6q² - v + 5 to get -q² - pq - 8q² - 2v - 4?",
+        "options": [
+            "A) 4px² + 3q² - 3pq + v - 1",
+            "B) 5q² - 3pq + 8pq + 2q² + v - 1",
+            "C) -5q² - 3pq + 2q² + v + 1",
+            "D) -3q² - pq + 14q² + 3v - 11"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Algebraic Expression Test - 1",
+        "question": "Solve (9x² - x + 15) × (x² - x)",
+        "options": [
+            "A) 9x⁴ - 10x³ + 16x² - 15x",
+            "B) 9x⁴ + 10x³ + 16x² - 15x",
+            "C) 9x⁴ + 10x³ - 16x² + 15x",
+            "D) 9x⁴ + 10x³ - 16x² + 15x"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Algebraic Expression Test - 1",
+        "question": "Which one of the following expressions is equal to 25x² + 4y² - 20xy?",
+        "options": [
+            "A) (5x - 2)2",
+            "B) (5x - 2y)²",
+            "C) (x + 4)²",
+            "D) (9x + 3)2"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Algebraic Expression Test - 1",
+        "question": "Which one of the following expressions is equal to 64x² + 9y² - 48xy?",
+        "options": [
+            "A) (8x + 3y)²",
+            "B) (5x + y)²",
+            "C) (6x - 3y)²",
+            "D) (8x - 3y)²"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Algebra Test - 1",
+        "question": "What must be subtracted from 3a³ - 2a² - 12a - 10a + 75 so that the resulting polynomial is exactly divisible by a² - 2a - 8?",
+        "options": [
+            "A) 215",
+            "B) -25",
+            "C) 285",
+            "D) 285"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Algebra Test - 2",
+        "question": "Find the product of (p + q + r)[(p - q)² + (q - r)² + (r - p)²]",
+        "options": [
+            "A) p² + q² + r²",
+            "B) p³ + q³ + r³ - 3pqr",
+            "C) 2(p³ + q³ + r³ - 3pqr)",
+            "D) p³ + q³ + r³ + 2(pq + qr + rp)"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Algebra Test - 2",
+        "question": "If (x - p + y - q) = 8 and (xp + xq + yp + yq) = 16, then find the value of (x + y)² + (p + q)².",
+        "options": [
+            "A) 96",
+            "B) 54",
+            "C) 48",
+            "D) 80"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Algebra Test - 2",
+        "question": "Which one among the following statements is correct?",
+        "options": [
+            "A) An equation is not true for all the values of the variables used in it",
+            "B) An identity is true for only some certain values of the variable",
+            "C) Polynomial is an algebraic expression containing one or more terms with non-zero coefficients and the variables used in it have integer exponents",
+            "D) All the above"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Algebra Test - 2",
+        "question": "Find the LCM of the polynomial (5x + y)² - (2x - y)² and (7x + 3y)² - (6x + y)2",
+        "options": [
+            "A) (7x)(3x + 2y)(13x + 4y)",
+            "B) (7x + 3y)(2x + y)(3x + y)",
+            "C) 6x(3x + y)(7x + 3y)",
+            "D) (5x + 5y)(2x + 3y)7x"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Algebra Test - 2",
+        "question": "Find the HCF of the polynomials x² + 5x + 6 and (x + 2)² - 4x - 8",
+        "options": [
+            "A) (x + 3)",
+            "B) (x + 1)",
+            "C) (x - 2)",
+            "D) (x + 2)"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Algebra Test - 2",
+        "question": "The Polynomial, p² + 2q - q² - r² + 1 - 2p on factorization gives",
+        "options": [
+            "A) (p + 1 + q)(p + q - r - 1)",
+            "B) (p - q + r + 1)(p - q - r + 1)",
+            "C) (p + q + r - 1)(p + q + r)",
+            "D) (p - 1 + q + r)(q + p - 1 - r)"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Algebra Test - 2",
+        "question": "The dimensions of a rectangular box are represented as (a + 2b), (a² + 4b²) and (a - 2b) then what will be the volume of the rectangular box?",
+        "options": [
+            "A) a⁴ - 16b⁴",
+            "B) a⁴ + 16b⁴ - 8a²b²",
+            "C) a² - 16b²",
+            "D) a⁴ + 8b⁴ + 12a²b²"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Algebra Test - 3",
+        "question": "Divide 84 into two parts such that (4/17) of one part is equal to other part. Find the product of both the parts",
+        "options": [
+            "A) 1078",
+            "B) 1086",
+            "C) 2032",
+            "D) 3076"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Algebra Test - 3",
+        "question": "In a fraction, if both the numerator and denominator are decreased by thrice, it is equal to 2/5, if the numerator is increased by 5 and denominator is increased by 2, the fraction becomes 2/3. Find the fraction",
+        "options": [
+            "A) 5/8",
+            "B) 7/13",
+            "C) 8/13",
+            "D) 5/11"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Algebra Test - 3",
+        "question": "The sum of the digits of a two digit number is 9. If 27 is subtracted from the number, the resultant number becomes the number obtained on reversing the digits of the original number. Find the original number",
+        "options": [
+            "A) 54",
+            "B) 45",
+            "C) 63",
+            "D) 81"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Algebra Test - 3",
+        "question": "The sum of three consecutive even numbers is 330, then find 3/4th of the greatest number",
+        "options": [
+            "A) 72",
+            "B) 84",
+            "C) 112",
+            "D) 140"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Algebra Test - 3",
+        "question": "If the side of a chess board is smaller than its perimeter by 42 cm then find the area of the chess board",
+        "options": [
+            "A) 100cm²",
+            "B) 144cm²",
+            "C) 196cm²",
+            "D) 180cm²"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Algebra Test - 3",
+        "question": "Cost of two chairs and three tables is Rs 3520, while the cost of one chair and two tables is Rs 2020. Find the cost of each chair",
+        "options": [
+            "A) Rs 780",
+            "B) Rs 620",
+            "C) Rs 580",
+            "D) Rs 720"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Algebra Test - 3",
+        "question": "A number is 20 less than ten times of the average of its fifth, quarter and one-fourteenth. Find 2/9 of the number.",
+        "options": [
+            "A) 380",
+            "B) 440",
+            "C) 320",
+            "D) 480"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Algebra Test - 3",
+        "question": "A number is such that it is as much greater than 560 as it is less than 894. Find 3/7 of the number",
+        "options": [
+            "A) 222",
+            "B) 432",
+            "C) 363",
+            "D) 333"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Algebra Test - 3",
+        "question": "Three prizes are to be distributed in a quiz programme. The price-value of the second prize is seven-eighths of the price value of the first prize and the price value of the third prize is five-sixths of the second prize. If the total price value of three prizes is Rs 18,000, then find the price value of third prize",
+        "options": [
+            "A) Rs 5040",
+            "B) Rs 6046",
+            "C) Rs 5800",
+            "D) Rs 6912"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Algebra Test - 3",
+        "question": "Runs scored by Rahul in a match are 38 more than the balls faced by Virat. The number of balls faced by Rahul is 8 less than the runs scored by Virat. If together they have scored 144 runs and the balls faced by Rahul are 18 more than those faced by Virat. Find the number of runs scored by Rahul.",
+        "options": [
+            "A) 68",
+            "B) 72",
+            "C) 56",
+            "D) 78"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Comparing Quantities Test -1",
+        "question": "If p:q = 3:4, q:r = 6:5 and r:s = 7:2, then on dividing Rs 12324 among p, q, r and s. Find the amount of q",
+        "options": [
+            "A) Rs 3468",
+            "B) Rs 4368",
+            "C) Rs 6320",
+            "D) Rs 4638"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Comparing Quantities Test -1",
+        "question": "Which one among the following ratios is in ascending order?",
+        "options": [
+            "A) 7:9, 11:12, 17:19, 21:25",
+            "B) 4:7, 9:16, 11:20, 15:17",
+            "C) 3:4, 7:9, 15:19, 4:15",
+            "D) 2:3, 4:5, 7:8, 8:11"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Comparing Quantities Test -1",
+        "question": "If (3x + 2y) : (3x - 2y) = (3p + 8q) : (3p - 8q), which one of the following is correct?",
+        "options": [
+            "A) xq = py",
+            "B) 16y = 21pq",
+            "C) 3xq = 2py",
+            "D) 4xq = 3py"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Comparing Quantities Test -1",
+        "question": "The monthly earnings and expenditures of Asit and Babloo are in the ratio 5:3 and 3:2 respectively. If the monthly savings of Babloo is thrice that of Asit, then find the monthly earning of Asit. (Also it is given that Asit saves Rs 3250 every month)",
+        "options": [
+            "A) Rs 8500",
+            "B) Rs 8150",
+            "C) Rs 8600",
+            "D) Rs 8000"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Comparing Quantities Test -1",
+        "question": "Which among the following statements is true?",
+        "options": [
+            "A) Two quantities x and y are in inverse proportion if x/y is a constant",
+            "B) If 10 persons can finish a job in 20 days then 5 persons can finish a job in 10 days",
+            "C) The number of teeth and the age of a person vary sometimes directly and sometimes inversely with each other",
+            "D) Sides of a square and its perimeter are in indirect proportion."
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Comparing Quantities Test -1",
+        "question": "Which of the following vary inversely with each other?",
+        "options": [
+            "A) speed and distance travelled",
+            "B) Income tax and the income",
+            "C) distance travelled by CNG Bus and the amount of CNG used",
+            "D) speed and time taken"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Comparing Quantities Test -1",
+        "question": "The mass of an aluminium rod varies directly with its length. If a 36 cm long rod has a mass of 432 gm, then find the length of the rod whose mass is 81gm",
+        "options": [
+            "A) 3.25 cm",
+            "B) 6.75 cm",
+            "C) 5.00 cm",
+            "D) None of these"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Comparing Quantities Test -1",
+        "question": "90 persons can dig a well in 40 days. After they have worked for 10 days, how many more persons should be employed so as to complete the work in another 20 days?",
+        "options": [
+            "A) 12",
+            "B) 18",
+            "C) 22",
+            "D) None of these"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Comparing Quantities Test -1",
+        "question": "A diamond worth Rs 144400 breaks into two pieces. The weight of these two pieces are in the ratio 11:8. If the value of the diamond is proportional to the square of its weight, then what will be the loss due to its breakage (in Rs)?",
+        "options": [
+            "A) 70,400",
+            "B) 60,300",
+            "C) 62,500",
+            "D) 58,500"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Comparing Quantities Test -2",
+        "question": "If p:q:r = 3:4:5 and pq = 12, what will be the value of (p - q + r)³?",
+        "options": [
+            "A) 1531",
+            "B) 1728",
+            "C) 2197",
+            "D) 2744"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Comparing Quantities Test -2",
+        "question": "Which among the following statements is incorrect?",
+        "options": [
+            "A) The subduplicate ratio of 36:25 is 6:5",
+            "B) The subtriplicate ratio of 8:27 is 2:3",
+            "C) 16:81 is the duplicate ratio of 4:9",
+            "D) 1:8 is the triplicate ratio of 1:4"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Comparing Quantities Test -2",
+        "question": "Russet's income was first increased by 15%, then decreased by 8%. If his latest income is Rs 37260, then find his original income.",
+        "options": [
+            "A) Rs 30,000",
+            "B) Rs 32,000",
+            "C) Rs 32,600",
+            "D) Rs 35,600"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Comparing Quantities Test -2",
+        "question": "Simons and Atherton save 25% and 40% of their respective incomes. If their expenditures are equal, then find the ratio of the incomes of Simons and Atherton.",
+        "options": [
+            "A) 4:5",
+            "B) 3:4",
+            "C) 5:6",
+            "D) 6:5"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Comparing Quantities Test -2",
+        "question": "In the year 2015, the price of article A is 17% more than the price of article B. In the next year, the price of article A becomes 30% more than the price of article B. If from the year 2015 to 2016, the price of A has increased by 40%, then by what percent, the price of B has increased?",
+        "options": [
+            "A) 18%",
+            "B) 22%",
+            "C) 25%",
+            "D) 28%"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Comparing Quantities Test -2",
+        "question": "If P is 28% of Q and R is 56% of Q, then P is what percent of R?",
+        "options": [
+            "A) 20%",
+            "B) 25%",
+            "C) 50%",
+            "D) 75%"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Comparing Quantities Test -2",
+        "question": "Ratish sells a scooty at a profit of 8% for Rs 16200. If he reduces the selling price to Rs 15300, find his gain/loss percent",
+        "options": [
+            "A) 2% loss",
+            "B) 2% gain",
+            "C) 4% loss",
+            "D) 2% gain"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Comparing Quantities Test -2",
+        "question": "The price of a banana dropped by 20%. Due to this Avnish was able to buy 2 dozens more bananas for Rs 680. Find the initial price of a dozen bananas (in Rs).",
+        "options": [
+            "A) 40",
+            "B) 50",
+            "C) 80",
+            "D) None of these"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Comparing Quantities Test -3",
+        "question": "The price value of the share of a company increased at the rate of 15% in a year and decreased at the rate of 10% in the next year. What will be the value of share after 2 years if the present value of the share is Rs 2000?",
+        "options": [
+            "A) Rs 2050",
+            "B) Rs 2020",
+            "C) Rs 2070",
+            "D) Rs 2090"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Comparing Quantities Test -3",
+        "question": "A certain amount become its 4 times in 6 year at simple interest. In how many year will it become 11 times itself?",
+        "options": [
+            "A) 18 years",
+            "B) 19 years",
+            "C) 20 years",
+            "D) 21 years"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Comparing Quantities Test -3",
+        "question": "It is given that Carbon-14 decays at a constant rate and so it reduced to 30% in 1882 years. What will be the age of a tree in which carbon is only 9% of the original?",
+        "options": [
+            "A) 941 years",
+            "B) 1882 years",
+            "C) 3764 years",
+            "D) 5646 years"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Comparing Quantities Test -3",
+        "question": "If the cost price of 10 apples is equal to the selling price of 8 apples. Find the gain or loss percent",
+        "options": [
+            "A) 20% loss",
+            "B) 25% profit",
+            "C) 20% profit",
+            "D) 25% loss"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Comparing Quantities Test -3",
+        "question": "If a man were to sell his hand-watch for Rs 1680, he would lose 20%. What must he sell it for to gain 25%?",
+        "options": [
+            "A) Rs 2625",
+            "B) Rs 2830",
+            "C) Rs 2656",
+            "D) Rs 2525"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Comparing Quantities Test -3",
+        "question": "By reducing the selling price of a bicycle by Rs 2000, a gain of 10% turns into a loss of 10%. Find the original selling price of a bicycle.",
+        "options": [
+            "A) Rs 10,000",
+            "B) Rs 11,000",
+            "C) Rs 12,000",
+            "D) Rs 9,000"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Comparing Quantities Test -3",
+        "question": "Jacob scored 8 marks more than what he did in the previous examination in which he had obtained 20 marks. Martin scored 16 marks more than he did in the previous examination in which he had scored 80 marks. Who had shown more improvement and by how much from other?",
+        "options": [
+            "A) Jacob, by 20%",
+            "B) Martin, by 20%",
+            "C) Jacob, by 25%",
+            "D) Martin, by 25%"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Comparing Quantities Test -3",
+        "question": "Two Laptops were sold at the same price. One was sold at 10% loss and the other was sold at 12% profit. What will be the overall profit/loss percentage in the transaction? (rounded up to two decimal)",
+        "options": [
+            "A) 2.32% loss",
+            "B) 2.20% profit",
+            "C) 2% profit",
+            "D) None of these"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Comparing Quantities Test -4",
+        "question": "Which of the following is the most beneficial for a customer?",
+        "options": [
+            "A) Two successive discounts of 15% each.",
+            "B) A discount of 30%",
+            "C) A 10% discount followed by a 20% discount.",
+            "D) A 20% discount followed by a 10% discount"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Comparing Quantities Test -4",
+        "question": "Ramiz and John marked an article at Rs 6000 each. Ramiz sold it after giving successive discounts of 24% and 40%. John sold it after giving two successive discounts of 52% each. Find the maximum selling price (in Rs).",
+        "options": [
+            "A) 2836",
+            "B) 2774.40",
+            "C) 2660",
+            "D) 2874.60"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Comparing Quantities Test -4",
+        "question": "Vipin and Shubham run a race. Vipin gives Shubham a start of 10 metres and is beaten by almost 10 meters. Who has higher speed between the two?",
+        "options": [
+            "A) Vipin",
+            "B) Shubham",
+            "C) Both have equal speeds",
+            "D) Cannot be determined"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Comparing Quantities Test -4",
+        "question": "The speed of a boat in still water is 6km/hr. The boat covers a round trip journey in 12 hours. If speed of the stream is 2km/hr, then find the time taken by the boat to complete the upstream journey.",
+        "options": [
+            "A) 6hr",
+            "B) 8hr",
+            "C) 4hr",
+            "D) 2hr"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Comparing Quantities Test -4",
+        "question": "A train travelling at a speed of 72 km/hr passes an electric pole in 30 seconds. Find the time taken by it to cross a bridge of length 900 m (in seconds).",
+        "options": [
+            "A) 70",
+            "B) 80",
+            "C) 75",
+            "D) 85"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Comparing Quantities Test -4",
+        "question": "How long will a train of length 250 m running at a speed of 108 km/hr take to cross another train of length 350 m running in the same direction at a speed of 18 km/hr?",
+        "options": [
+            "A) 24 seconds",
+            "B) 40 seconds",
+            "C) 50 seconds",
+            "D) 55 seconds"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Comparing Quantities Test -4",
+        "question": "Two trains of equal lengths take a minute to cross each other when travelling in the same direction. They take 20 seconds to cross each other when travelling in opposite directions. Find the ratio of the speeds of the slower and faster train respectively.",
+        "options": [
+            "A) 3:4",
+            "B) 4:5",
+            "C) 5:6",
+            "D) 1:2"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Comparing Quantities Test -4",
+        "question": "A man can row 20 km/h in still water. It takes him thrice as long to row up as to row down the river. Find the speed of the stream.",
+        "options": [
+            "A) 8 km/h",
+            "B) 12 km/h",
+            "C) 10 km/h",
+            "D) 16 km/h"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Cubes And Cube Root Test-1",
+        "question": "Which one of the following is a perfect cube?",
+        "options": [
+            "A) 1525",
+            "B) 1728",
+            "C) 1458",
+            "D) 3993"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Cubes And Cube Root Test-1",
+        "question": "Which one of the following numbers is not a perfect cube?",
+        "options": [
+            "A) 2197",
+            "B) 512",
+            "C) 2916",
+            "D) 543"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Cubes And Cube Root Test-1",
+        "question": "What is the least number by which 1565109 must be multiplied so that the product becomes a perfect cube?",
+        "options": [
+            "A) 11",
+            "B) 12",
+            "C) 13",
+            "D) 14"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Cubes And Cube Root Test-1",
+        "question": "What is the least number by which 273375 must be divided so that the quotient will be a perfect cube?",
+        "options": [
+            "A) 49",
+            "B) 25",
+            "C) 81",
+            "D) 27"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Cubes And Cube Root Test-1",
+        "question": "What is the smallest number by which 1800 must be divided so that the quotient will be a perfect cube?",
+        "options": [
+            "A) 15",
+            "B) 20",
+            "C) 25",
+            "D) 30"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Cubes And Cube Root Test-1",
+        "question": "What is the smallest number by which 1600 must be divided so that the quotient will be a perfect cube?",
+        "options": [
+            "A) 15",
+            "B) 20",
+            "C) 25",
+            "D) 30"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Cubes And Cube Root Test-1",
+        "question": "Find the smallest number by which 2560 must be multiplied so that the product will be a perfect cube",
+        "options": [
+            "A) 10",
+            "B) 15",
+            "C) 20",
+            "D) 25"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Data Handling Test-1",
+        "question": "The histogram representing the marks obtained by 60 students in a Mathematics examination. If the minimum pass marks was 40, how many students failed?",
+        "options": [
+            "A) 7",
+            "B) 13",
+            "C) 2",
+            "D) 1"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Data Handling Test-1",
+        "question": "The histogram representing the marks obtained by 60 students in a Mathematics examination. How many students were awarded merit, if the minimum marks required for it are 80?",
+        "options": [
+            "A) 7",
+            "B) 4",
+            "C) 12",
+            "D) 8"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Data Handling Test-1",
+        "question": "The number of times a particular entry occurs in a set of data is known as its",
+        "options": [
+            "A) Range",
+            "B) Class-size",
+            "C) Frequency",
+            "D) Class-interval"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Data Handling Test-2",
+        "question": "In a school, only 2 out of 5 students can participate in a competition. What is the probability of the students who do not make it to the competition?",
+        "options": [
+            "A) 0.65",
+            "B) 0.4",
+            "C) 0.45",
+            "D) 0.6"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Direct And Indirect Variations Test-1",
+        "question": "A bag contains the coins of different denominations such as 50 Paise, 25 Paise and 10 Paise. If the number of coins is in the ratio 4:6:10 respectively and the sum of all the coins is Rs. 180. Find the number of 50 Paise coins in the bag",
+        "options": [
+            "A) 80",
+            "B) 120",
+            "C) 200",
+            "D) 240"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Direct And Indirect Variations Test-1",
+        "question": "Thomas needs some money for the construction work of his house and he does not have enough money for this work. He decides to lend the money from the money lender. He borrows Rs 2750 at the rate of 12% and lends the same amount to his friend at the rate of 16% per annum as he decides to postpone his work for some time because his friend needs the amount urgently. His friend pays him back the amount after two years and he returns the due amount to the money lender. The amount of money he earns from this transaction is",
+        "options": [
+            "A) Rs. 250",
+            "B) Rs. 330",
+            "C) Rs. 450",
+            "D) Rs. 340"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Direct And Indirect Variations Test-1",
+        "question": "Mary prepares two types of mixture of fruit juice and wine in the ratio of 3:2 and 4:5. Later she realizes that the mixture is not appropriate and wants to make the concentration of both the fruit juice and wine in the same ratio in both mixtures and so she mixes them together. If she wants to mix 3 cans of first type with that of second type of the mixture, then how many cans of second type does she require for this process so that she can obtain the required mixture?",
+        "options": [
+            "A) 5.4",
+            "B) 5",
+            "C) 4.5",
+            "D) 6"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Direct And Indirect Variations Test-1",
+        "question": "If 10 men and 14 women can earn Rs. 1750 per day. How much would 10 men and 10 women earn per day?",
+        "options": [
+            "A) Rs. 2500",
+            "B) Rs. 2475",
+            "C) Rs. 1575",
+            "D) Rs. 2675"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Direct And Indirect Variations Test-1",
+        "question": "Three friends Thomas, Harry and James went for the marathon and start their run at 5 A.M. and run through planes and hills on their way and return at 12 PM. If their speed on the plane ground is 4 km/h, up the hill it is 3 km/h and down the hill it is 6 km/h. Find the total distance they cover during the whole journey",
+        "options": [
+            "A) 15km",
+            "B) 10km",
+            "C) 12km",
+            "D) 18km"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Direct And Indirect Variations Test-1",
+        "question": "Robert went to the shop to purchase some salt. He found that the cost of 12 packets of salt each having the weight 800 grams is Rs. 86. If he decided to purchase 27 packets of salt each of which weighs 1000 gm then how much amount he will have to pay for this purchase?",
+        "options": [
+            "A) Rs. 250.00",
+            "B) Rs. 158.50",
+            "C) Rs. 160.50",
+            "D) Rs. 170.50"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Direct And Indirect Variations Test-1",
+        "question": "A publishing house employs 6 typists to type the manuscript of a book. If the typists work for 5 hours a day and take 16 days to complete the work. Due to some reason two typists leave the work before it starts and hence the company is left with only 4 typists to complete the work. In how many days will 4 typists complete the same job working 5 hours a day?",
+        "options": [
+            "A) 20 days",
+            "B) 15 days",
+            "C) 10 days",
+            "D) 24 days"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Direct And Indirect Variations Test-1",
+        "question": "In an army of 1000 soldiers there is a provision of food for 48 days when they are in remote areas for their duty or on the war. Due to infiltration of enemy 600 more soldiers are inducted in the group so that they can fight with the situation of urgency. For how many days will the given food last in the canteen?",
+        "options": [
+            "A) 12 days",
+            "B) 30 days",
+            "C) 45 days",
+            "D) 60 days"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Direct And Indirect Variations Test-1",
+        "question": "In an elastic spring the longitudinal extension is directly proportional to the weight hanged on the spring. If a weight of 300 kg produces an extension of 5.8 meters, then find the weight which will produce an extension of 34.8 meters.",
+        "options": [
+            "A) 1800kg",
+            "B) 1600kg",
+            "C) 1400kg",
+            "D) 1200kg"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Direct And Inverse Proportions Test-1",
+        "question": "Which of the following statements is CORRECT",
+        "options": [
+            "A) Length of a side of square and its area vary directly with each other",
+            "B) If one angle of a triangle is kept fixed then the measure of the remaining two angles vary inversely with each other",
+            "C) The area of circle and its diameter vary directly with each other",
+            "D) All of these"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Direct And Inverse Proportions Test-1",
+        "question": "Two quantities x and y vary inversely with each other, then",
+        "options": [
+            "A) x/y remains constant",
+            "B) x - y remains constant",
+            "C) x + y remains constant",
+            "D) xy remains constant"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Factorisation Test-1",
+        "question": "Factorise the given expression: u² - v² + um - vn + un - vm",
+        "options": [
+            "A) (u + n + v + m)(u - v + m)",
+            "B) (u + n - v + m)(u - v + m)",
+            "C) (u + n + v + m)(u - v - m)",
+            "D) (u + n - v - m)(u + v + m)"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Factorisation Test-1",
+        "question": "Find the remainder when 30y⁴ + 11y³ - 42y² - 24y + 3 is divided by 3y² + 2y?",
+        "options": [
+            "A) 0",
+            "B) 2y - 3",
+            "C) 3",
+            "D) y - 2"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Factorisation Test-1",
+        "question": "Factorise: (p + q)(2p + 5) - (p + q)(p + 3).",
+        "options": [
+            "A) (p - q)(p + 2)",
+            "B) (p - q)(p - 2)",
+            "C) (p + q)(p - 2)",
+            "D) (p + q)(p + 2)"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Factorisation Test-1",
+        "question": "Simplify the given expression: [39y³(50y² - 98)] / [26y²(5y + 7)]",
+        "options": [
+            "A) 3y(5y - 7)",
+            "B) 15y² + 21y",
+            "C) 15y² - 21y",
+            "D) 15y - 21"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Factorisation Test-1",
+        "question": "The factor of 6 - y - 2y² is:",
+        "options": [
+            "A) y - 2",
+            "B) y - 3",
+            "C) -2y + 3",
+            "D) y + 3"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Factorisation Test-1",
+        "question": "The quotient when 6ab - b² + 12ac - 2bc is divided by (6a - b) is:",
+        "options": [
+            "A) b + 2c",
+            "B) b - 2c",
+            "C) 2b + c",
+            "D) 2b - c"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Factorisation Test-1",
+        "question": "The greatest common factor of 3m²n², 4n²p² and 12m²n²p² is:",
+        "options": [
+            "A) n²",
+            "B) m²",
+            "C) p²",
+            "D) mnp"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Factorisation Test-1",
+        "question": "The remainder when (m - 2n)² - 4m + 8n is divided by (m - 2n - 4) is:",
+        "options": [
+            "A) 0",
+            "B) m - 2n",
+            "C) 1",
+            "D) m + n"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Geometry Test-1",
+        "question": "Which of the following statements is not true?",
+        "options": [
+            "A) In a convex polygon, the line segment joining any two points inside it lies completely inside the polygon",
+            "B) A rhombus is not a regular polygon",
+            "C) Each exterior angle of a regular octagon is 45°.",
+            "D) None of these"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Geometry Test-1",
+        "question": "The exterior angle of a regular polygon is 5° more than one-fourth of its interior angle. Find 8/7 of the interior angle of such a regular polygon.",
+        "options": [
+            "A) 140°",
+            "B) 120°",
+            "C) 160°",
+            "D) 172°"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Geometry Test-1",
+        "question": "If PQRS is a parallelogram in which ∠SPQ = 40°, ∠BPQ = 25° and ∠SCR = 75°, then which one of the following is incorrect?",
+        "options": [
+            "A) ∠QBC = 40°",
+            "B) ∠PQB = 35°",
+            "C) ∠PSD = 25°",
+            "D) None of these"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Geometry Test-1",
+        "question": "In a parallelogram PQRS the bisectors of ∠P and ∠Q meet at M. Find ∠PMQ.",
+        "options": [
+            "A) 45°",
+            "B) 90°",
+            "C) 60°",
+            "D) 120°"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Geometry Test-1",
+        "question": "Two adjacent angles of a parallelogram are (5x + 1) and (6x - 8). The angles of the parallelogram are:",
+        "options": [
+            "A) 86°, 94°, 86°, 94°",
+            "B) 76°, 104°, 76°, 104°",
+            "C) 84°, 96°, 84°, 96°",
+            "D) 78°, 102°, 78°, 102°"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Geometry Test-1",
+        "question": "Which among the following statements is not true?",
+        "options": [
+            "A) The centroid of a triangle divides each median in the ratio 2:1",
+            "B) The perpendicular bisectors of the sides of a triangle are concurrent",
+            "C) In a right angled triangle, the circumcenter is the mid-point of the hypotenuse",
+            "D) The angle bisectors of a triangle are not concurrent"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Geometry Test-3",
+        "question": "The maximum number of obtuse angles in a quadrilateral can be:",
+        "options": [
+            "A) 4",
+            "B) 3",
+            "C) 2",
+            "D) 1"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Geometry Test-3",
+        "question": "Which of the following can never be the measure of exterior angles of a regular polygon?",
+        "options": [
+            "A) 20°",
+            "B) 27°",
+            "C) 36°",
+            "D) 12°"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Geometry Test-3",
+        "question": "The measure of each angle of a regular polygon of 24 sides is:",
+        "options": [
+            "A) 155°",
+            "B) 165°",
+            "C) 170°",
+            "D) 158°"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Geometry Test-3",
+        "question": "The number of lines of symmetry for a parallelogram is:",
+        "options": [
+            "A) 4",
+            "B) 1",
+            "C) 0",
+            "D) 2"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Geometry Test-3",
+        "question": "Which among the following digits has two lines of symmetry?",
+        "options": [
+            "A) 6",
+            "B) 8",
+            "C) 9",
+            "D) 5"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Geometry Test-3",
+        "question": "Which one among the following is an incorrect pair of figures and lines of symmetry?",
+        "options": [
+            "A) Kite - 2",
+            "B) An isosceles triangle - 1",
+            "C) Semicircle - 1",
+            "D) Rhombus - 2"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Geometry Test-3",
+        "question": "One angle of a quadrilateral is 116° and the remaining three angles are in the ratio of 1:2:1. Find the greatest angle of the quadrilateral.",
+        "options": [
+            "A) 116°",
+            "B) 118°",
+            "C) 122°",
+            "D) 132°"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Geometry Test-4",
+        "question": "The interior angle of a regular pentagon is three times the exterior angle of a regular polygon. Find that polygon.",
+        "options": [
+            "A) heptagon",
+            "B) octagon",
+            "C) nonagon",
+            "D) decagon"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Geometry Test-4",
+        "question": "In a regular hexagon MNOPQR, determine the greatest angle of triangle MNO.",
+        "options": [
+            "A) 30°",
+            "B) 60°",
+            "C) 90°",
+            "D) 120°"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Geometry Test-4",
+        "question": "Two adjacent angles of a parallelogram are (6x - 16) and (7x + 14). Find the angles of the parallelogram.",
+        "options": [
+            "A) 75°, 105°, 75°, 105°",
+            "B) 72°, 108°, 72°, 108°",
+            "C) 68°, 112°, 68°, 112°",
+            "D) None of these"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Geometry Test-4",
+        "question": "The measure of angles of a heptagon are m, 2m - 12, 3m - 18, 3m - 4, m - 10, 2(m - 2), 2(m + 2). Find the value of m.",
+        "options": [
+            "A) 34°",
+            "B) 55°",
+            "C) 45°",
+            "D) 74°"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Geometry Test-4",
+        "question": "Two angles of a quadrilateral are of measure 76° and the other two angles are equal. What is the measure of the equal angles?",
+        "options": [
+            "A) 105°",
+            "B) 106°",
+            "C) 104°",
+            "D) 112°"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Introduction to Graphs Test-1",
+        "question": "The coordinate point (0, -3) lies on:",
+        "options": [
+            "A) Positive x-axis",
+            "B) Negative x-axis",
+            "C) Positive y-axis",
+            "D) Negative y-axis"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Introduction to Graphs Test-1",
+        "question": "To draw the graph of a line, the least number of points required is:",
+        "options": [
+            "A) One",
+            "B) Two",
+            "C) Three",
+            "D) Four"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Introduction to Graphs Test-1",
+        "question": "The point of intersection of coordinate axes is called:",
+        "options": [
+            "A) Common point",
+            "B) Zero point",
+            "C) Origin",
+            "D) Null point"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Linear Equation in One Variable Test-1",
+        "question": "David cuts a bread into two equal pieces and cuts one half into smaller pieces of equal size. Each of the small pieces is twenty grams in weight. If he has seven pieces of the bread all with him, how heavy is the original cake?",
+        "options": [
+            "A) 120 gm",
+            "B) 180 gm",
+            "C) 300 gm",
+            "D) 240 gm"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Linear Equation in One Variable Test-1",
+        "question": "Find the number of 8's in the given series which is exactly divisible by its immediately preceding and also exactly divisible by immediately succeeding numbers? The number series is 824517284842282698454832843182",
+        "options": [
+            "A) 2",
+            "B) 3",
+            "C) 4",
+            "D) 5"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Linear Equation in One Variable Test-1",
+        "question": "Mary was counting down from 34 and Thomas was counting upwards simultaneously. Thomas started from 1 and he was calling out only the odd numbers. Which common number will they call out at the same time if they were calling out at the same speed?",
+        "options": [
+            "A) 20",
+            "B) 21",
+            "C) 22",
+            "D) 25"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Linear Equation in One Variable Test-1",
+        "question": "The distance between two milestones is 230 km and two cars start simultaneously from the milestones in opposite directions and the distance between them after three hours is 20 km. If the speed of one car is less than that of the other by 10 km/h, find the speed of each car.",
+        "options": [
+            "A) 25 km/h, 45 km/h",
+            "B) 30 km/h, 40 km/h",
+            "C) 20 km/h, 40 km/h",
+            "D) 35 km/h, 45 km/h"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Linear Equation in One Variable Test-1",
+        "question": "A store has provisions which would last for a certain number of men for 21 days. For one-seventh of the men it will last for how many days?",
+        "options": [
+            "A) 147",
+            "B) 158",
+            "C) 129",
+            "D) 174"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Linear Equation in One Variable Test-1",
+        "question": "An MNC company employed 25 men to do the official work in 32 days. After 15 days, it employed 5 more men and work was finished one day earlier. If it had not employed additional men, it would have been behind by how many days?",
+        "options": [
+            "A) 1 day",
+            "B) 2 days",
+            "C) 3 days",
+            "D) 2.5 days"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Linear Equation in One Variable Test-1",
+        "question": "A Bullet train left for New York at time y minutes after x hours and reached Canada z minutes after y hours on the same day, after travelling z hrs and x minutes. How many possible values of x are there?",
+        "options": [
+            "A) 1",
+            "B) 2",
+            "C) 3",
+            "D) 4"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Logarithms Test-1",
+        "question": "Find the value of x which satisfies the relation log₂ log₁₀ (4x + 1) = log₄ (x + 1) + 1",
+        "options": [
+            "A) 2",
+            "B) 6",
+            "C) 1/4",
+            "D) not defined"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Logarithms Test-1",
+        "question": "Which of the following statements is correct?",
+        "options": [
+            "A) log₁₀ 0 = 0",
+            "B) log (2 · 3) = log (2) · log (3)",
+            "C) log₁₀ 1 = 1",
+            "D) log (1 + 2 + 3) = log 1 + log 2 + log 3"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Logarithms Test-1",
+        "question": "log 160 is equal to",
+        "options": [
+            "A) 2 log 2 - 3 log 3",
+            "B) 3 log 2 - 2 log 3",
+            "C) 3 log 2 - 2 log 3 - log 5",
+            "D) 5 log 2 - log 5"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Logical Reasoning Test-1",
+        "question": "There is a certain relationship between the numbers on either side of :. Select a number from the options which will replace the ?\n3 : 15 :: 17 : ?",
+        "options": [
+            "A) 35",
+            "B) 61",
+            "C) 36",
+            "D) 64"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Logical Reasoning Test-1",
+        "question": "Pointing to a photograph, a woman says, 'This man's son's sister is my mother-in-law'. How is the woman's husband related to the man in the photograph?",
+        "options": [
+            "A) Grandson",
+            "B) Son",
+            "C) Son-in-law",
+            "D) Nephew"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Logical Reasoning Test-1",
+        "question": "How many 5's are there in the given number sequence which are immediately preceded by 7 and immediately followed by 6?\n755945764598756764325678",
+        "options": [
+            "A) One",
+            "B) Two",
+            "C) Three",
+            "D) Four"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Logical Reasoning Test-1",
+        "question": "If the first half of the English alphabet is reversed and then next portion of English alphabet is reversed so as 'A' takes the position of 'M' and 'N' takes the position of 'Z', then which letter will be 6th to the left of 17th letter to the right of 7th letter from the left?",
+        "options": [
+            "A) U",
+            "B) V",
+            "C) X",
+            "D) T"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Logical Reasoning Test-2",
+        "question": "If 'lead' is called 'stick', 'stick' is called 'nib', 'nib' is called 'needle', 'needle' is called 'rope' and 'rope' is called 'thread', what will be fitted in a pen to write with it?",
+        "options": [
+            "A) stick",
+            "B) nib",
+            "C) needle",
+            "D) rope"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Logical Reasoning Test-2",
+        "question": "Which of the following words CANNOT be formed by using the letters of the given word: CONCENTRATE",
+        "options": [
+            "A) TREAT",
+            "B) CONCERN",
+            "C) TRAIN",
+            "D) CENTRE"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Mensuration Test-1",
+        "question": "Three cubes whose edges are 3 cm, 4 cm and 5 cm respectively are melted without any loss of metal into a single cube. The edge of the new cube is",
+        "options": [
+            "A) 5 cm",
+            "B) 12 cm",
+            "C) 6 cm",
+            "D) 10 cm"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Mix Test-1",
+        "question": "Reena took a loan of Rs. 1200 with simple interest for as many years as the rate of interest. If she paid Rs. 432 as interest at the end of the loan period, what was the rate of interest?",
+        "options": [
+            "A) 3.6",
+            "B) 6",
+            "C) 18",
+            "D) None of these"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Mix Test-1",
+        "question": "In a two-digit number, the digit at the unit's place is 1 less than twice the digit at the ten's place. If the digits at unit's and ten's place are interchanged, the difference between the new and the original number is less than the original number by 20. The original number is",
+        "options": [
+            "A) 23",
+            "B) 35",
+            "C) 47",
+            "D) 59"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Mix Test-1",
+        "question": "Sum of three numbers a, b and c is 10 (a + b + c = 10). If a, b and c are three positive integers, then what is their maximum product (a × b × c)?",
+        "options": [
+            "A) 50",
+            "B) 48",
+            "C) 36",
+            "D) 42"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Mix Test-1",
+        "question": "Sonali could not decide between a discount of 30% or two successive discounts of 25% and 5%, both given on shopping of Rs. 2000. What is the difference between both the discounts?",
+        "options": [
+            "A) Rs. 15",
+            "B) Rs. 25",
+            "C) Rs. 100",
+            "D) There is no difference"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Mix Test-1",
+        "question": "By selling cloth at Rs. 9 per meter, a shopkeeper loses 10%. Find the rate at which it should be sold so as to earn a profit of 15%?",
+        "options": [
+            "A) Rs. 11.20",
+            "B) Rs. 11.30",
+            "C) Rs. 11.40",
+            "D) Rs. 11.50"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Mix Test-1",
+        "question": "The difference between simple and compound interests compounded annually on a certain sum of money for 2 years at 4% per annum is Re. 1. The sum (in Rs.) is:",
+        "options": [
+            "A) 625",
+            "B) 630",
+            "C) 640",
+            "D) 650"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Mix Test-1",
+        "question": "A father distributed some chocolates among his four children and kept some with him. The eldest three children got chocolates in the ratio 3 : 11 : 7. The total number of chocolates with father and youngest child is three times the total chocolates with the three eldest children. The ratio of chocolates with father and that with all the children is 3 : 4. Find the total number of chocolates if the youngest child has 81 chocolates with him?",
+        "options": [
+            "A) 275",
+            "B) 252",
+            "C) 278",
+            "D) 303"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Mix Test-1",
+        "question": "The income of Adarsh, Satpal and Rahim are in the ratio of 12 : 9 : 7 and their spendings are in the ratio 15 : 9 : 8. If Adarsh saves 25% of his income, what is the ratio of the savings of Adarsh, Satpal and Rahim?",
+        "options": [
+            "A) 15 : 18 : 11",
+            "B) 5 : 8 : 7",
+            "C) 25 : 18 : 11",
+            "D) 25 : 16 : 13"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Mix Test-1",
+        "question": "The probability that a number selected from 1, 2, 3, ..., 35 is a prime number is:",
+        "options": [
+            "A) 12/35",
+            "B) 11/35",
+            "C) 13/35",
+            "D) 2/7"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Mix Test-1",
+        "question": "Find 9 rational numbers between -1/5 and -1/9.",
+        "options": [
+            "A) -2/45, -3/45, -4/45, -5/45, -6/45, -7/45, -8/45, -9/45, -10/45",
+            "B) -10/90, -11/90, -12/90, -13/90, -14/90, -15/90, -16/90, -17/90, -18/90",
+            "C) -4/45, -3/45, -2/45, -1/45, 0/45, 1/45, 2/45, 3/45, 4/45",
+            "D) None of these"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Mix Test-2",
+        "question": "The values of x and y from the equations x - y = 6 and x/3 + y/2 = 1 are:",
+        "options": [
+            "A) x = 6, y = -10",
+            "B) x = 18, y = 12",
+            "C) x = 24, y = 18",
+            "D) x = 4.8, y = -1.2"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Mix Test-2",
+        "question": "A solid metallic ball of radius 9 cm is melted to form cylinders of radius 6 mm and height 1 cm. Find the number of such solid cylinders that can be formed.",
+        "options": [
+            "A) 2200",
+            "B) 3000",
+            "C) 2500",
+            "D) 2700"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Mix Test-2",
+        "question": "If the price of a commodity is decreased by 40% and its consumption is increased by 30%, then what will be the percentage increase or decrease in the expenditure of the commodity?",
+        "options": [
+            "A) 22% decrease",
+            "B) 22% increase",
+            "C) 12% increase",
+            "D) 12% decrease"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Mix Test-2",
+        "question": "Value of √(10 + √(25 + √(121))) is which of the following?",
+        "options": [
+            "A) 12",
+            "B) 14",
+            "C) 15",
+            "D) 4"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Mix Test-2",
+        "question": "Find the time in which Rs. 25000 will become Rs. 51840 at 20% per annum compound interest.",
+        "options": [
+            "A) 5 years",
+            "B) 6 years",
+            "C) 4 years",
+            "D) 3 years"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Mix Test-2",
+        "question": "Radius ratio of three iron balls is 1 : 2 : 3. They are melted and recast into a bigger iron ball of radius 6 cm. The diameter of the smallest ball is:",
+        "options": [
+            "A) 6 cm",
+            "B) 3 cm",
+            "C) 2 cm",
+            "D) 4 cm"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Mix Test-2",
+        "question": "A number is increased first by 10% and then it is decreased by 20%. What is the percentage change in the number?",
+        "options": [
+            "A) 12% increase",
+            "B) 12% decrease",
+            "C) 32% increase",
+            "D) 32% decrease"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Mix Test-2",
+        "question": "The ratio of length and breadth of a rectangle is 5 : 4. The perimeter of the rectangle is 54 cm. Find the area of the rectangle.",
+        "options": [
+            "A) 180 cm²",
+            "B) 160 cm²",
+            "C) 210 cm²",
+            "D) 280 cm²"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Mix Test-2",
+        "question": "The length of the base of a triangle is 5/7 of the base of a parallelogram. The area of the triangle and the parallelogram is the same. Find the ratio of the respective heights of the triangle and the parallelogram.",
+        "options": [
+            "A) 5 : 3",
+            "B) 7 : 5",
+            "C) 14 : 5",
+            "D) 21 : 10"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Mix Test-2",
+        "question": "The value of √0.01 × ∛0.008 - 0.02 is:",
+        "options": [
+            "A) 0",
+            "B) 1",
+            "C) 2",
+            "D) 3"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Mix Test-3",
+        "question": "Which country has the highest percentage of unemployed people according to the line graph survey conducted across 6 different countries?",
+        "options": [
+            "A) Country A",
+            "B) Country F",
+            "C) Country D",
+            "D) Country C"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Mix Test-3",
+        "question": "The number of people unemployed in country C is what percent of the number of people unemployed in country F?",
+        "options": [
+            "A) 90%",
+            "B) 80%",
+            "C) 85%",
+            "D) 110%"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Mix Test-3",
+        "question": "Which countries have a low unemployment percentage as compared to the average unemployment percentage?",
+        "options": [
+            "A) C, D, E, F",
+            "B) C, E, F, A",
+            "C) A, B, C, F",
+            "D) A, B, E, F"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Mix Test-3",
+        "question": "Find the ratio of unemployment between country A and D.",
+        "options": [
+            "A) 2 : 3",
+            "B) 4 : 3",
+            "C) 5 : 4",
+            "D) 1 : 2"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Mix Test-3",
+        "question": "Find the difference between the percentage of people unemployed in company B and C.",
+        "options": [
+            "A) 20%",
+            "B) 30%",
+            "C) 40%",
+            "D) 10%"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Mix Test-3",
+        "question": "The number of factors of 1683 is:",
+        "options": [
+            "A) 12",
+            "B) 8",
+            "C) 4",
+            "D) 6"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Mix Test-3",
+        "question": "Two numbers are in the ratio 5 : 6. If 8 is subtracted from each of the numbers, the ratio becomes 4 : 5. Then the numbers are:",
+        "options": [
+            "A) 40, 42",
+            "B) 42, 48",
+            "C) 40, 48",
+            "D) 44, 50"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Mix Test-3",
+        "question": "The cost price of 40 articles is same as the selling price of x articles. If the profit is 25%, then what is the worth of x?",
+        "options": [
+            "A) 25",
+            "B) 32",
+            "C) 42",
+            "D) 64"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Mix Test-3",
+        "question": "If the marked price of an article is Rs. 800 and the selling price of the same article after two equal successive discounts is Rs. 512, then find each discount percentage.",
+        "options": [
+            "A) 10%",
+            "B) 20%",
+            "C) 25%",
+            "D) 40%"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Mix Test-3",
+        "question": "Anmol bought 5 bottles at Rs. 300 and sells them at Rs. 740. How many bottles must he sell in order to earn a profit of Rs. 7040?",
+        "options": [
+            "A) 40",
+            "B) 80",
+            "C) 56",
+            "D) 60"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Mix Test-3",
+        "question": "Find the least number by which 768 should be multiplied to get a perfect square.",
+        "options": [
+            "A) 6",
+            "B) 5",
+            "C) 2",
+            "D) 3"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Mix Test-3",
+        "question": "Which is the largest four-digit number completely divisible by each of 24, 30 and 36?",
+        "options": [
+            "A) 9720",
+            "B) 9960",
+            "C) 9840",
+            "D) 9620"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Mix Test-3",
+        "question": "Find the number of even factors of 540.",
+        "options": [
+            "A) 24",
+            "B) 8",
+            "C) 16",
+            "D) 12"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Mix Test-3",
+        "question": "If A : B = 5 : 3, B : C = 11 : 10, C : D = 5 : 6 then find A : B : C : D.",
+        "options": [
+            "A) 55 : 30 : 36 : 33",
+            "B) 55 : 33 : 30 : 36",
+            "C) 45 : 33 : 30 : 55",
+            "D) 35 : 30 : 55 : 36"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Mix Test-3",
+        "question": "A box contains 6 black and 8 white balls. A ball is drawn at random from the box. What is the probability that the ball drawn is white?",
+        "options": [
+            "A) 3/7",
+            "B) 4/7",
+            "C) 1/2",
+            "D) 3/4"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Mix Test-5",
+        "question": "Find the third proportional to 6 and 12.",
+        "options": [
+            "A) 18",
+            "B) 9",
+            "C) 24",
+            "D) 15"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Mix Test-5",
+        "question": "If A : B : C = 2 : 3 : 4, then the ratio A/B : B/C : C/A is equal to:",
+        "options": [
+            "A) 8 : 9 : 16",
+            "B) 8 : 9 : 12",
+            "C) 8 : 9 : 24",
+            "D) 4 : 9 : 16"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Mix Test-5",
+        "question": "The value of k, for which the system of equations 3x + ky + 20 = 0 and 6x - 10y + 40 = 0 has no solution, is:",
+        "options": [
+            "A) 10",
+            "B) 6",
+            "C) -5",
+            "D) 5"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Mix Test-5",
+        "question": "The numerator of a fraction is 4 less than its denominator. If the numerator is decreased by 2 and the denominator is increased by 1, then the denominator becomes eight times the numerator. Find the fraction.",
+        "options": [
+            "A) 3/7",
+            "B) 5/9",
+            "C) 1/5",
+            "D) 4/8"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Mix Test-5",
+        "question": "A shopkeeper purchased a bicycle for Rs. 1250 and spends 20% of it on its repairing, and he sold it for Rs. 1650. Find his loss or profit percent.",
+        "options": [
+            "A) 10% loss",
+            "B) 10% gain",
+            "C) 15% loss",
+            "D) 15% gain"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Mix Test-5",
+        "question": "Let x = (633)²⁴ - (277)³⁸ + (266)⁵⁴. What is the unit digit of x?",
+        "options": [
+            "A) 6",
+            "B) 7",
+            "C) 8",
+            "D) 0"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Mix Test-5",
+        "question": "Find simple interest on Rs. 3000 at 15% per annum for 8 months.",
+        "options": [
+            "A) Rs. 300",
+            "B) Rs. 360",
+            "C) Rs. 280",
+            "D) Rs. 36"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Mix Test-5",
+        "question": "An article costing Rs. 220 was sold for Rs. 206.8. How much discount was offered?",
+        "options": [
+            "A) 5%",
+            "B) 6%",
+            "C) 7%",
+            "D) 6%"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Mix Test-5",
+        "question": "Vishnu sells an article at 25% profit. Had he sold it for Rs. 51 more, he would have gained 28%. The cost price of the article will be:",
+        "options": [
+            "A) 1500",
+            "B) 1700",
+            "C) 2100",
+            "D) 2500"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Mix Test-5",
+        "question": "Find the number of odd factors of 540.",
+        "options": [
+            "A) 6",
+            "B) 8",
+            "C) 12",
+            "D) 10"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Mix Test-6",
+        "question": "Mr. Murthy invested Rs. 16000 in a scheme. How much will he get on maturity, if he invested it at 20% per annum compound interest for 9 months, compounded quarterly?",
+        "options": [
+            "A) Rs. 18521",
+            "B) Rs. 18522",
+            "C) Rs. 18523",
+            "D) Rs. 18524"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Mix Test-6",
+        "question": "One of the factors of (8²ᵏ + 5²ᵏ) where k is an odd number, is:",
+        "options": [
+            "A) 89",
+            "B) 86",
+            "C) 13",
+            "D) 40"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Mix Test-6",
+        "question": "What is the maximum number of spherical balls of radius 8 cm that can be packed in a box of size 80 cm × 48 cm × 16 cm?",
+        "options": [
+            "A) 15",
+            "B) 14",
+            "C) 16",
+            "D) 13"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Mix Test-6",
+        "question": "A box contains 280 coins of one rupee, 50 paise, and 25 paise. The values of the three kinds of coins are in the ratio of 8 : 4 : 3. The number of 50 paisa coins is:",
+        "options": [
+            "A) 80",
+            "B) 100",
+            "C) 120",
+            "D) 30"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Mix Test-6",
+        "question": "The internal base of a rectangular box is 15 cm long and 12 cm wide and its height is 7 cm. The box is filled with cubes each of side 2 cm. The number of cubes will be:",
+        "options": [
+            "A) 45",
+            "B) 60",
+            "C) 90",
+            "D) 120"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Mix Test-6",
+        "question": "40% of a number is added to 60 is equal to the 50% of that number. The number is:",
+        "options": [
+            "A) 250",
+            "B) 400",
+            "C) 500",
+            "D) 600"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Mix Test-6",
+        "question": "An article is sold for Rs. 864 at a loss of 28 percent. If it is sold at 20 percent profit, then what will be the selling price?",
+        "options": [
+            "A) Rs. 1240",
+            "B) Rs. 1380",
+            "C) Rs. 1440",
+            "D) Rs. 1560"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Mix Test-6",
+        "question": "If the cost price of a pen is 80% of the selling price, then what is profit %?",
+        "options": [
+            "A) 25%",
+            "B) 50%",
+            "C) 40%",
+            "D) 10%"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Mix Test-6",
+        "question": "A box contains 3 black balls, 6 red balls, 5 orange balls. A ball is taken out from the box and thrown. Then again, a ball is taken from the box. Find the probability that both the balls are of red colour.",
+        "options": [
+            "A) 31/91",
+            "B) 3/7",
+            "C) 15/91",
+            "D) 9/49"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Mix Test-6",
+        "question": "Using commutativity and associativity of addition of rational numbers, express the following as a rational number:\n4/7 + 0 + (-8/9) + (-13/7) + 17/21",
+        "options": [
+            "A) -10/21",
+            "B) -29/63",
+            "C) -13/21",
+            "D) -31/63"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Mix Test-6",
+        "question": "What is the perimeter of a semicircle, if the area of the circle is 154 cm² and the diameter of the circle and semicircle is the same?",
+        "options": [
+            "A) 45 cm",
+            "B) 22 cm",
+            "C) 36 cm",
+            "D) 18 cm"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Mix Test-6",
+        "question": "What is the unit digit of the sum of first 222 whole numbers?",
+        "options": [
+            "A) 4",
+            "B) 6",
+            "C) 1",
+            "D) 0"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Mix Test-6",
+        "question": "What is the volume of the largest sphere which can be cut from a cube having edges of 3 cm length?",
+        "options": [
+            "A) 6.2 cm³",
+            "B) 14.14 cm³",
+            "C) 1.8 cm³",
+            "D) 21 cm³"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Mix Test-6",
+        "question": "Mohan is a father of 3 children with at least one boy. The probability that he has 2 boys and 1 girl is:",
+        "options": [
+            "A) 1/2",
+            "B) 1/3",
+            "C) 3/7",
+            "D) 2/3"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Mix Test-6",
+        "question": "The value of √[(0.2×0.2×0.2 + 0.04×0.04×0.04) / (0.4×0.4×0.4 + 0.08×0.08×0.08)] is:",
+        "options": [
+            "A) 0.125",
+            "B) 0.25",
+            "C) 0.5",
+            "D) 0.75"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Mix Test-7",
+        "question": "The eighteen times a number is added to the square of that number, gives (-p) and the quadratic equation has only one repeated solution, then, what is the value of p?",
+        "options": [
+            "A) 100",
+            "B) 81",
+            "C) 71",
+            "D) 91"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Mix Test-7",
+        "question": "The volume of a cube is 216 cm³, find its total surface area (in cm²)",
+        "options": [
+            "A) 216 cm²",
+            "B) 108 cm²",
+            "C) 162 cm²",
+            "D) 270 cm²"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Mix Test-7",
+        "question": "If the mark price of an article is 800 and it is being sold at two consecutive discount of 20% and 10% Then find the selling price of the article",
+        "options": [
+            "A) 570",
+            "B) 600",
+            "C) 576",
+            "D) 560"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Mix Test-7",
+        "question": "Ram scored 80% marks Total marks were 300. How much did Ram score?",
+        "options": [
+            "A) 240",
+            "B) 40",
+            "C) 140",
+            "D) 20"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Mix Test-7",
+        "question": "What is the square root of 0.09?",
+        "options": [
+            "A) 0.003",
+            "B) 3/100",
+            "C) 0.03",
+            "D) 0.3"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Mix Test-7",
+        "question": "Find the number of odd factors of 540",
+        "options": [
+            "A) 6",
+            "B) 8",
+            "C) 12",
+            "D) 10"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Mix Test-7",
+        "question": "Rekha offers a discount of 10% on mark price an article and still makes a profit of 25% If cost price of article is Rs. 360, what is mark price of the article?",
+        "options": [
+            "A) Rs. 450",
+            "B) Rs. 460",
+            "C) Rs. 486",
+            "D) Rs. 500"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Mix Test-7",
+        "question": "If Rs. 9996 are distributed among P, Q, R and S in the ratio 1/5 : 1/4 : 1/6 : 1/5, then amount R will get is:",
+        "options": [
+            "A) Rs. 7800",
+            "B) Rs. 5050",
+            "C) Rs. 2040",
+            "D) Rs. 1600"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Mix Test-7",
+        "question": "Find the number of real solutions of the equation x² - 5|x| + 4 = 0",
+        "options": [
+            "A) 2",
+            "B) 3",
+            "C) 4",
+            "D) More than 5"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Mix Test-7",
+        "question": "What is the compound interest on a sum of Rs. 13,000 at 15% p.a. in 2 years?",
+        "options": [
+            "A) Rs. 4,404",
+            "B) Rs. 4,350",
+            "C) Rs. 4,225",
+            "D) Rs. 4,303"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Mix Test-8",
+        "question": "The denominator of a fraction is 3 more than its numerator. If the numerator is increased by 7 and the denominator is decreased by 2, we obtain 2. The sum of the numerator and denominator of the fraction is:",
+        "options": [
+            "A) 5",
+            "B) 13",
+            "C) 17",
+            "D) 19"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Mix Test-8",
+        "question": "If cost price of an article is Rs. 928 and profit % is 15%, then what will be the net profit?",
+        "options": [
+            "A) Rs. 154.50",
+            "B) Rs. 139.20",
+            "C) Rs. 212",
+            "D) Rs. 168.40"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Mix Test-8",
+        "question": "3075 is divided by 25 the quotient is",
+        "options": [
+            "A) 122",
+            "B) 123",
+            "C) 132",
+            "D) 133"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Mix Test-8",
+        "question": "What is the Principal if simple interest for 9 months at 8.5% interest rate is Rs. 720?",
+        "options": [
+            "A) 12000",
+            "B) 12200",
+            "C) 10200",
+            "D) 11200"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Mix Test-8",
+        "question": "A shopkeeper sells his articles at their cost price but uses a faulty balance which reads 1000gm for 800gm. What is the actual profit percentage?",
+        "options": [
+            "A) 20%",
+            "B) 25%",
+            "C) 30%",
+            "D) 40%"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Mix Test-8",
+        "question": "From given options the number that will completely divide (3⁶¹ + 3⁶² + 3⁶³ + 3⁶⁴) is:",
+        "options": [
+            "A) 30",
+            "B) 11",
+            "C) 25",
+            "D) 16"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Mix Test-8",
+        "question": "The value of 5 - [4 - {3 - (3 - 3 - 6)}] is:",
+        "options": [
+            "A) 11",
+            "B) 10",
+            "C) 9",
+            "D) 2"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Mix Test-8",
+        "question": "The ratio of sides of two cubes is 2:3. What is the ratio of their total surface area?",
+        "options": [
+            "A) 2:3",
+            "B) 4:9",
+            "C) 9:4",
+            "D) 5:8"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Mix Test-8",
+        "question": "The value of 530 × 26 is:",
+        "options": [
+            "A) 13780",
+            "B) 17380",
+            "C) 73180",
+            "D) 78130"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Mix Test-8",
+        "question": "In a class, the total number of boys are 18% more than the total number of girls. The ratio of the total number of boys to the total number of girls in the class is:",
+        "options": [
+            "A) 50:51",
+            "B) 59:50",
+            "C) 25:59",
+            "D) 50:59"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Mix Test-9",
+        "question": "From a pack of 52 cards, 1 card is drawn at random. Find the probability of a face card drawn.",
+        "options": [
+            "A) 1/13",
+            "B) 2/13",
+            "C) 3/13",
+            "D) 4/13"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Mix Test-9",
+        "question": "Find the diameter of a wheel if the distance traveled by the wheel in 120 revolutions is 1584 m",
+        "options": [
+            "A) 4.2 m",
+            "B) 3.2 m",
+            "C) 5.5 m",
+            "D) 2.8 m"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Mix Test-9",
+        "question": "21% of Rs 250 is:",
+        "options": [
+            "A) Rs. 52.50",
+            "B) Rs. 53.50",
+            "C) Rs. 54.50",
+            "D) Rs. 56.50"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Mix Test-9",
+        "question": "If the simple interest for 2 years is Rs 500 at 10% rate of interest. Find the compound interest for the same time.",
+        "options": [
+            "A) Rs. 525",
+            "B) Rs. 500",
+            "C) Rs. 200",
+            "D) Rs. 210"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Mix Test-9",
+        "question": "If a television set is sold at Rs. z, a loss of 28% would be incurred. If it is sold at Rs. y, a profit of 12% would be incurred. What is the ratio of y to z?",
+        "options": [
+            "A) 41:9",
+            "B) 31:9",
+            "C) 23:9",
+            "D) 14:9"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Mix Test-9",
+        "question": "What is the average stock available of three types of watches according to the store watch stock records?",
+        "options": [
+            "A) 18456.67",
+            "B) 17634.33",
+            "C) 18666.67",
+            "D) 17569.33"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Mix Test-9",
+        "question": "Stock of Analog Titan watch is approximately what percent of the total stock of Analog watches?",
+        "options": [
+            "A) 37.5%",
+            "B) 39.41%",
+            "C) 32.43%",
+            "D) 41.56%"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Mix Test-9",
+        "question": "What is the ratio between available stock of Timex and Titan watches.",
+        "options": [
+            "A) 18:35",
+            "B) 2:1",
+            "C) 18:37",
+            "D) 37:18"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Mix Test-9",
+        "question": "Stock of Sonata watches is approximately what percent less than the stock of Fossil watches of three types?",
+        "options": [
+            "A) 11%",
+            "B) 14%",
+            "C) 21%",
+            "D) 16%"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Mix Test-9",
+        "question": "Find the difference between the stocks of Automatic and Digital watches of four brands.",
+        "options": [
+            "A) 750",
+            "B) 500",
+            "C) 240",
+            "D) 450"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Mix Test-9",
+        "question": "What is the longest rod that can be placed in a room which is 9 meter long, 8 meter broad and 12 meter high?",
+        "options": [
+            "A) 15 meter",
+            "B) 13 meter",
+            "C) 17 meter",
+            "D) Cannot be determined"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Mix Test-9",
+        "question": "What is the fourth proportional to 14, 6, 28?",
+        "options": [
+            "A) 12",
+            "B) 3",
+            "C) 7",
+            "D) 6"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Mix Test-9",
+        "question": "Using commutativity and associativity of addition of rational numbers, express the following as a rational number: 1/7 + (-4/9) + (-11/7) + 7/9",
+        "options": [
+            "A) -2/3",
+            "B) -10/9",
+            "C) -13/21",
+            "D) -4/7"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Mix Test-9",
+        "question": "By what least number must 21600 be multiplied so as to make it a perfect cube?",
+        "options": [
+            "A) 5",
+            "B) 10",
+            "C) 20",
+            "D) 30"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Number System And Operations Test-1",
+        "question": "Which among the following statements is incorrect?",
+        "options": [
+            "A) Multiplicative inverse of 0 is not defined.",
+            "B) Every rational number has a reciprocal.",
+            "C) The product of a non-zero rational number and its reciprocal is 1.",
+            "D) The idea of mean helps us to find rational numbers between two given rational numbers."
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Number System And Operations Test-1",
+        "question": "If 24 shirts of equal size can be made out of 30m of cloth, how much cloth is required for making 17 shirts?",
+        "options": [
+            "A) 22.25m",
+            "B) 21.25m",
+            "C) 24.45m",
+            "D) None of these"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Number System And Operations Test-1",
+        "question": "Identify the rational number which does not belong with the other three.",
+        "options": [
+            "A) 4/5",
+            "B) -3/7",
+            "C) -2/9",
+            "D) 9/-11"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Number System And Operations Test-1",
+        "question": "Every composite number has:",
+        "options": [
+            "A) three factors",
+            "B) atleast two factors",
+            "C) atleast three factors",
+            "D) more than three factors"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Number System And Operations Test-1",
+        "question": "Which among the following number is not divisible by 18?",
+        "options": [
+            "A) 309400",
+            "B) 993720",
+            "C) 159562",
+            "D) None of these"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Number System And Operations Test-1",
+        "question": "A perfect number is the number for which sum of all its factors is equal to:",
+        "options": [
+            "A) one less than twice the number",
+            "B) one more than twice the number",
+            "C) twice the number",
+            "D) three times the number"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Number System And Operations Test-1",
+        "question": "Which among the following is not a perfect number?",
+        "options": [
+            "A) 6",
+            "B) 28",
+            "C) 496",
+            "D) 120"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Number System And Operations Test-2",
+        "question": "Find the unit's digit in the product of the first 100 odd natural numbers:",
+        "options": [
+            "A) 0",
+            "B) 1",
+            "C) 3",
+            "D) 5"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Number System And Operations Test-2",
+        "question": "Which among the following pair of numbers is not twin primes?",
+        "options": [
+            "A) 13 and 11",
+            "B) 5 and 7",
+            "C) 29 and 23",
+            "D) 17 and 19"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Number System And Operations Test-2",
+        "question": "Which among the following pair of numbers are co-primes?",
+        "options": [
+            "A) 204 and 189",
+            "B) 1035 and 1073",
+            "C) 3553 and 1755",
+            "D) 2233 and 3689"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Number System And Operations Test-2",
+        "question": "How many composite numbers are there in between 150 and 200 (including 150 and 200 both)?",
+        "options": [
+            "A) 40",
+            "B) 42",
+            "C) 41",
+            "D) 39"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Number System And Operations Test-2",
+        "question": "The HCF and LCM of two numbers are 16 and 336 respectively. If one of them is 48, then find the other.",
+        "options": [
+            "A) 116",
+            "B) 112",
+            "C) 118",
+            "D) 158"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Number System And Operations Test-2",
+        "question": "If 3a52895b7 is exactly divisible by 3 and 11 both, then find the value of a+b (where a and b are digits from 0 to 9).",
+        "options": [
+            "A) 6",
+            "B) 9",
+            "C) 12",
+            "D) 15"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Number System And Operations Test-2",
+        "question": "Find the LCM of the least 4-digit number and the greatest 4 digit even number.",
+        "options": [
+            "A) 9998000",
+            "B) 4567800",
+            "C) 4999000",
+            "D) 260000"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Number System And Operations Test-2",
+        "question": "The greatest five digit number exactly divisible by 7 and 23 both is:",
+        "options": [
+            "A) 99995",
+            "B) 99981",
+            "C) 99974",
+            "D) 99943"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Number System And Operations Test-2",
+        "question": "How many pairs of co-primes can be formed from the set {2, 5, 6, 7, 8, 9, 12}?",
+        "options": [
+            "A) 14",
+            "B) 15",
+            "C) 12",
+            "D) 18"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Number System And Operations Test-2",
+        "question": "Find the unit's digit in the product of the first 50 even natural numbers.",
+        "options": [
+            "A) 2",
+            "B) 4",
+            "C) 6",
+            "D) 0"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Number System And Operations Test-4",
+        "question": "The unit digit of (8127)¹⁷³ is:",
+        "options": [
+            "A) 1",
+            "B) 9",
+            "C) 3",
+            "D) 7"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Number System And Operations Test-4",
+        "question": "The difference of squares of two consecutive numbers is 31. The numbers are:",
+        "options": [
+            "A) 16 and 18",
+            "B) 16 and 17",
+            "C) 15 and 16",
+            "D) 17 and 18"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Number System And Operations Test-4",
+        "question": "The unit digit of (7⁹⁵ - 3⁵⁸) is:",
+        "options": [
+            "A) 7",
+            "B) 3",
+            "C) 4",
+            "D) 9"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Number System And Operations Test-4",
+        "question": "Choose the greatest number among the following:",
+        "options": [
+            "A) {(3 + 3)²}²",
+            "B) [3 × 3 × 3]",
+            "C) [3 + 3 + 3]",
+            "D) [3² + 3²]²"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Number System And Operations Test-4",
+        "question": "If the sum of two numbers a and b is equal to double of a, then value of b will be:",
+        "options": [
+            "A) greater than a",
+            "B) less than a",
+            "C) equal to a",
+            "D) more than 10"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Number System And Operations Test-4",
+        "question": "The least square number which is divisible by 8, 12 and 16 is:",
+        "options": [
+            "A) 256",
+            "B) 524",
+            "C) 144",
+            "D) 288"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Number System And Operations Test-4",
+        "question": "In a question of division, divisor is 9, Quotient is 114 and remainder is 5, then the dividend is:",
+        "options": [
+            "A) 1121",
+            "B) 1331",
+            "C) 1031",
+            "D) 1031"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Number System And Operations Test-4",
+        "question": "If a positive integer is multiplied by 4, then the product is equal to the cube of that integer. Find the integer.",
+        "options": [
+            "A) 16",
+            "B) 2",
+            "C) 4",
+            "D) 128"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Operation on Sets & Venn Diagrams Test-1",
+        "question": "If U = {1, 7, 11, 13, 15, 18, 21, 32, 35, 39}, then which of the following is not a subset of U?",
+        "options": [
+            "A) A = {1, 18, 7, 35}",
+            "B) B = {21, 11, 35, 7, 13}",
+            "C) C = {7, 18, 32, 39}",
+            "D) D = {1, 7, 18, 15, 2}"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Operation on Sets & Venn Diagrams Test-1",
+        "question": "Let M = {3, 5, 7, 8, 10, 12}, N = {2, 4, 7, 8} and P = {5, 10}, then which among the following statements is incorrect?",
+        "options": [
+            "A) P ⊂ M",
+            "B) M ⊂ P",
+            "C) P ⊄ N",
+            "D) N ⊄ M"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Operation on Sets & Venn Diagrams Test-1",
+        "question": "Which among the following is a universal set for the other three sets?",
+        "options": [
+            "A) The set of natural numbers.",
+            "B) The set of whole numbers.",
+            "C) The set of integers.",
+            "D) The set of negative of natural numbers."
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Operation on Sets & Venn Diagrams Test-1",
+        "question": "Which among the following is not a proper subset of {a, b, c}?",
+        "options": [
+            "A) {a, b}",
+            "B) {a, b, c}",
+            "C) {b, c}",
+            "D) {a}"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Operation on Sets & Venn Diagrams Test-1",
+        "question": "If M is a proper subset of N, then M ∩ N =",
+        "options": [
+            "A) ∅",
+            "B) M",
+            "C) N",
+            "D) M ∪ N"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Operation on Sets & Venn Diagrams Test-1",
+        "question": "If M is a subset of N, then M ∪ N =",
+        "options": [
+            "A) M",
+            "B) N",
+            "C) M ∩ N",
+            "D) ∅"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Operation on Sets & Venn Diagrams Test-1",
+        "question": "Which among the following is an example of disjoint sets?\nP = {The set of odd numbers}\nQ = {The set of even numbers}\nR = {The set of prime numbers}",
+        "options": [
+            "A) P and R",
+            "B) P and Q",
+            "C) Q and R",
+            "D) All the above"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Operation on Sets & Venn Diagrams Test-1",
+        "question": "If P = {1, 2, 3} and Q = {3, 4, 5}, then (P ∪ Q) =",
+        "options": [
+            "A) {1, 2, 5}",
+            "B) {1, 2, 4, 5}",
+            "C) {1, 2, 3, 4, 5}",
+            "D) {3}"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Operation on Sets & Venn Diagrams Test-1",
+        "question": "If U = {1, 3, 5, 7, 9, a, b, c, d} and A = {1, 3, 5} and B = {a, b, c} then (A ∪ B)' =",
+        "options": [
+            "A) {1, 3, 5, a, b, c}",
+            "B) {1, 3, 5}",
+            "C) {a, b, c}",
+            "D) {7, 9, d}"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Operation on Sets & Venn Diagrams Test-1",
+        "question": "If P = {x : x ∈ ℕ, x ≤ 2} and Q = {x : x ∈ ℕ, x < 20} then n(P ∪ Q) =",
+        "options": [
+            "A) 19",
+            "B) 12",
+            "C) 11",
+            "D) 20"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Operation on Sets & Venn Diagrams Test-2",
+        "question": "If P ∩ Q = Q and P ∪ Q = P, then which among the following cannot be true?",
+        "options": [
+            "A) P = {1, 2, 3} and Q = {1, 2, 3, 4, 5}",
+            "B) P = {a, b} and Q = {a, b, c}",
+            "C) P = {∅} and Q = {l, m, n, s}",
+            "D) P = {l, m, n} and Q = {l, m, n, 1, 2, 3}"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Operation on Sets & Venn Diagrams Test-2",
+        "question": "If M ⊂ N, then (M ∩ N)' =",
+        "options": [
+            "A) M'",
+            "B) N'",
+            "C) M",
+            "D) U"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Operation on Sets & Venn Diagrams Test-2",
+        "question": "If P ⊂ Q, then (P ∪ Q)' is:",
+        "options": [
+            "A) P'",
+            "B) Q'",
+            "C) U",
+            "D) ∅"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Operation on Sets & Venn Diagrams Test-2",
+        "question": "If A = {a, b, e, g, k, l, m, n}, B = {c, d, s, t, u, v} and U is the set of all the letters of English alphabet, then A' ∪ ((A ∩ B) ∪ B) is equal to:",
+        "options": [
+            "A) A ∪ B",
+            "B) A ∩ B",
+            "C) U",
+            "D) B"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Operation on Sets & Venn Diagrams Test-2",
+        "question": "Which one among the following is incorrect?",
+        "options": [
+            "A) P - (Q ∪ R) = (P - Q) ∩ (P - R)",
+            "B) (P Δ Q) Δ R = P Δ (Q Δ R)",
+            "C) (P ∪ Q ∪ R)' = P' ∩ Q' ∩ R'",
+            "D) P - (Q - R) = (P - Q) ∩ R"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Operation on Sets & Venn Diagrams Test-2",
+        "question": "For any two non empty sets P and Q, if P - Q = P and Q - P = Q, then:",
+        "options": [
+            "A) (P ∪ Q)' = ∅",
+            "B) P ∩ Q = ∅",
+            "C) P = Q",
+            "D) Q ⊂ P"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Operation on Sets & Venn Diagrams Test-2",
+        "question": "If n(P) = 18 - x, n(Q) = 24 + x and n(P ∪ Q) = 34, then n(P Δ Q) =",
+        "options": [
+            "A) x + 20",
+            "B) 26",
+            "C) 34 - x",
+            "D) 30"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Operation on Sets & Venn Diagrams Test-2",
+        "question": "If P = {a, b, c, d} and Q = {a, c, e} then P Δ Q =",
+        "options": [
+            "A) {a, b, c, d, e}",
+            "B) {b, d, e}",
+            "C) {b, d}",
+            "D) {a, c}"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Operation on Sets & Venn Diagrams Test-2",
+        "question": "If P and Q are two non-empty sets and P - Q is a null set, then:",
+        "options": [
+            "A) P ⊂ Q",
+            "B) Q ⊂ P",
+            "C) P = Q",
+            "D) P ∉ Q"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Operation on Sets & Venn Diagrams Test-3",
+        "question": "If n(P - Q) = 28, n(P ∪ Q) = 80 and n(P ∩ Q) = 35, then the value of n(Q) is:",
+        "options": [
+            "A) 17",
+            "B) 52",
+            "C) 42",
+            "D) 38"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Operation on Sets & Venn Diagrams Test-3",
+        "question": "Which of the following number can represent the subset of a non empty set?",
+        "options": [
+            "A) 343",
+            "B) 2048",
+            "C) 68",
+            "D) 743"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Operation on Sets & Venn Diagrams Test-3",
+        "question": "In a class 40% of the students enrolled for maths and 60% enrolled for English. If 25% of the students enrolled for both maths and English, what % of the students of the class did not enroll for either of the two subjects?",
+        "options": [
+            "A) 5",
+            "B) 10",
+            "C) 15",
+            "D) 25"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Operation on Sets & Venn Diagrams Test-3",
+        "question": "In a laboratory, there are 48 students, in which 22 are enrolled in physics and chemistry, 26 are enrolled in chemistry. If the students in the laboratory are of atleast one of the two subjects, then how many students are enrolled in only physics and not of chemistry?",
+        "options": [
+            "A) 18",
+            "B) 26",
+            "C) 22",
+            "D) 30"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Operation on Sets & Venn Diagrams Test-3",
+        "question": "If n(A × B) = 48, n(B × C) = 64 and n(B) = 4, then n(A × C) =",
+        "options": [
+            "A) 180",
+            "B) 192",
+            "C) 178",
+            "D) 208"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Operation on Sets & Venn Diagrams Test-3",
+        "question": "If (P ∪ Q) ∩ (P ∩ Q) = P, then which one among the following is true?",
+        "options": [
+            "A) Q ⊂ P",
+            "B) ∅",
+            "自由 P ⊂ Q",
+            "D) both A and B"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Operation on Sets & Venn Diagrams Test-3",
+        "question": "If n(A) = 28, then which one among the following values of n(B) may result in n(A ∩ B) being maximum?",
+        "options": [
+            "A) 24",
+            "B) 29",
+            "C) 26",
+            "D) 25"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Operation on Sets & Venn Diagrams Test-3",
+        "question": "If P and Q are two non-empty equivalent sets, then which one among the following is a possible value of n(P × Q)?",
+        "options": [
+            "A) 8",
+            "B) 2",
+            "C) 1",
+            "D) 9"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Operation on Sets & Venn Diagrams Test-3",
+        "question": "Which one among the following statements is true for two given sets P and Q where n(P) = 26 and n(Q) = 5?",
+        "options": [
+            "A) The minimum possible value of n(P Δ Q) is 31.",
+            "B) The maximum possible value of n(P Δ Q) is 31.",
+            "C) The minimum possible value of n(P Δ Q) is 21.",
+            "D) The maximum possible value of n(P Δ Q) is 26."
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Operation on Sets & Venn Diagrams Test-3",
+        "question": "The set of intelligent students in a class is:",
+        "options": [
+            "A) null set",
+            "B) A singleton set",
+            "C) A finite set",
+            "D) not a well-defined collection"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Operation on Sets & Venn Diagrams Test -4",
+        "question": "Which of the following is the empty set",
+        "options": [
+            "A) {x : x is a natural number and x² - 1 = 0}",
+            "B) {x : x a natural number and x² + 7 = 0}",
+            "C) {x : x an integer number and x² - 9 = 0}",
+            "D) {x : x is an integer number and x² = x + 2}"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Operation on Sets & Venn Diagrams Test -4",
+        "question": "Let n(U) = 700, n(A) = 200, n(B) = 300 and n(A ∩ B) = 100, then n(A' ∩ B') is",
+        "options": [
+            "A) 400",
+            "B) 500",
+            "C) 300",
+            "D) 200"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Operation on Sets & Venn Diagrams Test -4",
+        "question": "If A and B are any two sets, then A ∪ (A ∪ B)' is equal to",
+        "options": [
+            "A) A ∪ B'",
+            "B) A'",
+            "C) A",
+            "D) B"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Operation on Sets & Venn Diagrams Test -4",
+        "question": "If A = {2, 4, 5}, B = {7, 8, 9} then n(A × B) is equal to",
+        "options": [
+            "A) 5",
+            "B) 9",
+            "C) 3",
+            "D) 0"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Operation on Sets & Venn Diagrams Test -4",
+        "question": "Let U = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, A = {1, 2, 5}, B = {5, 7}, then A ∩ B' is",
+        "options": [
+            "A) {1, 2}",
+            "B) {5, 7}",
+            "C) {1, 2, 5}",
+            "D) {5}"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Operation on Sets & Venn Diagrams Test -4",
+        "question": "If A and B are disjoint, then n(A ∪ B) is equal to",
+        "options": [
+            "A) n(A)",
+            "B) n(B)",
+            "C) n(A) + n(B)",
+            "D) n(A) · n(B)"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Operation on Sets & Venn Diagrams Test -4",
+        "question": "30 teachers of a school either teach mathematics or physics. 22 of them teach mathematics while 4 teach both the subjects. Then the number of teachers teaching physics only is",
+        "options": [
+            "A) 12",
+            "B) 8",
+            "C) 16",
+            "D) 15"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Operation on Sets & Venn Diagrams Test -4",
+        "question": "In a class of 100 students, 55 students have passed in Mathematics and 67 students have passed in Physics. Then the number of students who have passed in Physics only is",
+        "options": [
+            "A) 22",
+            "B) 33",
+            "C) 10",
+            "D) 45"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Operation on Sets & Venn Diagrams Test -4",
+        "question": "If A = {1, 2, 3, 4, 5}, B = {2, 4, 6}, C = {3, 4, 6}, then (A ∪ B) ∩ C is?",
+        "options": [
+            "A) {3, 4, 6}",
+            "B) {1, 2, 3}",
+            "C) {3, 4}",
+            "D) {2, 4, 6}"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Operation on Sets & Venn Diagrams Test -4",
+        "question": "If W is the set of all whole numbers and P is the set of all prime numbers and C is the set of all composite numbers then W - (C ∪ P) is equal to?",
+        "options": [
+            "A) {0}",
+            "B) ℕ",
+            "C) {0, 1}",
+            "D) ∅"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Percentage, Profit And Loss Test-1",
+        "question": "A nursery has 5000 plants. 59% of the plants are roses and 1% are mango plants. What is the total number of other plants?",
+        "options": [
+            "A) 2700",
+            "B) 3700",
+            "C) 4700",
+            "D) 2000"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Percentage, Profit And Loss Test-1",
+        "question": "What per cent of an hour is 2 min?",
+        "options": [
+            "A) 3.33%",
+            "B) 3.2%",
+            "C) 6%",
+            "D) 8%"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Percentage, Profit And Loss Test-3",
+        "question": "By selling a watch for Rs. 1440 a man loses 10%. At what price should he sell it to gain 5%?",
+        "options": [
+            "A) Rs. 1660",
+            "B) Rs. 1540",
+            "C) Rs. 1320",
+            "D) Rs. 1680"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Percentage, Profit And Loss Test-3",
+        "question": "3 bananas are bought for Rs 2 and sold at 2 bananas for Rs. 3. Find the gain percent",
+        "options": [
+            "A) 100%",
+            "B) 50%",
+            "C) 125%",
+            "D) 130%"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Percentage, Profit And Loss Test-3",
+        "question": "A vendor sells lemons at 5 for a rupee gaining 40%. How many did he buy for a rupee?",
+        "options": [
+            "A) 6",
+            "B) 7",
+            "C) 8",
+            "D) 10"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Percentage, Profit And Loss Test-3",
+        "question": "An umbrella marked at Rs. 80 is sold for Rs 68. What is the rate of discount?",
+        "options": [
+            "A) 15%",
+            "B) 20%",
+            "C) 25%",
+            "D) 30%"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Percentage Test-1",
+        "question": "The population of the city increases by 8% in the first year and decreases by 8% during the next year and in the third year it again increases by 10%. Find the population of the city at the end of third year if initially it was 100000.",
+        "options": [
+            "A) 1,23,560",
+            "B) 1,22,480",
+            "C) 1,19,740",
+            "D) 1,09,616"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Percentage Test-1",
+        "question": "There are 600 cats in a village, and 150 of them are black, 150 of them are brown, 180 of them are white and rest of them are of mixed colours. What is the percentage of mixed colour cats in the village?",
+        "options": [
+            "A) 25.3%",
+            "B) 20%",
+            "C) 30.3%",
+            "D) 35.3%"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Percentage Test-1",
+        "question": "David is paid Rs 800 for 100 hours a week as a basic pay and over time is paid 50% above the basic pay. If David gets Rs. 1000 as a salary at the end of the week including the over time, then for how many hours does he work in the entire week?",
+        "options": [
+            "A) 705/3 hrs",
+            "B) 700/3 hrs",
+            "C) 350/3 hrs",
+            "D) 712/3 hrs"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Percentage Test-1",
+        "question": "Katrina spends 30% of her salary on fooding, 20% of remaining on house rent, 20% of the remaining on the education of the children, donates 10% of her salary to charity or temples and remaining for her savings. If her monthly saving is Rs. 6500, then her monthly salary is:",
+        "options": [
+            "A) Rs. 14500",
+            "B) Rs. 14800",
+            "C) Rs. 16800",
+            "D) Rs. 18678"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Percentage Test-1",
+        "question": "Astel works in a laboratory where the various tests like blood test, urine test, are carried out and for this he needs to use some dilute alcohol. If he is provided with 800 ml of 30% of alcohol and he needs solutions containing 64% of the alcohol for the test to be performed then how much pure alcohol he needs to mixed in the given solution to make it 64%?",
+        "options": [
+            "A) 550 ml",
+            "B) 4200 ml",
+            "C) 755.6 ml",
+            "D) 755.5 ml"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Percentage Test-1",
+        "question": "Thomas asked Harry to think on the two numbers such that 20% of the greater number is equal to the 50% of the smaller number. If Harry said that the sum of two numbers is 75, then the greater number he thinks of is",
+        "options": [
+            "A) 50",
+            "B) 24",
+            "C) 15",
+            "D) 45"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Percentage Test-1",
+        "question": "Four friends Robert, Thomas, Jack and Mary works in the same factory, and if their salary is as follows: Salary of Robert is 10% less than Thomas and Thomas gets 25% less than Jack and Jack gets 20% less than Mary and the salary of Robert is Rs 3600, then find the salary received by Mary",
+        "options": [
+            "A) Rs 3500",
+            "B) Rs 4000",
+            "C) Rs. 4500",
+            "D) Rs. 6666.67"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Percentage Test-1",
+        "question": "If the population of the city increases at the rate of 4% per annum but decreases due to immigration to the extent of 0.5%, then the increase percent after three year will be:",
+        "options": [
+            "A) 10.87%",
+            "B) 8.5%",
+            "C) 9.2%",
+            "D) 11.2%"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Percentage Test-1",
+        "question": "The number of people living in an apartment is 2500. The 20% of working people are males and rest are females. If 5% of the male are working as a grade A officers and 40% of the females working as a grade B officer, then find the percentage of people working as a grade A officers",
+        "options": [
+            "A) 87%",
+            "B) 85%",
+            "C) 1%",
+            "D) 67%"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Playing with Numbers Test-1",
+        "question": "The number (10ⁿ - 1) is divisible by 11 for",
+        "options": [
+            "A) n ∈ ℕ",
+            "B) Odd values of n",
+            "C) Even values of n",
+            "D) n is the multiple of 11"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Playing with Numbers Test-1",
+        "question": "The greatest value that must be given to x so that the number 7713x8 is divisible by 4",
+        "options": [
+            "A) 1",
+            "B) 5",
+            "C) 8",
+            "D) 7"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Playing with Numbers Test-1",
+        "question": "Suppose that the division N ÷ 5 leaves a remainder of 4 and the division N ÷ 2 leaves a remainder of 1. What must be the ones digit of N?",
+        "options": [
+            "A) 7",
+            "B) 3",
+            "C) 9",
+            "D) 4"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Playing with Numbers Test-1",
+        "question": "Given that the number 148101a095 is divisible by 11, where a is single digit number, what are the possible values of a?",
+        "options": [
+            "A) 4",
+            "B) 7",
+            "C) 1",
+            "D) 0"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Playing with Numbers Test-1",
+        "question": "The largest natural number by which the product of three consecutive even natural numbers is always divisible, is",
+        "options": [
+            "A) 16",
+            "B) 24",
+            "C) 48",
+            "D) 96"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Playing with Numbers Test-1",
+        "question": "If in a number, difference between the sum of digits at its odd places and that of digits at the even places is given 0, then the number is divisible by",
+        "options": [
+            "A) 7",
+            "B) 9",
+            "C) 5",
+            "D) 11"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Playing with Numbers Test-1",
+        "question": "A 5-digit number xy235 is divisible by 3 such that x + y = 5, where x and y are single digits then possible values of (x, y) are",
+        "options": [
+            "A) (1, 4) or (4, 1)",
+            "B) (1, 1) or (2, 0)",
+            "C) (1, 1) or (0, 2)",
+            "D) (2, 3) or (5, 0)"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Practical Geometry Test -1",
+        "question": "It is possible to construct a quadrilateral with the sufficient data (other than five simple cases), where less than five parts but some other relations between them are given.",
+        "options": [
+            "A) Four",
+            "B) Five",
+            "C) Three",
+            "D) Two"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Practical Geometry Test -1",
+        "question": "If AB || CD, AB = 7cm, BC = 6cm, AD = 6.5cm and ∠B = 70°, then which figure can be constructed?",
+        "options": [
+            "A) Square",
+            "B) Trapezium",
+            "C) Rhombus",
+            "D) Rectangle"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Practical Geometry Test -1",
+        "question": "Which of the following statements is true about the construction of a quadrilateral where AB = 3 cm, BC = 5 cm, AC = 9 cm, AD = 6 cm, CD = 2 cm?",
+        "options": [
+            "A) It is possible to draw the quadrilateral",
+            "B) It is not possible to draw the quadrilateral, since AB + BC < AC",
+            "C) It is possible to draw the quadrilateral, since AD + DC = AC",
+            "D) None of these"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Practical Geometry Test -1",
+        "question": "To construct a quadrilateral ABCD which of the following parts is necessary?",
+        "options": [
+            "A) Length of AB",
+            "B) Length of BC",
+            "C) Measure of A, B and C",
+            "D) All of these"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Practical Geometry Test -1",
+        "question": "Which of the given properties of a parallelogram is necessary to construct it?",
+        "options": [
+            "A) Opposite sides of a parallelogram",
+            "B) Adjacent angles of a parallelogram",
+            "C) Diagonals of a parallelogram",
+            "D) Both (a) and (b)"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Profit Loss And Discount Test-1",
+        "question": "In market business there is a chain relation between manufacturer and consumers. A cloth manufacturing company manufactures shirts and trousers and sells them to the wholesale dealer at a profit of 20%, who in turn sells it to a retailer at a profit of 10%. The retailer sells it to the consumers for the cost of Rs. 850 per pieces and still makes the profit of 25%. Find the cost price of the article.",
+        "options": [
+            "A) Rs. 515.15",
+            "B) Rs. 550.25",
+            "C) Rs. 415.75",
+            "D) Rs. 475.25"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Profit Loss And Discount Test-1",
+        "question": "Jack purchases a table for Rs. 4500 through auction. He finds that the dealer pays the auctioneers 10% on the selling price and still makes the profit of 10% on the whole transaction. Find the cost price of the table for the dealer",
+        "options": [
+            "A) Rs. 3500.5",
+            "B) Rs. 3681.8",
+            "C) Rs. 4100.7",
+            "D) Rs. 3900.3"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Profit Loss And Discount Test-1",
+        "question": "John is a mechanical engineer and deals in purchasing and selling of old scooters and bikes. He purchased an old scooter for Rs. 15000 and spent Rs. 4000 on its repairing and service. Then he sold it to a customer named Martin for Rs. 18000. Find his percent of gain or loss on this transaction.",
+        "options": [
+            "A) 5.45% loss",
+            "B) 3.33% gain",
+            "C) 5.26% loss",
+            "D) 5.35% gain"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Profit Loss And Discount Test-1",
+        "question": "The price of same eatables is Rs. 2500 near near his residence. Robert came to know that the price of eatables has been reduced by 10% at shoppers mall. So he went there to purchase the items and expensed Rs. 50 on the journey and still makes profit. Find his profit percent.",
+        "options": [
+            "A) 8%",
+            "B) 10%",
+            "C) 11%",
+            "D) 15%"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Profit Loss And Discount Test-1",
+        "question": "A landlord buys a piece of land for Rs. 400000. He sells one third of the land at the loss of 20% and two fifth at the gain of 25%. At what price he must sell the remaining land so that he can make the overall profit of 10% on the whole transaction?",
+        "options": [
+            "A) Rs. 80000/3",
+            "B) Rs. 400000/35",
+            "C) Rs. 320000/3",
+            "D) Rs. 920000/3"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Profit Loss And Discount Test-1",
+        "question": "If the cost price of 20 greeting cards is equal to the selling price of 16 greeting cards, find the gain or loss percent",
+        "options": [
+            "A) 20% gain",
+            "B) 25% gain",
+            "C) 30% loss",
+            "D) 40% loss"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Profit Loss And Discount Test-1",
+        "question": "William buys a geyser for certain price but due to some defect he decides to sell the geyser and so he reduces the selling price of the geyser by Rs. 100 and sells it. When he calculates the overall transaction he finds that his expected gain of 10% turns into the loss of 10%. What was the original expected selling price of the geyser?",
+        "options": [
+            "A) Rs. 1100",
+            "B) Rs. 550",
+            "C) Rs. 450",
+            "D) Rs. 1125"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Profit Loss And Discount Test-1",
+        "question": "Robert went to the electronic shop and purchased an electric fan for Rs. 1140 after getting a discount of 5% on the marked price of the fan. The mark price of the fan was",
+        "options": [
+            "A) Rs. 1200",
+            "B) Rs. 1275",
+            "C) Rs. 1375",
+            "D) Rs. 1475"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Profit Loss And Discount Test-1",
+        "question": "Maria purchases a suit. The shopkeeper allows her the successive discounts of 30% and 20% on the suit. Find the single discount equivalent to these successive discounts on her suit.",
+        "options": [
+            "A) 30%",
+            "B) 28%",
+            "C) 44%",
+            "D) 35%"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Profit Loss And Discount Test-1",
+        "question": "Jacob is a merchant who buys an item at 32% off the list price and wants to make a profit of 25% after allowing a discount of 20% to the retailers. At what percent above the list price should he mark the mark price of the item?",
+        "options": [
+            "A) 6.25%",
+            "B) 14%",
+            "C) 7.50%",
+            "D) 8.26%"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Quadrilaterals Test-1",
+        "question": "The angles of quadrilateral are in the ratio 2:3:5:8. The smallest angle is",
+        "options": [
+            "A) 60°",
+            "B) 40°",
+            "C) 20°",
+            "D) 50°"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Quadrilaterals Test-1",
+        "question": "A rectangle in which the diagonals are perpendicular is called a",
+        "options": [
+            "A) Rhombus",
+            "B) Square",
+            "C) Both A & B",
+            "D) None of these"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Quadrilaterals Test-1",
+        "question": "The angles of a quadrilateral are in the ratio 6:7:8:9, then which of the following can be concluded?",
+        "options": [
+            "A) Exactly two angles are obtuse",
+            "B) Two pairs of angles are supplementary",
+            "C) Both A & B",
+            "D) None of these"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Quadrilaterals Test-1",
+        "question": "In a quadrilateral ABCD, the angles A, B, C and D are in the ratio 1:2:3:4. Then the measure of each angles of the quadrilateral is",
+        "options": [
+            "A) 36°, 72°, 108°, 144°",
+            "B) 45°, 110°, 55°, 150°",
+            "C) 15°, 130°, 45°, 150°",
+            "D) none of these"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Quadrilaterals Test-1",
+        "question": "The ratio of two sides of a parallelogram is as 3:5 and its perimeter is 48 m then the sides of the parallelogram are",
+        "options": [
+            "A) 9 m, 15 m",
+            "B) 3 m, 5 m",
+            "C) 5.5 m, 2.5 m",
+            "D) none of these"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Quadrilaterals Test-1",
+        "question": "The opposite angles of a parallelogram are (3x + 5)° and (61 - x)°. Find the measure of four angles",
+        "options": [
+            "A) 47°, 133°, 47°, 133°",
+            "B) 80°, 100°, 80°, 100°",
+            "C) 77°, 103°, 77°, 103°",
+            "D) 94°, 86°, 94°, 86°"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Quadrilaterals Test-2",
+        "question": "For which of the following, diagonals bisect each other?",
+        "options": [
+            "A) Square",
+            "B) Kite",
+            "C) Trapezium",
+            "D) Quadrilateral"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Quadrilaterals Test-2",
+        "question": "A quadrilateral whose opposite sides and all the angles are equal is a",
+        "options": [
+            "A) Rectangle",
+            "B) Parallelogram",
+            "C) Kite",
+            "D) Rhombus"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Quadrilaterals Test-2",
+        "question": "If PQRS is a parallelogram, then P - R is equal to",
+        "options": [
+            "A) 0°",
+            "B) 90°",
+            "C) 180°",
+            "D) 360°"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Quadrilaterals Test-3",
+        "question": "All the sides of a regular polygon are",
+        "options": [
+            "A) Parallel",
+            "B) Equal in length",
+            "C) Not paralel",
+            "D) Not equal"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Quadrilaterals Test-3",
+        "question": "A parallelogram each of whose angles measures 90° is",
+        "options": [
+            "A) Rectangle",
+            "B) Anambus",
+            "C) Kite",
+            "D) Trapezium"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Quadrilaterals Test-3",
+        "question": "Diagonals of a rectangle are",
+        "options": [
+            "A) equal to each other",
+            "B) not equal",
+            "C) one is double of the other",
+            "D) none of these"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Quadrilaterals Test-3",
+        "question": "Diagonals of a parallelogram",
+        "options": [
+            "A) bisect each other",
+            "B) equal to",
+            "C) perpendicular to",
+            "D) none of these"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Rational Number Test-1",
+        "question": "The product of two fractions is 9 if one of the fractions is 5. find the atmar fraction",
+        "options": [
+            "A) 9/5",
+            "B) 5/9",
+            "C) 57/29",
+            "D) 35/19"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Rational Number Test-1",
+        "question": "In a school 5/8 of the total students are boys. If there are 360 girls then the number of students in the school is",
+        "options": [
+            "A) 960",
+            "B) 500",
+            "C) 360",
+            "D) 920"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Rational Number Test-1",
+        "question": "Arwin earns Rs 1200 per month, he spends 1/4 of his income on food, 3/10 of the romaning money on house rent and 5/21 of the remaining money on the education of his children How much money does he save in a month?",
+        "options": [
+            "A) Rs. 450",
+            "B) Rs. 420",
+            "C) Rs. 400",
+            "D) Rs. 480"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Rational Number Test-1",
+        "question": "In a Test match of cricket 3/7 of the total audiences were at covered place, while 18000 were in open, find out the total number of audiences",
+        "options": [
+            "A) 30500",
+            "B) 32500",
+            "C) 31500",
+            "D) 53500"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Simple And Compound Interest Test-1",
+        "question": "Martin invested a certain sum of money at 10% p.a. simple interest for certain period of time. At the end of the period, he got the amount equal to the five times the original amount. The period for which the amount has been invested by Martin is:",
+        "options": [
+            "A) 50 years",
+            "B) 25 years",
+            "C) 12 years 6 months",
+            "D) 40 years"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Simple And Compound Interest Test-1",
+        "question": "Shawn invested half of his saving in a bond for two years that paid simple interest Rs 550. He invested the remaining money in a bond for the same rate of interest and same year that paid compound interest Rs, 605, where interest is compounded annually, Find the total money which he saved.",
+        "options": [
+            "A) Rs. 5500",
+            "B) Rs. 11000",
+            "C) Rs. 22000",
+            "D) Rs. 2750"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Simple And Compound Interest Test-1",
+        "question": "Peter invested a certain sum of money in a simple interest bond whose value grew to Rs. 600 at the end of 6 years, and to Rs. 800 at the end of another 10 years. What was the rate of interest?",
+        "options": [
+            "A) 12%",
+            "B) 16.66%",
+            "C) 18.67%",
+            "D) 19.25%"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Simple And Compound Interest Test-1",
+        "question": "Three years ago Jhonson borrowed Rs. 20,000 from a bank at the rate of 15% per arinum. At the end of the year he paid the interest for that year and part of the loan, altogether Rs. 7500. Similarly, he paid Rs. 7500 at the end of the second year. Now if he wants to pay back his loans total amount to clear off the loan, then how much amount he will have to pay?",
+        "options": [
+            "A) Rs. 12575.25",
+            "B) Rs. 11673.75",
+            "C) Rs. 15496.25",
+            "D) Rs. 105469.35"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Simple And Compound Interest Test-1",
+        "question": "Peterson invested certain sum of money nine years ago. He puts his money at the rate of 4% for first two year, 6% per annum for the next 4 years and 8% per annum for the period beyond 6 years. If at the end of the period he gets the simple interest as Rs 1120, then his principal sum was:",
+        "options": [
+            "A) Rs. 2000",
+            "B) Rs. 2500",
+            "C) Rs. 3000",
+            "D) Rs. 3500"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Simple And Compound Interest Test-1",
+        "question": "Michael Clerk invested Rs. 15000 in a finance company which claims money growth of one fifth of itself, it promised to pay the compound interest compounded quarterly Find the amount he will get at the end of the year from the finance company",
+        "options": [
+            "A) Rs. 18523.69",
+            "B) Rs. 18232.59",
+            "C) Rs. 18759.25",
+            "D) Rs. 188548.45"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Simple And Compound Interest Test-1",
+        "question": "Diegio Meradona divides certain sum of money between his two Children Julia and Kristina who are respectively 19 and 20 years old in such a way that if their portions be invested at 10% per annum compounded annually, then they will receive equal amount on reaching the age of 23 years of age. The sum should be divided in the ratio of",
+        "options": [
+            "A) 10:11",
+            "B) 12:29",
+            "C) 14:30",
+            "D) 16:27"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Simple And Compound Interest Test-1",
+        "question": "Victor purchased a second hand motor bike from his close friend Harry for Rs. 4000 on credit. If he pays the interest for the first year at the rate of 5% and for the second year at the rate of 15%. The cost of bike for Victor if he pays the amount after two years.",
+        "options": [
+            "A) Rs. 4530",
+            "B) Rs. 4830",
+            "C) Rs. 4930",
+            "D) Rs. 4980"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Simple And Compound Interest Test-1",
+        "question": "We know that interest being due yearly on any sum of money deposited in the bank account. If the difference between the total simple interest and the total compound interest on a certain sum of money lent in each case for two years is Rs. 1800. if the simple interest for 2 years be Rs. 28800, then the sum in each case is",
+        "options": [
+            "A) Rs. 105200",
+            "B) Rs. 125200",
+            "C) Rs. 115200",
+            "D) Rs. 135200"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Simple And Compound Interest Test-1",
+        "question": "A bank advances loan of Rs 2000 to Mary on an agreement that interest at the rate of 10% per annum shall be paid half yearly for its use. But due to some reason Mary failed to make any interest payment. At the end of the eighteen month the bank obtained judgment against Mary for the principal and compound interest at the rate and on terms agreed to. The amount Mary had to pay to the bank for the loan she has taken from the bank is:",
+        "options": [
+            "A) Rs. 2315.25",
+            "B) Rs. 2225.75",
+            "C) Rs. 2155.25",
+            "D) Rs. 2015 25"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Solid Shapes Test-2",
+        "question": "Identify the correct statement from the following",
+        "options": [
+            "A) A triangle has 3 sides, three faces and 3 vertices",
+            "B) A cylinder has 3 faces",
+            "C) All sides of cuboid are equal",
+            "D) A cuboid has 4 flat faces and 12 straight edges"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Solid Shapes Test-3",
+        "question": "Ashok has 10 one rupee coins of similar kind. He puts them exactly one on the other What shape will he get finally?",
+        "options": [
+            "A) Circle",
+            "B) Cylinder",
+            "C) Cube",
+            "D) Cone"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Solid Shapes Test-3",
+        "question": "Identify the false statement from the following:",
+        "options": [
+            "A) A cuboid has 3 pairs of opposite faces",
+            "B) The number of vertices of a cube is 6.",
+            "C) All sides of a square are equal",
+            "D) A square pyramid is a three dimensional figure"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Solid Shapes Test-3",
+        "question": "What is the number on the face opposite to 4 on a standard die?",
+        "options": [
+            "A) 3",
+            "B) 5",
+            "C) 2",
+            "D) 1"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Solid Shapes Test-4",
+        "question": "Identify the correct statement",
+        "options": [
+            "A) A cone has 2 vertices.",
+            "B) A cube has 8 vertices",
+            "C) A cylinder has 1 vertex",
+            "D) A cuboid has 10 faces"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Statistics Test-1",
+        "question": "On which day of the week sale was maximum?",
+        "options": [
+            "A) Monday",
+            "B) Tuesday",
+            "C) Thursday",
+            "D) Friday"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Statistics Test-1",
+        "question": "What was the total sale during the week?",
+        "options": [
+            "A) 200",
+            "B) 210",
+            "C) 215",
+            "D) 521"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Statistics Test-1",
+        "question": "What is the ratio of minimum and maximum sale?",
+        "options": [
+            "A) 5:9",
+            "B) 5:6",
+            "C) 2:5",
+            "D) 5:4"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Statistics Test-1",
+        "question": "What information is given by the bar graph?",
+        "options": [
+            "A) The given graph shows the annual production of food grains in an indian state during the period from 2005 to 2006",
+            "B) The given graph shows the annual production of food grains in an indian state during the period from 2005 to 2007.",
+            "C) The given graph shows the annual production of food grains in an Indian state during the period from 2005 to 2008.",
+            "D) The given graph shows the annual production of food grains in an indian state during the period from 2005 to 2009"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Statistics Test-1",
+        "question": "After which year was there a sudden fall in the production?",
+        "options": [
+            "A) 2005",
+            "B) 2006",
+            "C) 2007",
+            "D) 2008"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Statistics Test-1",
+        "question": "The ratio of maximum and minimum production is",
+        "options": [
+            "A) 5:3",
+            "B) 5:2",
+            "C) 5:4",
+            "D) 5:7"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Time And Work Test-1",
+        "question": "Morish has to go to the certain place at a certain fixed time and finds that he will be late if he walks at the usual speed as he is walking. On the other hand if he walks at the speed of 10 km/h then he will be late by 5 minutes and if he walks at the speed of 18 km/h then he reaches the place by 10 minutes early. The distance he has to walk is",
+        "options": [
+            "A) 1.5km",
+            "B) 20km",
+            "C) 15km",
+            "D) 5km"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Time And Work Test-1",
+        "question": "If 40 men can complete a work in 10 days working 10 hours a day, then find the number of men is required to finish the work in 5 days if they work 10 hours in a day",
+        "options": [
+            "A) 100 men",
+            "B) 60 men",
+            "C) 150 men",
+            "D) 80 men"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Time And Work Test-1",
+        "question": "The distance between the two stars x and y is one hundred forty three million four hundred thousand kilometers. The light takes 8 minutes and 58 seconds to travel from x to y The velocity of the light is",
+        "options": [
+            "A) 3.44 * 10^5 km/sec",
+            "B) 1.66 * 10^5 km/sec",
+            "C) 2.66 * 10^5 km/sec",
+            "D) 5.24 * 10^5 km/sec"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Time And Work Test-1",
+        "question": "Three friends Smith, Jack and Plamila are walking at the speed of 3, 4, 5 km/h respectively. They start at same place at 1, 2, 3 O'clock respectively. When Jack reaches Smith, he sends him back with a message for Pamila. At what time will Pamila get the message?",
+        "options": [
+            "A) 5:15 O'Clock",
+            "B) 5:30 O'Clock",
+            "C) 5:45 O'Clock",
+            "D) 6:00 O'Clock"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Time And Work Test-1",
+        "question": "A contractor takes up the work of painting the wall of the house and employs two workers for the work. The first worker can finish the work in 36 days and second worker can do the same work in half the time taken by the first worker. If they take up the work together then in how much days can they finish the part of work in one day?",
+        "options": [
+            "A) 1/12",
+            "B) 1/8",
+            "C) 1/4",
+            "D) 1/3"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Time And Work Test-1",
+        "question": "The inspector spotted the terrorist at a distance of 800 meters and started chasing him The speed of the terrorist is 50 m/sec and that of the inspector is 40 m/sec How far the terrorist will run before the inspector will catch him.",
+        "options": [
+            "A) 1km",
+            "B) 2.4km",
+            "C) 1.5km",
+            "D) 4.0km"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Time And Work Test-1",
+        "question": "Two workers Prince and Astel work as gardener. Prince can do the cleaning work of garden in 12 days while Astel is 60% more efficient than Prince in how many days can Astel alone complete the cleaning work of the garden?",
+        "options": [
+            "A) 15/2",
+            "B) 23/7",
+            "C) 35/6",
+            "D) 99/3"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Time And Work Test-1",
+        "question": "A train running at the speed of 80 km/h passes a horse running in opposite direction at the speed of 20 km/h and passes it in 10 seconds. The length of the train is",
+        "options": [
+            "A) 277m",
+            "B) 277.8m",
+            "C) 279m",
+            "D) 280m"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Time And Work Test-1",
+        "question": "Two pipes can fill a cistern in 12 hours and 15 hours respectively. Due to leakage in the bottom, 30 minutes extra are taken for the cistern to be filled up if both the pipes are open together. If the cistern is full, how much time will the leak take to empty the tank?",
+        "options": [
+            "A) 97.5 hours",
+            "B) 95.5 hours",
+            "C) 93.5 hours",
+            "D) 90 hours"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Time And Work Test-1",
+        "question": "A man has to cross the river, He asks the boat man to take him across the river. The boat can row the downstream in 8 hours and return the same distance in 12 hours. If the stream flows at the rate of 2.25 km/h. The distance the boat can row in one hour in still water is",
+        "options": [
+            "A) 11.25km",
+            "B) 15.5km",
+            "C) 18.2km",
+            "D) 8.5km"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Understanding Quadrilaterals Test-1",
+        "question": "ABCD is a rhombus in which the altitude from D to side AB bisects AB. Then A and B respectively, are",
+        "options": [
+            "A) 60°, 120°",
+            "B) 120°, 60°",
+            "C) 80°, 100°",
+            "D) 100°, 80°"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Understanding Quadrilaterals Test-1",
+        "question": "If the diagonals of a quadrilateral bisect each other at right angle, then it is a",
+        "options": [
+            "A) Kite",
+            "B) Parallelogram",
+            "C) Rhombus",
+            "D) Rectangle"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Understanding Quadrilaterals Test-1",
+        "question": "If each pair of opposite sides of a quadrilateral are equal and parallel, then it is a",
+        "options": [
+            "A) Rectangle",
+            "B) Trapezium",
+            "C) Parallelogram",
+            "D) None of these"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Understanding Quadrilaterals Test-1",
+        "question": "The ratio of two sides of a parallelogram is 3:5 and its perimeter is 48 cm. Then, the sides of the parallelogram are",
+        "options": [
+            "A) 5cm, 16cm",
+            "B) 9cm, 15cm",
+            "C) 8cm, 15cm",
+            "D) 6cm, 10cm"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Understanding Quadrilaterals Test-1",
+        "question": "Which of the quadrilaterals is NOT a parallelogram?",
+        "options": [
+            "A) Rectangle",
+            "B) Square",
+            "C) Kite",
+            "D) Rhombus"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Understanding Quadrilaterals Test-2",
+        "question": "Which of the following statements is CORRECT",
+        "options": [
+            "A) The diagonals of a parailelogram are equal",
+            "B) The diagonals of a rectangle are perpendicular to each other",
+            "C) If the diagonals of a quadrilateral intersect at right angles, it is not necessarily a thombus",
+            "D) Every quadrilateral is either a trapezium or a parallelogram or a kite"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Understanding Quadrilaterals Test-2",
+        "question": "A trapezium in which non-parallel Sides are equal is said to be",
+        "options": [
+            "A) Right trapezium",
+            "B) Equllateral trapezium",
+            "C) Isosceles trapezium",
+            "D) None of these"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Understanding Quadrilaterals Test-2",
+        "question": "Which of the following can never be the measure of exterior angle of a regular polygon?",
+        "options": [
+            "A) 22°",
+            "B) 36°",
+            "C) 45°",
+            "D) 50°"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Understanding Quadrilaterals Test-2",
+        "question": "The quadrilateral having only one pair of opposite sides parallel is called a",
+        "options": [
+            "A) Square",
+            "B) Rhombus",
+            "C) Trapezium",
+            "D) Parallelogram"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Understanding Quadrilaterals Test-2",
+        "question": "Atul is playing in a playground which is of the form of a parallelogram. He observes that the diagonals of the playground are 80 m and 60 m long. So the playground is in the shape of",
+        "options": [
+            "A) Rectangle",
+            "B) Rhombus",
+            "C) Kite",
+            "D) Square"
+        ],
+        "correct_answer": "B"
+    },
+    {
+        "test_name": "Visualising Solid Shapes Test-1",
+        "question": "Which of the following is NOT a three dimensional shape?",
+        "options": [
+            "A) Square prism",
+            "B) Sphere",
+            "C) Trangular pyramid",
+            "D) Circle"
+        ],
+        "correct_answer": "D"
+    },
+    {
+        "test_name": "Visualising Solid Shapes Test-1",
+        "question": "Euler's formula for any polyhedron, where F stands for the number of faces, V stands for the number of vertices and E stands for the number of edges is:",
+        "options": [
+            "A) F + V + E = 2",
+            "B) F + V = E - 2",
+            "C) F + V - E = 2",
+            "D) F - V - E = 2"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Visualising Solid Shapes Test-1",
+        "question": "The number of faces in a square prism is:",
+        "options": [
+            "A) 6",
+            "B) 4",
+            "C) 8",
+            "D) None of these"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Visualising Solid Shapes Test-2",
+        "question": "Solid having only line segments as its edges is a",
+        "options": [
+            "A) Polyhedron",
+            "B) Cone",
+            "C) Cylinder",
+            "D) Polygon"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Visualising Solid Shapes Test-2",
+        "question": "If a polyhedron has 12 vertices and 8 faces, then the number of edges of the polyhedron is",
+        "options": [
+            "A) 12",
+            "B) 14",
+            "C) 18",
+            "D) 20"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Visualising Solid Shapes Test-2",
+        "question": "Number of edges in a triangular prism is:",
+        "options": [
+            "A) 9",
+            "B) 6",
+            "C) 5",
+            "D) 4"
+        ],
+        "correct_answer": "A"
+    },
+    {
+        "test_name": "Visualising Solid Shapes Test-2",
+        "question": "Which of the following will not form a polyhedron?",
+        "options": [
+            "A) 1 square and 4 triangles",
+            "B) 2 triangles and 3 rectangles",
+            "C) 3 triangles",
+            "D) 1 pentagon and 5 triangles"
+        ],
+        "correct_answer": "C"
+    },
+    {
+        "test_name": "Visualising Solid Shapes Test-2",
+        "question": "Using Euler's formula, find the values of P, Q, R and S respectively from the context table: \n- Shape 1: Faces=8, Vertices=P, Edges=12 \n- Shape 2: Faces=Q, Vertices=6, Edges=12 \n- Shape 3: Faces=20, Vertices=36, Edges=S \n- Shape 4: Faces=16, Vertices=R, Edges=36",
+        "options": [
+            "A) 6, 8, 24, 54",
+            "B) 6, 8, 22, 54",
+            "C) 6, 8, 22, 56",
+            "D) 7, 8, 56, 22"
+        ],
+        "correct_answer": "B"
+    }
+]

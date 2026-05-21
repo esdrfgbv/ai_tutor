@@ -1,0 +1,258 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/pages/LandingPage.jsx");import __vite__cjsImport0_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=1dc7437b"; const jsxDEV = __vite__cjsImport0_react_jsxDevRuntime["jsxDEV"];
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== "undefined" && self instanceof WorkerGlobalScope;
+let prevRefreshReg;
+let prevRefreshSig;
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react can't detect preamble. Something is wrong."
+    );
+  }
+  prevRefreshReg = window.$RefreshReg$;
+  prevRefreshSig = window.$RefreshSig$;
+  window.$RefreshReg$ = RefreshRuntime.getRefreshReg("E:/AI tutor/frontend/src/pages/LandingPage.jsx");
+  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
+}
+import { motion } from "/node_modules/.vite/deps/framer-motion.js?v=13667eea";
+import { ArrowRight, BarChart3, Brain, CheckCircle2, Sparkles } from "/node_modules/.vite/deps/lucide-react.js?v=8e2d3da5";
+import { Link } from "/node_modules/.vite/deps/react-router-dom.js?v=78f57677";
+export default function LandingPage() {
+  return /* @__PURE__ */ jsxDEV("div", { className: "min-h-screen bg-[#f8fbf9] text-ink", children: [
+    /* @__PURE__ */ jsxDEV("nav", { className: "mx-auto flex max-w-7xl items-center justify-between px-4 py-5", children: [
+      /* @__PURE__ */ jsxDEV("div", { className: "font-bold", children: "PrepOrbit AI" }, void 0, false, {
+        fileName: "E:/AI tutor/frontend/src/pages/LandingPage.jsx",
+        lineNumber: 28,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Link, { to: "/auth", className: "btn-primary", children: [
+        "Start learning ",
+        /* @__PURE__ */ jsxDEV(ArrowRight, { size: 16 }, void 0, false, {
+          fileName: "E:/AI tutor/frontend/src/pages/LandingPage.jsx",
+          lineNumber: 29,
+          columnNumber: 65
+        }, this)
+      ] }, void 0, true, {
+        fileName: "E:/AI tutor/frontend/src/pages/LandingPage.jsx",
+        lineNumber: 29,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, true, {
+      fileName: "E:/AI tutor/frontend/src/pages/LandingPage.jsx",
+      lineNumber: 27,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV("section", { className: "relative overflow-hidden", children: [
+      /* @__PURE__ */ jsxDEV("div", { className: "absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(79,178,134,.28),transparent_32%),radial-gradient(circle_at_80%_10%,rgba(249,115,91,.22),transparent_30%)]" }, void 0, false, {
+        fileName: "E:/AI tutor/frontend/src/pages/LandingPage.jsx",
+        lineNumber: 32,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV("div", { className: "relative mx-auto grid min-h-[76vh] max-w-7xl items-center gap-10 px-4 py-12 lg:grid-cols-[1.05fr_.95fr]", children: [
+        /* @__PURE__ */ jsxDEV(motion.div, { initial: { opacity: 0, y: 16 }, animate: { opacity: 1, y: 0 }, children: [
+          /* @__PURE__ */ jsxDEV("p", { className: "mb-4 inline-flex items-center gap-2 rounded-lg bg-white px-3 py-2 text-sm font-semibold shadow-soft", children: [
+            /* @__PURE__ */ jsxDEV(Sparkles, { size: 16 }, void 0, false, {
+              fileName: "E:/AI tutor/frontend/src/pages/LandingPage.jsx",
+              lineNumber: 35,
+              columnNumber: 128
+            }, this),
+            " AI-powered preparation"
+          ] }, void 0, true, {
+            fileName: "E:/AI tutor/frontend/src/pages/LandingPage.jsx",
+            lineNumber: 35,
+            columnNumber: 13
+          }, this),
+          /* @__PURE__ */ jsxDEV("h1", { className: "max-w-3xl text-5xl font-black leading-tight md:text-7xl", children: "JNV and Sainik School mastery, guided by textbook-grounded AI." }, void 0, false, {
+            fileName: "E:/AI tutor/frontend/src/pages/LandingPage.jsx",
+            lineNumber: 36,
+            columnNumber: 13
+          }, this),
+          /* @__PURE__ */ jsxDEV("p", { className: "mt-6 max-w-2xl text-lg text-black/65", children: "Learn from NCERT chapters, solve PYQ-style adaptive tests, ask doubts, and track progress across student, parent, and admin dashboards." }, void 0, false, {
+            fileName: "E:/AI tutor/frontend/src/pages/LandingPage.jsx",
+            lineNumber: 37,
+            columnNumber: 13
+          }, this),
+          /* @__PURE__ */ jsxDEV("div", { className: "mt-8 flex flex-wrap gap-3", children: [
+            /* @__PURE__ */ jsxDEV(Link, { to: "/auth", className: "btn-primary", children: [
+              "Create account ",
+              /* @__PURE__ */ jsxDEV(ArrowRight, { size: 18 }, void 0, false, {
+                fileName: "E:/AI tutor/frontend/src/pages/LandingPage.jsx",
+                lineNumber: 39,
+                columnNumber: 71
+              }, this)
+            ] }, void 0, true, {
+              fileName: "E:/AI tutor/frontend/src/pages/LandingPage.jsx",
+              lineNumber: 39,
+              columnNumber: 15
+            }, this),
+            /* @__PURE__ */ jsxDEV("a", { href: "#features", className: "btn-soft", children: "Explore features" }, void 0, false, {
+              fileName: "E:/AI tutor/frontend/src/pages/LandingPage.jsx",
+              lineNumber: 40,
+              columnNumber: 15
+            }, this)
+          ] }, void 0, true, {
+            fileName: "E:/AI tutor/frontend/src/pages/LandingPage.jsx",
+            lineNumber: 38,
+            columnNumber: 13
+          }, this)
+        ] }, void 0, true, {
+          fileName: "E:/AI tutor/frontend/src/pages/LandingPage.jsx",
+          lineNumber: 34,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ jsxDEV(motion.div, { initial: { opacity: 0, scale: 0.96 }, animate: { opacity: 1, scale: 1 }, className: "glass rounded-lg p-5 shadow-soft", children: /* @__PURE__ */ jsxDEV("div", { className: "grid gap-4", children: [
+          /* @__PURE__ */ jsxDEV("div", { className: "rounded-lg bg-white p-4", children: [
+            /* @__PURE__ */ jsxDEV("p", { className: "text-sm font-semibold text-mint", children: "AI explanation demo" }, void 0, false, {
+              fileName: "E:/AI tutor/frontend/src/pages/LandingPage.jsx",
+              lineNumber: 46,
+              columnNumber: 17
+            }, this),
+            /* @__PURE__ */ jsxDEV("p", { className: "mt-2 text-2xl font-bold", children: "Fractions become visual, PYQ-linked, and practice-ready." }, void 0, false, {
+              fileName: "E:/AI tutor/frontend/src/pages/LandingPage.jsx",
+              lineNumber: 47,
+              columnNumber: 17
+            }, this),
+            /* @__PURE__ */ jsxDEV("div", { className: "mt-4 grid grid-cols-3 gap-2 text-center text-sm", children: ["Textbook", "AI", "PYQ"].map((item) => /* @__PURE__ */ jsxDEV("div", { className: "rounded-lg bg-skyglass p-3 font-semibold", children: item }, item, false, {
+              fileName: "E:/AI tutor/frontend/src/pages/LandingPage.jsx",
+              lineNumber: 49,
+              columnNumber: 60
+            }, this)) }, void 0, false, {
+              fileName: "E:/AI tutor/frontend/src/pages/LandingPage.jsx",
+              lineNumber: 48,
+              columnNumber: 17
+            }, this)
+          ] }, void 0, true, {
+            fileName: "E:/AI tutor/frontend/src/pages/LandingPage.jsx",
+            lineNumber: 45,
+            columnNumber: 15
+          }, this),
+          /* @__PURE__ */ jsxDEV("div", { className: "grid grid-cols-2 gap-4", children: [
+            /* @__PURE__ */ jsxDEV("div", { className: "rounded-lg bg-ink p-4 text-white", children: [
+              /* @__PURE__ */ jsxDEV(Brain, {}, void 0, false, {
+                fileName: "E:/AI tutor/frontend/src/pages/LandingPage.jsx",
+                lineNumber: 53,
+                columnNumber: 67
+              }, this),
+              " ",
+              /* @__PURE__ */ jsxDEV("p", { className: "mt-4 text-3xl font-bold", children: "RAG" }, void 0, false, {
+                fileName: "E:/AI tutor/frontend/src/pages/LandingPage.jsx",
+                lineNumber: 53,
+                columnNumber: 77
+              }, this),
+              /* @__PURE__ */ jsxDEV("p", { className: "text-sm opacity-70", children: "semantic retrieval" }, void 0, false, {
+                fileName: "E:/AI tutor/frontend/src/pages/LandingPage.jsx",
+                lineNumber: 53,
+                columnNumber: 123
+              }, this)
+            ] }, void 0, true, {
+              fileName: "E:/AI tutor/frontend/src/pages/LandingPage.jsx",
+              lineNumber: 53,
+              columnNumber: 17
+            }, this),
+            /* @__PURE__ */ jsxDEV("div", { className: "rounded-lg bg-coral p-4 text-white", children: [
+              /* @__PURE__ */ jsxDEV(BarChart3, {}, void 0, false, {
+                fileName: "E:/AI tutor/frontend/src/pages/LandingPage.jsx",
+                lineNumber: 54,
+                columnNumber: 69
+              }, this),
+              " ",
+              /* @__PURE__ */ jsxDEV("p", { className: "mt-4 text-3xl font-bold", children: "92%" }, void 0, false, {
+                fileName: "E:/AI tutor/frontend/src/pages/LandingPage.jsx",
+                lineNumber: 54,
+                columnNumber: 83
+              }, this),
+              /* @__PURE__ */ jsxDEV("p", { className: "text-sm opacity-80", children: "accuracy trend" }, void 0, false, {
+                fileName: "E:/AI tutor/frontend/src/pages/LandingPage.jsx",
+                lineNumber: 54,
+                columnNumber: 129
+              }, this)
+            ] }, void 0, true, {
+              fileName: "E:/AI tutor/frontend/src/pages/LandingPage.jsx",
+              lineNumber: 54,
+              columnNumber: 17
+            }, this)
+          ] }, void 0, true, {
+            fileName: "E:/AI tutor/frontend/src/pages/LandingPage.jsx",
+            lineNumber: 52,
+            columnNumber: 15
+          }, this)
+        ] }, void 0, true, {
+          fileName: "E:/AI tutor/frontend/src/pages/LandingPage.jsx",
+          lineNumber: 44,
+          columnNumber: 13
+        }, this) }, void 0, false, {
+          fileName: "E:/AI tutor/frontend/src/pages/LandingPage.jsx",
+          lineNumber: 43,
+          columnNumber: 11
+        }, this)
+      ] }, void 0, true, {
+        fileName: "E:/AI tutor/frontend/src/pages/LandingPage.jsx",
+        lineNumber: 33,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, true, {
+      fileName: "E:/AI tutor/frontend/src/pages/LandingPage.jsx",
+      lineNumber: 31,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV("section", { id: "features", className: "mx-auto max-w-7xl px-4 py-16", children: /* @__PURE__ */ jsxDEV("div", { className: "grid gap-4 md:grid-cols-3", children: ["NCERT + PYQ retrieval", "Adaptive quiz engine", "Parent and admin analytics"].map(
+      (title) => /* @__PURE__ */ jsxDEV("div", { className: "card", children: [
+        /* @__PURE__ */ jsxDEV(CheckCircle2, { className: "text-mint" }, void 0, false, {
+          fileName: "E:/AI tutor/frontend/src/pages/LandingPage.jsx",
+          lineNumber: 63,
+          columnNumber: 45
+        }, this),
+        /* @__PURE__ */ jsxDEV("h3", { className: "mt-4 text-xl font-bold", children: title }, void 0, false, {
+          fileName: "E:/AI tutor/frontend/src/pages/LandingPage.jsx",
+          lineNumber: 63,
+          columnNumber: 83
+        }, this),
+        /* @__PURE__ */ jsxDEV("p", { className: "mt-2 text-black/60", children: "Production APIs, RBAC, dashboards, and ingestion pipeline built for real study workflows." }, void 0, false, {
+          fileName: "E:/AI tutor/frontend/src/pages/LandingPage.jsx",
+          lineNumber: 63,
+          columnNumber: 134
+        }, this)
+      ] }, title, true, {
+        fileName: "E:/AI tutor/frontend/src/pages/LandingPage.jsx",
+        lineNumber: 63,
+        columnNumber: 11
+      }, this)
+    ) }, void 0, false, {
+      fileName: "E:/AI tutor/frontend/src/pages/LandingPage.jsx",
+      lineNumber: 61,
+      columnNumber: 9
+    }, this) }, void 0, false, {
+      fileName: "E:/AI tutor/frontend/src/pages/LandingPage.jsx",
+      lineNumber: 60,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV("footer", { className: "border-t border-black/10 px-4 py-8 text-center text-sm text-black/55", children: "PrepOrbit AI for focused entrance exam preparation." }, void 0, false, {
+      fileName: "E:/AI tutor/frontend/src/pages/LandingPage.jsx",
+      lineNumber: 67,
+      columnNumber: 7
+    }, this)
+  ] }, void 0, true, {
+    fileName: "E:/AI tutor/frontend/src/pages/LandingPage.jsx",
+    lineNumber: 26,
+    columnNumber: 5
+  }, this);
+}
+_c = LandingPage;
+var _c;
+$RefreshReg$(_c, "LandingPage");
+if (import.meta.hot && !inWebWorker) {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+if (import.meta.hot && !inWebWorker) {
+  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
+    RefreshRuntime.registerExportsForReactRefresh("E:/AI tutor/frontend/src/pages/LandingPage.jsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("E:/AI tutor/frontend/src/pages/LandingPage.jsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+
+//# sourceMappingURL=data:application/json;base64,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bUJBQXhDO0FBQUE7QUFBQTtBQUFBO0FBQUEsZUFBOEM7QUFBQSxRQUFLLHVCQUFDLE9BQUUsV0FBVSxzQkFBcUIseUdBQWxDO0FBQUE7QUFBQTtBQUFBO0FBQUEsZUFBMkg7QUFBQSxXQUE1T0EsT0FBVjtBQUFBO0FBQUE7QUFBQTtBQUFBLGFBQTBQO0FBQUEsSUFDM1AsS0FISDtBQUFBO0FBQUE7QUFBQTtBQUFBLFdBSUEsS0FMRjtBQUFBO0FBQUE7QUFBQTtBQUFBLFdBTUE7QUFBQSxJQUNBLHVCQUFDLFlBQU8sV0FBVSx3RUFBdUUsbUVBQXpGO0FBQUE7QUFBQTtBQUFBO0FBQUEsV0FBNEk7QUFBQSxPQXpDOUk7QUFBQTtBQUFBO0FBQUE7QUFBQSxTQTBDQTtBQUVKO0FBQUNDLEtBOUN1QlA7QUFBVyxJQUFBTztBQUFBLGFBQUFBLElBQUEiLCJuYW1lcyI6WyJtb3Rpb24iLCJBcnJvd1JpZ2h0IiwiQmFyQ2hhcnQzIiwiQnJhaW4iLCJDaGVja0NpcmNsZTIiLCJTcGFya2xlcyIsIkxpbmsiLCJMYW5kaW5nUGFnZSIsIm9wYWNpdHkiLCJ5Iiwic2NhbGUiLCJtYXAiLCJpdGVtIiwidGl0bGUiLCJfYyJdLCJpZ25vcmVMaXN0IjpbXSwic291cmNlcyI6WyJMYW5kaW5nUGFnZS5qc3giXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgbW90aW9uIH0gZnJvbSBcImZyYW1lci1tb3Rpb25cIjtcbmltcG9ydCB7IEFycm93UmlnaHQsIEJhckNoYXJ0MywgQnJhaW4sIENoZWNrQ2lyY2xlMiwgU3BhcmtsZXMgfSBmcm9tIFwibHVjaWRlLXJlYWN0XCI7XG5pbXBvcnQgeyBMaW5rIH0gZnJvbSBcInJlYWN0LXJvdXRlci1kb21cIjtcblxuZXhwb3J0IGRlZmF1bHQgZnVuY3Rpb24gTGFuZGluZ1BhZ2UoKSB7XG4gIHJldHVybiAoXG4gICAgPGRpdiBjbGFzc05hbWU9XCJtaW4taC1zY3JlZW4gYmctWyNmOGZiZjldIHRleHQtaW5rXCI+XG4gICAgICA8bmF2IGNsYXNzTmFtZT1cIm14LWF1dG8gZmxleCBtYXgtdy03eGwgaXRlbXMtY2VudGVyIGp1c3RpZnktYmV0d2VlbiBweC00IHB5LTVcIj5cbiAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJmb250LWJvbGRcIj5QcmVwT3JiaXQgQUk8L2Rpdj5cbiAgICAgICAgPExpbmsgdG89XCIvYXV0aFwiIGNsYXNzTmFtZT1cImJ0bi1wcmltYXJ5XCI+U3RhcnQgbGVhcm5pbmcgPEFycm93UmlnaHQgc2l6ZT17MTZ9IC8+PC9MaW5rPlxuICAgICAgPC9uYXY+XG4gICAgICA8c2VjdGlvbiBjbGFzc05hbWU9XCJyZWxhdGl2ZSBvdmVyZmxvdy1oaWRkZW5cIj5cbiAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJhYnNvbHV0ZSBpbnNldC0wIGJnLVtyYWRpYWwtZ3JhZGllbnQoY2lyY2xlX2F0XzMwJV8yMCUscmdiYSg3OSwxNzgsMTM0LC4yOCksdHJhbnNwYXJlbnRfMzIlKSxyYWRpYWwtZ3JhZGllbnQoY2lyY2xlX2F0XzgwJV8xMCUscmdiYSgyNDksMTE1LDkxLC4yMiksdHJhbnNwYXJlbnRfMzAlKV1cIiAvPlxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInJlbGF0aXZlIG14LWF1dG8gZ3JpZCBtaW4taC1bNzZ2aF0gbWF4LXctN3hsIGl0ZW1zLWNlbnRlciBnYXAtMTAgcHgtNCBweS0xMiBsZzpncmlkLWNvbHMtWzEuMDVmcl8uOTVmcl1cIj5cbiAgICAgICAgICA8bW90aW9uLmRpdiBpbml0aWFsPXt7IG9wYWNpdHk6IDAsIHk6IDE2IH19IGFuaW1hdGU9e3sgb3BhY2l0eTogMSwgeTogMCB9fT5cbiAgICAgICAgICAgIDxwIGNsYXNzTmFtZT1cIm1iLTQgaW5saW5lLWZsZXggaXRlbXMtY2VudGVyIGdhcC0yIHJvdW5kZWQtbGcgYmctd2hpdGUgcHgtMyBweS0yIHRleHQtc20gZm9udC1zZW1pYm9sZCBzaGFkb3ctc29mdFwiPjxTcGFya2xlcyBzaXplPXsxNn0gLz4gQUktcG93ZXJlZCBwcmVwYXJhdGlvbjwvcD5cbiAgICAgICAgICAgIDxoMSBjbGFzc05hbWU9XCJtYXgtdy0zeGwgdGV4dC01eGwgZm9udC1ibGFjayBsZWFkaW5nLXRpZ2h0IG1kOnRleHQtN3hsXCI+Sk5WIGFuZCBTYWluaWsgU2Nob29sIG1hc3RlcnksIGd1aWRlZCBieSB0ZXh0Ym9vay1ncm91bmRlZCBBSS48L2gxPlxuICAgICAgICAgICAgPHAgY2xhc3NOYW1lPVwibXQtNiBtYXgtdy0yeGwgdGV4dC1sZyB0ZXh0LWJsYWNrLzY1XCI+TGVhcm4gZnJvbSBOQ0VSVCBjaGFwdGVycywgc29sdmUgUFlRLXN0eWxlIGFkYXB0aXZlIHRlc3RzLCBhc2sgZG91YnRzLCBhbmQgdHJhY2sgcHJvZ3Jlc3MgYWNyb3NzIHN0dWRlbnQsIHBhcmVudCwgYW5kIGFkbWluIGRhc2hib2FyZHMuPC9wPlxuICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJtdC04IGZsZXggZmxleC13cmFwIGdhcC0zXCI+XG4gICAgICAgICAgICAgIDxMaW5rIHRvPVwiL2F1dGhcIiBjbGFzc05hbWU9XCJidG4tcHJpbWFyeVwiPkNyZWF0ZSBhY2NvdW50IDxBcnJvd1JpZ2h0IHNpemU9ezE4fSAvPjwvTGluaz5cbiAgICAgICAgICAgICAgPGEgaHJlZj1cIiNmZWF0dXJlc1wiIGNsYXNzTmFtZT1cImJ0bi1zb2Z0XCI+RXhwbG9yZSBmZWF0dXJlczwvYT5cbiAgICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgIDwvbW90aW9uLmRpdj5cbiAgICAgICAgICA8bW90aW9uLmRpdiBpbml0aWFsPXt7IG9wYWNpdHk6IDAsIHNjYWxlOiAwLjk2IH19IGFuaW1hdGU9e3sgb3BhY2l0eTogMSwgc2NhbGU6IDEgfX0gY2xhc3NOYW1lPVwiZ2xhc3Mgcm91bmRlZC1sZyBwLTUgc2hhZG93LXNvZnRcIj5cbiAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiZ3JpZCBnYXAtNFwiPlxuICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInJvdW5kZWQtbGcgYmctd2hpdGUgcC00XCI+XG4gICAgICAgICAgICAgICAgPHAgY2xhc3NOYW1lPVwidGV4dC1zbSBmb250LXNlbWlib2xkIHRleHQtbWludFwiPkFJIGV4cGxhbmF0aW9uIGRlbW88L3A+XG4gICAgICAgICAgICAgICAgPHAgY2xhc3NOYW1lPVwibXQtMiB0ZXh0LTJ4bCBmb250LWJvbGRcIj5GcmFjdGlvbnMgYmVjb21lIHZpc3VhbCwgUFlRLWxpbmtlZCwgYW5kIHByYWN0aWNlLXJlYWR5LjwvcD5cbiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cIm10LTQgZ3JpZCBncmlkLWNvbHMtMyBnYXAtMiB0ZXh0LWNlbnRlciB0ZXh0LXNtXCI+XG4gICAgICAgICAgICAgICAgICB7W1wiVGV4dGJvb2tcIiwgXCJBSVwiLCBcIlBZUVwiXS5tYXAoKGl0ZW0pID0+IDxkaXYga2V5PXtpdGVtfSBjbGFzc05hbWU9XCJyb3VuZGVkLWxnIGJnLXNreWdsYXNzIHAtMyBmb250LXNlbWlib2xkXCI+e2l0ZW19PC9kaXY+KX1cbiAgICAgICAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiZ3JpZCBncmlkLWNvbHMtMiBnYXAtNFwiPlxuICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwicm91bmRlZC1sZyBiZy1pbmsgcC00IHRleHQtd2hpdGVcIj48QnJhaW4gLz4gPHAgY2xhc3NOYW1lPVwibXQtNCB0ZXh0LTN4bCBmb250LWJvbGRcIj5SQUc8L3A+PHAgY2xhc3NOYW1lPVwidGV4dC1zbSBvcGFjaXR5LTcwXCI+c2VtYW50aWMgcmV0cmlldmFsPC9wPjwvZGl2PlxuICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwicm91bmRlZC1sZyBiZy1jb3JhbCBwLTQgdGV4dC13aGl0ZVwiPjxCYXJDaGFydDMgLz4gPHAgY2xhc3NOYW1lPVwibXQtNCB0ZXh0LTN4bCBmb250LWJvbGRcIj45MiU8L3A+PHAgY2xhc3NOYW1lPVwidGV4dC1zbSBvcGFjaXR5LTgwXCI+YWNjdXJhY3kgdHJlbmQ8L3A+PC9kaXY+XG4gICAgICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgPC9tb3Rpb24uZGl2PlxuICAgICAgICA8L2Rpdj5cbiAgICAgIDwvc2VjdGlvbj5cbiAgICAgIDxzZWN0aW9uIGlkPVwiZmVhdHVyZXNcIiBjbGFzc05hbWU9XCJteC1hdXRvIG1heC13LTd4bCBweC00IHB5LTE2XCI+XG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiZ3JpZCBnYXAtNCBtZDpncmlkLWNvbHMtM1wiPlxuICAgICAgICAgIHtbXCJOQ0VSVCArIFBZUSByZXRyaWV2YWxcIiwgXCJBZGFwdGl2ZSBxdWl6IGVuZ2luZVwiLCBcIlBhcmVudCBhbmQgYWRtaW4gYW5hbHl0aWNzXCJdLm1hcCgodGl0bGUpID0+IChcbiAgICAgICAgICAgIDxkaXYga2V5PXt0aXRsZX0gY2xhc3NOYW1lPVwiY2FyZFwiPjxDaGVja0NpcmNsZTIgY2xhc3NOYW1lPVwidGV4dC1taW50XCIgLz48aDMgY2xhc3NOYW1lPVwibXQtNCB0ZXh0LXhsIGZvbnQtYm9sZFwiPnt0aXRsZX08L2gzPjxwIGNsYXNzTmFtZT1cIm10LTIgdGV4dC1ibGFjay82MFwiPlByb2R1Y3Rpb24gQVBJcywgUkJBQywgZGFzaGJvYXJkcywgYW5kIGluZ2VzdGlvbiBwaXBlbGluZSBidWlsdCBmb3IgcmVhbCBzdHVkeSB3b3JrZmxvd3MuPC9wPjwvZGl2PlxuICAgICAgICAgICkpfVxuICAgICAgICA8L2Rpdj5cbiAgICAgIDwvc2VjdGlvbj5cbiAgICAgIDxmb290ZXIgY2xhc3NOYW1lPVwiYm9yZGVyLXQgYm9yZGVyLWJsYWNrLzEwIHB4LTQgcHktOCB0ZXh0LWNlbnRlciB0ZXh0LXNtIHRleHQtYmxhY2svNTVcIj5QcmVwT3JiaXQgQUkgZm9yIGZvY3VzZWQgZW50cmFuY2UgZXhhbSBwcmVwYXJhdGlvbi48L2Zvb3Rlcj5cbiAgICA8L2Rpdj5cbiAgKTtcbn1cbiJdLCJmaWxlIjoiRTovQUkgdHV0b3IvZnJvbnRlbmQvc3JjL3BhZ2VzL0xhbmRpbmdQYWdlLmpzeCJ9

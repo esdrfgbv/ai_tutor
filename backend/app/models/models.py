@@ -1,0 +1,282 @@
+from datetime import datetime
+
+from sqlalchemy import (
+    JSON,
+    Boolean,
+    DateTime,
+    Enum,
+    Float,
+    ForeignKey,
+    Index,
+    Integer,
+    String,
+    Text,
+    UniqueConstraint,
+)
+from sqlalchemy.orm import Mapped, mapped_column, relationship
+
+from app.db.session import Base
+from app.models.enums import Difficulty, LinkStatus, QuestionType, Role, SourceType
+
+
+class TimestampMixin:
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, nullable=False)
+    updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False)
+
+
+class User(Base, TimestampMixin):
+    __tablename__ = "users"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    email: Mapped[str] = mapped_column(String(255), unique=True, index=True, nullable=False)
+    full_name: Mapped[str] = mapped_column(String(180), nullable=False)
+    hashed_password: Mapped[str] = mapped_column(String(255), nullable=False)
+    role: Mapped[Role] = mapped_column(Enum(Role), index=True, nullable=False)
+    is_active: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)
+    refresh_token_hash: Mapped[str | None] = mapped_column(String(255))
+
+    student_profile: Mapped["StudentProfile"] = relationship(back_populates="user", cascade="all, delete-orphan")
+    parent_profile: Mapped["ParentProfile"] = relationship(back_populates="user", cascade="all, delete-orphan")
+
+
+class StudentProfile(Base, TimestampMixin):
+    __tablename__ = "students"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), unique=True, nullable=False)
+    target_exam: Mapped[str] = mapped_column(String(80), default="JNV")
+    grade: Mapped[int] = mapped_column(Integer, default=6, nullable=False)
+    streak_days: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
+    longest_streak: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
+    total_points: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
+    onboarding_completed: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
+
+    user: Mapped[User] = relationship(back_populates="student_profile")
+    links: Mapped[list["ParentChildLink"]] = relationship(back_populates="student")
+    attempts: Mapped[list["QuizAttempt"]] = relationship(back_populates="student")
+
+
+class ParentProfile(Base, TimestampMixin):
+    __tablename__ = "parents"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), unique=True, nullable=False)
+    phone: Mapped[str | None] = mapped_column(String(32))
+
+    user: Mapped[User] = relationship(back_populates="parent_profile")
+    links: Mapped[list["ParentChildLink"]] = relationship(back_populates="parent")
+
+
+class ParentChildLink(Base, TimestampMixin):
+    __tablename__ = "parent_child_links"
+    __table_args__ = (UniqueConstraint("parent_id", "student_id", name="uq_parent_student"),)
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    parent_id: Mapped[int] = mapped_column(ForeignKey("parents.id"), nullable=False)
+    student_id: Mapped[int] = mapped_column(ForeignKey("students.id"), nullable=False)
+    status: Mapped[LinkStatus] = mapped_column(Enum(LinkStatus), default=LinkStatus.pending, nullable=False)
+
+    parent: Mapped[ParentProfile] = relationship(back_populates="links")
+    student: Mapped[StudentProfile] = relationship(back_populates="links")
+
+
+class Chapter(Base, TimestampMixin):
+    __tablename__ = "chapters"
+    __table_args__ = (Index("ix_chapter_lookup", "grade", "subject", "chapter_number"),)
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    grade: Mapped[int] = mapped_column(Integer, index=True, nullable=False)
+    subject: Mapped[str] = mapped_column(String(80), index=True, nullable=False)
+    chapter_number: Mapped[int | None] = mapped_column(Integer)
+    title: Mapped[str] = mapped_column(String(220), nullable=False)
+    description: Mapped[str | None] = mapped_column(Text)
+
+
+class PdfMetadata(Base, TimestampMixin):
+    __tablename__ = "pdf_metadata"
+    __table_args__ = (UniqueConstraint("file_path", name="uq_pdf_file_path"),)
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    file_path: Mapped[str] = mapped_column(String(700), nullable=False)
+    file_name: Mapped[str] = mapped_column(String(260), nullable=False)
+    grade: Mapped[int | None] = mapped_column(Integer, index=True)
+    subject: Mapped[str | None] = mapped_column(String(80), index=True)
+    chapter: Mapped[str | None] = mapped_column(String(220), index=True)
+    topic: Mapped[str | None] = mapped_column(String(220), index=True)
+    source_type: Mapped[SourceType] = mapped_column(Enum(SourceType), index=True, nullable=False)
+    year: Mapped[int | None] = mapped_column(Integer, index=True)
+    difficulty: Mapped[Difficulty] = mapped_column(Enum(Difficulty), default=Difficulty.medium, nullable=False)
+    total_pages: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
+
+    chunks: Mapped[list["EmbeddingMetadata"]] = relationship(back_populates="pdf", cascade="all, delete-orphan")
+
+
+class EmbeddingMetadata(Base, TimestampMixin):
+    __tablename__ = "embeddings_metadata"
+    __table_args__ = (Index("ix_embedding_filters", "grade", "subject", "chapter", "source_type"),)
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    pdf_id: Mapped[int] = mapped_column(ForeignKey("pdf_metadata.id"), nullable=False)
+    vector_id: Mapped[str] = mapped_column(String(160), unique=True, index=True, nullable=False)
+    grade: Mapped[int | None] = mapped_column(Integer, index=True)
+    subject: Mapped[str | None] = mapped_column(String(80), index=True)
+    chapter: Mapped[str | None] = mapped_column(String(220), index=True)
+    topic: Mapped[str | None] = mapped_column(String(220), index=True)
+    source_type: Mapped[SourceType] = mapped_column(Enum(SourceType), index=True, nullable=False)
+    year: Mapped[int | None] = mapped_column(Integer, index=True)
+    difficulty: Mapped[Difficulty] = mapped_column(Enum(Difficulty), default=Difficulty.medium, nullable=False)
+    page_number: Mapped[int | None] = mapped_column(Integer)
+    text_preview: Mapped[str] = mapped_column(Text, nullable=False)
+
+    pdf: Mapped[PdfMetadata] = relationship(back_populates="chunks")
+
+
+class Quiz(Base, TimestampMixin):
+    __tablename__ = "quizzes"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    title: Mapped[str] = mapped_column(String(220), nullable=False)
+    grade: Mapped[int] = mapped_column(Integer, index=True, nullable=False)
+    subject: Mapped[str] = mapped_column(String(80), index=True, nullable=False)
+    chapter: Mapped[str | None] = mapped_column(String(220), index=True)
+    quiz_type: Mapped[str] = mapped_column(String(80), index=True, nullable=False)
+    duration_minutes: Mapped[int] = mapped_column(Integer, default=20, nullable=False)
+    created_by_id: Mapped[int | None] = mapped_column(ForeignKey("users.id"))
+    is_published: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)
+
+    questions: Mapped[list["Question"]] = relationship(back_populates="quiz", cascade="all, delete-orphan")
+
+
+class Question(Base, TimestampMixin):
+    __tablename__ = "questions"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    quiz_id: Mapped[int] = mapped_column(ForeignKey("quizzes.id"), nullable=False)
+    question_type: Mapped[QuestionType] = mapped_column(Enum(QuestionType), default=QuestionType.mcq, nullable=False)
+    prompt: Mapped[str] = mapped_column(Text, nullable=False)
+    options: Mapped[list | None] = mapped_column(JSON)
+    correct_answer: Mapped[str] = mapped_column(Text, nullable=False)
+    textbook_explanation: Mapped[str] = mapped_column(Text, nullable=False)
+    ai_explanation: Mapped[str] = mapped_column(Text, nullable=False)
+    difficulty: Mapped[Difficulty] = mapped_column(Enum(Difficulty), default=Difficulty.medium, nullable=False)
+    topic: Mapped[str | None] = mapped_column(String(220), index=True)
+
+    quiz: Mapped[Quiz] = relationship(back_populates="questions")
+
+
+class QuizAttempt(Base, TimestampMixin):
+    __tablename__ = "quiz_attempts"
+    __table_args__ = (Index("ix_attempt_student_quiz", "student_id", "quiz_id"),)
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    student_id: Mapped[int] = mapped_column(ForeignKey("students.id"), nullable=False)
+    quiz_id: Mapped[int] = mapped_column(ForeignKey("quizzes.id"), nullable=False)
+    answers: Mapped[dict] = mapped_column(JSON, nullable=False)
+    score: Mapped[float] = mapped_column(Float, default=0, nullable=False)
+    accuracy: Mapped[float] = mapped_column(Float, default=0, nullable=False)
+    time_taken_seconds: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
+
+    student: Mapped[StudentProfile] = relationship(back_populates="attempts")
+    quiz: Mapped[Quiz] = relationship()
+
+
+class ProgressTracking(Base, TimestampMixin):
+    __tablename__ = "progress_tracking"
+    __table_args__ = (UniqueConstraint("student_id", "chapter_id", name="uq_student_chapter_progress"),)
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    student_id: Mapped[int] = mapped_column(ForeignKey("students.id"), nullable=False)
+    chapter_id: Mapped[int] = mapped_column(ForeignKey("chapters.id"), nullable=False)
+    completion_percentage: Mapped[float] = mapped_column(Float, default=0, nullable=False)
+    time_spent_minutes: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
+    mastery_score: Mapped[float] = mapped_column(Float, default=0, nullable=False)
+
+
+class StudentModuleProgress(Base, TimestampMixin):
+    __tablename__ = "student_module_progress"
+    __table_args__ = (UniqueConstraint("student_id", "grade", "subject", "chapter_number", name="uq_student_module"),)
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    student_id: Mapped[int] = mapped_column(ForeignKey("students.id"), nullable=False, index=True)
+    grade: Mapped[int] = mapped_column(Integer, nullable=False)
+    subject: Mapped[str] = mapped_column(String(80), nullable=False)
+    chapter_number: Mapped[int] = mapped_column(Integer, nullable=False)
+    pdf_slug: Mapped[str] = mapped_column(String(220), nullable=False)
+    quiz_passed: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
+    best_accuracy: Mapped[float] = mapped_column(Float, default=0, nullable=False)
+    unlocked: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)
+
+
+class StudySession(Base, TimestampMixin):
+    __tablename__ = "study_sessions"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    student_id: Mapped[int] = mapped_column(ForeignKey("students.id"), nullable=False, index=True)
+    subject: Mapped[str | None] = mapped_column(String(80))
+    chapter: Mapped[str | None] = mapped_column(String(220))
+    started_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, nullable=False)
+    ended_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
+    duration_seconds: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
+    session_type: Mapped[str] = mapped_column(String(50), nullable=False)  # pdf_reading, quiz, mock_test
+    active_status: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)
+    last_heartbeat_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, nullable=False)
+
+
+class QuizTimerState(Base, TimestampMixin):
+    __tablename__ = "quiz_timer_states"
+    __table_args__ = (UniqueConstraint("student_id", "quiz_id", name="uq_student_quiz_timer"),)
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    student_id: Mapped[int] = mapped_column(ForeignKey("students.id"), nullable=False)
+    quiz_id: Mapped[int] = mapped_column(ForeignKey("quizzes.id"), nullable=False)
+    remaining_seconds: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
+
+
+class Achievement(Base, TimestampMixin):
+    __tablename__ = "achievements"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    student_id: Mapped[int] = mapped_column(ForeignKey("students.id"), nullable=False)
+    badge_key: Mapped[str] = mapped_column(String(80), nullable=False)
+    title: Mapped[str] = mapped_column(String(160), nullable=False)
+    description: Mapped[str] = mapped_column(String(260), nullable=False)
+
+
+class AnalyticsEvent(Base, TimestampMixin):
+    __tablename__ = "analytics"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    user_id: Mapped[int | None] = mapped_column(ForeignKey("users.id"))
+    event_type: Mapped[str] = mapped_column(String(100), index=True, nullable=False)
+    payload: Mapped[dict] = mapped_column(JSON, nullable=False)
+
+
+class AIConversation(Base, TimestampMixin):
+    __tablename__ = "ai_conversations"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), nullable=False)
+    question: Mapped[str] = mapped_column(Text, nullable=False)
+    answer: Mapped[str] = mapped_column(Text, nullable=False)
+    citations: Mapped[list] = mapped_column(JSON, nullable=False)
+    tokens_used: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
+
+
+class Notification(Base, TimestampMixin):
+    __tablename__ = "notifications"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), nullable=False)
+    title: Mapped[str] = mapped_column(String(180), nullable=False)
+    message: Mapped[str] = mapped_column(Text, nullable=False)
+    is_read: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
+
+
+class Announcement(Base, TimestampMixin):
+    __tablename__ = "announcements"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    title: Mapped[str] = mapped_column(String(180), nullable=False)
+    message: Mapped[str] = mapped_column(Text, nullable=False)
+    audience: Mapped[str] = mapped_column(String(80), default="all", nullable=False)
+    created_by_id: Mapped[int] = mapped_column(ForeignKey("users.id"), nullable=False)
