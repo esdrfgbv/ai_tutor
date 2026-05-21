@@ -2,36 +2,17 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import api from "../api/client";
 import ErrorNotice from "../components/ErrorNotice.jsx";
-
-const class9MathModules = [
-  { title: "Number System and Operations", slug: "nsao" },
-  { title: "Quadrilaterals", slug: "quadrilaterals" },
-  { title: "Statistics", slug: "statistics" },
-  { title: "Trigonometry", slug: "trigonometry" },
-  { title: "Square and Square Roots", slug: "square-and-square-roots" },
-  { title: "Cube and Cube Roots", slug: "cube-and-cube-roots" },
-  { title: "Comparing Quantities", slug: "comparing-quantities" },
-  { title: "Algebraic Expressions Identities", slug: "algebraic-expression-identities" },
-  { title: "Solid Shapes", slug: "solid-shapes" },
-  { title: "Mensuration", slug: "mensuration" },
-  { title: "Exponents", slug: "exponents" },
-  { title: "Direct Inverse Proportional", slug: "direct-inverse-proportional" },
-  { title: "Factorization", slug: "factorization" },
-  { title: "Rational Numbers", slug: "rational-numbers" },
-  { title: "Linear Equations in one Variable", slug: "linear-equations-in-one-variable" },
-  { title: "Percentage Profit and Loss", slug: "percentage-profit-and-loss" },
-  { title: "Algebra", slug: "algebra" },
-  { title: "Geometry", slug: "geometry" },
-];
+import { modulesMap } from "../utils/modules";
 
 export default function ChaptersPage() {
   const [chapters, setChapters] = useState([]);
   const [filters, setFilters] = useState({ grade: 6, subject: "maths" });
   const [error, setError] = useState("");
-  const isClass9Maths = Number(filters.grade) === 9 && filters.subject === "maths";
+  const isClass9 = Number(filters.grade) === 9;
+  const currentModules = isClass9 ? modulesMap[filters.subject] || [] : [];
 
   useEffect(() => {
-    if (isClass9Maths) {
+    if (isClass9) {
       setChapters([]);
       return;
     }
@@ -39,7 +20,7 @@ export default function ChaptersPage() {
     api.get("/learning/chapters", { params: filters })
       .then((r) => setChapters(r.data))
       .catch((err) => setError(err.response?.data?.detail || "Could not load chapters."));
-  }, [filters, isClass9Maths]);
+  }, [filters, isClass9]);
 
   return (
     <div className="space-y-4">
@@ -59,29 +40,43 @@ export default function ChaptersPage() {
           value={filters.subject}
           onChange={(e) => setFilters({ ...filters, subject: e.target.value })}
         >
-          <option value="maths">maths</option>
-          <option value="science">science</option>
+          <option value="maths">Maths</option>
+          <option value="science">Science</option>
+          <option value="english">English</option>
         </select>
       </div>
 
-      {isClass9Maths ? (
-        <div className="grid gap-4 md:grid-cols-2">
-          {class9MathModules.map((module, index) => {
-            const pdfUrl = `${api.defaults.baseURL}/learning/class-9-maths/pdf/${module.slug}`;
-            return (
-              <a
+      {isClass9 ? (
+        currentModules.length > 0 ? (
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {currentModules.map((module, index) => (
+              <Link
                 key={module.slug}
-                href={pdfUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="card block text-left transition duration-150 hover:-translate-y-1 hover:shadow-lg"
+                to={`/viewer/${filters.subject}/${module.slug}`}
+                className="card block text-left transition duration-200 hover:-translate-y-1 hover:shadow-lg border border-black/10 dark:border-white/10 hover:border-mint/50 dark:hover:border-mint/50 relative overflow-hidden group"
               >
-                <p className="text-sm text-mint">Module {index + 1}</p>
-                <h2 className="mt-2 text-lg font-bold">{module.title}</h2>
-              </a>
-            );
-          })}
-        </div>
+                <div className="absolute top-0 right-0 h-16 w-16 bg-mint/10 rounded-bl-full flex items-center justify-center transition-transform duration-200 group-hover:scale-110">
+                  <span className="text-[11px] font-bold text-mint uppercase tracking-wider pl-4 pb-4">PDF</span>
+                </div>
+                <div className="space-y-2 pr-12">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-mint">
+                    Module {index + 1}
+                  </p>
+                  <h2 className="text-lg font-bold text-ink dark:text-white group-hover:text-mint transition-colors">
+                    {module.title}
+                  </h2>
+                  <p className="text-xs text-black/60 dark:text-white/60">
+                    Interactive PDF study module for Class 9 {filters.subject.charAt(0).toUpperCase() + filters.subject.slice(1)}.
+                  </p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        ) : (
+          <div className="card text-center py-12 text-black/60 dark:text-white/60">
+            No study modules available for Class 9 {filters.subject}.
+          </div>
+        )
       ) : (
         <div className="grid gap-4 md:grid-cols-3">
           {chapters.map((chapter) => (

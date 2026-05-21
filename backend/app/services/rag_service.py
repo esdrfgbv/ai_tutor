@@ -2,122 +2,124 @@ from sqlalchemy.orm import Session
 
 from app.core.logging import logger
 from app.models.models import AIConversation, User
-from app.schemas.schemas import Citation, DoubtRequest, DoubtResponse
+from app.schemas.schemas import DoubtRequest, DoubtResponse
 from app.services.ai_service import get_ai_provider
 from app.services.vector_service import vector_service
 
+# Ultra-compact system prompt: ~80 tokens
+_SYSTEM = (
+    "You are a concise textbook tutor for Indian school students (Class 6-9). "
+    "Answer using ONLY: 1) Concept (2-3 sentences), 2) Example (step-by-step), 3) Common Mistake (1 sentence). "
+    "Use the provided textbook context. No greetings, no filler, no introductions. Keep under 200 words."
+)
+
 
 class RAGService:
-    def answer_doubt(self, db: Session, user: User, request: DoubtRequest) -> DoubtResponse:
+    def answer_doubt(self, db: Session, user: User, req: DoubtRequest) -> DoubtResponse:
         try:
-            return self._answer(db, user, request)
+            return self._answer(db, user, req)
         except Exception as exc:
-            logger.exception("Doubt solver failed: %s", exc)
-            return DoubtResponse(
-                textbook_explanation="We could not reach the knowledge base right now. Please retry in a moment.",
-                simplified_explanation="Try asking with your grade and subject selected. Example: 'Explain nouns for Class 6 English'.",
-                examples=["Break the doubt into keywords and match them to your current chapter."],
-                formulas=[],
-                related_pyqs=["Review one PYQ from the same chapter after reading the textbook section."],
-                practice_tips=["Rephrase the question with subject and chapter.", "Retry after refreshing the page."],
-                citations=[],
-                confidence=0.0,
-            )
+            logger.exception("Doubt solver error: %s", exc)
+            return DoubtResponse(answer="Could not process your question right now. Please try again.")
 
-    def _answer(self, db: Session, user: User, request: DoubtRequest) -> DoubtResponse:
-        base_filters = {"grade": request.grade, "subject": request.subject, "chapter": request.chapter}
-        textbook = self._search_with_fallback(request.question, base_filters, "textbook", 5)
-        pyqs = self._search_with_fallback(request.question, base_filters, "pyq", 4)
+    def _retrieve(self, req: DoubtRequest) -> list[dict]:
+        """Retrieve top 2 chunks. Slug-first, then fallback to subject/grade."""
+        if req.slug:
+            hits = vector_service.search(req.question, {"file_name": f"{req.slug}.pdf"}, limit=2)
+            if hits:
+                return hits
 
-        if not textbook and not pyqs:
-            return DoubtResponse(
-                textbook_explanation="No indexed textbook or PYQ content matched this doubt yet. Run PDF ingestion for your grade and subject.",
-                simplified_explanation=f"For '{request.question}', start with the chapter definition, then solve one worked example.",
-                examples=["Write the definition first.", "Solve one small example step by step."],
-                formulas=[],
-                related_pyqs=["Practice one PYQ from the same chapter."],
-                practice_tips=["Open the chapter PDF and revise the topic.", "Ask again with grade, subject, and chapter filled in."],
-                citations=[],
-                confidence=0.15,
-            )
+        filters = {}
+        if req.grade:
+            filters["grade"] = req.grade
+        if req.subject:
+            filters["subject"] = req.subject
+        if filters:
+            hits = vector_service.search(req.question, filters, limit=2)
+            if hits:
+                return hits
 
-        context = "\n\n".join(
-            f"[{item['metadata'].get('source_type')} | {item['metadata'].get('file_name', 'doc')} p.{item['metadata'].get('page_number')}] {item['text']}"
-            for item in textbook + pyqs
-        )
-        system = (
-            "You are an expert JNV and Sainik School tutor. Use only supplied context for textbook/PYQ citations. "
-            "Return JSON: textbook_explanation, simplified_explanation, examples, formulas, related_pyqs, practice_tips."
-        )
-        prompt = f"Student doubt: {request.question}\nFilters: {base_filters}\nContext:\n{context[:12000]}"
+        return vector_service.search(req.question, limit=2)
+
+    def _answer(self, db: Session, user: User, req: DoubtRequest) -> DoubtResponse:
+        chunks = self._retrieve(req)
+
+        # Build compact context: max 500 chars per chunk
+        context = ""
+        source_name = None
+        if chunks:
+            parts = []
+            for c in chunks[:2]:
+                text = c["text"][:500]
+                src = c["metadata"].get("file_name", "")
+                page = c["metadata"].get("page_number")
+                if src and not source_name:
+                    source_name = src.replace(".pdf", "")
+                    if page:
+                        source_name += f" p.{page}"
+                parts.append(text)
+            context = "\n---\n".join(parts)
+
+        # Build user prompt — extremely compact
+        prompt = ""
+        if context:
+            prompt += f"Context:\n{context}\n\n"
+        prompt += f"Q: {req.question}"
+        if req.subject:
+            prompt += f" [{req.subject}"
+            if req.chapter:
+                prompt += f", {req.chapter}"
+            prompt += "]"
+
+        # Call LLM
         try:
-            payload = get_ai_provider().generate_json(system, prompt)
+            answer = get_ai_provider().generate_text(_SYSTEM, prompt)
         except Exception as exc:
-            logger.warning("LLM unavailable, using local fallback: %s", exc)
-            payload = self._local_response(request.question, textbook, pyqs)
+            logger.warning("LLM unavailable: %s", exc)
+            answer = self._build_fallback(req.question, chunks)
 
-        citations = [
-            Citation(
-                source=item["metadata"].get("file_name", "indexed document"),
-                page_number=item["metadata"].get("page_number"),
-                chapter=item["metadata"].get("chapter"),
-                score=item["score"],
-            )
-            for item in textbook + pyqs
-        ]
-        confidence = self._confidence(textbook + pyqs)
-        response = DoubtResponse(citations=citations, confidence=confidence, **payload)
-        db.add(
-            AIConversation(
+        # Save conversation (non-blocking, best-effort)
+        try:
+            db.add(AIConversation(
                 user_id=user.id,
-                question=request.question,
-                answer=response.model_dump_json(),
-                citations=[c.model_dump() for c in citations],
-            )
-        )
-        db.commit()
-        return response
+                question=req.question,
+                answer=answer[:2000],
+                citations=[{"source": source_name}] if source_name else [],
+            ))
+            db.commit()
+        except Exception:
+            db.rollback()
 
-    def _search_with_fallback(self, question: str, base: dict, source_type: str, limit: int) -> list[dict]:
-        attempts = [
-            {**base, "source_type": source_type},
-            {"grade": base.get("grade"), "source_type": source_type},
-            {"source_type": source_type},
-            None,
-        ]
-        for filters in attempts:
-            clean = {k: v for k, v in (filters or {}).items() if v is not None}
-            rows = vector_service.search(question, clean or None, limit=limit)
-            if rows:
-                return rows
-        return []
+        return DoubtResponse(answer=answer, source=source_name)
 
     @staticmethod
-    def _confidence(hits: list[dict]) -> float:
-        if not hits:
-            return 0.0
-        avg = sum(item.get("score", 0) for item in hits) / len(hits)
-        return round(max(0.0, min(1.0, avg)), 2)
+    def _build_fallback(question: str, chunks: list[dict]) -> str:
+        """Construct a useful answer from textbook chunks when LLM is unavailable."""
+        if not chunks:
+            return (
+                f"**{question}**\n\n"
+                "The AI service is temporarily unavailable and no textbook content was found for this query.\n\n"
+                "**What to do:** Open your textbook chapter and look for this topic in the index or headings."
+            )
 
-    def _local_response(self, question: str, textbook: list[dict], pyqs: list[dict]) -> dict:
-        source_text = " ".join(item["text"] for item in textbook[:3])
-        pyq_text = [item["text"][:240] for item in pyqs[:3]]
-        examples = [item["text"][:180] for item in textbook[:2]] or [
-            "Write the definition, then solve one small example step by step.",
-        ]
-        return {
-            "textbook_explanation": source_text[:900]
-            or f"This doubt is about {question}. Revise the chapter definition and connect each step to that rule.",
-            "simplified_explanation": f"Break '{question}' into keywords, recall the rule, solve a short example, then try a similar PYQ.",
-            "examples": examples,
-            "formulas": ["List known values, choose the rule, substitute carefully, verify units."],
-            "related_pyqs": pyq_text
-            or ["Practice one PYQ from the same chapter and compare reasoning steps."],
-            "practice_tips": [
-                "Revise the chapter definition first.",
-                "Solve similar PYQs and review incorrect steps.",
-            ],
-        }
+        # Clean and present textbook content directly
+        parts = [f"**{question}**\n"]
+        parts.append("*AI service temporarily unavailable — showing relevant textbook content:*\n")
+
+        for i, chunk in enumerate(chunks[:2]):
+            text = chunk["text"].strip()
+            # Trim to reasonable length and end at a sentence boundary
+            if len(text) > 600:
+                cut = text[:600].rfind(".")
+                text = text[: cut + 1] if cut > 100 else text[:600] + "..."
+            src = chunk["metadata"].get("file_name", "")
+            page = chunk["metadata"].get("page_number")
+            label = f"📖 {src}" if src else f"Source {i + 1}"
+            if page:
+                label += f" (p.{page})"
+            parts.append(f"**{label}:**\n{text}\n")
+
+        return "\n".join(parts)
 
 
 rag_service = RAGService()

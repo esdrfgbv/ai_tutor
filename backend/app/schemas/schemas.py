@@ -60,25 +60,12 @@ class DoubtRequest(BaseModel):
     grade: int | None = Field(default=None, ge=4, le=9)
     subject: str | None = None
     chapter: str | None = None
-    topic: str | None = None
-
-
-class Citation(BaseModel):
-    source: str
-    page_number: int | None = None
-    chapter: str | None = None
-    score: float | None = None
+    slug: str | None = None
 
 
 class DoubtResponse(BaseModel):
-    textbook_explanation: str
-    simplified_explanation: str
-    examples: list[str]
-    formulas: list[str]
-    related_pyqs: list[str]
-    practice_tips: list[str]
-    citations: list[Citation] = []
-    confidence: float = 0.0
+    answer: str
+    source: str | None = None
 
 
 class ChapterModuleOut(BaseModel):

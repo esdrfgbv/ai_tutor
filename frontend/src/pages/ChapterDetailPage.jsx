@@ -45,7 +45,7 @@ export default function ChapterDetailPage() {
       </div>
       <div className="grid gap-4 md:grid-cols-3">
         <button
-          onClick={() => navigate(`/doubts?chapter=${chapter.id}&subject=${chapter.subject}`)}
+          onClick={() => navigate(`/doubts?chapter=${encodeURIComponent(chapter.title)}&subject=${chapter.subject}`)}
           className="card p-4 hover:border-mint hover:bg-mint/5 transition"
         >
           <MessageSquare size={24} className="text-mint mb-2" />

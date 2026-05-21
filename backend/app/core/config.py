@@ -18,7 +18,9 @@ class Settings(BaseSettings):
     openai_api_key: str | None = None
     openai_model: str = "gpt-4.1-mini"
     gemini_api_key: str | None = None
-    gemini_model: str = "gemini-1.5-flash"
+    gemini_model: str = "gemini-2.0-flash"
+    openrouter_api_key: str | None = None
+    openrouter_model: str = "meta-llama/llama-3.1-8b-instruct:free"
     embedding_model: str = "sentence-transformers/all-MiniLM-L6-v2"
     chroma_path: Path = Path("../vector_db/chroma")
     upload_dir: Path = Path("../uploads")

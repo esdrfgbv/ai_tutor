@@ -1,263 +1,206 @@
-import { Send, BookOpen, Lightbulb, FileText, HelpCircle, ArrowLeft } from "lucide-react";
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Send, ArrowLeft, Brain, Loader2 } from "lucide-react";
+import { useEffect, useState, useRef } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import api from "../api/client";
-import ErrorNotice from "../components/ErrorNotice.jsx";
-
-const SUBJECTS = ["maths", "science", "english"];
+import Markdown from "../components/Markdown.jsx";
 
 export default function DoubtSolverPage() {
-  const [question, setQuestion] = useState("");
+  const [searchParams] = useSearchParams();
+  const subject = searchParams.get("subject") || "maths";
+  const slug = searchParams.get("slug") || "";
+  const chapter = searchParams.get("chapter") || "";
+  const paramGrade = searchParams.get("grade");
+
   const [grade, setGrade] = useState(9);
-  const [subject, setSubject] = useState("maths");
-  const [chapter, setChapter] = useState("");
-  const [answer, setAnswer] = useState(null);
+  const [question, setQuestion] = useState("");
+  const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [history, setHistory] = useState([]);
+  const chatEndRef = useRef(null);
+  const inputRef = useRef(null);
+
+  const resolvedGrade = paramGrade ? Number(paramGrade) : grade;
 
   useEffect(() => {
-    api.get("/learning/profile").then((r) => setGrade(r.data.grade || 9)).catch(() => {});
+    api
+      .get("/learning/profile")
+      .then((r) => setGrade(r.data.grade || 9))
+      .catch(() => {});
   }, []);
 
-  const ask = async (event) => {
-    event.preventDefault();
-    if (!question.trim()) return;
-    setLoading(true);
+  // Focus input on mount
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+
+  // Scroll to latest message
+  useEffect(() => {
+    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages, loading]);
+
+  const contextLabel = [
+    `Class ${resolvedGrade}`,
+    subject.charAt(0).toUpperCase() + subject.slice(1),
+    chapter,
+  ]
+    .filter(Boolean)
+    .join(" · ");
+
+  const ask = async (e) => {
+    if (e) e.preventDefault();
+    const q = question.trim();
+    if (!q || loading) return;
+
+    setQuestion("");
     setError("");
+    setLoading(true);
+
+    // Add user message
+    setMessages((prev) => [...prev, { id: Date.now(), role: "user", text: q }]);
+
     try {
       const { data } = await api.post("/learning/doubts", {
-        question,
-        grade,
+        question: q,
+        grade: resolvedGrade,
         subject,
         chapter: chapter || null,
+        slug: slug || null,
       });
-      setAnswer(data);
-      setHistory((prev) => [{ question, subject, answer: data }, ...prev.slice(0, 4)]);
+
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: Date.now() + 1,
+          role: "ai",
+          text: data.answer,
+          source: data.source,
+        },
+      ]);
     } catch (err) {
-      setError(err.response?.data?.detail || "Could not solve this doubt right now. Please try again.");
+      setError(
+        err.response?.data?.detail ||
+          "Could not reach the AI Tutor. Check your connection."
+      );
     } finally {
       setLoading(false);
+      inputRef.current?.focus();
     }
   };
 
-  const reuseQuestion = (item) => {
-    setQuestion(item.question);
-    setSubject(item.subject);
-    setAnswer(item.answer);
-  };
-
   return (
-    <div className="space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-black">AI Doubt Solver</h1>
-          <p className="mt-1 text-sm text-black/55 dark:text-white/55">
-            Ask any doubt from your Class 9 syllabus and get a textbook-backed explanation.
-          </p>
+    <div className="flex flex-col h-[calc(100vh-130px)] md:h-[calc(100vh-110px)] max-w-3xl mx-auto">
+      {/* Minimal top bar */}
+      <div className="flex items-center justify-between px-4 py-3 border-b border-black/8 dark:border-white/8">
+        <div className="flex items-center gap-2.5 min-w-0">
+          <Brain size={18} className="text-mint flex-shrink-0" />
+          <span className="text-sm font-bold text-ink dark:text-white truncate">
+            {contextLabel}
+          </span>
         </div>
-        <Link to="/chapters" className="btn-soft flex items-center gap-1 text-sm">
-          <ArrowLeft size={15} /> Modules
-        </Link>
+        <div className="flex gap-2 flex-shrink-0">
+          {slug && (
+            <Link
+              to={`/viewer/${subject}/${slug}`}
+              className="btn-soft text-xs py-1.5 px-2.5"
+            >
+              Textbook
+            </Link>
+          )}
+          <Link
+            to="/chapters"
+            className="btn-soft text-xs py-1.5 px-2.5 flex items-center gap-1"
+          >
+            <ArrowLeft size={12} /> Back
+          </Link>
+        </div>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-[.42fr_.58fr]">
-        {/* Question form */}
-        <div className="space-y-4">
-          <form onSubmit={ask} className="card space-y-4">
-            <div className="grid grid-cols-3 gap-2">
-              <div>
-                <label className="mb-1 block text-xs font-semibold text-black/50 dark:text-white/50">Class</label>
-                <select className="input w-full" value={grade} onChange={(e) => setGrade(Number(e.target.value))}>
-                  <option value={9}>Class 9</option>
-                  <option value={6}>Class 6</option>
-                </select>
+      {/* Chat area */}
+      <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4">
+        {messages.length === 0 && !loading && (
+          <div className="flex flex-col items-center justify-center h-full text-center space-y-3 opacity-60">
+            <Brain size={36} className="text-mint" />
+            <p className="text-sm text-black/50 dark:text-white/50 max-w-xs">
+              Ask any doubt about{" "}
+              <span className="font-semibold text-ink dark:text-white">
+                {chapter || subject}
+              </span>
+              . Get a concise, textbook-grounded answer.
+            </p>
+          </div>
+        )}
+
+        {messages.map((msg) => (
+          <div
+            key={msg.id}
+            className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
+          >
+            {msg.role === "user" ? (
+              <div className="max-w-[80%] bg-mint text-white px-4 py-2.5 rounded-2xl rounded-br-md text-sm leading-relaxed shadow-sm">
+                {msg.text}
               </div>
-              <div>
-                <label className="mb-1 block text-xs font-semibold text-black/50 dark:text-white/50">Subject</label>
-                <select className="input w-full" value={subject} onChange={(e) => setSubject(e.target.value)}>
-                  {SUBJECTS.map((s) => (
-                    <option key={s} value={s}>{s.charAt(0).toUpperCase() + s.slice(1)}</option>
-                  ))}
-                </select>
+            ) : (
+              <div className="max-w-[90%] space-y-2">
+                <div className="bg-white dark:bg-[#1a2422] border border-black/6 dark:border-white/8 px-4 py-3.5 rounded-2xl rounded-bl-md shadow-sm">
+                  <Markdown text={msg.text} />
+                </div>
+                {msg.source && (
+                  <p className="text-[10px] text-black/35 dark:text-white/35 pl-1 font-medium">
+                    📄 {msg.source}
+                  </p>
+                )}
               </div>
-              <div>
-                <label className="mb-1 block text-xs font-semibold text-black/50 dark:text-white/50">Chapter</label>
-                <input
-                  className="input w-full"
-                  placeholder="Optional"
-                  value={chapter}
-                  onChange={(e) => setChapter(e.target.value)}
-                />
-              </div>
+            )}
+          </div>
+        ))}
+
+        {/* Loading indicator */}
+        {loading && (
+          <div className="flex justify-start">
+            <div className="bg-white dark:bg-[#1a2422] border border-black/6 dark:border-white/8 px-4 py-3 rounded-2xl rounded-bl-md flex items-center gap-2">
+              <Loader2 size={14} className="text-mint animate-spin" />
+              <span className="text-xs text-black/50 dark:text-white/50">
+                Thinking...
+              </span>
             </div>
+          </div>
+        )}
 
-            <div>
-              <label className="mb-1 block text-xs font-semibold text-black/50 dark:text-white/50">Your doubt</label>
-              <textarea
-                className="input min-h-36 w-full resize-y"
-                value={question}
-                onChange={(e) => setQuestion(e.target.value)}
-                placeholder={`e.g. "Explain the difference between acids and bases" or "What is the formula for area of a circle?"`}
-              />
-            </div>
+        <div ref={chatEndRef} />
+      </div>
 
-            <ErrorNotice message={error} />
-
-            <button className="btn-primary w-full flex items-center justify-center gap-2" disabled={loading}>
-              {loading ? (
-                <>
-                  <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
-                  Thinking...
-                </>
-              ) : (
-                <><Send size={16} /> Ask AI Tutor</>
-              )}
-            </button>
-          </form>
-
-          {/* Recent questions */}
-          {history.length > 0 && (
-            <div className="card">
-              <p className="text-xs font-semibold uppercase tracking-widest text-black/40 dark:text-white/40 mb-3">Recent Questions</p>
-              <div className="space-y-2">
-                {history.map((item, i) => (
-                  <button
-                    key={i}
-                    onClick={() => reuseQuestion(item)}
-                    className="w-full rounded-lg bg-black/4 p-2.5 text-left text-sm hover:bg-black/8 dark:bg-white/5 dark:hover:bg-white/10 transition-colors"
-                  >
-                    <p className="font-medium truncate">{item.question}</p>
-                    <p className="text-xs text-black/40 dark:text-white/40 mt-0.5 capitalize">{item.subject}</p>
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
+      {/* Error */}
+      {error && (
+        <div className="mx-4 mb-2 px-3 py-2 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl text-xs text-red-600 dark:text-red-400">
+          {error}
         </div>
+      )}
 
-        {/* Answer panel */}
-        <div>
-          {answer ? (
-            <div className="space-y-4">
-              {/* Confidence */}
-              <div className="card flex items-center justify-between py-3">
-                <span className="text-sm font-semibold">AI Confidence</span>
-                <div className="flex items-center gap-3">
-                  <div className="h-2 w-32 rounded-full bg-black/10 dark:bg-white/10">
-                    <div
-                      className={`h-2 rounded-full transition-all ${
-                        answer.confidence >= 0.7 ? "bg-mint" : answer.confidence >= 0.4 ? "bg-gold" : "bg-coral"
-                      }`}
-                      style={{ width: `${Math.round((answer.confidence || 0) * 100)}%` }}
-                    />
-                  </div>
-                  <span className={`text-sm font-bold ${answer.confidence >= 0.7 ? "text-mint" : answer.confidence >= 0.4 ? "text-gold" : "text-coral"}`}>
-                    {Math.round((answer.confidence || 0) * 100)}%
-                  </span>
-                </div>
-              </div>
-
-              {/* Textbook explanation */}
-              <div className="card">
-                <div className="flex items-center gap-2 mb-3">
-                  <BookOpen size={16} className="text-mint" />
-                  <h3 className="font-bold">Textbook Explanation</h3>
-                </div>
-                <p className="text-sm leading-relaxed text-black/75 dark:text-white/75 whitespace-pre-wrap">
-                  {answer.textbook_explanation}
-                </p>
-              </div>
-
-              {/* Simplified */}
-              <div className="card">
-                <div className="flex items-center gap-2 mb-3">
-                  <Lightbulb size={16} className="text-gold" />
-                  <h3 className="font-bold">Simple Explanation</h3>
-                </div>
-                <p className="text-sm leading-relaxed text-black/75 dark:text-white/75 whitespace-pre-wrap">
-                  {answer.simplified_explanation}
-                </p>
-              </div>
-
-              {/* Examples */}
-              {answer.examples?.length > 0 && (
-                <div className="card">
-                  <div className="flex items-center gap-2 mb-3">
-                    <HelpCircle size={16} className="text-coral" />
-                    <h3 className="font-bold">Examples</h3>
-                  </div>
-                  <ul className="space-y-2">
-                    {answer.examples.map((ex, i) => (
-                      <li key={i} className="flex gap-2 text-sm">
-                        <span className="mt-0.5 flex-shrink-0 font-bold text-coral">{i + 1}.</span>
-                        <span className="text-black/75 dark:text-white/75">{ex}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {/* Formulas */}
-              {answer.formulas?.length > 0 && (
-                <div className="card bg-mint/5 border border-mint/20">
-                  <h3 className="font-bold mb-2 text-mint">Key Formulas</h3>
-                  {answer.formulas.map((f, i) => (
-                    <p key={i} className="font-mono text-sm bg-white/50 dark:bg-black/20 rounded px-3 py-2 mt-2">{f}</p>
-                  ))}
-                </div>
-              )}
-
-              {/* Practice tips */}
-              {answer.practice_tips?.length > 0 && (
-                <div className="card">
-                  <h3 className="font-bold mb-3">Practice Tips</h3>
-                  <ul className="space-y-2">
-                    {answer.practice_tips.map((tip, i) => (
-                      <li key={i} className="flex gap-2 rounded-lg bg-black/4 p-2.5 text-sm dark:bg-white/5">
-                        <span className="text-mint font-bold">✓</span>
-                        <span>{tip}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {/* Citations */}
-              {answer.citations?.length > 0 && (
-                <div className="card">
-                  <div className="flex items-center gap-2 mb-3">
-                    <FileText size={16} className="text-black/50" />
-                    <h3 className="font-bold">Sources</h3>
-                  </div>
-                  <div className="space-y-2">
-                    {answer.citations.map((c, i) => (
-                      <div key={i} className="rounded-lg bg-black/4 px-3 py-2 text-xs dark:bg-white/5">
-                        <span className="font-semibold">{c.source}</span>
-                        {c.chapter && <span className="text-black/50 dark:text-white/40"> · {c.chapter}</span>}
-                        {c.page_number && <span className="text-black/50 dark:text-white/40"> · p.{c.page_number}</span>}
-                        {c.score != null && (
-                          <span className="ml-2 rounded-full bg-mint/15 px-1.5 py-0.5 text-mint">
-                            {Math.round(c.score * 100)}% match
-                          </span>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-          ) : (
-            <div className="card flex h-full min-h-64 flex-col items-center justify-center text-center">
-              <HelpCircle size={40} className="text-black/15 dark:text-white/15" />
-              <p className="mt-4 font-semibold text-black/40 dark:text-white/40">Your answer will appear here</p>
-              <p className="mt-2 text-sm text-black/30 dark:text-white/30">
-                Select grade, subject, and type your doubt. Adding a chapter helps find better textbook matches.
-              </p>
-            </div>
-          )}
-        </div>
+      {/* Input */}
+      <div className="p-3 border-t border-black/8 dark:border-white/8">
+        <form onSubmit={ask} className="relative flex items-center gap-2">
+          <input
+            ref={inputRef}
+            type="text"
+            className="flex-1 px-4 py-3 rounded-xl border border-black/12 dark:border-white/12 bg-white dark:bg-[#121918] text-sm focus:outline-none focus:border-mint focus:ring-1 focus:ring-mint/30 placeholder:text-black/30 dark:placeholder:text-white/30"
+            placeholder="Ask a doubt..."
+            value={question}
+            onChange={(e) => setQuestion(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+                ask();
+              }
+            }}
+          />
+          <button
+            type="submit"
+            disabled={loading || !question.trim()}
+            className="p-3 rounded-xl bg-mint hover:bg-mint/90 text-white disabled:opacity-30 transition-all flex-shrink-0"
+          >
+            <Send size={16} />
+          </button>
+        </form>
       </div>
     </div>
   );

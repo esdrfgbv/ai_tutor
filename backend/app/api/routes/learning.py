@@ -48,46 +48,21 @@ def list_chapters(
     ).all()
 
 
-@router.get("/class-9-maths/pdf/{pdf_slug}")
-def get_class_9_maths_pdf(pdf_slug: str):
-    pdf_map = {
-        "nsao": "chapter-1-nsao.pdf",
-        "quadrilaterals": "chapter-2-quadrilaterals.pdf",
-        "statistics": "chapter-3-statistics.pdf",
-        "trigonometry": "chapter-4-trigonometry.pdf",
-        "square-and-square-roots": "chapter-5-square-and-square-roots.pdf",
-        "cube-and-cube-roots": "chapter-6-cube-and-cube-roots.pdf",
-        "comparing-quantities": "chapter-7-comparing-quantities.pdf",
-        "algebraic-expression-identities": "chapter-8-algebraic-expression-identities.pdf",
-        "solid-shapes": "chapter-9-solid-shapes.pdf",
-        "mensuration": "chapter-10-mensuration.pdf",
-        "exponents": "chapter-11-exponents.pdf",
-        "direct-inverse-proportional": "chapter-12-direct-inverse-proportional.pdf",
-        "factorization": "chapter-13-factorization.pdf",
-        "rational-numbers": "chapter-14-rational-numbers.pdf",
-        "linear-equations-in-one-variable": "chapter-15-linear-equations-in-one-variable.pdf",
-        "percentage-profit-and-loss": "chapter-16-percentage-profit-and-loss.pdf",
-        "algebra": "chapter-17-algebra.pdf",
-        "geometry": "chapter-18-geometry.pdf",
-    }
-
-    pdf_name = pdf_map.get(pdf_slug)
-
-    if not pdf_name:
+@router.get("/class-9/{subject}/pdf/{pdf_slug}")
+def get_class_9_pdf(subject: str, pdf_slug: str):
+    if ".." in subject or "/" in subject or "\\" in subject:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="PDF not found",
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Invalid subject name",
+        )
+    if ".." in pdf_slug or "/" in pdf_slug or "\\" in pdf_slug:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Invalid PDF slug",
         )
 
-    pdf_dir = get_settings().source_root / "class_9" / "maths"
-
-    file_path = pdf_dir / pdf_name
-
-    print("SOURCE ROOT:", get_settings().source_root)
-    print("PDF DIR:", pdf_dir)
-    print("PDF NAME:", pdf_name)
-    print("FULL PATH:", file_path)
-    print("EXISTS:", file_path.exists())
+    pdf_dir = get_settings().source_root / "class_9" / subject.lower().strip()
+    file_path = pdf_dir / f"{pdf_slug}.pdf"
 
     if not file_path.exists() or not file_path.is_file():
         raise HTTPException(

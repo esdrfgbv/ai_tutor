@@ -1,4 +1,4 @@
-﻿from pathlib import Path
+from pathlib import Path
 from typing import Any
 
 from app.core.config import get_settings
@@ -11,7 +11,13 @@ class VectorService:
         Path(settings.chroma_path).mkdir(parents=True, exist_ok=True)
         self._client = None
         self._collection = None
-        self._model = None
+
+        # Load model globally during startup to prevent downloading/loading on every request
+        logger.info(f"Loading embedding model: {settings.embedding_model}")
+        from sentence_transformers import SentenceTransformer
+
+        self.model = SentenceTransformer(settings.embedding_model)
+        logger.info("Embedding model loaded and ready.")
 
     @property
     def collection(self):
@@ -24,13 +30,7 @@ class VectorService:
             )
         return self._collection
 
-    @property
-    def model(self):
-        if self._model is None:
-            from sentence_transformers import SentenceTransformer
-
-            self._model = SentenceTransformer(get_settings().embedding_model)
-        return self._model
+    # Removed lazy model property, model is now loaded on init
 
     @staticmethod
     def build_where(filters: dict[str, Any] | None) -> dict[str, Any] | None:
@@ -44,7 +44,7 @@ class VectorService:
         return {"$and": conditions}
 
     def add_chunks(self, ids: list[str], texts: list[str], metadatas: list[dict[str, Any]]) -> None:
-        embeddings = self.model.encode(texts, normalize_embeddings=True).tolist()
+        embeddings = self.model.encode(texts, normalize_embeddings=True, show_progress_bar=False).tolist()
         self.collection.upsert(
             ids=ids,
             documents=texts,
@@ -54,7 +54,7 @@ class VectorService:
 
     def search(self, query: str, filters: dict[str, Any] | None = None, limit: int = 8) -> list[dict[str, Any]]:
         try:
-            embedding = self.model.encode([query], normalize_embeddings=True).tolist()[0]
+            embedding = self.model.encode([query], normalize_embeddings=True, show_progress_bar=False).tolist()[0]
             where = self.build_where(filters)
             result = self.collection.query(
                 query_embeddings=[embedding],

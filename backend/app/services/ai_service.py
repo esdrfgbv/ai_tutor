@@ -10,6 +10,10 @@ class AIProvider(ABC):
     def generate_json(self, system: str, prompt: str) -> dict[str, Any]:
         raise NotImplementedError
 
+    @abstractmethod
+    def generate_text(self, system: str, prompt: str) -> str:
+        raise NotImplementedError
+
 
 class OpenAIProvider(AIProvider):
     def __init__(self) -> None:
@@ -32,6 +36,18 @@ class OpenAIProvider(AIProvider):
         )
         return json.loads(response.choices[0].message.content)
 
+    def generate_text(self, system: str, prompt: str) -> str:
+        response = self.client.chat.completions.create(
+            model=self.model,
+            messages=[
+                {"role": "system", "content": system},
+                {"role": "user", "content": prompt},
+            ],
+            max_tokens=400,
+            temperature=0.3,
+        )
+        return response.choices[0].message.content.strip()
+
 
 class GeminiProvider(AIProvider):
     def __init__(self) -> None:
@@ -50,9 +66,61 @@ class GeminiProvider(AIProvider):
         )
         return json.loads(response.text)
 
+    def generate_text(self, system: str, prompt: str) -> str:
+        response = self.model.generate_content(
+            f"{system}\n\n{prompt}",
+            generation_config={"max_output_tokens": 400, "temperature": 0.3},
+        )
+        return response.text.strip()
+
+class OpenRouterProvider(AIProvider):
+    """Uses OpenRouter.ai — free models available, OpenAI-compatible API."""
+
+    def __init__(self) -> None:
+        settings = get_settings()
+        if not settings.openrouter_api_key:
+            raise RuntimeError("OPENROUTER_API_KEY is required when AI_PROVIDER=openrouter")
+        from openai import OpenAI
+
+        self.client = OpenAI(
+            api_key=settings.openrouter_api_key,
+            base_url="https://openrouter.ai/api/v1",
+        )
+        self.model = settings.openrouter_model
+
+    def generate_json(self, system: str, prompt: str) -> dict[str, Any]:
+        response = self.client.chat.completions.create(
+            model=self.model,
+            messages=[
+                {"role": "system", "content": system},
+                {"role": "user", "content": prompt},
+            ],
+        )
+        text = response.choices[0].message.content.strip()
+        # Strip markdown code fences if present
+        if text.startswith("```"):
+            text = text.split("\n", 1)[1] if "\n" in text else text[3:]
+            if text.endswith("```"):
+                text = text[:-3]
+        return json.loads(text)
+
+    def generate_text(self, system: str, prompt: str) -> str:
+        response = self.client.chat.completions.create(
+            model=self.model,
+            messages=[
+                {"role": "system", "content": system},
+                {"role": "user", "content": prompt},
+            ],
+            max_tokens=400,
+            temperature=0.3,
+        )
+        return response.choices[0].message.content.strip()
+
 
 def get_ai_provider() -> AIProvider:
     provider = get_settings().ai_provider.lower()
+    if provider == "openrouter":
+        return OpenRouterProvider()
     if provider == "gemini":
         return GeminiProvider()
     return OpenAIProvider()
