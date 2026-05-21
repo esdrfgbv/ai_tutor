@@ -16,7 +16,10 @@ class VectorService:
         logger.info(f"Loading embedding model: {settings.embedding_model}")
         from sentence_transformers import SentenceTransformer
 
-        self.model = SentenceTransformer(settings.embedding_model)
+        self.model = SentenceTransformer(
+    settings.embedding_model,
+    cache_folder="./models"
+)
         logger.info("Embedding model loaded and ready.")
 
     @property

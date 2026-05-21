@@ -73,7 +73,9 @@ class RAGService:
 
         # Call LLM
         try:
-            answer = get_ai_provider().generate_text(_SYSTEM, prompt)
+            answer = get_ai_provider().generate_text(
+                f"{_SYSTEM}\n\n{prompt}"
+            )
         except Exception as exc:
             logger.warning("LLM unavailable: %s", exc)
             answer = self._build_fallback(req.question, chunks)

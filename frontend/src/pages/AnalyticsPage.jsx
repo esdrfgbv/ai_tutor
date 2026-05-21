@@ -1,8 +1,9 @@
-import { BarChart3, Target, BookOpen, Flame, Clock, Trophy, TrendingUp, AlertTriangle, CheckCircle2, ClipboardList } from "lucide-react";
+import { AlertCircle, AlertTriangle, BarChart3, BookOpen, CheckCircle2, ClipboardList, Clock, Flame, Target, TrendingDown, TrendingUp, Trophy } from "lucide-react";
 import { useEffect, useState } from "react";
 import {
   Area, AreaChart, Bar, BarChart, CartesianGrid,
   Cell, ResponsiveContainer, Tooltip, XAxis, YAxis,
+  Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis
 } from "recharts";
 import api from "../api/client";
 import ErrorNotice from "../components/ErrorNotice.jsx";
@@ -17,24 +18,6 @@ function SectionTitle({ icon: Icon, children }) {
     <div className="flex items-center gap-2 mb-4">
       <Icon size={18} className="text-mint" />
       <h2 className="font-bold text-lg">{children}</h2>
-    </div>
-  );
-}
-
-function StatBar({ label, value, max = 100, color = "bg-mint" }) {
-  const pct = Math.min(100, (value / max) * 100);
-  return (
-    <div>
-      <div className="flex justify-between text-sm mb-1">
-        <span className="truncate pr-2 text-black/70 dark:text-white/70">{label}</span>
-        <span className="font-semibold">{value}%</span>
-      </div>
-      <div className="h-2 rounded-full bg-black/10 dark:bg-white/10">
-        <div
-          className={`h-2 rounded-full transition-all duration-500 ${color}`}
-          style={{ width: `${pct}%` }}
-        />
-      </div>
     </div>
   );
 }
@@ -91,31 +74,110 @@ export default function AnalyticsPage() {
         </div>
       </div>
 
-      {/* Score Trend */}
-      <div className="card h-72">
-        <SectionTitle icon={TrendingUp}>Score Trend (Last 12 Attempts)</SectionTitle>
-        {stats.trend?.length ? (
-          <ResponsiveContainer width="100%" height="80%">
-            <AreaChart data={stats.trend}>
-              <defs>
-                <linearGradient id="trendGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#4fb286" stopOpacity={0.3} />
-                  <stop offset="95%" stopColor="#4fb286" stopOpacity={0} />
-                </linearGradient>
-              </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(0,0,0,0.06)" />
-              <XAxis dataKey="date" tick={{ fontSize: 11 }} />
-              <YAxis domain={[0, 100]} tick={{ fontSize: 11 }} unit="%" />
-              <Tooltip formatter={(v) => [`${v}%`, "Accuracy"]} />
-              <Area dataKey="accuracy" stroke="#4fb286" strokeWidth={2} fill="url(#trendGrad)" dot={{ r: 3 }} />
-            </AreaChart>
-          </ResponsiveContainer>
-        ) : (
-          <EmptyState title="Take a quiz to see your score trend." />
-        )}
+      {/* Weakness & Strength + Topic Mastery */}
+      <div className="grid gap-4 lg:grid-cols-2">
+        <div className="card space-y-6">
+          <div>
+            <h3 className="flex items-center gap-2 font-bold text-coral"><TrendingDown size={18} /> Focus Areas (Weaknesses)</h3>
+            <div className="mt-3 space-y-3">
+              {weakTopics.length > 0 ? weakTopics.map((t, i) => (
+                <div key={i}>
+                  <div className="flex justify-between text-sm">
+                    <span>{t.topic}</span>
+                    <span className="font-mono text-coral">{cap(t.accuracy)}%</span>
+                  </div>
+                  <div className="mt-1 h-1.5 w-full overflow-hidden rounded-full bg-black/5 dark:bg-white/5">
+                    <div className="h-full bg-coral" style={{ width: `${cap(t.accuracy)}%` }} />
+                  </div>
+                </div>
+              )) : <EmptyState title="No weak areas identified yet!" />}
+            </div>
+          </div>
+          <div>
+            <h3 className="flex items-center gap-2 font-bold text-mint"><TrendingUp size={18} /> Strongest Topics</h3>
+            <div className="mt-3 space-y-3">
+              {strongTopics.length > 0 ? strongTopics.map((t, i) => (
+                <div key={i}>
+                  <div className="flex justify-between text-sm">
+                    <span>{t.topic}</span>
+                    <span className="font-mono text-mint">{cap(t.accuracy)}%</span>
+                  </div>
+                  <div className="mt-1 h-1.5 w-full overflow-hidden rounded-full bg-black/5 dark:bg-white/5">
+                    <div className="h-full bg-mint" style={{ width: `${cap(t.accuracy)}%` }} />
+                  </div>
+                </div>
+              )) : <EmptyState title="No strong areas identified yet." />}
+            </div>
+          </div>
+        </div>
+
+        <div className="card h-[400px]">
+          <h2 className="font-bold mb-4">Topic Mastery Analysis</h2>
+          {topicMastery.length > 0 ? (
+            <ResponsiveContainer width="100%" height="90%">
+              <RadarChart data={topicMastery} margin={{ top: 20, right: 30, bottom: 20, left: 30 }}>
+                <PolarGrid strokeOpacity={0.2} />
+                <PolarAngleAxis dataKey="topic" tick={{ fontSize: 11, fill: 'currentColor' }} />
+                <PolarRadiusAxis angle={30} domain={[0, 100]} tick={false} axisLine={false} />
+                <Radar name="Mastery" dataKey="mastery" stroke="#4fb286" fill="#4fb286" fillOpacity={0.5} />
+                <Tooltip />
+              </RadarChart>
+            </ResponsiveContainer>
+          ) : (
+            <EmptyState title="Take topic quizzes to see your mastery radar." />
+          )}
+        </div>
       </div>
 
-      {/* Subject Performance */}
+      {/* Mock Tests + Score Trend */}
+      <div className="grid gap-4 lg:grid-cols-[1.2fr_.8fr]">
+        <div className="card h-80">
+          <SectionTitle icon={TrendingUp}>Score Trend (Last 12 Attempts)</SectionTitle>
+          {stats.trend?.length ? (
+            <ResponsiveContainer width="100%" height="80%">
+              <AreaChart data={stats.trend}>
+                <defs>
+                  <linearGradient id="trendGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#4fb286" stopOpacity={0.3} />
+                    <stop offset="95%" stopColor="#4fb286" stopOpacity={0} />
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(0,0,0,0.06)" />
+                <XAxis dataKey="date" tick={{ fontSize: 11 }} />
+                <YAxis domain={[0, 100]} tick={{ fontSize: 11 }} unit="%" />
+                <Tooltip formatter={(v) => [`${v}%`, "Accuracy"]} />
+                <Area dataKey="accuracy" stroke="#4fb286" strokeWidth={2} fill="url(#trendGrad)" dot={{ r: 3 }} />
+              </AreaChart>
+            </ResponsiveContainer>
+          ) : (
+            <EmptyState title="Take a quiz to see your score trend." />
+          )}
+        </div>
+        
+        <div className="card h-80 overflow-auto">
+          <SectionTitle icon={ClipboardList}>Recent Mock Tests</SectionTitle>
+          {mockSummary.length > 0 ? (
+            <div className="space-y-3">
+              {mockSummary.map((mock, idx) => (
+                <div key={idx} className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-black/5 p-4 dark:border-white/5">
+                  <div>
+                    <p className="font-medium truncate max-w-[150px] sm:max-w-xs">{mock.quiz}</p>
+                    <p className="text-xs text-black/50 dark:text-white/50">{Math.floor(mock.time_taken_seconds / 60)} mins taken</p>
+                  </div>
+                  <div className="text-right flex-shrink-0">
+                    <p className="font-bold text-gold">{mock.score} pts</p>
+                    <p className="text-sm font-medium">{cap(mock.accuracy)}% Accuracy</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <EmptyState title="No mock tests taken recently." />
+          )}
+        </div>
+      </div>
+
+      {/* Subject Performance & Daily Time */}
       <div className="grid gap-4 lg:grid-cols-2">
         <div className="card h-64">
           <SectionTitle icon={BarChart3}>Subject Performance</SectionTitle>
@@ -137,7 +199,6 @@ export default function AnalyticsPage() {
           )}
         </div>
 
-        {/* Daily Study Time */}
         <div className="card h-64">
           <SectionTitle icon={Clock}>Daily Study Time (14 Days)</SectionTitle>
           {dailyProgress.some((d) => d.minutes > 0) ? (
@@ -152,136 +213,6 @@ export default function AnalyticsPage() {
           ) : (
             <EmptyState title="Start studying to track daily time." />
           )}
-        </div>
-      </div>
-
-      {/* Weak & Strong Topics */}
-      <div className="grid gap-4 lg:grid-cols-2">
-        <div className="card">
-          <SectionTitle icon={AlertTriangle}>Weak Topics (Need Revision)</SectionTitle>
-          {weakTopics.length ? (
-            <div className="space-y-3">
-              {weakTopics.map((t) => (
-                <StatBar
-                  key={t.topic}
-                  label={t.topic}
-                  value={cap(t.accuracy)}
-                  color="bg-coral"
-                />
-              ))}
-            </div>
-          ) : (
-            <p className="text-sm text-black/50 dark:text-white/50">No weak topics identified yet. Keep quizzing!</p>
-          )}
-        </div>
-
-        <div className="card">
-          <SectionTitle icon={CheckCircle2}>Strong Topics (Well Mastered)</SectionTitle>
-          {strongTopics.length ? (
-            <div className="space-y-3">
-              {strongTopics.map((t) => (
-                <StatBar
-                  key={t.topic}
-                  label={t.topic}
-                  value={cap(t.accuracy)}
-                  color="bg-mint"
-                />
-              ))}
-            </div>
-          ) : (
-            <p className="text-sm text-black/50 dark:text-white/50">No strong topics yet. Take more quizzes to identify strengths.</p>
-          )}
-        </div>
-      </div>
-
-      {/* Topic Mastery Table */}
-      {topicMastery.length > 0 && (
-        <div className="card overflow-auto">
-          <SectionTitle icon={Trophy}>Topic-Wise Mastery</SectionTitle>
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="text-left text-xs uppercase text-black/50 dark:text-white/40">
-                <th className="pb-3">Topic</th>
-                <th className="pb-3">Accuracy</th>
-                <th className="pb-3">Attempts</th>
-                <th className="pb-3">Mastery</th>
-              </tr>
-            </thead>
-            <tbody>
-              {topicMastery.map((t) => (
-                <tr key={t.topic} className="border-t border-black/8 dark:border-white/8">
-                  <td className="py-2 pr-4">{t.topic}</td>
-                  <td className="py-2">
-                    <span className={`font-semibold ${cap(t.accuracy) >= 80 ? "text-mint" : cap(t.accuracy) >= 60 ? "text-gold" : "text-coral"}`}>
-                      {cap(t.accuracy)}%
-                    </span>
-                  </td>
-                  <td className="py-2 text-black/60 dark:text-white/50">{t.attempts}</td>
-                  <td className="py-2">
-                    <div className="flex items-center gap-2">
-                      <div className="h-1.5 w-24 rounded-full bg-black/10 dark:bg-white/10">
-                        <div
-                          className="h-1.5 rounded-full bg-mint"
-                          style={{ width: `${cap(t.mastery)}%` }}
-                        />
-                      </div>
-                      <span className="text-xs text-black/50">{cap(t.mastery)}%</span>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
-
-      {/* Mock Test History */}
-      {mockSummary.length > 0 && (
-        <div className="card overflow-auto">
-          <SectionTitle icon={ClipboardList}>Mock Test Performance</SectionTitle>
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="text-left text-xs uppercase text-black/50 dark:text-white/40">
-                <th className="pb-3">Test</th>
-                <th className="pb-3">Score</th>
-                <th className="pb-3">Accuracy</th>
-                <th className="pb-3">Time</th>
-              </tr>
-            </thead>
-            <tbody>
-              {mockSummary.map((m, i) => (
-                <tr key={i} className="border-t border-black/8 dark:border-white/8">
-                  <td className="py-2 pr-4 max-w-[200px] truncate">{m.quiz}</td>
-                  <td className="py-2 font-semibold">{m.score}</td>
-                  <td className="py-2">
-                    <span className={cap(m.accuracy) >= 70 ? "text-mint font-semibold" : "text-coral font-semibold"}>
-                      {cap(m.accuracy)}%
-                    </span>
-                  </td>
-                  <td className="py-2 text-black/60 dark:text-white/50">
-                    {m.time_taken_seconds < 60
-                      ? `${m.time_taken_seconds}s`
-                      : `${Math.floor(m.time_taken_seconds / 60)}m ${m.time_taken_seconds % 60}s`}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
-
-      {/* Study Plan */}
-      <div className="card">
-        <SectionTitle icon={BookOpen}>Personalised Study Plan</SectionTitle>
-        <div className="space-y-2">
-          {(stats.study_plan?.length ? stats.study_plan : stats.recommendations || []).map((item, i) => (
-            <div key={i} className="flex gap-3 rounded-lg bg-black/4 p-3 dark:bg-white/5">
-              <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-mint text-[10px] font-bold text-white">
-                {i + 1}
-              </span>
-              <p className="text-sm">{item}</p>
-            </div>
-          ))}
         </div>
       </div>
 

@@ -1,172 +1,172 @@
-import json
 from abc import ABC, abstractmethod
-from typing import Any
 
 from app.core.config import get_settings
 
 
 class AIProvider(ABC):
     @abstractmethod
-    def generate_json(self, system: str, prompt: str) -> dict[str, Any]:
-        raise NotImplementedError
-
-    @abstractmethod
-    def generate_text(self, system: str, prompt: str) -> str:
+    def generate_text(self, prompt: str) -> str:
         raise NotImplementedError
 
 
-class OpenAIProvider(AIProvider):
-    def __init__(self) -> None:
-        settings = get_settings()
-        if not settings.openai_api_key:
-            raise RuntimeError("OPENAI_API_KEY is required when AI_PROVIDER=openai")
+# =========================================
+# OLLAMA (LOCAL AI)
+# =========================================
+
+class OllamaProvider(AIProvider):
+    def __init__(self):
         from openai import OpenAI
 
-        self.client = OpenAI(api_key=settings.openai_api_key)
-        self.model = settings.openai_model
+        self.client = OpenAI(
+            base_url="http://localhost:11434/v1",
+            api_key="ollama",
+        )
 
-    def generate_json(self, system: str, prompt: str) -> dict[str, Any]:
+        # Change if needed:
+        # qwen3
+        # gemma3
+        # llama3
+        self.model = "llama3.1:8b"
+
+    def generate_text(self, prompt: str) -> str:
         response = self.client.chat.completions.create(
             model=self.model,
             messages=[
-                {"role": "system", "content": system},
-                {"role": "user", "content": prompt},
+                {
+                    "role": "user",
+                    "content": prompt,
+                }
             ],
-            response_format={"type": "json_object"},
+            max_tokens=200,
+            temperature=0.2,
         )
-        return json.loads(response.choices[0].message.content)
 
-    def generate_text(self, system: str, prompt: str) -> str:
-        response = self.client.chat.completions.create(
-            model=self.model,
-            messages=[
-                {"role": "system", "content": system},
-                {"role": "user", "content": prompt},
-            ],
-            max_tokens=400,
-            temperature=0.3,
-        )
         return response.choices[0].message.content.strip()
 
 
-class GeminiProvider(AIProvider):
-    def __init__(self) -> None:
+# =========================================
+# OPENAI
+# =========================================
+
+class OpenAIProvider(AIProvider):
+    def __init__(self):
         settings = get_settings()
-        if not settings.gemini_api_key:
-            raise RuntimeError("GEMINI_API_KEY is required when AI_PROVIDER=gemini")
+
+        from openai import OpenAI
+
+        self.client = OpenAI(
+            api_key=settings.openai_api_key
+        )
+
+        self.model = (
+            settings.openai_model
+            or "gpt-4o-mini"
+        )
+
+    def generate_text(self, prompt: str) -> str:
+        response = self.client.chat.completions.create(
+            model=self.model,
+            messages=[
+                {
+                    "role": "user",
+                    "content": prompt,
+                }
+            ],
+            max_tokens=200,
+            temperature=0.2,
+        )
+
+        return response.choices[0].message.content.strip()
+
+
+# =========================================
+# GEMINI
+# =========================================
+
+class GeminiProvider(AIProvider):
+    def __init__(self):
+        settings = get_settings()
+
         import google.generativeai as genai
 
-        genai.configure(api_key=settings.gemini_api_key)
-        self.model = genai.GenerativeModel(settings.gemini_model)
-
-    def generate_json(self, system: str, prompt: str) -> dict[str, Any]:
-        response = self.model.generate_content(
-            f"{system}\nReturn strictly valid JSON.\n\n{prompt}",
-            generation_config={"response_mime_type": "application/json"},
+        genai.configure(
+            api_key=settings.gemini_api_key
         )
-        return json.loads(response.text)
 
-    def generate_text(self, system: str, prompt: str) -> str:
-        response = self.model.generate_content(
-            f"{system}\n\n{prompt}",
-            generation_config={"max_output_tokens": 400, "temperature": 0.3},
+        self.model = genai.GenerativeModel(
+            settings.gemini_model
+            or "gemini-1.5-flash"
         )
+
+    def generate_text(self, prompt: str) -> str:
+        response = self.model.generate_content(
+            prompt,
+            generation_config={
+                "max_output_tokens": 200,
+                "temperature": 0.2,
+            },
+        )
+
         return response.text.strip()
 
-class OpenRouterProvider(AIProvider):
-    """Uses OpenRouter.ai — free models available, OpenAI-compatible API."""
 
-    def __init__(self) -> None:
+# =========================================
+# OPENROUTER
+# =========================================
+
+class OpenRouterProvider(AIProvider):
+    def __init__(self):
         settings = get_settings()
-        if not settings.openrouter_api_key:
-            raise RuntimeError("OPENROUTER_API_KEY is required when AI_PROVIDER=openrouter")
+
         from openai import OpenAI
 
         self.client = OpenAI(
             api_key=settings.openrouter_api_key,
             base_url="https://openrouter.ai/api/v1",
         )
-        self.model = settings.openrouter_model
 
-    def generate_json(self, system: str, prompt: str) -> dict[str, Any]:
+        self.model = (
+            settings.openrouter_model
+            or "openai/gpt-4o-mini"
+        )
+
+    def generate_text(self, prompt: str) -> str:
         response = self.client.chat.completions.create(
             model=self.model,
             messages=[
-                {"role": "system", "content": system},
-                {"role": "user", "content": prompt},
+                {
+                    "role": "user",
+                    "content": prompt,
+                }
             ],
+            max_tokens=200,
+            temperature=0.2,
         )
-        text = response.choices[0].message.content.strip()
-        # Strip markdown code fences if present
-        if text.startswith("```"):
-            text = text.split("\n", 1)[1] if "\n" in text else text[3:]
-            if text.endswith("```"):
-                text = text[:-3]
-        return json.loads(text)
 
-    def generate_text(self, system: str, prompt: str) -> str:
-        response = self.client.chat.completions.create(
-            model=self.model,
-            messages=[
-                {"role": "system", "content": system},
-                {"role": "user", "content": prompt},
-            ],
-            max_tokens=400,
-            temperature=0.3,
-        )
         return response.choices[0].message.content.strip()
 
 
+# =========================================
+# MAIN PROVIDER
+# =========================================
+
 def get_ai_provider() -> AIProvider:
-    provider = get_settings().ai_provider.lower()
-    if provider == "openrouter":
-        return OpenRouterProvider()
+    settings = get_settings()
+
+    provider = (
+        settings.ai_provider
+        or "ollama"
+    ).lower()
+
+    print(f"Using AI Provider: {provider}")
+
     if provider == "gemini":
         return GeminiProvider()
-    return OpenAIProvider()
 
+    if provider == "openrouter":
+        return OpenRouterProvider()
 
-def concept_based_question(context: str, topic: str, index: int) -> dict[str, Any]:
-    sentences = [part.strip() for part in context.replace("\n", " ").split(".") if len(part.strip()) > 50]
-    if sentences:
-        basis = sentences[index % len(sentences)]
-        return {
-            "question_type": "reasoning" if index % 3 == 2 else "mcq",
-            "prompt": f"Which reasoning step best matches this {topic} idea: {basis[:160]}?",
-            "options": ["Identify the given values first", "Ignore the conditions", "Choose the longest option", "Skip the verification step"],
-            "correct_answer": "Identify the given values first",
-            "textbook_explanation": basis,
-            "ai_explanation": "Strong exam answers begin by identifying the given information, then choosing the rule that connects it to what is asked.",
-            "difficulty": ["easy", "medium", "hard"][index % 3],
-            "topic": topic,
-        }
-    templates = [
-        {
-            "prompt": f"In a {topic} question, what should you do before solving?",
-            "options": ["Read the question and list given values", "Guess the closest option", "Start from the final answer", "Ignore units"],
-            "correct_answer": "Read the question and list given values",
-            "textbook_explanation": "Every NCERT-style solution starts by understanding what is given and what is asked.",
-            "ai_explanation": "This prevents calculation mistakes and helps you choose the correct rule.",
-        },
-        {
-            "prompt": f"Which habit is most useful for PYQ-style {topic} practice?",
-            "options": ["Compare options after solving", "Memorize option positions", "Avoid revising mistakes", "Solve without reading fully"],
-            "correct_answer": "Compare options after solving",
-            "textbook_explanation": "Previous-year questions often test small differences in logic, values, or wording.",
-            "ai_explanation": "Solving first and then comparing options improves accuracy under time pressure.",
-        },
-        {
-            "prompt": f"If two answers look possible in a {topic} MCQ, what is the best next step?",
-            "options": ["Check the condition in the question", "Pick the shorter answer", "Change the question", "Leave it immediately"],
-            "correct_answer": "Check the condition in the question",
-            "textbook_explanation": "Conditions such as class, unit, diagram label, or keyword decide the correct answer.",
-            "ai_explanation": "Most close-option mistakes happen when one condition is missed.",
-        },
-    ]
-    item = templates[index % len(templates)]
-    return {
-        "question_type": "reasoning" if index % 3 == 2 else "mcq",
-        "difficulty": ["easy", "medium", "hard"][index % 3],
-        "topic": topic,
-        **item,
-    }
+    if provider == "openai":
+        return OpenAIProvider()
+
+    return OllamaProvider()
