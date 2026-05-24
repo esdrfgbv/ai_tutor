@@ -75,8 +75,13 @@ class AnalyticsService:
         for attempt in attempts:
             subject = attempt.quiz.subject if attempt.quiz else "general"
             subject_scores.setdefault(subject, []).append(attempt.accuracy)
+            
+            answers_dict = attempt.answers if isinstance(attempt.answers, dict) else {}
+            if isinstance(attempt.answers, list):
+                answers_dict = {str(q.id): ans for q, ans in zip((attempt.quiz.questions if attempt.quiz else []), attempt.answers)}
+                
             for question in attempt.quiz.questions if attempt.quiz else []:
-                submitted = str(attempt.answers.get(str(question.id), "")).strip().lower()
+                submitted = str(answers_dict.get(str(question.id), "")).strip().lower()
                 expected = str(question.correct_answer).strip().lower()
                 topic = question.topic or subject
                 topic_scores.setdefault(topic, []).append(100 if submitted == expected else 0)

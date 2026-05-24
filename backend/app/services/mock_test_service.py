@@ -64,6 +64,10 @@ class MockTestService:
         duration_minutes: int,
         questions: list[dict],
         created_by_id: int | None,
+        module_order: int | None = None,
+        quiz_order: int | None = None,
+        normalized_module_name: str | None = None,
+        source_pdf: str | None = None,
     ) -> Quiz:
         quiz = Quiz(
             title=title,
@@ -73,6 +77,10 @@ class MockTestService:
             quiz_type=quiz_type,
             duration_minutes=duration_minutes,
             created_by_id=created_by_id,
+            module_order=module_order,
+            quiz_order=quiz_order,
+            normalized_module_name=normalized_module_name,
+            source_pdf=source_pdf,
         )
         db.add(quiz)
         db.flush()
@@ -109,10 +117,32 @@ class MockTestService:
         )
 
     def create_mock_quiz(self, db: Session, request: QuizGenerateIn, created_by_id: int | None, test_name: str) -> Quiz:
+        from app.services.module_service import module_service
         questions = self.get_test_questions(request.subject, test_name, limit=request.question_count)
+        
+        # Find module metadata
+        tests = self.list_tests(request.subject)
+        grouped = module_service.group_quizzes_by_module(request.subject, tests)
+        
+        mod_order = None
+        q_order = None
+        norm_name = None
+        src_pdf = None
+        display_title = test_name
+        
+        for group in grouped:
+            for i, q in enumerate(group["quizzes"]):
+                if q["raw_test_name"] == test_name:
+                    mod_order = group["module_order"]
+                    q_order = i + 1
+                    norm_name = group["normalized_name"]
+                    src_pdf = group["source_pdf"]
+                    display_title = f"{group['module_name']} - {q['display_name']}"
+                    break
+        
         return self.create_quiz_from_questions(
             db,
-            title=test_name,
+            title=display_title,
             grade=request.grade,
             subject=request.subject,
             chapter=request.chapter,
@@ -120,6 +150,10 @@ class MockTestService:
             duration_minutes=request.duration_minutes,
             questions=questions,
             created_by_id=created_by_id,
+            module_order=mod_order,
+            quiz_order=q_order,
+            normalized_module_name=norm_name,
+            source_pdf=src_pdf,
         )
 
 

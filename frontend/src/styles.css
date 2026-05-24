@@ -2,14 +2,442 @@
 @tailwind components;
 @tailwind utilities;
 
-:root { color-scheme: light; }
-.dark { color-scheme: dark; }
-body { margin: 0; font-family: Inter, ui-sans-serif, system-ui; background: #f8fbf9; color: #10201c; }
-.dark body { background: #111816; color: #eef8f3; }
-.glass { background: rgba(255, 255, 255, 0.72); backdrop-filter: blur(18px); border: 1px solid rgba(255,255,255,0.54); }
-.dark .glass { background: rgba(25, 34, 31, 0.74); border-color: rgba(255,255,255,0.08); }
-.focus-ring { @apply focus:outline-none focus:ring-2 focus:ring-mint focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-[#111816]; }
-.btn-primary { @apply inline-flex items-center justify-center gap-2 rounded-lg bg-ink px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#18352f] focus-ring dark:bg-mint dark:text-ink; }
-.btn-soft { @apply inline-flex items-center justify-center gap-2 rounded-lg border border-black/10 bg-white px-4 py-2.5 text-sm font-semibold text-ink transition hover:border-mint hover:text-mint focus-ring dark:border-white/10 dark:bg-white/5 dark:text-white; }
-.input { @apply w-full rounded-lg border border-black/10 bg-white px-3 py-2.5 text-sm outline-none transition focus:border-mint dark:border-white/10 dark:bg-white/5; }
-.card { @apply rounded-lg border border-black/10 bg-white p-5 shadow-soft dark:border-white/10 dark:bg-white/5; }
+/* ============================================================
+   GLOBAL RESET & BASE
+   ============================================================ */
+:root {
+  color-scheme: dark;
+  --neon: #adff44;
+  --neon-dim: rgba(173, 255, 68, 0.15);
+  --neon-glow: rgba(173, 255, 68, 0.3);
+  --surface-0: #000000;
+  --surface-1: #0a0a0a;
+  --surface-2: #111111;
+  --surface-3: #1a1a1a;
+  --surface-4: #1f1f1f;
+  --border: rgba(255, 255, 255, 0.07);
+  --border-neon: rgba(173, 255, 68, 0.2);
+  --text-primary: #ffffff;
+  --text-secondary: #bdbdbd;
+  --text-muted: #8a8a8a;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --radius-lg: 24px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--surface-0);
+  color: var(--text-primary);
+  font-family: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--surface-1);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(173, 255, 68, 0.2);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(173, 255, 68, 0.4);
+}
+
+/* ============================================================
+   TYPOGRAPHY
+   ============================================================ */
+.font-display {
+  font-family: "Outfit", "Inter", ui-sans-serif;
+}
+
+h1, h2, h3, h4 {
+  font-family: "Outfit", "Inter", ui-sans-serif;
+  line-height: 1.2;
+}
+
+/* ============================================================
+   GLASSMORPHISM SYSTEM
+   ============================================================ */
+.glass {
+  background: rgba(10, 10, 10, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+}
+
+.glass-card {
+  background: rgba(17, 17, 17, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.glass-panel {
+  background: rgba(26, 26, 26, 0.6);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.glass-neon {
+  background: rgba(10, 10, 10, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-neon);
+  border-radius: var(--radius);
+  box-shadow: 0 0 20px rgba(173, 255, 68, 0.08);
+}
+
+/* ============================================================
+   CARD SYSTEM
+   ============================================================ */
+.card {
+  @apply rounded-2xl border border-white/[0.07] bg-[#0a0a0a] p-5;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.card-hover {
+  @apply card transition-all duration-300 cursor-pointer;
+}
+.card-hover:hover {
+  transform: translateY(-2px);
+  border-color: rgba(173, 255, 68, 0.2);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(173, 255, 68, 0.1);
+}
+
+.card-neon {
+  @apply rounded-2xl p-5;
+  background: rgba(10, 10, 10, 0.9);
+  border: 1px solid rgba(173, 255, 68, 0.2);
+  box-shadow: 0 0 20px rgba(173, 255, 68, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+/* ============================================================
+   BUTTON SYSTEM
+   ============================================================ */
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-200;
+  background: var(--neon);
+  color: #000000;
+  border: 1px solid transparent;
+}
+.btn-primary:hover {
+  background: #c5ff66;
+  box-shadow: 0 0 20px rgba(173, 255, 68, 0.4);
+  transform: translateY(-1px);
+}
+.btn-primary:active {
+  transform: scale(0.97);
+}
+
+.btn-ghost {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-200;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(173, 255, 68, 0.3);
+  color: var(--neon);
+}
+
+.btn-soft {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+.btn-soft:hover {
+  border-color: rgba(173, 255, 68, 0.25);
+  color: var(--neon);
+  background: rgba(173, 255, 68, 0.06);
+}
+
+.btn-neon {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold transition-all duration-200;
+  background: transparent;
+  color: var(--neon);
+  border: 1px solid var(--border-neon);
+}
+.btn-neon:hover {
+  background: rgba(173, 255, 68, 0.1);
+  box-shadow: 0 0 15px rgba(173, 255, 68, 0.2);
+}
+
+/* ============================================================
+   INPUT SYSTEM
+   ============================================================ */
+.input {
+  @apply w-full rounded-xl px-4 py-3 text-sm outline-none transition-all duration-200;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+}
+.input::placeholder {
+  color: var(--text-muted);
+}
+.input:focus {
+  border-color: rgba(173, 255, 68, 0.4);
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 0 0 3px rgba(173, 255, 68, 0.08);
+}
+
+.input-glass {
+  @apply w-full rounded-xl px-4 py-3 text-sm outline-none transition-all duration-200;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+}
+.input-glass::placeholder {
+  color: var(--text-muted);
+}
+.input-glass:focus {
+  border-color: rgba(173, 255, 68, 0.5);
+  box-shadow: 0 0 0 3px rgba(173, 255, 68, 0.1), 0 0 20px rgba(173, 255, 68, 0.1);
+}
+
+/* ============================================================
+   FOCUS RING
+   ============================================================ */
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-neon/40 focus:ring-offset-2 focus:ring-offset-black;
+}
+
+/* ============================================================
+   NEON GLOW EFFECTS
+   ============================================================ */
+.glow-neon {
+  box-shadow: 0 0 20px rgba(173, 255, 68, 0.3), 0 0 40px rgba(173, 255, 68, 0.1);
+}
+
+.glow-neon-sm {
+  box-shadow: 0 0 10px rgba(173, 255, 68, 0.25);
+}
+
+.text-glow {
+  text-shadow: 0 0 20px rgba(173, 255, 68, 0.5);
+}
+
+/* ============================================================
+   PROGRESS BARS
+   ============================================================ */
+.progress-bar {
+  @apply h-1.5 w-full overflow-hidden rounded-full;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.progress-fill {
+  @apply h-full rounded-full transition-all duration-700 ease-out;
+  background: linear-gradient(90deg, #adff44, #c5ff66);
+  box-shadow: 0 0 8px rgba(173, 255, 68, 0.4);
+}
+
+/* ============================================================
+   NAVIGATION LINK ACTIVE STATE
+   ============================================================ */
+.nav-active {
+  background: rgba(173, 255, 68, 0.08);
+  border-left: 2px solid var(--neon);
+  color: var(--neon);
+}
+
+/* ============================================================
+   AI ORBS & VISUAL ELEMENTS
+   ============================================================ */
+@keyframes orb-pulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(173,255,68,0.4); }
+  50% { transform: scale(1.06); box-shadow: 0 0 40px rgba(173,255,68,0.7), 0 0 80px rgba(173,255,68,0.2); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes bounce-dot {
+  0%, 80%, 100% { transform: scale(0.3); opacity: 0.3; }
+  40% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes particle-float {
+  0% { transform: translateY(0) translateX(0) scale(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 0.6; }
+  100% { transform: translateY(-100px) translateX(30px) scale(1); opacity: 0; }
+}
+
+.ai-orb {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #c5ff66, #adff44 50%, #7acc00);
+  animation: orb-pulse 2.5s ease-in-out infinite;
+  position: relative;
+}
+
+.ai-orb::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(173,255,68,0.15) 0%, transparent 70%);
+  animation: orb-pulse 2.5s ease-in-out infinite reverse;
+}
+
+/* ============================================================
+   TYPING INDICATOR
+   ============================================================ */
+.typing-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--neon);
+  animation: bounce-dot 1.4s ease-in-out infinite;
+}
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+/* ============================================================
+   BADGE SYSTEM
+   ============================================================ */
+.badge {
+  @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold;
+}
+.badge-neon {
+  background: rgba(173, 255, 68, 0.12);
+  color: var(--neon);
+  border: 1px solid rgba(173, 255, 68, 0.25);
+}
+.badge-muted {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+
+/* ============================================================
+   SHIMMER SKELETON
+   ============================================================ */
+.skeleton {
+  background: linear-gradient(90deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.04) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius-sm);
+}
+
+/* ============================================================
+   CHART OVERRIDES (Recharts)
+   ============================================================ */
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  stroke: rgba(255, 255, 255, 0.05) !important;
+}
+.recharts-text {
+  fill: var(--text-muted) !important;
+}
+.recharts-tooltip-wrapper .recharts-default-tooltip {
+  background: rgba(17, 17, 17, 0.95) !important;
+  border: 1px solid var(--border-neon) !important;
+  border-radius: 10px !important;
+  backdrop-filter: blur(20px) !important;
+}
+
+/* ============================================================
+   SELECT OVERRIDES
+   ============================================================ */
+select.input {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238a8a8a' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+  appearance: none;
+}
+
+/* ============================================================
+   PAGE TRANSITION
+   ============================================================ */
+.page-enter {
+  animation: slide-up 0.3s ease-out;
+}
+
+@keyframes slide-up {
+  from { transform: translateY(12px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* ============================================================
+   SUBJECT PROGRESS RING
+   ============================================================ */
+.ring-track {
+  stroke: rgba(255, 255, 255, 0.06);
+}
+.ring-fill {
+  stroke: var(--neon);
+  transition: stroke-dashoffset 1s ease-out;
+  filter: drop-shadow(0 0 4px rgba(173, 255, 68, 0.4));
+}
+
+/* ============================================================
+   QUIZ QUESTION STATES
+   ============================================================ */
+.quiz-option {
+  @apply rounded-xl border p-4 text-left text-sm font-medium transition-all duration-150 cursor-pointer;
+  background: rgba(255, 255, 255, 0.03);
+  border-color: var(--border);
+  color: var(--text-primary);
+}
+.quiz-option:hover {
+  border-color: rgba(173, 255, 68, 0.3);
+  background: rgba(173, 255, 68, 0.04);
+}
+.quiz-option.selected {
+  border-color: var(--neon);
+  background: rgba(173, 255, 68, 0.08);
+  color: var(--neon);
+  box-shadow: 0 0 12px rgba(173, 255, 68, 0.15);
+}
+.quiz-option.correct {
+  border-color: var(--neon);
+  background: rgba(173, 255, 68, 0.1);
+}
+.quiz-option.wrong {
+  border-color: rgba(255, 107, 107, 0.5);
+  background: rgba(255, 107, 107, 0.08);
+}
+
+/* ============================================================
+   MOBILE BOTTOM NAV
+   ============================================================ */
+.bottom-nav-item {
+  @apply flex flex-col items-center gap-1 py-2 px-3 rounded-xl text-[10px] font-semibold transition-all duration-200;
+  color: var(--text-muted);
+}
+.bottom-nav-item.active {
+  color: var(--neon);
+  background: rgba(173, 255, 68, 0.08);
+}

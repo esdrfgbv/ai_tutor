@@ -5,11 +5,22 @@ from app.api.deps import get_student_profile, require_roles
 from app.db.session import get_db
 from app.models.enums import Role
 from app.models.models import Quiz, StudentProfile, User
-from app.schemas.schemas import AttemptIn, AttemptOut, MockTestOut, QuizGenerateIn, QuizOut, TimerSyncIn
+from app.schemas.schemas import AttemptIn, AttemptOut, MockTestOut, ModuleOut, QuizGenerateIn, QuizOut, TimerSyncIn
 from app.services.mock_test_service import mock_test_service
 from app.services.quiz_service import quiz_service
+from app.services.module_service import module_service
 
 router = APIRouter(prefix="/quizzes", tags=["quizzes"])
+
+@router.get("/subjects")
+def list_subjects():
+    # Based on the folders we have: maths and science
+    return ["maths", "science", "english"]
+
+@router.get("/subjects/{subject}/modules", response_model=list[ModuleOut])
+def list_subject_modules(subject: str):
+    tests = mock_test_service.list_tests(subject)
+    return module_service.group_quizzes_by_module(subject, tests)
 
 
 @router.get("", response_model=list[QuizOut])

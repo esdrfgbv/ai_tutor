@@ -1,8 +1,9 @@
-export default function EmptyState({ title, action }) {
+export default function EmptyState({ title, description, icon }) {
   return (
-    <div className="rounded-lg border border-dashed border-black/20 p-8 text-center dark:border-white/15">
-      <p className="font-semibold">{title}</p>
-      {action && <div className="mt-4">{action}</div>}
+    <div className="flex flex-col items-center justify-center py-10 text-center gap-2">
+      {icon && <div className="text-4xl mb-1">{icon}</div>}
+      <p className="text-sm font-semibold text-white">{title}</p>
+      {description && <p className="text-xs max-w-xs" style={{ color: "#8a8a8a" }}>{description}</p>}
     </div>
   );
 }

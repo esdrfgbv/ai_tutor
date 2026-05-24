@@ -11,6 +11,9 @@ import AuthPage from "./pages/AuthPage.jsx";
 import StudentDashboard from "./pages/StudentDashboard.jsx";
 import ParentDashboard from "./pages/ParentDashboard.jsx";
 import AdminDashboard from "./pages/AdminDashboard.jsx";
+import AdminLeaderboardPage from "./pages/AdminLeaderboardPage.jsx";
+import AdminQuestionBankPage from "./pages/AdminQuestionBankPage.jsx";
+import AdminMockTestCreator from "./pages/AdminMockTestCreator.jsx";
 import ChaptersPage from "./pages/ChaptersPage.jsx";
 import ChapterDetailPage from "./pages/ChapterDetailPage.jsx";
 import DoubtSolverPage from "./pages/DoubtSolverPage.jsx";
@@ -34,6 +37,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                 <Route path="/student" element={<ProtectedRoute roles={["student"]}><StudentDashboard /></ProtectedRoute>} />
                 <Route path="/parent" element={<ProtectedRoute roles={["parent"]}><ParentDashboard /></ProtectedRoute>} />
                 <Route path="/admin" element={<ProtectedRoute roles={["admin"]}><AdminDashboard /></ProtectedRoute>} />
+                <Route path="/admin/leaderboard" element={<ProtectedRoute roles={["admin"]}><AdminLeaderboardPage /></ProtectedRoute>} />
+                <Route path="/admin/questions" element={<ProtectedRoute roles={["admin"]}><AdminQuestionBankPage /></ProtectedRoute>} />
+                <Route path="/admin/mock-tests" element={<ProtectedRoute roles={["admin"]}><AdminMockTestCreator /></ProtectedRoute>} />
                 <Route path="/chapters" element={<ChaptersPage />} />
                 <Route path="/chapters/:chapterId" element={<ChapterDetailPage />} />
                 <Route path="/viewer/:subject/:slug" element={<PdfViewerPage />} />

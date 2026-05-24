@@ -21,6 +21,13 @@ class RegisterIn(BaseModel):
     target_exam: str | None = None
     phone: str | None = None
     student_identifier: str | None = None
+    school_name: str | None = None
+    state: str | None = None
+    district: str | None = None
+    city: str | None = None
+    section: str | None = None
+    medium: str | None = None
+    academic_year: str | None = None
 
 
 class LoginIn(BaseModel):
@@ -28,8 +35,30 @@ class LoginIn(BaseModel):
     password: str
 
 
+class ForgotPasswordIn(BaseModel):
+    email: str
+
+
 class RefreshIn(BaseModel):
     refresh_token: str
+
+
+class StudentProfileOut(BaseModel):
+    id: int
+    grade: int
+    target_exam: str | None
+    school_name: str
+    state: str
+    district: str
+    city: str
+    section: str
+    medium: str
+    academic_year: str
+    streak_days: int
+    total_points: int
+
+    class Config:
+        from_attributes = True
 
 
 class UserOut(BaseModel):
@@ -38,6 +67,7 @@ class UserOut(BaseModel):
     full_name: str
     role: Role
     is_active: bool
+    student_profile: StudentProfileOut | None = None
 
     class Config:
         from_attributes = True
@@ -81,9 +111,20 @@ class ChapterModuleOut(BaseModel):
 
 
 class MockTestOut(BaseModel):
-    test_name: str
-    question_count: int
+    module_name: str
+    module_order: int
+    quizzes: list[dict]
     subject: str
+
+class QuizDisplayOut(BaseModel):
+    raw_test_name: str
+    display_name: str
+    question_count: int
+
+class ModuleOut(BaseModel):
+    module_name: str
+    module_order: int
+    quizzes: list[QuizDisplayOut]
 
 
 class MockQuestionOut(BaseModel):
@@ -110,6 +151,31 @@ class LeaderboardRow(BaseModel):
     grade: int
     points: int
     streak: int
+
+
+class AdminLeaderboardRow(BaseModel):
+    rank: int
+    student_id: int
+    name: str
+    school_name: str
+    state: str
+    district: str
+    city: str
+    section: str
+    medium: str
+    score: float
+    accuracy: float
+    quizzes_taken: int
+    time_taken_seconds: int
+    percentile: float
+    grade: int
+    points: int
+
+class AdminLeaderboardResponse(BaseModel):
+    total_count: int
+    page: int
+    limit: int
+    data: list[AdminLeaderboardRow]
 
 
 class QuizGenerateIn(BaseModel):
@@ -145,6 +211,10 @@ class QuizOut(BaseModel):
     chapter: str | None
     quiz_type: str
     duration_minutes: int
+    module_order: int | None = None
+    quiz_order: int | None = None
+    normalized_module_name: str | None = None
+    source_pdf: str | None = None
     questions: list[QuestionOut] = []
 
     class Config:

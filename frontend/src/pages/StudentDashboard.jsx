@@ -1,14 +1,59 @@
-import { Award, BookOpen, Clock, Target, Flame, Calendar, Brain, ClipboardList, AlertCircle } from "lucide-react";
+import { Award, BookOpen, Clock, Target, Flame, Calendar, Brain, ClipboardList, AlertCircle, TrendingUp, Trophy, Star, Zap, ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Area, AreaChart, Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  Area, AreaChart, Bar, BarChart, CartesianGrid,
+  ResponsiveContainer, Tooltip, XAxis, YAxis
+} from "recharts";
 import api from "../api/client";
-import ErrorNotice from "../components/ErrorNotice.jsx";
-import MetricCard from "../components/MetricCard.jsx";
-import EmptyState from "../components/EmptyState.jsx";
 import { useAuth } from "../context/AuthContext.jsx";
+import StatCard from "../components/StatCard.jsx";
+import ProgressRing from "../components/ProgressRing.jsx";
+import AIOrb from "../components/AIOrb.jsx";
 
 const cap = (v) => Math.min(100, Math.max(0, Number(v) || 0));
+
+const SUBJECTS = [
+  { label: "Mathematics", key: "maths", color: "#adff44" },
+  { label: "Science", key: "science", color: "#adff44" },
+  { label: "English", key: "english", color: "#adff44" },
+];
+
+function SkeletonDashboard() {
+  return (
+    <div className="space-y-6 animate-pulse">
+      <div className="h-36 rounded-3xl skeleton" />
+      <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
+        {[...Array(6)].map((_, i) => <div key={i} className="h-28 rounded-2xl skeleton" />)}
+      </div>
+      <div className="grid gap-4 lg:grid-cols-2">
+        <div className="h-72 rounded-2xl skeleton" />
+        <div className="h-72 rounded-2xl skeleton" />
+      </div>
+    </div>
+  );
+}
+
+const CustomTooltip = ({ active, payload, label }) => {
+  if (active && payload && payload.length) {
+    return (
+      <div style={{
+        background: "rgba(17,17,17,0.95)",
+        border: "1px solid rgba(173,255,68,0.2)",
+        borderRadius: 12,
+        padding: "10px 14px",
+        backdropFilter: "blur(20px)",
+      }}>
+        <p style={{ color: "#adff44", fontWeight: 700, fontSize: 12 }}>{label}</p>
+        {payload.map((p) => (
+          <p key={p.dataKey} style={{ color: "#fff", fontSize: 13, fontWeight: 600 }}>{p.value}{p.name === "accuracy" ? "%" : "m"}</p>
+        ))}
+      </div>
+    );
+  }
+  return null;
+};
 
 export default function StudentDashboard() {
   const { user } = useAuth();
@@ -16,242 +61,313 @@ export default function StudentDashboard() {
   const [leaderboard, setLeaderboard] = useState([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
-  
+
   useEffect(() => {
-    if (!user) {
-      console.warn("[StudentDashboard] User not loaded from context yet");
-      return;
-    }
-    
-    console.log("[StudentDashboard] Fetching analytics...", { userId: user.id });
+    if (!user) return;
     setLoading(true);
-    
-    Promise.all([
-      api.get("/analytics/student"),
-      api.get("/leaderboard")
-    ])
-      .then(([statsResponse, leaderboardResponse]) => {
-        console.log("[StudentDashboard] Data loaded successfully", {
-          statsKeys: Object.keys(statsResponse.data),
-          leaderboardLength: leaderboardResponse.data.length,
-        });
-        setStats(statsResponse.data);
-        setLeaderboard(leaderboardResponse.data);
-        setError("");
-      })
-      .catch((err) => {
-        const errorMsg = err.response?.data?.detail || err.message || "Could not load dashboard";
-        console.error("[StudentDashboard] Failed to load data", { error: errorMsg, fullError: err });
-        setError(errorMsg);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    Promise.all([api.get("/analytics/student"), api.get("/leaderboard")])
+      .then(([s, l]) => { setStats(s.data); setLeaderboard(l.data); setError(""); })
+      .catch((err) => setError(err.response?.data?.detail || err.message || "Could not load dashboard"))
+      .finally(() => setLoading(false));
   }, [user]);
-  
-  if (!user) {
-    return <ErrorNotice message="User not authenticated" />;
-  }
-  
-  if (error) {
-    return (
-      <div className="space-y-4">
-        <ErrorNotice message={error} />
-        <div className="card border border-yellow-200 bg-yellow-50 p-4 dark:border-yellow-900 dark:bg-yellow-900/20">
-          <div className="flex gap-3">
-            <AlertCircle className="mt-1 flex-shrink-0 text-yellow-600 dark:text-yellow-400" size={20} />
-            <div className="text-sm">
-              <p className="font-semibold text-yellow-800 dark:text-yellow-300">Debug Info:</p>
-              <p className="mt-1 font-mono text-yellow-700 dark:text-yellow-200">{error}</p>
-              <p className="mt-2 text-xs text-yellow-600 dark:text-yellow-400">
-                API URL: {api.defaults.baseURL}
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-  
-  if (loading || !stats) {
-    return (
-      <div className="space-y-4">
-        <div className="card h-24 animate-pulse bg-black/5 dark:bg-white/5" />
-        <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
-          {[1, 2, 3, 4, 5, 6].map(i => (
-            <div key={i} className="card h-32 animate-pulse bg-black/5 dark:bg-white/5" />
-          ))}
-        </div>
-      </div>
-    );
-  }
-  
-  return (
-    <div className="space-y-6">
-      {/* Welcome + quick actions */}
-      <div className="card flex flex-wrap items-center justify-between gap-4">
+
+  if (!user) return null;
+  if (loading) return <SkeletonDashboard />;
+
+  if (error) return (
+    <div className="rounded-2xl p-6" style={{ background: "rgba(255,107,107,0.08)", border: "1px solid rgba(255,107,107,0.2)" }}>
+      <div className="flex gap-3">
+        <AlertCircle className="text-red-400 flex-shrink-0 mt-0.5" size={20} />
         <div>
-          <p className="text-sm text-black/55 dark:text-white/55">Welcome back 👋</p>
-          <h1 className="text-2xl font-black">{user.full_name}</h1>
-          {stats.streak_days > 0 && (
-            <p className="mt-1 text-sm text-mint font-semibold">🔥 {stats.streak_days}-day streak · Keep going!</p>
-          )}
+          <p className="font-semibold text-white">Could not load dashboard</p>
+          <p className="text-sm mt-1" style={{ color: "#ff6b6b" }}>{error}</p>
+          <p className="text-xs mt-2" style={{ color: "#8a8a8a" }}>API: {api.defaults.baseURL}</p>
         </div>
-        <div className="flex flex-wrap gap-2">
-          <Link to="/chapters" className="btn-primary flex items-center gap-1.5 text-sm">
-            <BookOpen size={15} /> Study Modules
-          </Link>
-          <Link to="/quiz" className="btn-soft flex items-center gap-1.5 text-sm">
-            <ClipboardList size={15} /> Take a Test
-          </Link>
-          <Link to="/doubts" className="btn-soft flex items-center gap-1.5 text-sm">
-            <Brain size={15} /> Ask AI
-          </Link>
-        </div>
-      </div>
-      <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
-        <MetricCard icon={Target} label="Accuracy" value={`${cap(stats.accuracy)}%`} />
-        <MetricCard icon={BookOpen} label="Quizzes" value={stats.quizzes_taken} accent="bg-coral" />
-        <MetricCard icon={Clock} label="Study time" value={`${stats.study_minutes}m`} accent="bg-gold" />
-        <MetricCard icon={Flame} label="Current Streak" value={`${stats.streak_days}d`} accent="bg-coral" />
-        <MetricCard icon={Award} label="Longest Streak" value={`${stats.longest_streak}d`} accent="bg-ink" />
-        <MetricCard icon={Calendar} label="7d Consistency (15m+)" value={`${stats.weekly_consistency}/7`} accent="bg-mint" />
-      </div>
-      <div className="grid gap-4 lg:grid-cols-[1.4fr_.6fr]">
-        <div className="card h-80">
-          <h2 className="font-bold">Score trends</h2>
-          {stats.trend && stats.trend.length > 0 ? (
-            <ResponsiveContainer width="100%" height="88%">
-              <AreaChart data={stats.trend}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="date" />
-                <YAxis domain={[0, 100]} />
-                <Tooltip />
-                <Area dataKey="accuracy" stroke="#4fb286" fill="#4fb28633" />
-              </AreaChart>
-            </ResponsiveContainer>
-          ) : (
-            <EmptyState title="Take a quiz to start your trend." />
-          )}
-        </div>
-        <div className="card">
-          <h2 className="font-bold">Study plan</h2>
-          <div className="mt-4 space-y-3">
-            {(stats.study_plan && stats.study_plan.length > 0
-              ? stats.study_plan
-              : stats.recommendations || []
-            ).map((item, idx) => (
-              <p key={idx} className="rounded-lg bg-black/5 p-3 text-sm dark:bg-white/5">
-                {item}
-              </p>
-            ))}
-          </div>
-          {stats.leaderboard_rank && (
-            <p className="mt-4 text-sm text-mint">
-              Leaderboard rank #{stats.leaderboard_rank} · {cap(stats.leaderboard_percentile)} percentile
-            </p>
-          )}
-        </div>
-      </div>
-      <div className="grid gap-4 lg:grid-cols-2">
-        <div className="card h-72">
-          <h2 className="font-bold">Subject performance</h2>
-          {stats.subject_performance && stats.subject_performance.length > 0 ? (
-            <ResponsiveContainer width="100%" height="85%">
-              <BarChart data={stats.subject_performance}>
-                <XAxis dataKey="subject" />
-                <YAxis domain={[0, 100]} />
-                <Tooltip />
-                <Bar dataKey="accuracy" fill="#f9735b" />
-              </BarChart>
-            </ResponsiveContainer>
-          ) : (
-            <EmptyState title="No subject performance data yet." />
-          )}
-        </div>
-        <div className="card h-72">
-          <h2 className="font-bold">Daily study time (tracked sessions)</h2>
-          <p className="text-xs text-black/50 dark:text-white/50">Streak counts days with 15+ minutes of real activity.</p>
-          {stats.daily_progress && stats.daily_progress.length > 0 ? (
-            <ResponsiveContainer width="100%" height="80%">
-              <BarChart data={stats.daily_progress}>
-                <XAxis dataKey="date" tickFormatter={(d) => d?.slice(5)} />
-                <YAxis unit="m" />
-                <Tooltip formatter={(v, name) => [name === "minutes" ? `${v} min` : v, name === "minutes" ? "Study time" : name]} />
-                <Bar dataKey="minutes" fill="#4fb286" name="minutes" />
-              </BarChart>
-            </ResponsiveContainer>
-          ) : (
-            <EmptyState title="No study sessions recorded yet." />
-          )}
-        </div>
-      </div>
-      <div className="grid gap-4 lg:grid-cols-2">
-        <div className="card h-72">
-          <h2 className="font-bold">Subject Time Distribution (minutes)</h2>
-          {stats.subject_time_distribution && stats.subject_time_distribution.length > 0 ? (
-            <ResponsiveContainer width="100%" height="85%">
-              <BarChart data={stats.subject_time_distribution}>
-                <XAxis dataKey="subject" />
-                <YAxis />
-                <Tooltip />
-                <Bar dataKey="minutes" fill="#f4b942" />
-              </BarChart>
-            </ResponsiveContainer>
-          ) : (
-            <EmptyState title="No study time recorded yet." />
-          )}
-        </div>
-        <div className="card h-72">
-          <h2 className="font-bold">Active Learning Time by Activity (minutes)</h2>
-          <div className="mt-6 grid grid-cols-3 gap-4 text-center">
-            <div className="rounded-lg bg-black/5 p-4 dark:bg-white/5">
-              <p className="text-xs text-black/55 dark:text-white/60">PDF Reading</p>
-              <p className="mt-2 text-2xl font-bold text-mint">{stats.active_learning_time?.pdf_reading || 0}m</p>
-            </div>
-            <div className="rounded-lg bg-black/5 p-4 dark:bg-white/5">
-              <p className="text-xs text-black/55 dark:text-white/60">Quizzes</p>
-              <p className="mt-2 text-2xl font-bold text-coral">{stats.active_learning_time?.quiz || 0}m</p>
-            </div>
-            <div className="rounded-lg bg-black/5 p-4 dark:bg-white/5">
-              <p className="text-xs text-black/55 dark:text-white/60">Mock Tests</p>
-              <p className="mt-2 text-2xl font-bold text-gold">{stats.active_learning_time?.mock_test || 0}m</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="card overflow-auto">
-        <h2 className="font-bold">Leaderboard</h2>
-        {leaderboard && leaderboard.length > 0 ? (
-          <table className="mt-4 w-full text-sm">
-            <thead>
-              <tr className="text-left text-xs uppercase text-black/50">
-                <th className="py-2">Rank</th>
-                <th>Name</th>
-                <th>Score</th>
-                <th>Accuracy</th>
-                <th>Time</th>
-                <th>Percentile</th>
-              </tr>
-            </thead>
-            <tbody>
-              {leaderboard.map((row) => (
-                <tr key={row.student_id} className="border-t border-black/10 dark:border-white/10">
-                  <td className="py-2">#{row.rank}</td>
-                  <td>{row.name}</td>
-                  <td>{row.score}</td>
-                  <td>{cap(row.accuracy)}%</td>
-                  <td>{row.time_taken_seconds}s</td>
-                  <td>{cap(row.percentile)}%</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        ) : (
-          <EmptyState title="No leaderboard data available." />
-        )}
       </div>
     </div>
   );
+
+  const subjectPerf = stats?.subject_performance || [];
+
+  return (
+    <div className="space-y-6 pb-6">
+      {/* ══ HERO SECTION ══ */}
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="relative rounded-3xl overflow-hidden p-6"
+        style={{
+          background: "linear-gradient(135deg, rgba(17,17,17,0.95) 0%, rgba(26,26,26,0.95) 100%)",
+          border: "1px solid rgba(173,255,68,0.1)",
+          boxShadow: "0 0 40px rgba(173,255,68,0.04)",
+        }}
+      >
+        {/* Background glow */}
+        <div className="absolute top-0 right-0 w-64 h-64 rounded-full opacity-10 blur-3xl pointer-events-none" style={{ background: "#adff44", transform: "translate(40%, -40%)" }} />
+
+        <div className="relative flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+          <div className="flex items-center gap-4">
+            <AIOrb size={56} />
+            <div>
+              <p className="text-sm font-medium mb-1" style={{ color: "#8a8a8a" }}>Welcome back 👋</p>
+              <h1 className="font-display font-black text-2xl text-white">{user.full_name}</h1>
+              {stats?.streak_days > 0 && (
+                <div className="flex items-center gap-1.5 mt-1.5">
+                  <Flame size={14} style={{ color: "#ff6b6b" }} />
+                  <span className="text-sm font-bold" style={{ color: "#ff6b6b" }}>{stats.streak_days}-day streak</span>
+                  <span className="text-xs" style={{ color: "#8a8a8a" }}>· Keep it going!</span>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* XP Progress */}
+          <div className="hidden md:flex items-center gap-6">
+            <div className="text-center">
+              <p className="text-xs mb-2" style={{ color: "#8a8a8a" }}>Daily Goal</p>
+              <ProgressRing value={cap(stats?.accuracy || 0)} max={100} size={72} strokeWidth={5} label={`${cap(stats?.accuracy || 0)}%`} sublabel="accuracy" />
+            </div>
+            {stats?.leaderboard_rank && (
+              <div className="text-center">
+                <p className="text-xs mb-2" style={{ color: "#8a8a8a" }}>Rank</p>
+                <ProgressRing value={cap(stats?.leaderboard_percentile || 0)} max={100} size={72} strokeWidth={5} label={`#${stats.leaderboard_rank}`} sublabel="position" />
+              </div>
+            )}
+          </div>
+
+          {/* Quick actions */}
+          <div className="flex flex-wrap gap-2">
+            <Link to="/chapters" className="btn-primary text-sm">
+              <BookOpen size={15} /> Study Now
+            </Link>
+            <Link to="/quiz" className="btn-ghost text-sm">
+              <ClipboardList size={15} /> Take Test
+            </Link>
+            <Link to="/doubts" className="btn-ghost text-sm">
+              <Brain size={15} /> Ask AI
+            </Link>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* ══ METRICS GRID ══ */}
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        className="grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6"
+      >
+        <StatCard icon={Target} label="Accuracy" value={cap(stats?.accuracy || 0)} suffix="%" glow />
+        <StatCard icon={BookOpen} label="Quizzes Taken" value={stats?.quizzes_taken || 0} />
+        <StatCard icon={Clock} label="Study Time" value={stats?.study_minutes || 0} suffix="m" />
+        <StatCard icon={Flame} label="Current Streak" value={stats?.streak_days || 0} suffix="d" accentColor="#ff6b6b" />
+        <StatCard icon={Award} label="Best Streak" value={stats?.longest_streak || 0} suffix="d" accentColor="#ffd700" />
+        <StatCard icon={Calendar} label="7d Consistency" value={`${stats?.weekly_consistency || 0}/7`} animate={false} />
+      </motion.div>
+
+      {/* ══ CHARTS ROW ══ */}
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+        className="grid gap-4 lg:grid-cols-[1.4fr_.6fr]"
+      >
+        {/* Score Trend */}
+        <div className="rounded-2xl p-5" style={{ background: "rgba(17,17,17,0.9)", border: "1px solid rgba(255,255,255,0.07)", minHeight: 300 }}>
+          <div className="flex items-center gap-2 mb-4">
+            <TrendingUp size={16} style={{ color: "#adff44" }} />
+            <h2 className="font-display font-bold text-white">Score Trends</h2>
+          </div>
+          {stats?.trend && stats.trend.length > 0 ? (
+            <ResponsiveContainer width="100%" height={230}>
+              <AreaChart data={stats.trend}>
+                <defs>
+                  <linearGradient id="neonGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#adff44" stopOpacity={0.25} />
+                    <stop offset="95%" stopColor="#adff44" stopOpacity={0} />
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+                <XAxis dataKey="date" tick={{ fill: "#8a8a8a", fontSize: 11 }} axisLine={false} tickLine={false} />
+                <YAxis domain={[0, 100]} tick={{ fill: "#8a8a8a", fontSize: 11 }} axisLine={false} tickLine={false} unit="%" />
+                <Tooltip content={<CustomTooltip />} />
+                <Area dataKey="accuracy" stroke="#adff44" strokeWidth={2.5} fill="url(#neonGrad)" dot={{ r: 3, fill: "#adff44", strokeWidth: 0 }} activeDot={{ r: 5, fill: "#adff44", filter: "drop-shadow(0 0 6px rgba(173,255,68,0.8))" }} />
+              </AreaChart>
+            </ResponsiveContainer>
+          ) : (
+            <div className="flex flex-col items-center justify-center h-48 gap-3">
+              <Brain size={36} style={{ color: "#8a8a8a" }} />
+              <p className="text-sm" style={{ color: "#8a8a8a" }}>Take a quiz to start your trend</p>
+              <Link to="/quiz" className="btn-primary text-xs">Take Quiz Now</Link>
+            </div>
+          )}
+        </div>
+
+        {/* Study Plan */}
+        <div className="rounded-2xl p-5" style={{ background: "rgba(17,17,17,0.9)", border: "1px solid rgba(255,255,255,0.07)" }}>
+          <div className="flex items-center gap-2 mb-4">
+            <Zap size={16} style={{ color: "#adff44" }} />
+            <h2 className="font-display font-bold text-white">AI Study Plan</h2>
+          </div>
+          <div className="space-y-2">
+            {((stats?.study_plan?.length > 0 ? stats.study_plan : stats?.recommendations) || []).slice(0, 5).map((item, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, x: -8 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.3 + idx * 0.08 }}
+                className="flex items-start gap-2.5 p-3 rounded-xl"
+                style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)" }}
+              >
+                <div className="w-1 h-4 rounded-full mt-0.5 flex-shrink-0" style={{ background: "#adff44" }} />
+                <p className="text-xs leading-relaxed" style={{ color: "#bdbdbd" }}>{item}</p>
+              </motion.div>
+            ))}
+            {(!stats?.study_plan?.length && !stats?.recommendations?.length) && (
+              <p className="text-sm text-center py-8" style={{ color: "#8a8a8a" }}>Complete quizzes to get AI recommendations</p>
+            )}
+          </div>
+          {stats?.leaderboard_rank && (
+            <div className="mt-4 pt-4 flex items-center gap-2" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+              <Trophy size={14} style={{ color: "#ffd700" }} />
+              <p className="text-xs font-semibold" style={{ color: "#adff44" }}>
+                Rank #{stats.leaderboard_rank} · Top {cap(100 - stats.leaderboard_percentile)}%
+              </p>
+            </div>
+          )}
+        </div>
+      </motion.div>
+
+      {/* ══ SUBJECT PERFORMANCE + DAILY TIME ══ */}
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.3 }}
+        className="grid gap-4 lg:grid-cols-2"
+      >
+        {/* Subject Performance */}
+        <div className="rounded-2xl p-5" style={{ background: "rgba(17,17,17,0.9)", border: "1px solid rgba(255,255,255,0.07)", minHeight: 280 }}>
+          <div className="flex items-center gap-2 mb-4">
+            <Target size={16} style={{ color: "#adff44" }} />
+            <h2 className="font-display font-bold text-white">Subject Performance</h2>
+          </div>
+          {subjectPerf.length > 0 ? (
+            <ResponsiveContainer width="100%" height={200}>
+              <BarChart data={subjectPerf} barSize={28}>
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+                <XAxis dataKey="subject" tick={{ fill: "#8a8a8a", fontSize: 11 }} axisLine={false} tickLine={false} />
+                <YAxis domain={[0, 100]} tick={{ fill: "#8a8a8a", fontSize: 11 }} axisLine={false} tickLine={false} unit="%" />
+                <Tooltip content={<CustomTooltip />} />
+                <Bar dataKey="accuracy" fill="#adff44" radius={[6, 6, 0, 0]} style={{ filter: "drop-shadow(0 0 6px rgba(173,255,68,0.3))" }} />
+              </BarChart>
+            </ResponsiveContainer>
+          ) : (
+            <div className="flex flex-col items-center justify-center h-40 gap-2">
+              <p className="text-sm" style={{ color: "#8a8a8a" }}>No data yet. Take subject quizzes!</p>
+              <Link to="/quiz" className="btn-soft text-xs">Go to Tests</Link>
+            </div>
+          )}
+        </div>
+
+        {/* Daily Study Time */}
+        <div className="rounded-2xl p-5" style={{ background: "rgba(17,17,17,0.9)", border: "1px solid rgba(255,255,255,0.07)", minHeight: 280 }}>
+          <div className="flex items-center gap-2 mb-1">
+            <Clock size={16} style={{ color: "#adff44" }} />
+            <h2 className="font-display font-bold text-white">Daily Study Time</h2>
+          </div>
+          <p className="text-xs mb-4" style={{ color: "#8a8a8a" }}>Streak = days with 15+ minutes of real activity</p>
+          {stats?.daily_progress?.some((d) => d.minutes > 0) ? (
+            <ResponsiveContainer width="100%" height={190}>
+              <BarChart data={stats.daily_progress} barSize={16}>
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+                <XAxis dataKey="date" tickFormatter={(d) => d?.slice(5)} tick={{ fill: "#8a8a8a", fontSize: 10 }} axisLine={false} tickLine={false} />
+                <YAxis unit="m" tick={{ fill: "#8a8a8a", fontSize: 11 }} axisLine={false} tickLine={false} />
+                <Tooltip content={<CustomTooltip />} formatter={(v) => [`${v}m`, "Study time"]} />
+                <Bar dataKey="minutes" fill="#adff44" radius={[4, 4, 0, 0]} style={{ filter: "drop-shadow(0 0 4px rgba(173,255,68,0.25))" }} />
+              </BarChart>
+            </ResponsiveContainer>
+          ) : (
+            <div className="flex flex-col items-center justify-center h-40 gap-2">
+              <p className="text-sm" style={{ color: "#8a8a8a" }}>No study sessions recorded yet</p>
+              <Link to="/chapters" className="btn-soft text-xs">Start Studying</Link>
+            </div>
+          )}
+        </div>
+      </motion.div>
+
+      {/* ══ ACTIVITY BREAKDOWN ══ */}
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.35 }}
+        className="grid gap-3 sm:grid-cols-3"
+      >
+        {[
+          { label: "PDF Reading", key: "pdf_reading", color: "#adff44", icon: BookOpen },
+          { label: "Quiz Time", key: "quiz", color: "#adff44", icon: ClipboardList },
+          { label: "Mock Tests", key: "mock_test", color: "#adff44", icon: Trophy },
+        ].map(({ label, key, color, icon: Icon }) => (
+          <div key={key} className="rounded-2xl p-5" style={{ background: "rgba(17,17,17,0.9)", border: "1px solid rgba(255,255,255,0.07)" }}>
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-8 h-8 rounded-xl flex items-center justify-center" style={{ background: "rgba(173,255,68,0.1)", border: "1px solid rgba(173,255,68,0.2)" }}>
+                <Icon size={15} style={{ color }} />
+              </div>
+              <span className="text-sm font-medium" style={{ color: "#bdbdbd" }}>{label}</span>
+            </div>
+            <p className="font-display font-black text-3xl text-white">{stats?.active_learning_time?.[key] || 0}<span className="text-base font-medium ml-1" style={{ color: "#8a8a8a" }}>min</span></p>
+          </div>
+        ))}
+      </motion.div>
+
+      {/* ══ LEADERBOARD ══ */}
+      {leaderboard && leaderboard.length > 0 && (
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="rounded-2xl p-5 overflow-hidden"
+          style={{ background: "rgba(17,17,17,0.9)", border: "1px solid rgba(255,255,255,0.07)" }}
+        >
+          <div className="flex items-center justify-between mb-5">
+            <div className="flex items-center gap-2">
+              <Trophy size={16} style={{ color: "#ffd700" }} />
+              <h2 className="font-display font-bold text-white">Leaderboard</h2>
+            </div>
+            <Link to="/analytics" className="flex items-center gap-1 text-xs font-semibold transition-colors" style={{ color: "#8a8a8a" }}
+              onMouseEnter={(e) => e.currentTarget.style.color = "#adff44"}
+              onMouseLeave={(e) => e.currentTarget.style.color = "#8a8a8a"}>
+              View All <ChevronRight size={12} />
+            </Link>
+          </div>
+          <div className="space-y-2">
+            {leaderboard.slice(0, 5).map((row, i) => {
+              const isTop3 = i < 3;
+              const medals = ["🥇", "🥈", "🥉"];
+              return (
+                <motion.div
+                  key={row.student_id}
+                  initial={{ opacity: 0, x: -8 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.4 + i * 0.06 }}
+                  className="flex items-center gap-3 px-4 py-3 rounded-xl"
+                  style={{
+                    background: isTop3 ? "rgba(173,255,68,0.04)" : "rgba(255,255,255,0.02)",
+                    border: `1px solid ${isTop3 ? "rgba(173,255,68,0.1)" : "rgba(255,255,255,0.05)"}`,
+                  }}
+                >
+                  <span className="w-6 text-center text-sm font-bold" style={{ color: isTop3 ? "#adff44" : "#8a8a8a" }}>
+                    {isTop3 ? medals[i] : `#${row.rank}`}
+                  </span>
+                  <span className="flex-1 text-sm font-semibold text-white truncate">{row.name}</span>
+                  <span className="text-xs font-bold px-2 py-0.5 rounded-full" style={{ background: "rgba(173,255,68,0.1)", color: "#adff44" }}>{cap(row.accuracy)}%</span>
+                  <span className="text-xs" style={{ color: "#8a8a8a" }}>{row.score}pts</span>
+                </motion.div>
+              );
+            })}
+          </div>
+        </motion.div>
+      )}
+    </div>
+  );
 }
-  

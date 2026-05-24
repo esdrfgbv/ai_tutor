@@ -30,6 +30,11 @@ export function AuthProvider({ children }) {
     return data.user;
   };
 
+  const forgotPassword = async (email) => {
+    const { data } = await api.post("/auth/forgot-password", { email });
+    return data;
+  };
+
   const logout = () => {
     localStorage.clear();
     setUser(null);
@@ -42,7 +47,7 @@ export function AuthProvider({ children }) {
     document.documentElement.classList.toggle("dark", next === "dark");
   };
 
-  const value = useMemo(() => ({ user, login, register, logout, theme, toggleTheme }), [user, theme]);
+  const value = useMemo(() => ({ user, login, register, logout, forgotPassword, theme, toggleTheme }), [user, theme]);
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 

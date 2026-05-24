@@ -46,6 +46,16 @@ class StudentProfile(Base, TimestampMixin):
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), unique=True, nullable=False)
     target_exam: Mapped[str] = mapped_column(String(80), default="JNV")
     grade: Mapped[int] = mapped_column(Integer, default=6, nullable=False)
+    school_name: Mapped[str] = mapped_column(String(220), nullable=False, default="Unknown")
+    school_code: Mapped[str | None] = mapped_column(String(80), unique=True)
+    state: Mapped[str] = mapped_column(String(80), nullable=False, default="Unknown")
+    district: Mapped[str] = mapped_column(String(80), nullable=False, default="Unknown")
+    city: Mapped[str] = mapped_column(String(80), nullable=False, default="Unknown")
+    section: Mapped[str] = mapped_column(String(20), nullable=False, default="A")
+    medium: Mapped[str] = mapped_column(String(50), nullable=False, default="English")
+    academic_year: Mapped[str] = mapped_column(String(20), nullable=False, default="2026-2027")
+    normalized_school_name: Mapped[str] = mapped_column(String(220), index=True, nullable=False, default="unknown")
+    normalized_state: Mapped[str] = mapped_column(String(80), index=True, nullable=False, default="unknown")
     streak_days: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
     longest_streak: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
     total_points: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
@@ -143,6 +153,10 @@ class Quiz(Base, TimestampMixin):
     duration_minutes: Mapped[int] = mapped_column(Integer, default=20, nullable=False)
     created_by_id: Mapped[int | None] = mapped_column(ForeignKey("users.id"))
     is_published: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)
+    module_order: Mapped[int | None] = mapped_column(Integer)
+    quiz_order: Mapped[int | None] = mapped_column(Integer)
+    normalized_module_name: Mapped[str | None] = mapped_column(String(220), index=True)
+    source_pdf: Mapped[str | None] = mapped_column(String(260))
 
     questions: Mapped[list["Question"]] = relationship(back_populates="quiz", cascade="all, delete-orphan")
 
@@ -280,3 +294,89 @@ class Announcement(Base, TimestampMixin):
     message: Mapped[str] = mapped_column(Text, nullable=False)
     audience: Mapped[str] = mapped_column(String(80), default="all", nullable=False)
     created_by_id: Mapped[int] = mapped_column(ForeignKey("users.id"), nullable=False)
+
+
+class QuestionBank(Base, TimestampMixin):
+    __tablename__ = "question_bank"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    grade: Mapped[int] = mapped_column(Integer, index=True, nullable=False)
+    subject: Mapped[str] = mapped_column(String(80), index=True, nullable=False)
+    chapter: Mapped[str | None] = mapped_column(String(220), index=True)
+    module: Mapped[str | None] = mapped_column(String(220), index=True)
+    question_type: Mapped[QuestionType] = mapped_column(Enum(QuestionType), default=QuestionType.mcq, nullable=False)
+    prompt: Mapped[str] = mapped_column(Text, nullable=False)
+    options: Mapped[list | None] = mapped_column(JSON)
+    correct_answer: Mapped[str] = mapped_column(Text, nullable=False)
+    textbook_explanation: Mapped[str] = mapped_column(Text, nullable=False)
+    difficulty: Mapped[Difficulty] = mapped_column(Enum(Difficulty), default=Difficulty.medium, nullable=False)
+    marks: Mapped[int] = mapped_column(Integer, default=1)
+    tags: Mapped[list | None] = mapped_column(JSON)
+    source_pdf: Mapped[str | None] = mapped_column(String(260))
+
+
+class AdminMockTest(Base, TimestampMixin):
+    __tablename__ = "admin_mock_tests"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    title: Mapped[str] = mapped_column(String(220), nullable=False)
+    description: Mapped[str | None] = mapped_column(Text)
+    duration_minutes: Mapped[int] = mapped_column(Integer, nullable=False)
+    total_marks: Mapped[int] = mapped_column(Integer, nullable=False)
+    negative_marking: Mapped[float] = mapped_column(Float, default=0.0)
+    start_time: Mapped[datetime] = mapped_column(DateTime, nullable=False)
+    end_time: Mapped[datetime] = mapped_column(DateTime, nullable=False)
+    instructions: Mapped[str | None] = mapped_column(Text)
+    is_scheduled: Mapped[bool] = mapped_column(Boolean, default=True)
+    created_by_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
+
+    questions: Mapped[list["AdminMockTestQuestionLink"]] = relationship(back_populates="mock_test", cascade="all, delete-orphan")
+    targets: Mapped[list["AdminMockTestTarget"]] = relationship(back_populates="mock_test", cascade="all, delete-orphan")
+    attempts: Mapped[list["AdminMockTestAttempt"]] = relationship(back_populates="mock_test", cascade="all, delete-orphan")
+
+
+class AdminMockTestQuestionLink(Base):
+    __tablename__ = "admin_mock_test_questions"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    mock_test_id: Mapped[int] = mapped_column(ForeignKey("admin_mock_tests.id"), nullable=False)
+    question_bank_id: Mapped[int] = mapped_column(ForeignKey("question_bank.id"), nullable=False)
+    
+    mock_test: Mapped[AdminMockTest] = relationship(back_populates="questions")
+
+
+class AdminMockTestTarget(Base):
+    __tablename__ = "admin_mock_test_targets"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    mock_test_id: Mapped[int] = mapped_column(ForeignKey("admin_mock_tests.id"), nullable=False)
+    target_type: Mapped[str] = mapped_column(String(50), nullable=False)  # school, state, grade, etc.
+    target_value: Mapped[str] = mapped_column(String(220), nullable=False)
+    
+    mock_test: Mapped[AdminMockTest] = relationship(back_populates="targets")
+
+
+class AdminMockTestAttempt(Base, TimestampMixin):
+    __tablename__ = "admin_mock_test_attempts"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    mock_test_id: Mapped[int] = mapped_column(ForeignKey("admin_mock_tests.id"), nullable=False)
+    student_id: Mapped[int] = mapped_column(ForeignKey("students.id"), nullable=False)
+    answers: Mapped[dict] = mapped_column(JSON, nullable=False)
+    score: Mapped[float] = mapped_column(Float, default=0)
+    accuracy: Mapped[float] = mapped_column(Float, default=0)
+    time_taken_seconds: Mapped[int] = mapped_column(Integer, default=0)
+    
+    mock_test: Mapped[AdminMockTest] = relationship(back_populates="attempts")
+    student: Mapped[StudentProfile] = relationship()
+
+
+class AdminMockTestAnalytics(Base, TimestampMixin):
+    __tablename__ = "admin_mock_test_analytics"
+    
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    mock_test_id: Mapped[int] = mapped_column(ForeignKey("admin_mock_tests.id"), unique=True)
+    participation_rate: Mapped[float] = mapped_column(Float, default=0)
+    average_score: Mapped[float] = mapped_column(Float, default=0)
+    school_rankings: Mapped[dict | None] = mapped_column(JSON)
+    district_rankings: Mapped[dict | None] = mapped_column(JSON)

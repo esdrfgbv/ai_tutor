@@ -13,6 +13,10 @@ class Settings(BaseSettings):
     app_name: str = "JNV Sainik AI Prep"
     environment: str = "development"
 
+    # Set to True to enable verbose auth debug logging (development only).
+    # Automatically disabled when environment != "development".
+    dev_auth_debug: bool = True
+
     # =========================================
     # SECURITY
     # =========================================
