@@ -14,6 +14,7 @@ import AdminDashboard from "./pages/AdminDashboard.jsx";
 import AdminLeaderboardPage from "./pages/AdminLeaderboardPage.jsx";
 import AdminQuestionBankPage from "./pages/AdminQuestionBankPage.jsx";
 import AdminMockTestCreator from "./pages/AdminMockTestCreator.jsx";
+import PDFUploadManager from "./pages/PDFUploadManager.jsx";
 import ChaptersPage from "./pages/ChaptersPage.jsx";
 import ChapterDetailPage from "./pages/ChapterDetailPage.jsx";
 import DoubtSolverPage from "./pages/DoubtSolverPage.jsx";
@@ -40,6 +41,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                 <Route path="/admin/leaderboard" element={<ProtectedRoute roles={["admin"]}><AdminLeaderboardPage /></ProtectedRoute>} />
                 <Route path="/admin/questions" element={<ProtectedRoute roles={["admin"]}><AdminQuestionBankPage /></ProtectedRoute>} />
                 <Route path="/admin/mock-tests" element={<ProtectedRoute roles={["admin"]}><AdminMockTestCreator /></ProtectedRoute>} />
+                <Route path="/admin/pdf-manager" element={<ProtectedRoute roles={["admin"]}><PDFUploadManager /></ProtectedRoute>} />
                 <Route path="/chapters" element={<ChaptersPage />} />
                 <Route path="/chapters/:chapterId" element={<ChapterDetailPage />} />
                 <Route path="/viewer/:subject/:slug" element={<PdfViewerPage />} />

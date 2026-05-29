@@ -145,36 +145,6 @@ export default function AdminDashboard() {
     <div className="space-y-6">
       {error && <ErrorNotice message={error} />}
 
-      {/* QUICK ACTIONS */}
-      <div className="grid gap-4 sm:grid-cols-3 mb-6">
-        <Link to="/admin/leaderboard" className="card flex items-center gap-4 hover:border-[#adff44] transition-colors group cursor-pointer">
-          <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center group-hover:bg-[#adff44]/10">
-            <Trophy className="text-[#adff44]" />
-          </div>
-          <div>
-            <h3 className="font-bold text-white">Global Leaderboard</h3>
-            <p className="text-xs text-neutral-400">Filter by school, state, district</p>
-          </div>
-        </Link>
-        <Link to="/admin/questions" className="card flex items-center gap-4 hover:border-[#adff44] transition-colors group cursor-pointer">
-          <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center group-hover:bg-[#adff44]/10">
-            <Database className="text-[#adff44]" />
-          </div>
-          <div>
-            <h3 className="font-bold text-white">Question Bank</h3>
-            <p className="text-xs text-neutral-400">View & filter all questions</p>
-          </div>
-        </Link>
-        <Link to="/admin/mock-tests" className="card flex items-center gap-4 hover:border-[#adff44] transition-colors group cursor-pointer">
-          <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center group-hover:bg-[#adff44]/10">
-            <Target className="text-[#adff44]" />
-          </div>
-          <div>
-            <h3 className="font-bold text-white">Mock Tests</h3>
-            <p className="text-xs text-neutral-400">Schedule & target mock tests</p>
-          </div>
-        </Link>
-      </div>
 
       {/* KPI ROW */}
       {overview && (

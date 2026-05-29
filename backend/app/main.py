@@ -7,6 +7,7 @@ from sqlalchemy import inspect, text
 from app.api.routes import admin, analytics, auth, leaderboard, learning, parents, quizzes
 from app.api.routes.admin_mock_tests import router as admin_mock_tests_router
 from app.api.routes.question_bank import router as question_bank_router
+from app.api.routes.pdf_extraction import router as pdf_extraction_router
 from app.core.config import get_settings
 from app.core.logging import LoggingMiddleware, get_logger
 from app.core.security import hash_password
@@ -104,6 +105,7 @@ def create_app() -> FastAPI:
     app.include_router(leaderboard.router, prefix="/api")
     app.include_router(question_bank_router, prefix="/api")
     app.include_router(admin_mock_tests_router, prefix="/api")
+    app.include_router(pdf_extraction_router, prefix="/api")
 
     @app.on_event("startup")
     def bootstrap() -> None:

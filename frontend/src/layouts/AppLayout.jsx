@@ -4,7 +4,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   BarChart3, BookOpen, Brain, ClipboardList, Home,
   LogOut, User, ChevronLeft, ChevronRight, Flame,
-  Bell, Search, Zap, Settings, Menu, X
+  Bell, Search, Zap, Settings, Menu, X,
+  Trophy, Database, Target
 } from "lucide-react";
 import { useAuth } from "../context/AuthContext.jsx";
 
@@ -24,6 +25,9 @@ const parentNav = [
 
 const adminNav = [
   { to: "/admin", label: "Dashboard", icon: BarChart3, shortLabel: "Admin" },
+  { to: "/admin/leaderboard", label: "Global Leaderboard", icon: Trophy, shortLabel: "Leader" },
+  { to: "/admin/questions", label: "Question Bank", icon: Database, shortLabel: "Q Bank" },
+  { to: "/admin/mock-tests", label: "Mock Tests", icon: Target, shortLabel: "Mocks" },
   { to: "/profile", label: "Profile", icon: User, shortLabel: "Profile" },
 ];
 

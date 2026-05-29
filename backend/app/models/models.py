@@ -16,7 +16,15 @@ from sqlalchemy import (
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db.session import Base
-from app.models.enums import Difficulty, LinkStatus, QuestionType, Role, SourceType
+from app.models.enums import (
+    Difficulty,
+    ExtractionStatus,
+    LinkStatus,
+    QuestionSourceType,
+    QuestionType,
+    Role,
+    SourceType,
+)
 
 
 class TimestampMixin:
@@ -296,6 +304,31 @@ class Announcement(Base, TimestampMixin):
     created_by_id: Mapped[int] = mapped_column(ForeignKey("users.id"), nullable=False)
 
 
+# ── PDF Question Bank Extraction Models ─────────────────────────────────
+
+
+class QuestionBankSource(Base, TimestampMixin):
+    """Tracks each imported PDF that has been processed for question extraction."""
+    __tablename__ = "question_bank_sources"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    file_path: Mapped[str] = mapped_column(String(700), unique=True, nullable=False)
+    file_name: Mapped[str] = mapped_column(String(260), nullable=False)
+    display_name: Mapped[str] = mapped_column(String(260), nullable=False)
+    exam_type: Mapped[str | None] = mapped_column(String(80), index=True)  # JNV, AISSEE, etc.
+    year: Mapped[int | None] = mapped_column(Integer, index=True)
+    grade: Mapped[int | None] = mapped_column(Integer, index=True)
+    total_pages: Mapped[int] = mapped_column(Integer, default=0)
+    total_questions_extracted: Mapped[int] = mapped_column(Integer, default=0)
+    extraction_status: Mapped[ExtractionStatus] = mapped_column(
+        Enum(ExtractionStatus), default=ExtractionStatus.pending, nullable=False
+    )
+    extraction_error: Mapped[str | None] = mapped_column(Text)
+    processed_at: Mapped[datetime | None] = mapped_column(DateTime)
+
+    questions: Mapped[list["QuestionBank"]] = relationship(back_populates="source", cascade="all, delete-orphan")
+
+
 class QuestionBank(Base, TimestampMixin):
     __tablename__ = "question_bank"
 
@@ -308,11 +341,86 @@ class QuestionBank(Base, TimestampMixin):
     prompt: Mapped[str] = mapped_column(Text, nullable=False)
     options: Mapped[list | None] = mapped_column(JSON)
     correct_answer: Mapped[str] = mapped_column(Text, nullable=False)
-    textbook_explanation: Mapped[str] = mapped_column(Text, nullable=False)
+    textbook_explanation: Mapped[str] = mapped_column(Text, nullable=False, default="")
     difficulty: Mapped[Difficulty] = mapped_column(Enum(Difficulty), default=Difficulty.medium, nullable=False)
     marks: Mapped[int] = mapped_column(Integer, default=1)
     tags: Mapped[list | None] = mapped_column(JSON)
     source_pdf: Mapped[str | None] = mapped_column(String(260))
+
+    # ── PDF provenance columns ──
+    source_id: Mapped[int | None] = mapped_column(ForeignKey("question_bank_sources.id"), index=True)
+    source_page: Mapped[int | None] = mapped_column(Integer)
+    question_number: Mapped[int | None] = mapped_column(Integer)
+    section_name: Mapped[str | None] = mapped_column(String(220), index=True)
+    raw_text: Mapped[str | None] = mapped_column(Text)
+    cleaned_text: Mapped[str | None] = mapped_column(Text)
+    question_source_type: Mapped[QuestionSourceType] = mapped_column(
+        Enum(QuestionSourceType), default=QuestionSourceType.manual, nullable=False
+    )
+    year: Mapped[int | None] = mapped_column(Integer, index=True)
+    has_image: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
+
+    # ── Relationships ──
+    source: Mapped[QuestionBankSource | None] = relationship(back_populates="questions")
+    question_options: Mapped[list["QuestionOption"]] = relationship(back_populates="question", cascade="all, delete-orphan")
+    images: Mapped[list["QuestionImage"]] = relationship(back_populates="question", cascade="all, delete-orphan")
+    explanation: Mapped["QuestionExplanation | None"] = relationship(back_populates="question", cascade="all, delete-orphan", uselist=False)
+    question_tags: Mapped[list["QuestionTag"]] = relationship(back_populates="question", cascade="all, delete-orphan")
+
+
+class QuestionOption(Base):
+    """Normalized MCQ options — one row per option."""
+    __tablename__ = "question_options"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    question_id: Mapped[int] = mapped_column(ForeignKey("question_bank.id"), nullable=False, index=True)
+    label: Mapped[str] = mapped_column(String(10), nullable=False)  # A, B, C, D
+    text: Mapped[str] = mapped_column(Text, nullable=False)
+    is_correct: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
+    image_path: Mapped[str | None] = mapped_column(String(700))
+
+    question: Mapped[QuestionBank] = relationship(back_populates="question_options")
+
+
+class QuestionImage(Base, TimestampMixin):
+    """Extracted diagrams / figures associated with a question."""
+    __tablename__ = "question_images"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    question_id: Mapped[int] = mapped_column(ForeignKey("question_bank.id"), nullable=False, index=True)
+    image_path: Mapped[str] = mapped_column(String(700), nullable=False)
+    image_type: Mapped[str] = mapped_column(String(50), default="figure")  # figure, diagram, option
+    page_number: Mapped[int | None] = mapped_column(Integer)
+    width: Mapped[int | None] = mapped_column(Integer)
+    height: Mapped[int | None] = mapped_column(Integer)
+
+    question: Mapped[QuestionBank] = relationship(back_populates="images")
+
+
+class QuestionExplanation(Base, TimestampMixin):
+    """Structured solution / explanation for a question."""
+    __tablename__ = "question_explanations"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    question_id: Mapped[int] = mapped_column(ForeignKey("question_bank.id"), unique=True, nullable=False)
+    solution_text: Mapped[str] = mapped_column(Text, nullable=False)
+    solution_type: Mapped[str] = mapped_column(String(50), default="extracted")  # extracted, ai_generated
+    source_page: Mapped[int | None] = mapped_column(Integer)
+
+    question: Mapped[QuestionBank] = relationship(back_populates="explanation")
+
+
+class QuestionTag(Base):
+    """Flexible tagging for questions (section, topic, skill, etc.)."""
+    __tablename__ = "question_tags"
+    __table_args__ = (UniqueConstraint("question_id", "tag_key", "tag_value", name="uq_question_tag"),)
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    question_id: Mapped[int] = mapped_column(ForeignKey("question_bank.id"), nullable=False, index=True)
+    tag_key: Mapped[str] = mapped_column(String(80), nullable=False, index=True)  # section, topic, skill
+    tag_value: Mapped[str] = mapped_column(String(220), nullable=False)
+
+    question: Mapped[QuestionBank] = relationship(back_populates="question_tags")
 
 
 class AdminMockTest(Base, TimestampMixin):

@@ -77,6 +77,16 @@ class Settings(BaseSettings):
     source_root: Path = Path("..")
 
     # =========================================
+    # QUESTION EXTRACTION
+    # =========================================
+
+    question_images_dir: Path = Path("../uploads/question_images")
+    mock_test_papers_dir: Path = Path("../mock test papers")
+    navodaya_pyqs_dir: Path = Path("../novodaya pyqs")
+    aiseee_pyqs_dir: Path = Path("../aiseee pyqs")
+    extraction_batch_size: int = 50
+
+    # =========================================
     # ADMIN
     # =========================================
 

@@ -29,3 +29,16 @@ class LinkStatus(str, Enum):
     pending = "pending"
     approved = "approved"
     rejected = "rejected"
+
+
+class ExtractionStatus(str, Enum):
+    pending = "pending"
+    processing = "processing"
+    completed = "completed"
+    failed = "failed"
+
+
+class QuestionSourceType(str, Enum):
+    pdf_extracted = "pdf_extracted"
+    manual = "manual"
+    ai_generated = "ai_generated"
