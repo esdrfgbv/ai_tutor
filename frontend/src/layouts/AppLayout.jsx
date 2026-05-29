@@ -81,7 +81,7 @@ export default function AppLayout() {
                 transition={{ duration: 0.2 }}
                 className="flex items-center gap-3 min-w-0"
               >
-                <div className="ai-orb flex-shrink-0" style={{ width: 32, height: 32, minWidth: 32 }} />
+                <img src="/profile.jpeg" alt="Logo" className="flex-shrink-0 rounded-full object-cover shadow-[0_0_12px_rgba(173,255,68,0.3)] border border-[#adff44]/20" style={{ width: 32, height: 32, minWidth: 32 }} />
                 <div className="min-w-0">
                   <p className="font-display font-bold text-white truncate leading-tight text-sm">Prep100</p>
                   <p className="text-[10px] text-muted leading-tight truncate">JNV · Sainik School</p>
@@ -96,7 +96,7 @@ export default function AppLayout() {
                 exit={{ opacity: 0, scale: 0.8 }}
                 className="mx-auto"
               >
-                <div className="ai-orb" style={{ width: 32, height: 32 }} />
+                <img src="/profile.jpeg" alt="Logo" className="rounded-full object-cover shadow-[0_0_12px_rgba(173,255,68,0.3)] border border-[#adff44]/20" style={{ width: 32, height: 32 }} />
               </motion.div>
             )}
           </AnimatePresence>
@@ -238,7 +238,7 @@ export default function AppLayout() {
             >
               <div className="flex items-center justify-between p-5">
                 <div className="flex items-center gap-3">
-                  <div className="ai-orb" style={{ width: 32, height: 32 }} />
+                  <img src="/profile.jpeg" alt="Logo" className="rounded-full object-cover shadow-[0_0_12px_rgba(173,255,68,0.3)] border border-[#adff44]/20" style={{ width: 32, height: 32 }} />
                   <div>
                     <p className="font-display font-bold text-white text-sm">Prep100</p>
                     <p className="text-[10px] text-muted">JNV · Sainik School</p>
@@ -339,9 +339,13 @@ export default function AppLayout() {
 
         {/* ── PAGE CONTENT ── */}
         <main className="flex-1 overflow-y-auto">
-          <div className="mx-auto max-w-7xl px-4 py-6 page-enter">
+          {location.pathname.startsWith("/study/") ? (
             <Outlet />
-          </div>
+          ) : (
+            <div className="mx-auto max-w-7xl px-4 py-6 page-enter">
+              <Outlet />
+            </div>
+          )}
         </main>
       </div>
 

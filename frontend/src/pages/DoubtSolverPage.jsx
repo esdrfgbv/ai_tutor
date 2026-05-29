@@ -200,7 +200,7 @@ export default function DoubtSolverPage() {
                 availableModules.map((mod, i) => (
                   <Link
                     key={mod.slug}
-                    to={`/viewer/${selectedSubject}/${mod.slug}`}
+                    to={`/study/${selectedSubject}/${mod.slug}`}
                     className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-xs font-medium transition-all group"
                     style={{
                       color: chapter === mod.title ? "#adff44" : "#bdbdbd",
@@ -261,7 +261,7 @@ export default function DoubtSolverPage() {
 
           <div className="flex items-center gap-2 flex-shrink-0">
             {slug && (
-              <Link to={`/viewer/${subject}/${slug}`} className="btn-soft text-xs py-1.5 px-3 hidden sm:flex">
+              <Link to={`/study/${subject}/${slug}`} className="btn-soft text-xs py-1.5 px-3 hidden sm:flex">
                 <BookOpen size={12} /> Textbook
               </Link>
             )}
@@ -565,7 +565,7 @@ export default function DoubtSolverPage() {
                 <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#8a8a8a" }}>Quick Actions</p>
                 <div className="space-y-2">
                   {slug && (
-                    <Link to={`/viewer/${subject}/${slug}`} className="flex items-center gap-2 px-3 py-2.5 rounded-xl text-xs font-semibold transition-all w-full"
+                    <Link to={`/study/${subject}/${slug}`} className="flex items-center gap-2 px-3 py-2.5 rounded-xl text-xs font-semibold transition-all w-full"
                       style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)", color: "#bdbdbd" }}
                       onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(173,255,68,0.3)"; e.currentTarget.style.color = "#adff44"; }}
                       onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.07)"; e.currentTarget.style.color = "#bdbdbd"; }}>

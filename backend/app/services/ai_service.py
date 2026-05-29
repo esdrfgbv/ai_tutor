@@ -38,7 +38,7 @@ class GroqProvider(AIProvider):
                     "content": prompt,
                 }
             ],
-            max_tokens=100,
+            max_tokens=1024,
             temperature=0.2,
         )
 

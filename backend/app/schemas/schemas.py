@@ -309,4 +309,120 @@ class StudySessionOut(BaseModel):
         from_attributes = True
 
 
+# ── Study Workspace Schemas ──────────────────────────────────────────────
+
+
+class ConversationMessageIn(BaseModel):
+    question: str = Field(min_length=1)
+    selected_text: str | None = None
+    current_page: int | None = None
+    action: str | None = None  # "ask_ai", "explain_simply", "generate_notes"
+
+
+class ConversationMessageOut(BaseModel):
+    id: int
+    role: str
+    content: str
+    selected_text: str | None = None
+    page_number: int | None = None
+    source_citations: list | None = None
+    created_at: datetime
+
+    class Config:
+        from_attributes = True
+
+
+class ConversationCreateIn(BaseModel):
+    subject: str
+    module_slug: str
+    chapter_title: str | None = None
+    grade: int = Field(ge=4, le=9)
+
+
+class ConversationOut(BaseModel):
+    id: int
+    subject: str
+    module_slug: str
+    chapter_title: str | None = None
+    grade: int
+    messages: list[ConversationMessageOut] = []
+    created_at: datetime
+    updated_at: datetime
+
+    class Config:
+        from_attributes = True
+
+
+class ConversationListItem(BaseModel):
+    id: int
+    subject: str
+    module_slug: str
+    chapter_title: str | None = None
+    last_message: str | None = None
+    message_count: int = 0
+    updated_at: datetime
+
+    class Config:
+        from_attributes = True
+
+
+class RecentDoubtOut(BaseModel):
+    id: int
+    question: str
+    conversation_id: int
+    module_slug: str
+    chapter_title: str | None = None
+    created_at: datetime
+
+    class Config:
+        from_attributes = True
+
+
+class StudyNoteIn(BaseModel):
+    module_slug: str
+    subject: str
+    chapter_title: str | None = None
+    content: str = Field(min_length=1)
+    selected_text: str | None = None
+    source_page: int | None = None
+    grade: int = Field(default=9, ge=4, le=9)
+
+
+class StudyNoteOut(BaseModel):
+    id: int
+    module_slug: str
+    subject: str
+    chapter_title: str | None = None
+    content: str
+    selected_text: str | None = None
+    source_page: int | None = None
+    created_at: datetime
+
+    class Config:
+        from_attributes = True
+
+
+class StudyBookmarkIn(BaseModel):
+    module_slug: str
+    subject: str
+    chapter_title: str | None = None
+    selected_text: str = Field(min_length=1)
+    page_number: int | None = None
+    grade: int = Field(default=9, ge=4, le=9)
+
+
+class StudyBookmarkOut(BaseModel):
+    id: int
+    module_slug: str
+    subject: str
+    chapter_title: str | None = None
+    selected_text: str
+    page_number: int | None = None
+    created_at: datetime
+
+    class Config:
+        from_attributes = True
+
+
 TokenPair.model_rebuild()
+

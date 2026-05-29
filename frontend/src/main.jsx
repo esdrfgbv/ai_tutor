@@ -21,6 +21,7 @@ import DoubtSolverPage from "./pages/DoubtSolverPage.jsx";
 import QuizPage from "./pages/QuizPage.jsx";
 import AnalyticsPage from "./pages/AnalyticsPage.jsx";
 import PdfViewerPage from "./pages/PdfViewerPage.jsx";
+import ModuleLearningPage from "./pages/ModuleLearningPage.jsx";
 import ProfilePage from "./pages/ProfilePage.jsx";
 import SettingsPage from "./pages/SettingsPage.jsx";
 import "./styles.css";
@@ -45,6 +46,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                 <Route path="/chapters" element={<ChaptersPage />} />
                 <Route path="/chapters/:chapterId" element={<ChapterDetailPage />} />
                 <Route path="/viewer/:subject/:slug" element={<PdfViewerPage />} />
+                <Route path="/study/:subject/:slug" element={<ModuleLearningPage />} />
                 <Route path="/doubts" element={<DoubtSolverPage />} />
                 <Route path="/quiz" element={<QuizPage />} />
                 <Route path="/analytics" element={<AnalyticsPage />} />

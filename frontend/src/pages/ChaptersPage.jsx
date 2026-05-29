@@ -139,7 +139,7 @@ export default function ChaptersPage() {
                   whileHover={{ y: -3, transition: { duration: 0.2 } }}
                 >
                   <Link
-                    to={`/viewer/${filters.subject}/${module.slug}`}
+                    to={`/study/${filters.subject}/${module.slug}`}
                     className="block rounded-2xl p-5 relative overflow-hidden group transition-all duration-300"
                     style={{
                       background: "rgba(17,17,17,0.9)",

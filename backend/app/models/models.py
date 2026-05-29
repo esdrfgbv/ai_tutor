@@ -488,3 +488,71 @@ class AdminMockTestAnalytics(Base, TimestampMixin):
     average_score: Mapped[float] = mapped_column(Float, default=0)
     school_rankings: Mapped[dict | None] = mapped_column(JSON)
     district_rankings: Mapped[dict | None] = mapped_column(JSON)
+
+
+# ── AI Study Workspace Models ───────────────────────────────────────────
+
+
+class Conversation(Base, TimestampMixin):
+    """Threaded conversation for AI tutor – shared across PDF view & standalone."""
+    __tablename__ = "conversations"
+    __table_args__ = (
+        UniqueConstraint("user_id", "module_slug", name="uq_user_module_conv"),
+        Index("ix_conv_user", "user_id"),
+    )
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), nullable=False)
+    subject: Mapped[str] = mapped_column(String(80), nullable=False)
+    module_slug: Mapped[str] = mapped_column(String(220), nullable=False)
+    chapter_title: Mapped[str | None] = mapped_column(String(220))
+    grade: Mapped[int] = mapped_column(Integer, nullable=False)
+
+    messages: Mapped[list["ConversationMessage"]] = relationship(
+        back_populates="conversation", cascade="all, delete-orphan",
+        order_by="ConversationMessage.created_at",
+    )
+
+
+class ConversationMessage(Base, TimestampMixin):
+    """Individual message within a conversation."""
+    __tablename__ = "conversation_messages"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    conversation_id: Mapped[int] = mapped_column(ForeignKey("conversations.id"), nullable=False, index=True)
+    role: Mapped[str] = mapped_column(String(20), nullable=False)  # "user" | "ai"
+    content: Mapped[str] = mapped_column(Text, nullable=False)
+    selected_text: Mapped[str | None] = mapped_column(Text)
+    page_number: Mapped[int | None] = mapped_column(Integer)
+    source_citations: Mapped[list | None] = mapped_column(JSON)
+
+    conversation: Mapped[Conversation] = relationship(back_populates="messages")
+
+
+class StudyNote(Base, TimestampMixin):
+    """AI-generated or user-saved study notes."""
+    __tablename__ = "study_notes"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), nullable=False, index=True)
+    module_slug: Mapped[str] = mapped_column(String(220), nullable=False, index=True)
+    subject: Mapped[str] = mapped_column(String(80), nullable=False)
+    chapter_title: Mapped[str | None] = mapped_column(String(220))
+    content: Mapped[str] = mapped_column(Text, nullable=False)
+    selected_text: Mapped[str | None] = mapped_column(Text)
+    source_page: Mapped[int | None] = mapped_column(Integer)
+    grade: Mapped[int] = mapped_column(Integer, nullable=False, default=9)
+
+
+class StudyBookmark(Base, TimestampMixin):
+    """Bookmarked text selections within PDFs."""
+    __tablename__ = "study_bookmarks"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), nullable=False, index=True)
+    module_slug: Mapped[str] = mapped_column(String(220), nullable=False, index=True)
+    subject: Mapped[str] = mapped_column(String(80), nullable=False)
+    chapter_title: Mapped[str | None] = mapped_column(String(220))
+    selected_text: Mapped[str] = mapped_column(Text, nullable=False)
+    page_number: Mapped[int | None] = mapped_column(Integer)
+    grade: Mapped[int] = mapped_column(Integer, nullable=False, default=9)

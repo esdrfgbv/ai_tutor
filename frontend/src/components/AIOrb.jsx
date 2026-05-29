@@ -32,30 +32,18 @@ export default function AIOrb({ size = 48, className = "", pulse = true }) {
         }}
       />
       {/* Core orb */}
-      <motion.div
-        className="relative w-full h-full rounded-full flex items-center justify-center"
+      <motion.img
+        src="/profile.jpeg"
+        alt="AI Tutor"
+        className="relative w-full h-full rounded-full object-cover z-10"
         animate={pulse ? {
           scale: [1, 1.06, 1],
         } : {}}
         transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
         style={{
-          background: "radial-gradient(circle at 35% 35%, #d4ff6e, #adff44 50%, #7acc00)",
           boxShadow: "0 0 20px rgba(173,255,68,0.5), inset 0 1px 0 rgba(255,255,255,0.3)",
         }}
-      >
-        {/* Inner highlight */}
-        <div
-          className="absolute rounded-full"
-          style={{
-            width: "35%",
-            height: "35%",
-            top: "18%",
-            left: "20%",
-            background: "rgba(255,255,255,0.4)",
-            filter: "blur(2px)",
-          }}
-        />
-      </motion.div>
+      />
     </div>
   );
 }
