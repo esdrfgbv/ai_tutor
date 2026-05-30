@@ -1,4 +1,4 @@
-import { Award, BookOpen, Clock, Target, Flame, Calendar, Brain, ClipboardList, AlertCircle, TrendingUp, Trophy, Star, Zap, ChevronRight } from "lucide-react";
+import { Award, BookOpen, Clock, Target, Flame, Calendar, Brain, ClipboardList, AlertCircle, TrendingUp, Trophy, Star, Zap, ChevronRight, Video, Camera, Layers, Heart, Sparkles } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
@@ -18,6 +18,7 @@ const SUBJECTS = [
   { label: "Mathematics", key: "maths", color: "#adff44" },
   { label: "Science", key: "science", color: "#adff44" },
   { label: "English", key: "english", color: "#adff44" },
+  { label: "Mental Ability", key: "mental-ability", color: "#adff44" },
 ];
 
 function SkeletonDashboard() {
@@ -61,12 +62,13 @@ export default function StudentDashboard() {
   const [leaderboard, setLeaderboard] = useState([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
+  const [userGrade, setUserGrade] = useState(null);
 
   useEffect(() => {
     if (!user) return;
     setLoading(true);
-    Promise.all([api.get("/analytics/student"), api.get("/leaderboard")])
-      .then(([s, l]) => { setStats(s.data); setLeaderboard(l.data); setError(""); })
+    Promise.all([api.get("/analytics/student"), api.get("/leaderboard"), api.get("/learning/profile")])
+      .then(([s, l, p]) => { setStats(s.data); setLeaderboard(l.data); setUserGrade(p.data.grade); setError(""); })
       .catch((err) => setError(err.response?.data?.detail || err.message || "Could not load dashboard"))
       .finally(() => setLoading(false));
   }, [user]);
@@ -88,6 +90,11 @@ export default function StudentDashboard() {
   );
 
   const subjectPerf = stats?.subject_performance || [];
+  
+  const availableSubjects = SUBJECTS.filter(s => {
+    if (userGrade === 6) return s.key !== "science";
+    return s.key !== "mental-ability";
+  });
 
   return (
     <div className="space-y-6 pb-6">
@@ -164,6 +171,51 @@ export default function StudentDashboard() {
         <StatCard icon={Flame} label="Current Streak" value={stats?.streak_days || 0} suffix="d" accentColor="#ff6b6b" />
         <StatCard icon={Award} label="Best Streak" value={stats?.longest_streak || 0} suffix="d" accentColor="#ffd700" />
         <StatCard icon={Calendar} label="7d Consistency" value={`${stats?.weekly_consistency || 0}/7`} animate={false} />
+      </motion.div>
+
+      {/* ══ AI POWER TOOLS ══ */}
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.15 }}
+        className="rounded-2xl p-5"
+        style={{ background: "rgba(17,17,17,0.9)", border: "1px solid rgba(173,255,68,0.12)", boxShadow: "0 0 30px rgba(173,255,68,0.03)" }}
+      >
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-2">
+            <Sparkles size={16} style={{ color: "#adff44" }} />
+            <h2 className="font-display font-bold text-white">AI Power Tools</h2>
+            <span className="text-xs px-2 py-0.5 rounded-full font-medium" style={{ background: "rgba(173,255,68,0.1)", color: "rgba(173,255,68,0.7)", border: "1px solid rgba(173,255,68,0.15)" }}>NEW</span>
+          </div>
+          <span className="text-xs text-white/25">Powered by Groq AI</span>
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+          {[
+            { to: "/ai-video", icon: Video, label: "AI Video Tutor", desc: "Topic → Narrated slides", color: "#ADFF44" },
+            { to: "/image-analysis", icon: Camera, label: "Image Analysis", desc: "Photo → AI solution", color: "#8CD430" },
+            { to: "/ai-test-engine", icon: Layers, label: "AI Test Engine", desc: "PDF → Mock tests", color: "#6BBF00" },
+            { to: "/adaptive", icon: Target, label: "Adaptive Learning", desc: "Skill graph + diagnostic", color: "#ADFF44" },
+            { to: "/wellness", icon: Heart, label: "Wellness & Goals", desc: "Calm · Inspire · Plan", color: "#8CD430" },
+          ].map((tool) => (
+            <Link
+              key={tool.to}
+              to={tool.to}
+              className="group flex flex-col gap-2 p-4 rounded-xl transition-all duration-200"
+              style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}
+              onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(173,255,68,0.05)"; e.currentTarget.style.borderColor = "rgba(173,255,68,0.15)"; }}
+              onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.03)"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.07)"; }}
+            >
+              <div className="w-9 h-9 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform" style={{ background: "rgba(173,255,68,0.08)" }}>
+                <tool.icon size={17} style={{ color: tool.color }} />
+              </div>
+              <div className="min-w-0">
+                <p className="text-xs font-semibold text-white/70 group-hover:text-white/90 transition-colors truncate">{tool.label}</p>
+                <p className="text-xs text-white/30 mt-0.5 truncate">{tool.desc}</p>
+              </div>
+              <ChevronRight size={12} className="text-white/20 group-hover:text-white/50 transition-colors mt-auto" />
+            </Link>
+          ))}
+        </div>
       </motion.div>
 
       {/* ══ CHARTS ROW ══ */}

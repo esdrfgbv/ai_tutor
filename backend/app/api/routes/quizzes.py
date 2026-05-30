@@ -15,11 +15,12 @@ router = APIRouter(prefix="/quizzes", tags=["quizzes"])
 @router.get("/subjects")
 def list_subjects():
     # Based on the folders we have: maths and science
-    return ["maths", "science", "english"]
+    return ["maths", "science", "english", "mental-ability"]
 
 @router.get("/subjects/{subject}/modules", response_model=list[ModuleOut])
-def list_subject_modules(subject: str):
-    tests = mock_test_service.list_tests(subject)
+def list_subject_modules(subject: str, user: User = Depends(require_roles(Role.student))):
+    grade = user.student_profile.grade if user.student_profile else 9
+    tests = mock_test_service.list_tests(subject, grade)
     return module_service.group_quizzes_by_module(subject, tests)
 
 
@@ -34,8 +35,9 @@ def list_quizzes(grade: int | None = None, subject: str | None = None, db: Sessi
 
 
 @router.get("/mock-tests", response_model=list[MockTestOut])
-def list_mock_tests(subject: str):
-    return mock_test_service.list_tests(subject)
+def list_mock_tests(subject: str, user: User = Depends(require_roles(Role.student))):
+    grade = user.student_profile.grade if user.student_profile else 9
+    return mock_test_service.list_tests(subject, grade)
 
 
 @router.post("/module", response_model=QuizOut)

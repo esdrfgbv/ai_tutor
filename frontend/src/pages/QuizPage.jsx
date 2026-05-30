@@ -27,6 +27,7 @@ const SUBJECTS = [
   { value: "maths", label: "📐 Maths" },
   { value: "science", label: "🔬 Science" },
   { value: "english", label: "📚 English" },
+  { value: "mental-ability", label: "🧩 Mental Ability" },
 ];
 
 export default function QuizPage() {
@@ -41,11 +42,31 @@ export default function QuizPage() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [subject, setSubject] = useState(params.get("subject") || "maths");
+  const [userGrade, setUserGrade] = useState(null);
   const [remaining, setRemaining] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [flagged, setFlagged] = useState(new Set());
   const [showPalette, setShowPalette] = useState(false);
   const startedAt = useRef(Date.now());
+
+  useEffect(() => {
+    if (user?.role === "student") {
+      api.get("/learning/profile").then((res) => {
+        const grade = res.data.grade;
+        setUserGrade(grade);
+        if (grade === 6 && (!params.get("subject") || params.get("subject") === "science")) {
+           setSubject("mental-ability");
+        }
+      }).catch(() => setUserGrade(9));
+    }
+  }, [user, params]);
+
+  const availableSubjects = SUBJECTS.filter(s => {
+    if (userGrade === 6) {
+      return s.value !== "science";
+    }
+    return s.value !== "mental-ability";
+  });
 
   const persistTimer = useCallback((quizId, seconds) => {
     localStorage.setItem(TIMER_KEY, JSON.stringify({ quizId, remaining: seconds, startedAt: Date.now() }));
@@ -244,7 +265,7 @@ export default function QuizPage() {
           </div>
           <div className="flex items-center gap-3">
             <SubjectTabs
-              subjects={SUBJECTS}
+              subjects={availableSubjects}
               value={subject}
               onChange={setSubject}
             />

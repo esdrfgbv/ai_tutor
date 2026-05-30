@@ -4,8 +4,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   BarChart3, BookOpen, Brain, ClipboardList, Home,
   LogOut, User, ChevronLeft, ChevronRight, Flame,
-  Bell, Search, Zap, Settings, Menu, X,
-  Trophy, Database, Target
+  Bell, Zap, Settings, Menu, X,
+  Trophy, Database, Target, Video, Camera, Layers, Heart, Sparkles
 } from "lucide-react";
 import { useAuth } from "../context/AuthContext.jsx";
 
@@ -16,6 +16,12 @@ const studentNav = [
   { to: "/quiz", label: "Tests", icon: ClipboardList, shortLabel: "Tests" },
   { to: "/analytics", label: "Analytics", icon: BarChart3, shortLabel: "Stats" },
   { to: "/profile", label: "Profile", icon: User, shortLabel: "Profile" },
+  // ── AI Power Tools section ──
+  { to: "/ai-video", label: "AI Video Tutor", icon: Video, shortLabel: "Video", section: "AI Tools" },
+  { to: "/image-analysis", label: "Image Analysis", icon: Camera, shortLabel: "Vision" },
+  { to: "/ai-test-engine", label: "AI Test Engine", icon: Layers, shortLabel: "AI Tests" },
+  { to: "/adaptive", label: "Adaptive Learning", icon: Target, shortLabel: "Adaptive" },
+  { to: "/wellness", label: "Wellness & Goals", icon: Heart, shortLabel: "Wellness" },
 ];
 
 const parentNav = [
@@ -122,40 +128,67 @@ export default function AppLayout() {
 
         {/* Nav Items */}
         <nav className="flex-1 px-3 space-y-1 mt-4 overflow-y-auto">
-          {nav.map((item) => (
-            <NavLink
-              key={item.to}
-              to={item.to}
-              end={item.to === home}
-              title={collapsed ? item.label : undefined}
-              className={({ isActive }) =>
-                `flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-200 group relative overflow-hidden
-                ${isActive
-                  ? "bg-neon/10 text-neon border-l-2 border-neon"
-                  : "text-muted hover:text-white hover:bg-white/5 border-l-2 border-transparent"
-                }`
-              }
-            >
-              {({ isActive }) => (
-                <>
-                  <item.icon size={18} className={`flex-shrink-0 ${isActive ? "text-neon" : "group-hover:text-white"}`} style={isActive ? { filter: "drop-shadow(0 0 6px rgba(173,255,68,0.6))" } : {}} />
-                  <AnimatePresence>
-                    {!collapsed && (
-                      <motion.span
-                        initial={{ opacity: 0, width: 0 }}
-                        animate={{ opacity: 1, width: "auto" }}
-                        exit={{ opacity: 0, width: 0 }}
-                        transition={{ duration: 0.2 }}
-                        className="truncate whitespace-nowrap overflow-hidden"
-                      >
-                        {item.label}
-                      </motion.span>
+          {nav.map((item, idx) => {
+            // Section separator before AI Tools
+            const prevItem = nav[idx - 1];
+            const showSeparator = item.section === "AI Tools" && (!prevItem || !prevItem.section);
+            return (
+              <div key={item.to}>
+                {showSeparator && (
+                  <div className="py-2 px-1">
+                    <AnimatePresence>
+                      {!collapsed && (
+                        <motion.div
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          className="flex items-center gap-2 mb-1"
+                        >
+                          <div className="flex-1 h-px" style={{ background: "rgba(173,255,68,0.1)" }} />
+                          <span className="text-[9px] font-bold uppercase tracking-[0.15em]" style={{ color: "rgba(173,255,68,0.45)" }}>AI Tools</span>
+                          <div className="flex-1 h-px" style={{ background: "rgba(173,255,68,0.1)" }} />
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                    {collapsed && (
+                      <div className="h-px mx-2 mb-1" style={{ background: "rgba(173,255,68,0.1)" }} />
                     )}
-                  </AnimatePresence>
-                </>
-              )}
-            </NavLink>
-          ))}
+                  </div>
+                )}
+                <NavLink
+                  to={item.to}
+                  end={item.to === home}
+                  title={collapsed ? item.label : undefined}
+                  className={({ isActive }) =>
+                    `flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-200 group relative overflow-hidden
+                    ${isActive
+                      ? "bg-neon/10 text-neon border-l-2 border-neon"
+                      : "text-muted hover:text-white hover:bg-white/5 border-l-2 border-transparent"
+                    }`
+                  }
+                >
+                  {({ isActive }) => (
+                    <>
+                      <item.icon size={18} className={`flex-shrink-0 ${isActive ? "text-neon" : "group-hover:text-white"}`} style={isActive ? { filter: "drop-shadow(0 0 6px rgba(173,255,68,0.6))" } : {}} />
+                      <AnimatePresence>
+                        {!collapsed && (
+                          <motion.span
+                            initial={{ opacity: 0, width: 0 }}
+                            animate={{ opacity: 1, width: "auto" }}
+                            exit={{ opacity: 0, width: 0 }}
+                            transition={{ duration: 0.2 }}
+                            className="truncate whitespace-nowrap overflow-hidden"
+                          >
+                            {item.label}
+                          </motion.span>
+                        )}
+                      </AnimatePresence>
+                    </>
+                  )}
+                </NavLink>
+              </div>
+            );
+          })}
         </nav>
 
         {/* User Section */}
@@ -249,24 +282,36 @@ export default function AppLayout() {
                 </button>
               </div>
               <nav className="flex-1 px-4 space-y-1">
-                {nav.map((item) => (
-                  <NavLink
-                    key={item.to}
-                    to={item.to}
-                    end={item.to === home}
-                    className={({ isActive }) =>
-                      `flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all
-                      ${isActive ? "bg-neon/10 text-neon border-l-2 border-neon" : "text-muted hover:text-white hover:bg-white/5 border-l-2 border-transparent"}`
-                    }
-                  >
-                    {({ isActive }) => (
-                      <>
-                        <item.icon size={18} className={isActive ? "text-neon" : ""} />
-                        <span>{item.label}</span>
-                      </>
-                    )}
-                  </NavLink>
-                ))}
+                {nav.map((item, idx) => {
+                  const prevItem = nav[idx - 1];
+                  const showSep = item.section === "AI Tools" && (!prevItem || !prevItem.section);
+                  return (
+                    <div key={item.to}>
+                      {showSep && (
+                        <div className="flex items-center gap-2 py-2">
+                          <div className="flex-1 h-px" style={{ background: "rgba(173,255,68,0.1)" }} />
+                          <span className="text-[9px] font-bold uppercase tracking-[0.15em]" style={{ color: "rgba(173,255,68,0.45)" }}>AI Tools</span>
+                          <div className="flex-1 h-px" style={{ background: "rgba(173,255,68,0.1)" }} />
+                        </div>
+                      )}
+                      <NavLink
+                        to={item.to}
+                        end={item.to === home}
+                        className={({ isActive }) =>
+                          `flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all
+                          ${isActive ? "bg-neon/10 text-neon border-l-2 border-neon" : "text-muted hover:text-white hover:bg-white/5 border-l-2 border-transparent"}`
+                        }
+                      >
+                        {({ isActive }) => (
+                          <>
+                            <item.icon size={18} className={isActive ? "text-neon" : ""} />
+                            <span>{item.label}</span>
+                          </>
+                        )}
+                      </NavLink>
+                    </div>
+                  );
+                })}
               </nav>
               <div className="p-4 border-t border-white/[0.06]">
                 <div className="flex items-center gap-3 p-2">

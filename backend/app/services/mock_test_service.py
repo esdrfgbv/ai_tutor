@@ -6,32 +6,42 @@ from sqlalchemy.orm import Session
 from app.models.enums import Difficulty, QuestionType
 from app.models.models import Question, Quiz
 from app.schemas.schemas import QuizGenerateIn
-from app.services.chapter_service import class_content_root
+from app.services.chapter_service import get_subject_dir
 
 
 class MockTestService:
-    def _questions_path(self, subject: str) -> Path | None:
-        folder = "maths mock tests" if subject == "maths" else "science mock tests"
-        path = class_content_root() / folder / "questions.json"
+    def _questions_path(self, subject: str, grade: int | None = None) -> Path | None:
+        if grade == 6 and subject in ["maths", "english", "science"]:
+            return None
+            
+        if subject == "maths":
+            folder = "maths mock tests"
+        elif subject == "science":
+            folder = "science mock tests"
+        elif subject == "mental-ability" or subject == "mental ability":
+            folder = "mental ability mock tests"
+        else:
+            return None
+        path = get_subject_dir(subject, grade).parent / folder / "questions.json"
         return path if path.exists() else None
 
-    def load_questions(self, subject: str) -> list[dict]:
-        path = self._questions_path(subject)
+    def load_questions(self, subject: str, grade: int | None = None) -> list[dict]:
+        path = self._questions_path(subject, grade)
         if not path:
             return []
         with path.open(encoding="utf-8") as handle:
             return json.load(handle)
 
-    def list_tests(self, subject: str) -> list[dict]:
-        questions = self.load_questions(subject)
+    def list_tests(self, subject: str, grade: int | None = None) -> list[dict]:
+        questions = self.load_questions(subject, grade)
         grouped: dict[str, int] = {}
         for item in questions:
             name = item.get("test_name", "General Test")
             grouped[name] = grouped.get(name, 0) + 1
         return [{"test_name": name, "question_count": count, "subject": subject} for name, count in sorted(grouped.items())]
 
-    def get_test_questions(self, subject: str, test_name: str, limit: int | None = None) -> list[dict]:
-        rows = [q for q in self.load_questions(subject) if q.get("test_name") == test_name]
+    def get_test_questions(self, subject: str, test_name: str, grade: int | None = None, limit: int | None = None) -> list[dict]:
+        rows = [q for q in self.load_questions(subject, grade) if q.get("test_name") == test_name]
         if limit:
             rows = rows[:limit]
         return [
@@ -45,12 +55,12 @@ class MockTestService:
             for index, row in enumerate(rows)
         ]
 
-    def module_questions(self, subject: str, chapter_number: int, count: int = 5) -> list[dict]:
-        tests = self.list_tests(subject)
+    def module_questions(self, subject: str, chapter_number: int, grade: int | None = None, count: int = 5) -> list[dict]:
+        tests = self.list_tests(subject, grade)
         if not tests:
             return []
         test_name = tests[(chapter_number - 1) % len(tests)]["test_name"]
-        return self.get_test_questions(subject, test_name, limit=count)
+        return self.get_test_questions(subject, test_name, grade, limit=count)
 
     def create_quiz_from_questions(
         self,
@@ -103,7 +113,7 @@ class MockTestService:
         return quiz
 
     def create_module_quiz(self, db: Session, request: QuizGenerateIn, created_by_id: int | None, chapter_number: int) -> Quiz:
-        questions = self.module_questions(request.subject, chapter_number, count=min(request.question_count, 10))
+        questions = self.module_questions(request.subject, chapter_number, request.grade, count=min(request.question_count, 10))
         return self.create_quiz_from_questions(
             db,
             title=f"{request.subject.title()} Chapter {chapter_number} Module Test",
@@ -118,11 +128,11 @@ class MockTestService:
 
     def create_mock_quiz(self, db: Session, request: QuizGenerateIn, created_by_id: int | None, test_name: str) -> Quiz:
         from app.services.module_service import module_service
-        questions = self.get_test_questions(request.subject, test_name, limit=request.question_count)
+        questions = self.get_test_questions(request.subject, test_name, request.grade, limit=request.question_count)
         
         # Find module metadata
-        tests = self.list_tests(request.subject)
-        grouped = module_service.group_quizzes_by_module(request.subject, tests)
+        tests = self.list_tests(request.subject, request.grade)
+        grouped = module_service.group_quizzes_by_module(request.subject, tests, request.grade)
         
         mod_order = None
         q_order = None

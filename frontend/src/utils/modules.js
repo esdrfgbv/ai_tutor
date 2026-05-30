@@ -125,7 +125,19 @@ export const class6MentalAbilityModules = [
   { title: "Algebra", slug: "chapter-1-Algebra" },
   { title: "Alphabet Test", slug: "chapter-2-Alphabet-Test" },
   { title: "Analogy", slug: "chapter-3-Analogy" },
-  { title: "Analogy and Classification", slug: "chapter-4-Analogy-and-Classification" }
+  { title: "Analogy And Classification", slug: "chapter-4-Analogy-and-Classification" },
+  { title: "Blood Relations", slug: "chapter-5-blood-relations" },
+  { title: "Classification", slug: "chapter-6-classification" },
+  { title: "Coding Decoding", slug: "chapter-7-coding-decoding" },
+  { title: "Data Handling", slug: "chapter-8-data-handling" },
+  { title: "Direction Sense Test", slug: "chapter-9-direction-sense-test" },
+  { title: "Inserting Missing Number", slug: "chapter-10-inserting-missing-number" },
+  { title: "Logical Venn Diagram", slug: "chapter-11-logical-venn-diagram" },
+  { title: "Measurement", slug: "chapter-12-measurement" },
+  { title: "Mirror And Water Image", slug: "chapter-13-mirror-and-water-image" },
+  { title: "Non Verbal Reasoning", slug: "chapter-14-non-verbal-reasoning" },
+  { title: "Patterns", slug: "chapter-15-patterns" },
+  { title: "Series", slug: "chapter-16-series" }
 ];
 
 export const modulesMap = {

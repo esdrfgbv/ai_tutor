@@ -378,6 +378,11 @@ select.input {
   appearance: none;
 }
 
+select.input option {
+  background: var(--surface-2);
+  color: var(--text-primary);
+}
+
 /* ============================================================
    PAGE TRANSITION
    ============================================================ */

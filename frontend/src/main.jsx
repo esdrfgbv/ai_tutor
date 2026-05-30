@@ -24,6 +24,11 @@ import PdfViewerPage from "./pages/PdfViewerPage.jsx";
 import ModuleLearningPage from "./pages/ModuleLearningPage.jsx";
 import ProfilePage from "./pages/ProfilePage.jsx";
 import SettingsPage from "./pages/SettingsPage.jsx";
+import AIVideoPage from "./pages/AIVideoPage.jsx";
+import ImageAnalysisPage from "./pages/ImageAnalysisPage.jsx";
+import AITestEnginePage from "./pages/AITestEnginePage.jsx";
+import AdaptiveLearningPage from "./pages/AdaptiveLearningPage.jsx";
+import WellnessPage from "./pages/WellnessPage.jsx";
 import "./styles.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -52,6 +57,12 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                 <Route path="/analytics" element={<AnalyticsPage />} />
                 <Route path="/profile" element={<ProfilePage />} />
                 <Route path="/settings" element={<SettingsPage />} />
+                {/* ── AI Power Tools (from Sparkle) ── */}
+                <Route path="/ai-video" element={<AIVideoPage />} />
+                <Route path="/image-analysis" element={<ImageAnalysisPage />} />
+                <Route path="/ai-test-engine" element={<AITestEnginePage />} />
+                <Route path="/adaptive" element={<AdaptiveLearningPage />} />
+                <Route path="/wellness" element={<WellnessPage />} />
               </Route>
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>

@@ -4,6 +4,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useAuth } from "../context/AuthContext.jsx";
 import AIOrb from "../components/AIOrb.jsx";
 import { Eye, EyeOff, Zap, BookOpen, Brain, BarChart3 } from "lucide-react";
+import { SearchableSelect } from "../components/SearchableSelect.jsx";
+import { STATES, STATES_AND_DISTRICTS, CITIES_BY_STATE, SECTIONS } from "../utils/indiaGeography.js";
 
 const portalRoles = ["student", "parent", "admin"];
 
@@ -37,7 +39,7 @@ export default function AuthPage() {
     state: "",
     district: "",
     city: "",
-    section: "A",
+    section: "",
     medium: "English",
   });
 
@@ -313,14 +315,40 @@ export default function AuthPage() {
                   
                   <input className="input" placeholder="School Name" value={form.school_name} onChange={(e) => setForm({ ...form, school_name: e.target.value })} required />
                   
-                  <div className="grid grid-cols-2 gap-3">
-                    <input className="input" placeholder="State" value={form.state} onChange={(e) => setForm({ ...form, state: e.target.value })} required />
-                    <input className="input" placeholder="District" value={form.district} onChange={(e) => setForm({ ...form, district: e.target.value })} required />
+                  <div className="grid grid-cols-2 gap-3 z-30 relative">
+                    <SearchableSelect 
+                      options={STATES} 
+                      placeholder="State" 
+                      value={form.state} 
+                      onChange={(val) => setForm({ ...form, state: val, district: "", city: "" })} 
+                      required 
+                    />
+                    <SearchableSelect 
+                      options={form.state ? (STATES_AND_DISTRICTS[form.state] || []) : []} 
+                      placeholder="District" 
+                      value={form.district} 
+                      onChange={(val) => setForm({ ...form, district: val })} 
+                      required 
+                      disabled={!form.state}
+                    />
                   </div>
                   
-                  <div className="grid grid-cols-2 gap-3">
-                    <input className="input" placeholder="City / Town" value={form.city} onChange={(e) => setForm({ ...form, city: e.target.value })} required />
-                    <input className="input" placeholder="Section (e.g. A, B)" value={form.section} onChange={(e) => setForm({ ...form, section: e.target.value })} required />
+                  <div className="grid grid-cols-2 gap-3 z-20 relative">
+                    <SearchableSelect 
+                      options={form.state ? (CITIES_BY_STATE[form.state] || []) : []} 
+                      placeholder="City / Town" 
+                      value={form.city} 
+                      onChange={(val) => setForm({ ...form, city: val })} 
+                      required 
+                      allowCustom={true}
+                    />
+                    <SearchableSelect 
+                      options={SECTIONS} 
+                      placeholder="Section" 
+                      value={form.section} 
+                      onChange={(val) => setForm({ ...form, section: val })} 
+                      required 
+                    />
                   </div>
                   
                   <select className="input" value={form.medium} onChange={(e) => setForm({ ...form, medium: e.target.value })} required>
