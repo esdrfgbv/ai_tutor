@@ -36,11 +36,7 @@ class Settings(BaseSettings):
     # CORS
     # =========================================
 
-    cors_origins: list[str] = [
-        "http://localhost:5173",
-        "http://localhost:5174",
-        "http://localhost:5175",
-    ]
+    cors_origins_raw: str = "http://localhost:5173,http://localhost:5174,http://localhost:5175"
 
     # =========================================
     # AI PROVIDER
@@ -48,15 +44,9 @@ class Settings(BaseSettings):
 
     ai_provider: str = "groq"
 
-    # =========================================
-    # GROQ
-    # =========================================
-
     groq_api_key: str | None = None
 
-    groq_model: str = (
-        "llama-3.1-8b-instant"
-    )
+    groq_model: str = "llama-3.1-8b-instant"
 
     # =========================================
     # GEMINI (OPTIONAL)
@@ -64,15 +54,15 @@ class Settings(BaseSettings):
 
     gemini_api_key: str | None = None
 
-    gemini_model: str = (
-        "gemini-1.5-flash"
-    )
+    gemini_model: str = "gemini-1.5-flash"
 
     # =========================================
     # FILES
     # =========================================
 
     upload_dir: Path = Path("../uploads")
+
+    chroma_path: Path = Path("./vector_db/chroma")
 
     source_root: Path = Path("..")
 
@@ -90,13 +80,9 @@ class Settings(BaseSettings):
     # ADMIN
     # =========================================
 
-    bootstrap_admin_email: str = (
-        "admin@jnvprep.local"
-    )
+    bootstrap_admin_email: str = "admin@jnvprep.local"
 
-    bootstrap_admin_password: str = (
-        "Admin@12345"
-    )
+    bootstrap_admin_password: str = "Admin@12345"
 
     # =========================================
     # PYDANTIC CONFIG
@@ -108,28 +94,11 @@ class Settings(BaseSettings):
         extra="ignore",
     )
 
-    # =========================================
-    # VALIDATORS
-    # =========================================
-
-    @field_validator(
-        "cors_origins",
-        mode="before",
-    )
-    @classmethod
-    def parse_origins(
-        cls,
-        value: str | list[str],
-    ) -> list[str]:
-
-        if isinstance(value, str):
-            return [
-                origin.strip()
-                for origin in value.split(",")
-                if origin.strip()
-            ]
-
-        return value
+    @property
+    def cors_origins(self) -> list[str]:
+        if not self.cors_origins_raw:
+            return []
+        return [o.strip() for o in self.cors_origins_raw.split(",") if o.strip()]
 
 
 # =========================================
@@ -165,6 +134,9 @@ def get_settings() -> Settings:
         root = _detect_project_root()
 
     settings.source_root = root
+
+    if not Path(settings.chroma_path).is_absolute():
+        settings.chroma_path = (root / settings.chroma_path).resolve()
 
     if not Path(settings.upload_dir).is_absolute():
         settings.upload_dir = (

@@ -1,8 +1,8 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Query
 from sqlalchemy.orm import Session
 
 from app.db.session import get_db
-from app.schemas.schemas import LeaderboardRow, AdminLeaderboardResponse
+from app.schemas.schemas import GroupedLeaderboardResponse, LeaderboardRow, AdminLeaderboardResponse
 from app.services.leaderboard_service import leaderboard_service
 
 router = APIRouter(prefix="/leaderboard", tags=["leaderboard"])
@@ -11,6 +11,25 @@ router = APIRouter(prefix="/leaderboard", tags=["leaderboard"])
 @router.get("", response_model=list[LeaderboardRow])
 def leaderboard(db: Session = Depends(get_db), grade: int | None = None, subject: str | None = None, limit: int = 50):
     return leaderboard_service.build(db, grade=grade, subject=subject, limit=min(limit, 200))
+
+
+@router.get("/admin/grouped", response_model=GroupedLeaderboardResponse)
+def admin_leaderboard_grouped(
+    db: Session = Depends(get_db),
+    group_by: str = Query("district", regex="^(district|state|school)$"),
+    page: int = 1,
+    limit: int = 50,
+    grade: int | None = None,
+    state: str | None = None,
+):
+    return leaderboard_service.grouped_build(
+        db,
+        group_by=group_by,
+        page=page,
+        limit=min(limit, 200),
+        grade=grade,
+        state=state,
+    )
 
 
 @router.get("/admin", response_model=AdminLeaderboardResponse)

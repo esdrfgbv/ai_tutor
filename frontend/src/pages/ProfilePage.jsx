@@ -52,7 +52,7 @@ export default function ProfilePage() {
             <div
               className="w-20 h-20 rounded-full flex items-center justify-center text-2xl font-black mx-auto"
               style={{
-                background: "linear-gradient(135deg, #adff44, #7acc00)",
+                background: "linear-gradient(135deg, #adff44, #adff44)",
                 color: "#000",
                 boxShadow: "0 0 30px rgba(173,255,68,0.4)",
               }}

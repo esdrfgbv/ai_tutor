@@ -49,7 +49,7 @@ function QuestionCard({ q, showAnswer, selected, onSelect }) {
                       ? "rgba(173,255,68,0.2)"
                       : "rgba(255,255,255,0.05)"
                   }`,
-                  color: isCorrect ? "#ADFF44" : isWrong ? "#fca5a5" : "rgba(255,255,255,0.65)",
+                  color: isCorrect ? "#ADFF44" : isWrong ? "#ff6b6b" : "rgba(255,255,255,0.65)",
                 }}
               >
                 {opt}
@@ -80,12 +80,12 @@ function Timer({ seconds, onEnd }) {
   const s = remaining % 60;
   return (
     <div className="flex items-center gap-2 text-sm">
-      <Clock className="w-4 h-4" style={{ color: remaining < 60 ? "#ef4444" : "#ADFF44" }} />
-      <span className="font-mono tabular-nums" style={{ color: remaining < 60 ? "#ef4444" : "rgba(255,255,255,0.7)" }}>
+      <Clock className="w-4 h-4" style={{ color: remaining < 60 ? "#ff6b6b" : "#ADFF44" }} />
+      <span className="font-mono tabular-nums" style={{ color: remaining < 60 ? "#ff6b6b" : "rgba(255,255,255,0.7)" }}>
         {String(m).padStart(2, "0")}:{String(s).padStart(2, "0")}
       </span>
       <div className="w-20 h-1.5 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.05)" }}>
-        <div className="h-full rounded-full transition-all duration-1000" style={{ width: `${pct}%`, background: remaining < 60 ? "#ef4444" : "#ADFF44" }} />
+        <div className="h-full rounded-full transition-all duration-1000" style={{ width: `${pct}%`, background: remaining < 60 ? "#ff6b6b" : "#ADFF44" }} />
       </div>
     </div>
   );
@@ -101,7 +101,7 @@ function GenProgress({ done, total }) {
         <span className="font-mono" style={{ color: "#ADFF44" }}>{done}/{total}</span>
       </div>
       <div className="w-full h-2 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.05)" }}>
-        <div className="h-full rounded-full transition-all duration-500 ease-out" style={{ width: `${pct}%`, background: "linear-gradient(90deg, #ADFF44, #8CD430)" }} />
+        <div className="h-full rounded-full transition-all duration-500 ease-out" style={{ width: `${pct}%`, background: "linear-gradient(90deg, #ADFF44, rgba(173,255,68,0.7))" }} />
       </div>
       <p className="text-xs text-white/20 text-center">{pct}% complete</p>
     </div>
@@ -259,7 +259,7 @@ export function TestEnginePanel() {
   };
 
   const neonBtn = {
-    background: "linear-gradient(135deg, #ADFF44, #8CD430)",
+    background: "linear-gradient(135deg, #ADFF44, rgba(173,255,68,0.7))",
     color: "#000",
   };
 
@@ -452,7 +452,7 @@ export function TestEnginePanel() {
               <button onClick={goFullscreen} className="flex items-center gap-1 text-xs px-2 py-1 rounded-lg text-white/40 hover:text-white/70 transition-all" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.05)" }}>
                 {fullscreen ? <Minimize2 className="w-3 h-3" /> : <Maximize2 className="w-3 h-3" />}
               </button>
-              <button onClick={endExam} className="text-xs px-3 py-1.5 rounded-lg transition-all" style={{ background: "rgba(239,68,68,0.1)", color: "#fca5a5", border: "1px solid rgba(239,68,68,0.2)" }}>Submit</button>
+              <button onClick={endExam} className="text-xs px-3 py-1.5 rounded-lg transition-all" style={{ background: "rgba(239,68,68,0.1)", color: "#ff6b6b", border: "1px solid rgba(239,68,68,0.2)" }}>Submit</button>
             </div>
           </div>
 
@@ -543,11 +543,11 @@ export function TestEnginePanel() {
               return (
                 <div key={i} className="p-4 rounded-xl transition-all" style={{ border: `1px solid ${isCorrect ? "rgba(173,255,68,0.15)" : "rgba(239,68,68,0.15)"}`, background: isCorrect ? "rgba(173,255,68,0.04)" : "rgba(239,68,68,0.04)" }}>
                   <div className="flex items-start gap-2 mb-2">
-                    <span className="text-xs font-mono shrink-0" style={{ color: isCorrect ? "#ADFF44" : "#fca5a5" }}>Q{i + 1}.</span>
+                    <span className="text-xs font-mono shrink-0" style={{ color: isCorrect ? "#ADFF44" : "#ff6b6b" }}>Q{i + 1}.</span>
                     <p className="text-sm text-white/80">{q.text}</p>
                   </div>
                   <div className="text-xs space-y-1">
-                    <p className="text-white/40">Your answer: <span style={{ color: isCorrect ? "#ADFF44" : "#fca5a5" }}>{q.options[userAns ?? 0] ?? "—"}</span></p>
+                    <p className="text-white/40">Your answer: <span style={{ color: isCorrect ? "#ADFF44" : "#ff6b6b" }}>{q.options[userAns ?? 0] ?? "—"}</span></p>
                     {!isCorrect && <p className="text-white/40">Correct: <span style={{ color: "#ADFF44" }}>{q.options[q.correct]}</span></p>}
                   </div>
                   {expText && (
@@ -587,8 +587,8 @@ export function TestEnginePanel() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {[
               { label: "Tests Taken", value: attempts.length, icon: FileText, color: "#ADFF44" },
-              { label: "Avg Accuracy", value: `${Math.round(attempts.reduce((a, att) => a + att.percentage, 0) / attempts.length)}%`, icon: Target, color: "#8CD430" },
-              { label: "Total Questions", value: attempts.reduce((a, att) => a + att.totalCount, 0), icon: BookOpen, color: "#6BBF00" },
+              { label: "Avg Accuracy", value: `${Math.round(attempts.reduce((a, att) => a + att.percentage, 0) / attempts.length)}%`, icon: Target, color: "#adff44" },
+              { label: "Total Questions", value: attempts.reduce((a, att) => a + att.totalCount, 0), icon: BookOpen, color: "rgba(173,255,68,0.7)" },
               { label: "Total Correct", value: attempts.reduce((a, att) => a + att.correctCount, 0), icon: CheckCircle2, color: "#ADFF44" },
             ].map((card) => (
               <div key={card.label} className="p-4 rounded-xl" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
@@ -612,7 +612,7 @@ export function TestEnginePanel() {
                     style={{ border: `1px solid ${selectedAttempt === att.id ? "rgba(173,255,68,0.2)" : "rgba(255,255,255,0.05)"}`, background: selectedAttempt === att.id ? "rgba(173,255,68,0.05)" : "rgba(255,255,255,0.02)" }}>
                     <div className="flex items-center gap-3 min-w-0">
                       <div className="w-10 h-10 rounded-xl flex items-center justify-center text-sm font-bold shrink-0"
-                        style={{ background: pct >= 70 ? "rgba(173,255,68,0.15)" : pct >= 40 ? "rgba(234,179,8,0.15)" : "rgba(239,68,68,0.15)", color: pct >= 70 ? "#ADFF44" : pct >= 40 ? "#fbbf24" : "#fca5a5" }}>
+                        style={{ background: pct >= 70 ? "rgba(173,255,68,0.15)" : pct >= 40 ? "rgba(234,179,8,0.15)" : "rgba(239,68,68,0.15)", color: pct >= 70 ? "#ADFF44" : pct >= 40 ? "#fbbf24" : "#ff6b6b" }}>
                         {pct}%
                       </div>
                       <div className="min-w-0">
@@ -621,7 +621,7 @@ export function TestEnginePanel() {
                       </div>
                     </div>
                     <div className="w-24 h-1.5 rounded-full overflow-hidden shrink-0" style={{ background: "rgba(255,255,255,0.05)" }}>
-                      <div className="h-full rounded-full transition-all" style={{ width: `${pct}%`, background: pct >= 70 ? "#ADFF44" : pct >= 40 ? "#fbbf24" : "#ef4444" }} />
+                      <div className="h-full rounded-full transition-all" style={{ width: `${pct}%`, background: pct >= 70 ? "#ADFF44" : pct >= 40 ? "#fbbf24" : "#ff6b6b" }} />
                     </div>
                   </div>
                 );
@@ -658,7 +658,7 @@ export function TestEnginePanel() {
 
       {/* Error */}
       {error && (
-        <div className="mb-4 flex items-start gap-2 p-3 rounded-xl text-sm" style={{ background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.2)", color: "#fca5a5" }}>
+        <div className="mb-4 flex items-start gap-2 p-3 rounded-xl text-sm" style={{ background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.2)", color: "#ff6b6b" }}>
           <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" /> <span>{error}</span>
         </div>
       )}

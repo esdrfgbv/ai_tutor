@@ -1,8 +1,9 @@
 // WellnessPage.jsx - Wellness & Goals: Anxiety Coach + Daily Inspiration + Study Plan
-import { useState } from "react";
-import { Heart, Sparkles, Zap } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Heart, Sparkles, Zap, Loader } from "lucide-react";
 import { AnxietyPanel } from "../components/sparkle/AnxietyPanel.jsx";
 import { InspirationPanel } from "../components/sparkle/InspirationPanel.jsx";
+import api from "../api/client";
 
 const TABS = [
   { id: "anxiety", label: "Calm & Focus", icon: Heart },
@@ -11,72 +12,108 @@ const TABS = [
 ];
 
 const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-const PLAN = [
-  { day: "Mon", tasks: [{ sub: "Math", topic: "LCM & HCF", done: true }, { sub: "English", topic: "Noun clauses", done: true }, { sub: "Reasoning", topic: "Pattern completion", done: false }] },
-  { day: "Tue", tasks: [{ sub: "Science", topic: "Photosynthesis", done: true }, { sub: "Math", topic: "Fractions", done: false }] },
-  { day: "Wed", tasks: [{ sub: "English", topic: "Grammar", done: false }, { sub: "GK", topic: "Current affairs", done: false }] },
-  { day: "Thu", tasks: [{ sub: "Math", topic: "Geometry", done: false }, { sub: "Reasoning", topic: "Analogies", done: false }] },
-  { day: "Fri", tasks: [{ sub: "Science", topic: "Water cycle", done: false }, { sub: "Math", topic: "Profit & Loss", done: false }] },
-  { day: "Sat", tasks: [{ sub: "Revision", topic: "Full week recap", done: false }, { sub: "Mock Test", topic: "2 tests", done: false }] },
-  { day: "Sun", tasks: [{ sub: "Rest", topic: "Light reading only", done: false }] },
-];
 
 function StudyPlanPanel() {
-  const [selectedDay, setSelectedDay] = useState(0);
-  const today = new Date().getDay(); // 0 = Sunday
-  const dayPlan = PLAN[selectedDay];
+  const [selectedDay, setSelectedDay] = useState(() => Math.max(0, new Date().getDay() - 1));
+  const [plan, setPlan] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [generating, setGenerating] = useState(false);
+
+  const fetchPlan = () => {
+    setLoading(true);
+    api.get("/study-plan").then(({ data }) => {
+      if (data.plan) setPlan(data.plan);
+    }).catch(() => {}).finally(() => setLoading(false));
+  };
+
+  useEffect(() => { fetchPlan(); }, []);
+
+  const handleGenerate = () => {
+    setGenerating(true);
+    api.post("/study-plan/generate").then(({ data }) => {
+      if (data.plan) setPlan(data.plan);
+    }).catch(() => {}).finally(() => setGenerating(false));
+  };
+
+  const tasksForDay = plan?.days?.[selectedDay]?.tasks || [];
+  const dayPlan = plan?.days?.[selectedDay] || null;
 
   return (
     <div className="space-y-4">
       {/* Day selector */}
       <div className="flex gap-2">
-        {DAYS.map((day, i) => (
-          <button
-            key={day}
-            onClick={() => setSelectedDay(i)}
-            className="flex-1 py-2 rounded-xl text-xs font-medium transition-all"
-            style={{
-              background: selectedDay === i ? "#ADFF44" : "rgba(255,255,255,0.04)",
-              color: selectedDay === i ? "#000" : "rgba(255,255,255,0.35)",
-              border: `1px solid ${selectedDay === i ? "transparent" : "rgba(255,255,255,0.06)"}`,
-            }}
-          >
-            {day}
-          </button>
-        ))}
-      </div>
-
-      {/* Tasks */}
-      <div className="space-y-2">
-        {dayPlan.tasks.map((task, i) => (
-          <div
-            key={i}
-            className="flex items-center gap-3 p-3 rounded-xl transition-all"
-            style={{ background: "rgba(255,255,255,0.02)", border: `1px solid ${task.done ? "rgba(173,255,68,0.15)" : "rgba(255,255,255,0.06)"}` }}
-          >
-            <div
-              className="w-5 h-5 rounded-full flex items-center justify-center shrink-0"
-              style={{ background: task.done ? "rgba(173,255,68,0.2)" : "rgba(255,255,255,0.05)", border: `1px solid ${task.done ? "rgba(173,255,68,0.4)" : "rgba(255,255,255,0.1)"}` }}
+        {DAYS.map((day, i) => {
+          const dayTasks = plan?.days?.[i]?.tasks || [];
+          const done = dayTasks.filter((t) => t.done).length;
+          return (
+            <button
+              key={day}
+              onClick={() => setSelectedDay(i)}
+              className="flex-1 py-2 rounded-xl text-xs font-medium transition-all relative"
+              style={{
+                background: selectedDay === i ? "#ADFF44" : "rgba(255,255,255,0.04)",
+                color: selectedDay === i ? "#000" : "rgba(255,255,255,0.35)",
+                border: `1px solid ${selectedDay === i ? "transparent" : "rgba(255,255,255,0.06)"}`,
+              }}
             >
-              {task.done && <span className="text-xs" style={{ color: "#ADFF44" }}>✓</span>}
-            </div>
-            <div className="flex-1 min-w-0">
-              <span className="text-xs font-medium" style={{ color: task.done ? "rgba(173,255,68,0.7)" : "rgba(255,255,255,0.6)" }}>{task.sub}</span>
-              <span className="text-xs text-white/30 ml-2">{task.topic}</span>
-            </div>
-            {task.done && (
-              <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: "rgba(173,255,68,0.1)", color: "rgba(173,255,68,0.6)" }}>Done</span>
-            )}
-          </div>
-        ))}
+              {day}
+              {done > 0 && (
+                <span className="absolute -top-1 -right-1 text-[10px] px-1 rounded-full"
+                  style={{ background: "rgba(173,255,68,0.2)", color: "#ADFF44" }}>
+                  {done}
+                </span>
+              )}
+            </button>
+          );
+        })}
       </div>
 
-      {/* Summary bar */}
-      <div className="p-3 rounded-xl" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
-        <div className="flex items-center justify-between mb-2">
-          <span className="text-xs text-white/40">{DAYS[selectedDay]} Progress</span>
-          <span className="text-xs font-medium" style={{ color: "#ADFF44" }}>
-            {dayPlan.tasks.filter((t) => t.done).length}/{dayPlan.tasks.length} done
+      {/* Content */}
+      {loading ? (
+        <div className="flex items-center justify-center py-10">
+          <Loader className="animate-spin" style={{ color: "#ADFF44" }} size={20} />
+        </div>
+      ) : plan && dayPlan ? (
+        <>
+          <div className="space-y-2">
+            {tasksForDay.map((task, i) => (
+              <div
+                key={i}
+                className="flex items-center gap-3 p-3 rounded-xl transition-all"
+                style={{ background: "rgba(255,255,255,0.02)", border: `1px solid ${task.done ? "rgba(173,255,68,0.15)" : "rgba(255,255,255,0.06)"}` }}
+              >
+                <div
+                  className="w-5 h-5 rounded-full flex items-center justify-center shrink-0"
+                  style={{ background: task.done ? "rgba(173,255,68,0.2)" : "rgba(255,255,255,0.05)", border: `1px solid ${task.done ? "rgba(173,255,68,0.4)" : "rgba(255,255,255,0.1)"}` }}
+                >
+                  {task.done && <span className="text-xs" style={{ color: "#ADFF44" }}>✓</span>}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-medium" style={{ color: task.done ? "rgba(173,255,68,0.7)" : "rgba(255,255,255,0.6)" }}>{task.subject}</span>
+                    {task.priority === "high" && (
+                      <span className="text-[10px] px-1.5 py-0.5 rounded-full" style={{ background: "rgba(255,80,80,0.15)", color: "#ff6b6b" }}>High</span>
+                    )}
+                  </div>
+                  <div className="flex items-center gap-2 mt-0.5">
+                    <span className="text-xs text-white/30">{task.topic}</span>
+                    <span className="text-[10px] text-white/20">{task.activity}</span>
+                    {task.duration_minutes && <span className="text-[10px] text-white/20">{task.duration_minutes}m</span>}
+                  </div>
+                </div>
+                {task.done && (
+                  <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: "rgba(173,255,68,0.1)", color: "rgba(173,255,68,0.6)" }}>Done</span>
+                )}
+              </div>
+            ))}
+          </div>
+
+          {/* Summary bar */}
+          <div className="p-3 rounded-xl" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-xs text-white/40">{DAYS[selectedDay]} Progress</span>
+              <span className="text-xs font-medium" style={{ color: "#ADFF44" }}>
+                {tasksForDay.filter((t) => t.done).length}/{tasksForDay.length} done
           </span>
         </div>
         <div className="h-1.5 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.05)" }}>
@@ -84,16 +121,44 @@ function StudyPlanPanel() {
             className="h-full rounded-full transition-all"
             style={{
               width: `${(dayPlan.tasks.filter((t) => t.done).length / dayPlan.tasks.length) * 100}%`,
-              background: "linear-gradient(90deg, #ADFF44, #8CD430)",
+              background: "linear-gradient(90deg, #ADFF44, #adff44)",
             }}
           />
         </div>
       </div>
 
-      <div className="p-3 rounded-xl text-center" style={{ background: "rgba(173,255,68,0.04)", border: "1px solid rgba(173,255,68,0.1)" }}>
-        <p className="text-xs text-white/40">📅 Study plans are coming with AI personalization soon.</p>
-        <p className="text-xs text-white/25 mt-0.5">Your analytics will auto-generate a custom weekly plan.</p>
+      <div className="flex items-center justify-between gap-2">
+        <button
+          onClick={handleGenerate}
+          disabled={generating}
+          className="flex-1 py-2 rounded-xl text-xs font-medium transition-all"
+          style={{
+            background: generating ? "rgba(173,255,68,0.15)" : "rgba(173,255,68,0.1)",
+            border: "1px solid rgba(173,255,68,0.2)",
+            color: generating ? "rgba(173,255,68,0.5)" : "#ADFF44",
+          }}
+        >
+          {generating ? "Generating..." : "Generate New Plan"}
+        </button>
       </div>
+    </>
+  ) : (
+    <div className="p-6 rounded-xl text-center space-y-2" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
+      <p className="text-sm text-white/40">No study plan yet.</p>
+      <p className="text-xs text-white/25">Click below to generate an AI-personalized weekly plan.</p>
+      <button
+        onClick={handleGenerate}
+        disabled={generating}
+        className="mt-3 px-5 py-2 rounded-xl text-xs font-medium transition-all"
+        style={{
+          background: generating ? "rgba(173,255,68,0.15)" : "#ADFF44",
+          color: generating ? "rgba(173,255,68,0.5)" : "#000",
+        }}
+      >
+        {generating ? "Generating..." : "Generate Study Plan"}
+      </button>
+    </div>
+  )}
     </div>
   );
 }

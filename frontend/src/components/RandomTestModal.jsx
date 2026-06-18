@@ -8,7 +8,7 @@ export default function RandomTestModal({ onClose }) {
   
   const [form, setForm] = useState({
     title: "Auto-Generated Mock Test",
-    grade: 6,
+    grade: 9,
     duration_minutes: 60,
     total_questions: 20,
     difficulty: "",
@@ -33,7 +33,7 @@ export default function RandomTestModal({ onClose }) {
         subject_constraints: []
       };
 
-      await api.post("/api/admin/questions/random-set", payload);
+      await api.post("/admin/questions/random-set", payload);
       setSuccess(true);
       setTimeout(() => {
         onClose();
@@ -152,7 +152,7 @@ export default function RandomTestModal({ onClose }) {
               <button 
                 disabled={loading} 
                 type="submit" 
-                className="flex-1 bg-[#adff44] text-black font-black text-sm py-3 rounded-xl hover:bg-[#9BE53D] transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
+                className="flex-1 bg-[#adff44] text-black font-black text-sm py-3 rounded-xl hover:bg-[#adff44] transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
               >
                 {loading ? <Loader className="animate-spin" size={18} /> : <Wand2 size={18} />}
                 {loading ? "Generating..." : "Generate Test"}

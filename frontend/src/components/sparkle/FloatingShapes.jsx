@@ -12,11 +12,11 @@ export function FloatingShapes({ variant = "landing" }) {
           />
           <div
             className="absolute bottom-1/4 right-1/4 w-48 h-48 rounded-full opacity-5 animate-pulse"
-            style={{ background: "radial-gradient(circle, #8CD430, transparent)", animationDuration: "6s" }}
+            style={{ background: "radial-gradient(circle, #adff44, transparent)", animationDuration: "6s" }}
           />
           <div
             className="absolute top-3/4 left-1/2 w-32 h-32 rounded-full opacity-5 animate-pulse"
-            style={{ background: "radial-gradient(circle, #6BBF00, transparent)", animationDuration: "5s" }}
+            style={{ background: "radial-gradient(circle, rgba(173,255,68,0.7), transparent)", animationDuration: "5s" }}
           />
         </>
       )}
@@ -28,7 +28,7 @@ export function FloatingShapes({ variant = "landing" }) {
           />
           <div
             className="absolute bottom-0 right-1/4 w-64 h-64 rounded-full opacity-5 animate-pulse"
-            style={{ background: "radial-gradient(circle, #8CD430, transparent)", animationDuration: "10s" }}
+            style={{ background: "radial-gradient(circle, #adff44, transparent)", animationDuration: "10s" }}
           />
         </>
       )}

@@ -5,9 +5,9 @@ import { useStudyWorkspace } from "../../context/StudyWorkspaceContext";
 
 const ACTIONS = [
   { id: "ask_ai", icon: Brain, label: "Ask AI", color: "#adff44" },
-  { id: "explain_simply", icon: Lightbulb, label: "Explain Simply", color: "#60a5fa" },
-  { id: "generate_notes", icon: StickyNote, label: "Generate Notes", color: "#f59e0b" },
-  { id: "bookmark", icon: Bookmark, label: "Bookmark", color: "#f472b6" },
+  { id: "explain_simply", icon: Lightbulb, label: "Explain Simply", color: "#3b82f6" },
+  { id: "generate_notes", icon: StickyNote, label: "Generate Notes", color: "#fbbf24" },
+  { id: "bookmark", icon: Bookmark, label: "Bookmark", color: "#ec4899" },
 ];
 
 export default function TextSelectionPopup() {

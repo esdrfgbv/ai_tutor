@@ -266,7 +266,7 @@ export function ImageSolverPanel() {
       {error && (
         <div
           className="flex items-start gap-2 p-3 rounded-xl text-sm"
-          style={{ background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.2)", color: "#fca5a5" }}
+          style={{ background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.2)", color: "#ff6b6b" }}
         >
           <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
           <span>{error}</span>
@@ -301,7 +301,7 @@ export function ImageSolverPanel() {
             <button
               onClick={analyze}
               className="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-medium text-sm transition-all"
-              style={{ background: "linear-gradient(135deg, #ADFF44, #8CD430)", color: "#000" }}
+              style={{ background: "linear-gradient(135deg, #ADFF44, rgba(173,255,68,0.7))", color: "#000" }}
             >
               <Sparkles className="w-4 h-4" />
               Analyze with AI

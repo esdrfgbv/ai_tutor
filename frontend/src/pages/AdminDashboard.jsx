@@ -32,12 +32,12 @@ import EmptyState from "../components/EmptyState.jsx";
 const cap = (v) => Math.min(100, Math.max(0, Number(v) || 0));
 
 const COLORS = [
-  "#4fb286",
-  "#f9735b",
-  "#f4b942",
-  "#6366f1",
+  "#adff44",
+  "#ff6b6b",
+  "#fbbf24",
+  "#3b82f6",
   "#ec4899",
-  "#14b8a6",
+  "#adff44",
 ];
 
 export default function AdminDashboard() {

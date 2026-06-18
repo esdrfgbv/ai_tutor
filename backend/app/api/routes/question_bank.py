@@ -2,8 +2,10 @@ from fastapi import APIRouter, Depends, Query, HTTPException
 from sqlalchemy.orm import Session, joinedload
 from sqlalchemy import func
 
+from app.api.deps import require_roles
 from app.db.session import get_db
-from app.models.models import QuestionBank, QuestionBankSource, QuestionOption
+from app.models.enums import Role
+from app.models.models import QuestionBank, QuestionBankSource, QuestionOption, User
 from app.schemas.extraction_schemas import (
     QuestionBankListOut,
     SourceFilterOut,
@@ -162,7 +164,20 @@ def get_question(question_id: int, db: Session = Depends(get_db)):
 
 
 @router.post("/random-set", response_model=QuizOut)
-def generate_random_set(payload: RandomTestGenerateIn, db: Session = Depends(get_db)):
+def generate_random_set(payload: RandomTestGenerateIn, db: Session = Depends(get_db), _: User = Depends(require_roles(Role.admin))):
+    creator = db.query(User).filter(User.role == Role.admin).order_by(User.id).first()
+    if not creator:
+        from app.core.security import hash_password
+        from app.core.config import get_settings
+        settings = get_settings()
+        creator = User(
+            email=settings.bootstrap_admin_email,
+            full_name="Platform Admin",
+            hashed_password=hash_password(settings.bootstrap_admin_password),
+            role=Role.admin,
+        )
+        db.add(creator)
+        db.flush()
     """Generate a random test based on constraints."""
     # Simplified version - just fetch random questions based on total constraints for now
     # In a fully realized version, this would balance according to the subject_constraints array
@@ -201,7 +216,7 @@ def generate_random_set(payload: RandomTestGenerateIn, db: Session = Depends(get
         quiz_type="mock",
         duration_minutes=payload.duration_minutes,
         questions=mapped_questions,
-        created_by_id=1,  # Hardcoded admin id for now
+        created_by_id=creator.id,
     )
     
     return quiz

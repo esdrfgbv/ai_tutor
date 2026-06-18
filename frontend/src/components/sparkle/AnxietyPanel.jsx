@@ -55,7 +55,7 @@ export function AnxietyPanel() {
     return () => clearInterval(timer);
   }, [phase]);
 
-  const breathColor = breathPhase === "inhale" ? "#ADFF44" : breathPhase === "hold" ? "#8CD430" : "#6BBF00";
+  const breathColor = breathPhase === "inhale" ? "#ADFF44" : breathPhase === "hold" ? "#adff44" : "rgba(173,255,68,0.7)";
   const breathScale = breathPhase === "inhale" ? "1.15" : breathPhase === "hold" ? "1.0" : "0.85";
 
   if (phase === "breathing") {

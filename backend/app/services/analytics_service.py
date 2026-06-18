@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 from sqlalchemy import func
 from sqlalchemy.orm import Session
 
-from app.models.models import ProgressTracking, Question, Quiz, QuizAttempt, StudentProfile, StudySession
+from app.models.models import ProgressTracking, Question, Quiz, QuizAttempt, StudentProfile, StudySession, User
 from app.schemas.schemas import DashboardStats
 from app.services.leaderboard_service import clamp_percent, leaderboard_service
 from app.services.study_session_service import MIN_MEANINGFUL_STUDY_SECONDS, study_session_service
@@ -259,6 +259,134 @@ class AnalyticsService:
                 "study_hours_7d": round(study_seconds_7d / 3600, 1),
                 "mock_attempts": db.query(QuizAttempt).join(Quiz).filter(Quiz.quiz_type == "mock").count(),
             },
+        }
+
+
+    def stakeholder_analytics(self, db: Session) -> dict:
+        now = datetime.utcnow()
+        today = now.date()
+
+        # DAU trend (last 7 days)
+        dau_trend = []
+        for offset in range(6, -1, -1):
+            day = today - timedelta(days=offset)
+            day_start = datetime(day.year, day.month, day.day)
+            day_end = day_start + timedelta(hours=23, minutes=59, seconds=59)
+            dau = (
+                db.query(QuizAttempt.student_id)
+                .filter(QuizAttempt.created_at >= day_start, QuizAttempt.created_at <= day_end)
+                .distinct()
+                .count()
+            )
+            dau_sessions = (
+                db.query(StudySession.student_id)
+                .filter(StudySession.started_at >= day_start, StudySession.started_at <= day_end)
+                .distinct()
+                .count()
+            )
+            dau_trend.append({
+                "date": str(day),
+                "day": day.strftime("%a"),
+                "quiz_users": dau,
+                "session_users": dau_sessions,
+                "total_active": max(dau, dau_sessions),
+            })
+
+        # Completion rate by grade
+        completion_by_grade = []
+        for grade in range(6, 10):
+            students_in_grade = db.query(StudentProfile).filter(StudentProfile.grade == grade).count()
+            if students_in_grade == 0:
+                continue
+            avg_completion = (
+                db.query(func.coalesce(func.avg(ProgressTracking.completion_percentage), 0))
+                .join(StudentProfile, ProgressTracking.student_id == StudentProfile.id)
+                .filter(StudentProfile.grade == grade)
+                .scalar()
+                or 0
+            )
+            avg_accuracy = (
+                db.query(func.coalesce(func.avg(QuizAttempt.accuracy), 0))
+                .join(StudentProfile, QuizAttempt.student_id == StudentProfile.id)
+                .filter(StudentProfile.grade == grade)
+                .scalar()
+                or 0
+            )
+            completion_by_grade.append({
+                "grade": grade,
+                "students": students_in_grade,
+                "avg_completion": clamp_percent(float(avg_completion)),
+                "avg_accuracy": clamp_percent(float(avg_accuracy)),
+            })
+
+        # Subject metrics
+        subject_metrics = []
+        for subject, in db.query(Quiz.subject).distinct().all():
+            if not subject:
+                continue
+            attempts = db.query(QuizAttempt).join(Quiz).filter(Quiz.subject == subject).count()
+            avg_acc = (
+                db.query(func.coalesce(func.avg(QuizAttempt.accuracy), 0))
+                .join(Quiz, QuizAttempt.quiz_id == Quiz.id)
+                .filter(Quiz.subject == subject)
+                .scalar()
+                or 0
+            )
+            subject_metrics.append({
+                "subject": subject,
+                "attempts": attempts,
+                "avg_accuracy": clamp_percent(float(avg_acc)),
+            })
+
+        # Learning hours trend (last 7 days)
+        hours_trend = []
+        for offset in range(6, -1, -1):
+            day = today - timedelta(days=offset)
+            day_start = datetime(day.year, day.month, day.day)
+            day_end = day_start + timedelta(hours=23, minutes=59, seconds=59)
+            seconds = (
+                db.query(func.coalesce(func.sum(StudySession.duration_seconds), 0))
+                .filter(StudySession.started_at >= day_start, StudySession.started_at <= day_end)
+                .scalar()
+                or 0
+            )
+            hours_trend.append({
+                "date": str(day),
+                "day": day.strftime("%a"),
+                "hours": round(seconds / 3600, 1),
+            })
+
+        # Student growth (registrations by month)
+        student_growth = (
+            db.query(
+                func.strftime("%Y-%m", User.created_at).label("month"),
+                func.count(User.id).label("count"),
+            )
+            .join(StudentProfile, User.id == StudentProfile.user_id)
+            .group_by(func.strftime("%Y-%m", User.created_at))
+            .order_by(func.strftime("%Y-%m", User.created_at))
+            .all()
+        )
+        growth_trend = [
+            {"month": row.month, "new_students": int(row.count)}
+            for row in student_growth
+        ]
+
+        return {
+            "dau_trend": dau_trend,
+            "completion_by_grade": completion_by_grade,
+            "subject_metrics": subject_metrics,
+            "hours_trend": hours_trend,
+            "student_growth": growth_trend,
+            "total_students": db.query(StudentProfile).count(),
+            "total_attempts": db.query(QuizAttempt).count(),
+            "total_study_hours": round(
+                (db.query(func.coalesce(func.sum(StudySession.duration_seconds), 0)).scalar() or 0) / 3600,
+                1,
+            ),
+            "chapter_completion_avg": clamp_percent(
+                db.query(func.coalesce(func.avg(ProgressTracking.completion_percentage), 0)).scalar() or 0
+            ),
         }
 
 

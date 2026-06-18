@@ -353,7 +353,7 @@ export function VideoPlayer({ data, onExit, language = "english", category }) {
               >
                 <div
                   className="absolute inset-y-0 left-0 rounded-full transition-all duration-300"
-                  style={{ width: `${progress * 100}%`, background: "linear-gradient(90deg, #ADFF44, #8CD430)" }}
+                  style={{ width: `${progress * 100}%`, background: "linear-gradient(90deg, #ADFF44, #adff44)" }}
                 />
               </div>
             </div>
@@ -389,7 +389,7 @@ export function VideoPlayer({ data, onExit, language = "english", category }) {
                   <button
                     onClick={handlePause}
                     className="w-10 h-10 rounded-full flex items-center justify-center transition-all"
-                    style={{ background: "linear-gradient(135deg, #ADFF44, #8CD430)" }}
+                    style={{ background: "linear-gradient(135deg, #ADFF44, #adff44)" }}
                   >
                     <Pause className="w-5 h-5 text-black" />
                   </button>
@@ -397,7 +397,7 @@ export function VideoPlayer({ data, onExit, language = "english", category }) {
                   <button
                     onClick={handlePlay}
                     className="w-10 h-10 rounded-full flex items-center justify-center transition-all"
-                    style={{ background: "linear-gradient(135deg, #ADFF44, #8CD430)" }}
+                    style={{ background: "linear-gradient(135deg, #ADFF44, #adff44)" }}
                   >
                     <Play className="w-5 h-5 text-black ml-0.5" />
                   </button>
@@ -488,7 +488,7 @@ export function VideoPlayer({ data, onExit, language = "english", category }) {
               onClick={sendDoubt}
               disabled={thinking || !doubt.trim()}
               className="p-2 rounded-xl flex items-center justify-center transition-all disabled:opacity-30"
-              style={{ background: "linear-gradient(135deg, #ADFF44, #8CD430)" }}
+              style={{ background: "linear-gradient(135deg, #ADFF44, #adff44)" }}
             >
               <Send className="w-4 h-4 text-black" />
             </button>

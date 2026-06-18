@@ -30,3 +30,8 @@ def child_dashboard(student_id: int, user: User = Depends(require_roles(Role.par
 @router.get("/admin")
 def admin_dashboard(_: User = Depends(require_roles(Role.admin)), db: Session = Depends(get_db)):
     return analytics_service.admin_overview(db)
+
+
+@router.get("/admin/stakeholder")
+def stakeholder_dashboard(_: User = Depends(require_roles(Role.admin)), db: Session = Depends(get_db)):
+    return analytics_service.stakeholder_analytics(db)

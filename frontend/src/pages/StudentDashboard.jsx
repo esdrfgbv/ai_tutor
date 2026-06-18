@@ -63,12 +63,13 @@ export default function StudentDashboard() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const [userGrade, setUserGrade] = useState(null);
+  const [studyPlan, setStudyPlan] = useState(null);
 
   useEffect(() => {
     if (!user) return;
     setLoading(true);
-    Promise.all([api.get("/analytics/student"), api.get("/leaderboard"), api.get("/learning/profile")])
-      .then(([s, l, p]) => { setStats(s.data); setLeaderboard(l.data); setUserGrade(p.data.grade); setError(""); })
+    Promise.all([api.get("/analytics/student"), api.get("/leaderboard"), api.get("/learning/profile"), api.get("/study-plan")])
+      .then(([s, l, p, sp]) => { setStats(s.data); setLeaderboard(l.data); setUserGrade(p.data.grade); setStudyPlan(sp.data.plan); setError(""); })
       .catch((err) => setError(err.response?.data?.detail || err.message || "Could not load dashboard"))
       .finally(() => setLoading(false));
   }, [user]);
@@ -192,10 +193,10 @@ export default function StudentDashboard() {
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
           {[
             { to: "/ai-video", icon: Video, label: "AI Video Tutor", desc: "Topic → Narrated slides", color: "#ADFF44" },
-            { to: "/image-analysis", icon: Camera, label: "Image Analysis", desc: "Photo → AI solution", color: "#8CD430" },
-            { to: "/ai-test-engine", icon: Layers, label: "AI Test Engine", desc: "PDF → Mock tests", color: "#6BBF00" },
+            { to: "/image-analysis", icon: Camera, label: "Image Analysis", desc: "Photo → AI solution", color: "#adff44" },
+            { to: "/ai-test-engine", icon: Layers, label: "AI Test Engine", desc: "PDF → Mock tests", color: "rgba(173,255,68,0.7)" },
             { to: "/adaptive", icon: Target, label: "Adaptive Learning", desc: "Skill graph + diagnostic", color: "#ADFF44" },
-            { to: "/wellness", icon: Heart, label: "Wellness & Goals", desc: "Calm · Inspire · Plan", color: "#8CD430" },
+            { to: "/wellness", icon: Heart, label: "Wellness & Goals", desc: "Calm · Inspire · Plan", color: "#adff44" },
           ].map((tool) => (
             <Link
               key={tool.to}
@@ -258,25 +259,51 @@ export default function StudentDashboard() {
 
         {/* Study Plan */}
         <div className="rounded-2xl p-5" style={{ background: "rgba(17,17,17,0.9)", border: "1px solid rgba(255,255,255,0.07)" }}>
-          <div className="flex items-center gap-2 mb-4">
-            <Zap size={16} style={{ color: "#adff44" }} />
-            <h2 className="font-display font-bold text-white">AI Study Plan</h2>
+          <div className="flex items-center justify-between gap-2 mb-4">
+            <div className="flex items-center gap-2">
+              <Zap size={16} style={{ color: "#adff44" }} />
+              <h2 className="font-display font-bold text-white">AI Study Plan</h2>
+            </div>
+            <Link to="/wellness" className="text-[10px] px-2.5 py-1 rounded-lg transition-all" style={{ background: "rgba(173,255,68,0.1)", color: "#adff44", border: "1px solid rgba(173,255,68,0.15)" }}>
+              Full Plan →
+            </Link>
           </div>
           <div className="space-y-2">
-            {((stats?.study_plan?.length > 0 ? stats.study_plan : stats?.recommendations) || []).slice(0, 5).map((item, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, x: -8 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.3 + idx * 0.08 }}
-                className="flex items-start gap-2.5 p-3 rounded-xl"
-                style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)" }}
-              >
-                <div className="w-1 h-4 rounded-full mt-0.5 flex-shrink-0" style={{ background: "#adff44" }} />
-                <p className="text-xs leading-relaxed" style={{ color: "#bdbdbd" }}>{item}</p>
-              </motion.div>
-            ))}
-            {(!stats?.study_plan?.length && !stats?.recommendations?.length) && (
+            {(() => {
+              const todayTasks = studyPlan?.days?.[Math.max(0, new Date().getDay() - 1)]?.tasks?.slice(0, 4);
+              if (todayTasks?.length) {
+                return todayTasks.map((task, idx) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, x: -8 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.3 + idx * 0.08 }}
+                    className="flex items-start gap-2.5 p-3 rounded-xl"
+                    style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)" }}
+                  >
+                    <div className="w-1 h-4 rounded-full mt-0.5 flex-shrink-0" style={{ background: task.priority === "high" ? "#ff6b6b" : "#adff44" }} />
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs font-medium" style={{ color: "#e0e0e0" }}>{task.subject}</p>
+                      <p className="text-[11px] leading-relaxed" style={{ color: "#8a8a8a" }}>{task.topic} · {task.activity}{task.duration_minutes ? ` · ${task.duration_minutes}m` : ""}</p>
+                    </div>
+                  </motion.div>
+                ));
+              }
+              return ((stats?.study_plan?.length > 0 ? stats.study_plan : stats?.recommendations) || []).slice(0, 3).map((item, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, x: -8 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.3 + idx * 0.08 }}
+                  className="flex items-start gap-2.5 p-3 rounded-xl"
+                  style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)" }}
+                >
+                  <div className="w-1 h-4 rounded-full mt-0.5 flex-shrink-0" style={{ background: "#adff44" }} />
+                  <p className="text-xs leading-relaxed" style={{ color: "#bdbdbd" }}>{item}</p>
+                </motion.div>
+              ));
+            })()}
+            {(!studyPlan && !stats?.study_plan?.length && !stats?.recommendations?.length) && (
               <p className="text-sm text-center py-8" style={{ color: "#8a8a8a" }}>Complete quizzes to get AI recommendations</p>
             )}
           </div>

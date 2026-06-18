@@ -4,13 +4,13 @@ import { Target, ChevronRight, Brain, BarChart3, CheckCircle2 } from "lucide-rea
 
 const SKILLS = [
   { id: "arithmetic", label: "Arithmetic", level: 3, maxLevel: 5, color: "#ADFF44" },
-  { id: "algebra", label: "Algebra", level: 2, maxLevel: 5, color: "#8CD430" },
-  { id: "geometry", label: "Geometry", level: 1, maxLevel: 5, color: "#6BBF00" },
+  { id: "algebra", label: "Algebra", level: 2, maxLevel: 5, color: "#adff44" },
+  { id: "geometry", label: "Geometry", level: 1, maxLevel: 5, color: "rgba(173,255,68,0.7)" },
   { id: "reasoning", label: "Reasoning", level: 2, maxLevel: 5, color: "#ADFF44" },
-  { id: "spatial", label: "Spatial", level: 0, maxLevel: 5, color: "#8CD430" },
-  { id: "english", label: "English", level: 3, maxLevel: 5, color: "#6BBF00" },
+  { id: "spatial", label: "Spatial", level: 0, maxLevel: 5, color: "#adff44" },
+  { id: "english", label: "English", level: 3, maxLevel: 5, color: "rgba(173,255,68,0.7)" },
   { id: "vocab", label: "Vocabulary", level: 2, maxLevel: 5, color: "#ADFF44" },
-  { id: "comprehension", label: "Comprehension", level: 1, maxLevel: 5, color: "#8CD430" },
+  { id: "comprehension", label: "Comprehension", level: 1, maxLevel: 5, color: "#adff44" },
 ];
 
 const QUESTIONS = {
@@ -135,7 +135,7 @@ export function ZeroBasePanel() {
                       : isCorrect
                       ? "#ADFF44"
                       : isWrong
-                      ? "#fca5a5"
+                      ? "#ff6b6b"
                       : "rgba(255,255,255,0.3)",
                 }}
               >

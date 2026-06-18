@@ -102,7 +102,7 @@ export default function AdminMockTestCreator() {
           <p className="text-neutral-400 mb-8 text-lg">The mock test has been successfully created and deployed to the selected targets.</p>
           <button 
             onClick={() => { setSuccess(false); setStep(1); }}
-            className="w-full bg-[#adff44] text-black font-black py-4 rounded-xl hover:bg-[#9BE53D] transition-colors shadow-lg"
+            className="w-full bg-[#adff44] text-black font-black py-4 rounded-xl hover:bg-[#adff44] transition-colors shadow-lg"
           >
             Create Another Test
           </button>
@@ -230,7 +230,7 @@ export default function AdminMockTestCreator() {
                   if (form.title && form.start_time && form.end_time) setStep(2);
                   else alert("Please fill in required fields (Title, Start Time, End Time)");
                 }}
-                className="bg-[#adff44] text-black font-black text-lg px-12 py-4 rounded-xl hover:bg-[#9BE53D] transition-colors shadow-[0_0_30px_rgba(173,255,68,0.2)] hover:scale-105 transform duration-200"
+                className="bg-[#adff44] text-black font-black text-lg px-12 py-4 rounded-xl hover:bg-[#adff44] transition-colors shadow-[0_0_30px_rgba(173,255,68,0.2)] hover:scale-105 transform duration-200"
               >
                 Continue to Question Selection
               </button>
@@ -310,7 +310,7 @@ export default function AdminMockTestCreator() {
                   <button 
                     disabled={loading || selectedQuestions.size === 0}
                     onClick={submit}
-                    className="w-full bg-[#adff44] text-black font-black py-4 rounded-xl hover:bg-[#9BE53D] transition-all disabled:opacity-50 disabled:hover:scale-100 disabled:hover:shadow-none hover:scale-[1.02] shadow-[0_0_20px_rgba(173,255,68,0.15)] flex justify-center items-center gap-2 text-sm uppercase tracking-wide"
+                    className="w-full bg-[#adff44] text-black font-black py-4 rounded-xl hover:bg-[#adff44] transition-all disabled:opacity-50 disabled:hover:scale-100 disabled:hover:shadow-none hover:scale-[1.02] shadow-[0_0_20px_rgba(173,255,68,0.15)] flex justify-center items-center gap-2 text-sm uppercase tracking-wide"
                   >
                     {loading ? "Deploying..." : (
                       <>

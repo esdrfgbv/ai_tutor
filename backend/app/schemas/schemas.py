@@ -178,6 +178,26 @@ class AdminLeaderboardResponse(BaseModel):
     data: list[AdminLeaderboardRow]
 
 
+class GroupedLeaderboardRow(BaseModel):
+    rank: int
+    group_name: str
+    student_count: int
+    avg_score: float
+    avg_accuracy: float
+    total_quizzes: int
+    top_student_name: str
+    top_student_score: float
+    grade: str | None = None
+
+
+class GroupedLeaderboardResponse(BaseModel):
+    group_by: str
+    total_count: int
+    page: int
+    limit: int
+    data: list[GroupedLeaderboardRow]
+
+
 class QuizGenerateIn(BaseModel):
     grade: int = Field(ge=4, le=9)
     subject: str

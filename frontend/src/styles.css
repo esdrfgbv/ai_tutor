@@ -141,8 +141,8 @@ h1, h2, h3, h4 {
   border: 1px solid transparent;
 }
 .btn-primary:hover {
-  background: #c5ff66;
-  box-shadow: 0 0 20px rgba(173, 255, 68, 0.4);
+  background: #ADFF44;
+  box-shadow: 0 0 24px rgba(173, 255, 68, 0.5);
   transform: translateY(-1px);
 }
 .btn-primary:active {

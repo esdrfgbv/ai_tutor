@@ -2,7 +2,7 @@ from sqlalchemy import func
 from sqlalchemy.orm import Session
 
 from app.models.models import Quiz, QuizAttempt, StudentProfile
-from app.schemas.schemas import LeaderboardRow
+from app.schemas.schemas import GroupedLeaderboardRow, LeaderboardRow
 
 
 def clamp_percent(value: float) -> float:
@@ -161,6 +161,91 @@ class LeaderboardService:
             "page": page,
             "limit": limit,
             "data": output
+        }
+
+
+    def grouped_build(
+        self,
+        db: Session,
+        group_by: str = "district",
+        page: int = 1,
+        limit: int = 50,
+        grade: int | None = None,
+        state: str | None = None,
+    ) -> dict:
+        if group_by == "school":
+            group_col = StudentProfile.school_name
+            group_label_col = StudentProfile.school_name
+        elif group_by == "state":
+            group_col = StudentProfile.state
+            group_label_col = StudentProfile.state
+        else:
+            group_col = StudentProfile.district
+            group_label_col = StudentProfile.district
+
+        grade_filter = StudentProfile.grade == grade if grade else True
+
+        state_filter = StudentProfile.normalized_state == state.lower().strip() if state else True
+
+        rows = (
+            db.query(
+                group_label_col.label("group_name"),
+                func.count(StudentProfile.id.distinct()).label("student_count"),
+                func.avg(QuizAttempt.score).label("avg_score"),
+                func.avg(QuizAttempt.accuracy).label("avg_accuracy"),
+                func.count(QuizAttempt.id).label("total_quizzes"),
+                func.max(QuizAttempt.score).label("top_score"),
+            )
+            .join(StudentProfile, QuizAttempt.student_id == StudentProfile.id)
+            .filter(grade_filter, state_filter)
+            .group_by(group_col)
+            .order_by(func.avg(QuizAttempt.score).desc())
+            .all()
+        )
+
+        # Enrich with top student name per group
+        ranked = sorted(rows, key=lambda r: -(r.avg_score or 0)) if group_by == "district" else list(rows)
+        total_count = len(ranked)
+        offset = (page - 1) * limit
+        paginated = ranked[offset:offset + limit]
+
+        output = []
+        for index, row in enumerate(paginated):
+            top_student = (
+                db.query(StudentProfile)
+                .filter(
+                    getattr(StudentProfile, group_by) == row.group_name,
+                    grade_filter,
+                    state_filter,
+                )
+                .join(QuizAttempt, QuizAttempt.student_id == StudentProfile.id)
+                .group_by(StudentProfile.id)
+                .order_by(func.max(QuizAttempt.score).desc())
+                .first()
+            )
+            top_name = top_student.user.full_name if top_student and top_student.user else "Unknown"
+            grade_str = str(grade) if grade else None
+
+            output.append(
+                GroupedLeaderboardRow(
+                    rank=offset + index + 1,
+                    group_name=row.group_name or "Unknown",
+                    student_count=int(row.student_count or 0),
+                    avg_score=round(float(row.avg_score or 0), 2),
+                    avg_accuracy=round(float(row.avg_accuracy or 0), 2),
+                    total_quizzes=int(row.total_quizzes or 0),
+                    top_student_name=top_name,
+                    top_student_score=round(float(row.top_score or 0), 2),
+                    grade=grade_str,
+                )
+            )
+
+        return {
+            "group_by": group_by,
+            "total_count": total_count,
+            "page": page,
+            "limit": limit,
+            "data": output,
         }
 
 

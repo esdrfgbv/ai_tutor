@@ -145,7 +145,7 @@ export default function AIVideoPage() {
                   onClick={handleGenerate}
                   disabled={!topic.trim() || loading}
                   className="ml-auto flex items-center gap-2 px-6 py-2 rounded-xl font-medium text-sm transition-all disabled:opacity-40"
-                  style={{ background: "linear-gradient(135deg, #ADFF44, #8CD430)", color: "#000" }}
+                  style={{ background: "linear-gradient(135deg, #ADFF44, #adff44)", color: "#000" }}
                 >
                   {loading ? (
                     <><Loader2 className="w-4 h-4 animate-spin" /> Generating…</>

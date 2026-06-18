@@ -208,7 +208,7 @@ export default function ParentDashboard() {
                     <PolarGrid strokeOpacity={0.2} />
                     <PolarAngleAxis dataKey="topic" tick={{ fontSize: 11, fill: 'currentColor' }} />
                     <PolarRadiusAxis angle={30} domain={[0, 100]} tick={false} axisLine={false} />
-                    <Radar name="Mastery" dataKey="mastery" stroke="#4fb286" fill="#4fb286" fillOpacity={0.5} />
+                    <Radar name="Mastery" dataKey="mastery" stroke="#adff44" fill="#adff44" fillOpacity={0.5} />
                     <Tooltip />
                   </RadarChart>
                 </ResponsiveContainer>
@@ -275,7 +275,7 @@ export default function ParentDashboard() {
                     <XAxis dataKey="date" />
                     <YAxis domain={[0, 100]} />
                     <Tooltip />
-                    <Line type="monotone" dataKey="accuracy" stroke="#4fb286" strokeWidth={3} />
+                    <Line type="monotone" dataKey="accuracy" stroke="#adff44" strokeWidth={3} />
                   </LineChart>
                 </ResponsiveContainer>
               ) : (
@@ -291,7 +291,7 @@ export default function ParentDashboard() {
                     <XAxis dataKey="subject" />
                     <YAxis domain={[0, 100]} />
                     <Tooltip cursor={{ fill: 'rgba(0,0,0,0.05)' }} />
-                    <Bar dataKey="accuracy" fill="#f9735b" radius={[4, 4, 0, 0]} />
+                    <Bar dataKey="accuracy" fill="#ff6b6b" radius={[4, 4, 0, 0]} />
                   </BarChart>
                 </ResponsiveContainer>
               ) : (
@@ -309,7 +309,7 @@ export default function ParentDashboard() {
                   <XAxis dataKey="date" tickFormatter={(d) => d?.slice(5)} />
                   <YAxis unit="m" />
                   <Tooltip formatter={(v) => [`${v} min`, "Study time"]} cursor={{ fill: 'rgba(0,0,0,0.05)' }} />
-                  <Bar dataKey="minutes" fill="#4fb286" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="minutes" fill="#adff44" radius={[4, 4, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             ) : (

@@ -36,7 +36,7 @@ export default function Markdown({ text }) {
                   {lang}
                 </div>
               )}
-              <code className="block whitespace-pre font-mono text-xs" style={{ color: "#c5ff66" }}>
+              <code className="block whitespace-pre font-mono text-xs" style={{ color: "#adff44" }}>
                 {content}
               </code>
             </pre>

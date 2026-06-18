@@ -4,7 +4,8 @@ from fastapi.responses import JSONResponse
 from fastapi.exceptions import RequestValidationError
 from sqlalchemy import inspect, text
 
-from app.api.routes import admin, analytics, auth, leaderboard, learning, parents, quizzes
+from app.api.routes import admin, analytics, auth, diagnostic, leaderboard, learning, parents, quizzes
+from app.api.routes.study_plan import router as study_plan_router
 from app.api.routes.admin_mock_tests import router as admin_mock_tests_router
 from app.api.routes.question_bank import router as question_bank_router
 from app.api.routes.pdf_extraction import router as pdf_extraction_router
@@ -110,8 +111,10 @@ def create_app() -> FastAPI:
     app.include_router(admin_mock_tests_router, prefix="/api")
     app.include_router(pdf_extraction_router, prefix="/api")
     app.include_router(conversations_router, prefix="/api")
+    app.include_router(diagnostic.router, prefix="/api")
     app.include_router(notes_router, prefix="/api")
     app.include_router(bookmarks_router, prefix="/api")
+    app.include_router(study_plan_router, prefix="/api")
 
     @app.on_event("startup")
     def bootstrap() -> None:
