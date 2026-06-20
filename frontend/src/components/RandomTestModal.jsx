@@ -13,15 +13,15 @@ export default function RandomTestModal({ onClose }) {
     total_questions: 20,
     difficulty: "",
     year: "",
-    negative_marking: 0.0
+    negative_marking: 0.0,
+    total_marks: 100,
+    scheduled_date: ""
   });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
-      // In a fully featured version, this would include subject_constraints
-      // For now, we'll send the base parameters to the endpoint we created
       const payload = {
         title: form.title,
         grade: parseInt(form.grade),
@@ -30,6 +30,8 @@ export default function RandomTestModal({ onClose }) {
         difficulty: form.difficulty || null,
         year: form.year ? parseInt(form.year) : null,
         negative_marking: parseFloat(form.negative_marking),
+        total_marks: parseInt(form.total_marks),
+        scheduled_date: form.scheduled_date || null,
         subject_constraints: []
       };
 
@@ -133,12 +135,15 @@ export default function RandomTestModal({ onClose }) {
               </div>
             </div>
 
-            <div className="bg-black/30 p-4 rounded-xl border border-white/5 mt-6">
-              <h4 className="text-sm font-bold text-white mb-2">Subject Distribution</h4>
-              <p className="text-xs text-neutral-400">
-                In this simplified version, questions will be selected randomly based on the filters above. 
-                A full version would allow specifying exactly how many questions to pull per section.
-              </p>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="text-xs text-neutral-400 mb-1.5 block uppercase tracking-wider font-semibold">Total Marks</label>
+                <input type="number" min="1" required className="w-full bg-black border border-white/10 rounded-lg px-4 py-3 text-sm focus:border-[#adff44] outline-none text-white" value={form.total_marks} onChange={e => setForm({...form, total_marks: e.target.value})} />
+              </div>
+              <div>
+                <label className="text-xs text-neutral-400 mb-1.5 block uppercase tracking-wider font-semibold">Scheduled Date</label>
+                <input type="datetime-local" className="w-full bg-black border border-white/10 rounded-lg px-4 py-3 text-sm focus:border-[#adff44] outline-none text-white" value={form.scheduled_date} onChange={e => setForm({...form, scheduled_date: e.target.value})} />
+              </div>
             </div>
 
             <div className="pt-4 flex gap-3">

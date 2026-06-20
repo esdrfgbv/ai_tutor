@@ -36,6 +36,7 @@ export default function QuizPage() {
   const [params] = useSearchParams();
   const [quiz, setQuiz] = useState(null);
   const [mockTests, setMockTests] = useState([]);
+  const [adminMockTests, setAdminMockTests] = useState([]);
   const [answers, setAnswers] = useState({});
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -85,6 +86,9 @@ export default function QuizPage() {
       } else if (params.get("test")) {
         const r = await api.post("/quizzes/mock", { grade: 9, subject, question_count: 20, duration_minutes: 45, quiz_type: "mock" }, { params: { test_name: params.get("test") } });
         data = r.data;
+      } else if (params.get("quiz_id")) {
+        const r = await api.get(`/quizzes/${params.get("quiz_id")}`);
+        data = r.data;
       } else { setLoading(false); return; }
       setQuiz(data);
       const saved = JSON.parse(localStorage.getItem(TIMER_KEY) || "{}");
@@ -100,8 +104,13 @@ export default function QuizPage() {
   useEffect(() => {
     if (user.role !== "student") return;
     api.get(`/quizzes/subjects/${subject}/modules`).then((r) => setMockTests(r.data)).catch(() => {});
-    if (params.get("mode") || params.get("test")) loadQuiz();
-  }, [user.role, params, subject]);
+    if (userGrade) {
+      api.get(`/quizzes?grade=${userGrade}&subject=${subject}`).then((r) => {
+        setAdminMockTests(r.data.filter((q) => q.quiz_type === "mock"));
+      }).catch(() => {});
+    }
+    if (params.get("mode") || params.get("test") || params.get("quiz_id")) loadQuiz();
+  }, [user.role, params, subject, userGrade]);
 
   useEffect(() => {
     if (!quiz) return;
@@ -331,6 +340,42 @@ export default function QuizPage() {
                 ))}
               </div>
             </>
+          )}
+
+          {/* Admin-created mock tests */}
+          {adminMockTests.length > 0 && (
+            <div className="mt-8">
+              <p className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: "#ffd700" }}>Scheduled Mock Tests</p>
+              <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+                {adminMockTests.map((test) => (
+                  <motion.a
+                    key={test.id}
+                    href={`/quiz?quiz_id=${test.id}&subject=${subject}`}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    whileHover={{ y: -2 }}
+                    className="block rounded-2xl p-4 transition-all duration-200 group"
+                    style={{ background: "rgba(17,17,17,0.9)", border: "1px solid rgba(255,215,0,0.15)" }}
+                    onMouseEnter={(e) => e.currentTarget.style.borderColor = "rgba(255,215,0,0.4)"}
+                    onMouseLeave={(e) => e.currentTarget.style.borderColor = "rgba(255,215,0,0.15)"}
+                  >
+                    <div className="flex items-start justify-between gap-2 mb-2">
+                      <h4 className="font-display font-bold text-white group-hover:text-[#ffd700] transition-colors">{test.title}</h4>
+                      <span className="badge flex-shrink-0 text-[10px]" style={{ background: "rgba(255,215,0,0.15)", color: "#ffd700", border: "1px solid rgba(255,215,0,0.25)" }}>Mock</span>
+                    </div>
+                    <p className="text-xs mb-2" style={{ color: "#8a8a8a" }}>
+                      {test.total_marks || "?"} marks · {test.duration_minutes} min
+                      {test.negative_marking > 0 && ` · -${test.negative_marking} neg`}
+                    </p>
+                    {test.scheduled_date && (
+                      <p className="text-[11px]" style={{ color: "#ffd700" }}>
+                        Scheduled: {new Date(test.scheduled_date).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" })}
+                      </p>
+                    )}
+                  </motion.a>
+                ))}
+              </div>
+            </div>
           )}
         </motion.div>
       )}

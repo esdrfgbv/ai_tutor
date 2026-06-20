@@ -34,6 +34,7 @@ export default function QuestionBankBrowser({
     year: "",
     difficulty: "",
     question_type: "",
+    search: "",
   });
 
   const [sourceOptions, setSourceOptions] = useState([]);
@@ -116,7 +117,7 @@ export default function QuestionBankBrowser({
             onClick={() => {
               setFilters({
                 source_id: "", subject: "", grade: "", section: "",
-                year: "", difficulty: "", question_type: ""
+                year: "", difficulty: "", question_type: "", search: ""
               });
               setPage(1);
             }}
@@ -199,21 +200,33 @@ export default function QuestionBankBrowser({
             </select>
           </div>
 
-          <div>
-            <label className="text-[10px] text-neutral-500 mb-1 block uppercase tracking-wider font-bold">Difficulty</label>
-            <select 
-              className="w-full bg-black border border-white/10 rounded-xl px-3 py-2 text-sm text-white focus:border-[#adff44] outline-none transition-colors hover:border-white/20 appearance-none"
-              value={filters.difficulty}
-              onChange={(e) => { setFilters(p => ({ ...p, difficulty: e.target.value })); setPage(1); }}
-            >
-              <option value="">All</option>
-              <option value="easy">Easy</option>
-              <option value="medium">Medium</option>
-              <option value="hard">Hard</option>
-            </select>
+            <div>
+              <label className="text-[10px] text-neutral-500 mb-1 block uppercase tracking-wider font-bold">Difficulty</label>
+              <select 
+                className="w-full bg-black border border-white/10 rounded-xl px-3 py-2 text-sm text-white focus:border-[#adff44] outline-none transition-colors hover:border-white/20 appearance-none"
+                value={filters.difficulty}
+                onChange={(e) => { setFilters(p => ({ ...p, difficulty: e.target.value })); setPage(1); }}
+              >
+                <option value="">All</option>
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+              </select>
+            </div>
+
+          {/* Search */}
+          <div className="col-span-2 md:col-span-4 lg:col-span-6 xl:col-span-2">
+            <label className="text-[10px] text-neutral-500 mb-1 block uppercase tracking-wider font-bold">Search Questions</label>
+            <input
+              type="text"
+              placeholder="Type to search questions..."
+              className="w-full bg-black border border-white/10 rounded-xl px-3 py-2 text-sm text-white focus:border-[#adff44] outline-none transition-colors hover:border-white/20"
+              value={filters.search}
+              onChange={(e) => { setFilters(p => ({ ...p, search: e.target.value })); setPage(1); }}
+            />
+          </div>
           </div>
         </div>
-      </div>
 
       {/* Split Panes Container */}
       <div className="flex flex-1 gap-4 min-h-0">

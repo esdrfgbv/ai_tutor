@@ -6,23 +6,11 @@ import api from "../api/client";
 import { useAuth } from "../context/AuthContext.jsx";
 import { useStudySession } from "../context/StudySessionContext.jsx";
 import { StudyWorkspaceProvider, useStudyWorkspace } from "../context/StudyWorkspaceContext.jsx";
-import { modulesMap } from "../utils/modules";
+import { fetchModules } from "../utils/modules";
 import StudySidebar from "../components/study/StudySidebar.jsx";
 import PdfCanvasViewer from "../components/study/PdfCanvasViewer.jsx";
 import AiTutorPanel from "../components/study/AiTutorPanel.jsx";
 import ResizeHandle from "../components/study/ResizeHandle.jsx";
-
-function getModuleTitle(subject, slug) {
-  for (const grade in modulesMap) {
-    const list = modulesMap[grade][subject] || [];
-    const mod = list.find((m) => m.slug === slug);
-    if (mod) return mod.title;
-  }
-  return slug
-    .split("-")
-    .map((w) => (w.toLowerCase() === "nsao" ? "Number System and Operations" : w.charAt(0).toUpperCase() + w.slice(1)))
-    .join(" ");
-}
 
 function WorkspaceContent({ pdfUrl, title }) {
   const {
@@ -129,8 +117,21 @@ export default function ModuleLearningPage() {
   const { startSession, endSession } = useStudySession();
   const { user } = useAuth();
   const [grade, setGrade] = useState(null);
+  const [title, setTitle] = useState("");
 
-  const title = getModuleTitle(subject, slug);
+  useEffect(() => {
+    if (!grade || !subject || !slug) return;
+    fetchModules(grade, subject).then((mods) => {
+      const found = mods.find((m) => m.slug === slug);
+      setTitle(
+        found?.title ||
+          slug
+            .split("-")
+            .map((w) => (w.toLowerCase() === "nsao" ? "Number System and Operations" : w.charAt(0).toUpperCase() + w.slice(1)))
+            .join(" ")
+      );
+    });
+  }, [grade, subject, slug]);
 
   useEffect(() => {
     if (user?.role === "student") {

@@ -16,12 +16,36 @@ from app.schemas.schemas import (
     DoubtRequest,
     DoubtResponse,
 )
+from app.services.chapter_service import chapter_service
+from app.services.knowledge.metadata_service import metadata_service
 from app.services.rag_service import rag_service
 
 router = APIRouter(
     prefix="/learning",
     tags=["learning"],
 )
+
+
+@router.get("/subjects")
+def list_study_subjects(
+    grade: int | None = None,
+    db: Session = Depends(get_db),
+):
+    """Return valid subjects for study modules."""
+    registry = metadata_service.get_field_values(db, "subject")
+    if registry:
+        return [s["value"] for s in registry if s.get("value")]
+    return chapter_service.get_valid_subjects()
+
+
+@router.get("/modules")
+def list_study_modules(
+    grade: int,
+    subject: str,
+    db: Session = Depends(get_db),
+):
+    """Return modules/chapters for a grade+subject (metadata-driven)."""
+    return chapter_service.list_modules(grade, subject, db=db)
 
 
 @router.get(
@@ -61,17 +85,13 @@ def get_class_pdf(grade: int, subject: str, pdf_slug: str):
             detail="Invalid PDF slug",
         )
 
-    if grade == 9:
-        folder_name = "class_9"
-    elif grade == 6:
-        folder_name = "class 6"
-    else:
+    # Determine folder from source_root
+    pdf_dir = get_settings().source_root / f"class_{grade}" / subject.lower().strip()
+    if not pdf_dir.exists():
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="Grade not supported for PDFs",
+            detail=f"Grade {grade} PDFs not found for subject '{subject}'",
         )
-
-    pdf_dir = get_settings().source_root / folder_name / subject.lower().strip()
     file_path = pdf_dir / f"{pdf_slug}.pdf"
 
     if not file_path.exists() or not file_path.is_file():

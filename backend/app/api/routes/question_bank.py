@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from fastapi import APIRouter, Depends, Query, HTTPException
 from sqlalchemy.orm import Session, joinedload
 from sqlalchemy import func
@@ -207,6 +209,13 @@ def generate_random_set(payload: RandomTestGenerateIn, db: Session = Depends(get
             "test_name": q.section_name or q.subject
         })
         
+    scheduled_date = None
+    if payload.scheduled_date:
+        try:
+            scheduled_date = datetime.fromisoformat(payload.scheduled_date.replace("Z", "+00:00"))
+        except (ValueError, TypeError):
+            scheduled_date = None
+
     quiz = mock_test_service.create_quiz_from_questions(
         db,
         title=payload.title,
@@ -217,6 +226,9 @@ def generate_random_set(payload: RandomTestGenerateIn, db: Session = Depends(get
         duration_minutes=payload.duration_minutes,
         questions=mapped_questions,
         created_by_id=creator.id,
+        scheduled_date=scheduled_date,
+        total_marks=payload.total_marks,
+        negative_marking=payload.negative_marking,
     )
     
     return quiz

@@ -1,3 +1,11 @@
+import api from "../api/client";
+
+/* ------------------------------------------------------------------ */
+/*  Legacy hardcoded module map — preserved as static fallback so     */
+/*  components that synchronously access modulesMap[grade][subject]   */
+/*  still work until they are migrated to the async API.              */
+/* ------------------------------------------------------------------ */
+
 export const class9MathModules = [
   { title: "Number System and Operations", slug: "chapter-1-nsao" },
   { title: "Quadrilaterals", slug: "chapter-2-quadrilaterals" },
@@ -152,3 +160,48 @@ export const modulesMap = {
     "mental-ability": class6MentalAbilityModules
   }
 };
+
+/* ------------------------------------------------------------------ */
+/*  Async API helpers — primary source for module/subject data.       */
+/*  Falls back to modulesMap when the API is unreachable.             */
+/* ------------------------------------------------------------------ */
+
+const moduleCache = {};
+
+export async function fetchModules(grade, subject) {
+  const key = `${grade}:${subject}`;
+  if (moduleCache[key]) return moduleCache[key];
+  try {
+    const { data } = await api.get("/learning/modules", { params: { grade, subject } });
+    if (Array.isArray(data) && data.length > 0) {
+      moduleCache[key] = data;
+      return data;
+    }
+  } catch {
+    /* fall through to static fallback */
+  }
+  const fallback = modulesMap[grade]?.[subject] || [];
+  moduleCache[key] = fallback;
+  return fallback;
+}
+
+export async function fetchSubjects(grade) {
+  const key = `subjects:${grade}`;
+  if (moduleCache[key]) return moduleCache[key];
+  try {
+    const { data } = await api.get("/learning/subjects", { params: { grade } });
+    if (Array.isArray(data) && data.length > 0) {
+      moduleCache[key] = data;
+      return data;
+    }
+  } catch {
+    /* fall through to static fallback */
+  }
+  const fallback = Object.keys(modulesMap[grade] || { maths: 1, science: 1, english: 1 });
+  moduleCache[key] = fallback;
+  return fallback;
+}
+
+export function clearModuleCache() {
+  Object.keys(moduleCache).forEach((k) => delete moduleCache[k]);
+}

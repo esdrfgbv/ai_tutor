@@ -413,7 +413,7 @@ export default function StudentDashboard() {
               <Trophy size={16} style={{ color: "#ffd700" }} />
               <h2 className="font-display font-bold text-white">Leaderboard</h2>
             </div>
-            <Link to="/analytics" className="flex items-center gap-1 text-xs font-semibold transition-colors" style={{ color: "#8a8a8a" }}
+            <Link to="/leaderboard" className="flex items-center gap-1 text-xs font-semibold transition-colors" style={{ color: "#8a8a8a" }}
               onMouseEnter={(e) => e.currentTarget.style.color = "#adff44"}
               onMouseLeave={(e) => e.currentTarget.style.color = "#8a8a8a"}>
               View All <ChevronRight size={12} />

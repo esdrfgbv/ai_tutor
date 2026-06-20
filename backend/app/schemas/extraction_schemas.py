@@ -178,6 +178,8 @@ class RandomTestGenerateIn(BaseModel):
     source_ids: list[int] = []
     description: str | None = None
     negative_marking: float = 0.0
+    total_marks: int = 100
+    scheduled_date: str | None = None
 
 
 # ─── Mock Test Builder ──────────────────────────────────────────────────────

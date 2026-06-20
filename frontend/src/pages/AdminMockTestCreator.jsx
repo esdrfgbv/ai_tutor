@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { Plus, Trash2, Calendar, Target, FileText, Layers, CheckCircle2, ChevronLeft, X } from "lucide-react";
+import { Plus, Trash2, Calendar, Target, FileText, Layers, CheckCircle2, ChevronLeft, X, Wand2 } from "lucide-react";
 import api from "../api/client";
 import QuestionBankBrowser from "../components/QuestionBankBrowser";
+import RandomTestModal from "../components/RandomTestModal";
 
 export default function AdminMockTestCreator() {
   const [step, setStep] = useState(1); // 1: Details, 2: Questions
+  const [isRandomModalOpen, setIsRandomModalOpen] = useState(false);
   
   const [form, setForm] = useState({
     title: "",
@@ -120,10 +122,17 @@ export default function AdminMockTestCreator() {
           <p className={`text-neutral-400 text-sm ${step === 2 ? 'hidden' : 'block'}`}>Create a targeted exam using questions extracted from PDFs.</p>
         </div>
         
-        <div className="flex items-center gap-2 text-sm font-bold bg-neutral-900 p-1.5 rounded-xl border border-white/10">
+        <div className="flex items-center gap-3">
           <button 
-            onClick={() => setStep(1)}
-            className={`flex items-center gap-2 px-5 py-2 rounded-lg transition-colors ${step === 1 ? 'bg-white/10 text-white shadow-sm' : 'text-neutral-500 hover:text-white hover:bg-white/5'}`}
+            onClick={() => setIsRandomModalOpen(true)}
+            className="flex items-center gap-2 bg-neutral-800 text-white border border-white/10 px-4 py-2 rounded-xl text-sm font-bold hover:bg-neutral-700 transition-colors"
+          >
+            <Wand2 size={16} /> Auto-Generate
+          </button>
+          <div className="flex items-center gap-2 text-sm font-bold bg-neutral-900 p-1.5 rounded-xl border border-white/10">
+            <button 
+              onClick={() => setStep(1)}
+              className={`flex items-center gap-2 px-5 py-2 rounded-lg transition-colors ${step === 1 ? 'bg-white/10 text-white shadow-sm' : 'text-neutral-500 hover:text-white hover:bg-white/5'}`}
           >
             <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs ${step === 1 ? 'bg-[#adff44] text-black' : 'bg-black border border-white/20'}`}>1</div>
             Details & Targets
@@ -140,6 +149,11 @@ export default function AdminMockTestCreator() {
           </button>
         </div>
       </div>
+      </div>
+
+      {isRandomModalOpen && (
+        <RandomTestModal onClose={() => setIsRandomModalOpen(false)} />
+      )}
 
       <div className={`flex-1 overflow-hidden flex flex-col min-h-0 ${step === 2 ? 'p-2' : 'p-8'}`}>
         {step === 1 ? (
@@ -327,4 +341,4 @@ export default function AdminMockTestCreator() {
       </div>
     </div>
   );
-}
+} 

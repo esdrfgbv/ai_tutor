@@ -67,14 +67,23 @@ class Settings(BaseSettings):
     source_root: Path = Path("..")
 
     # =========================================
-    # QUESTION EXTRACTION
+    # QUESTION EXTRACTION (LEGACY)
     # =========================================
 
     question_images_dir: Path = Path("../uploads/question_images")
-    mock_test_papers_dir: Path = Path("../mock test papers")
-    navodaya_pyqs_dir: Path = Path("../novodaya pyqs")
-    aiseee_pyqs_dir: Path = Path("../aiseee pyqs")
     extraction_batch_size: int = 50
+
+    # =========================================
+    # KNOWLEDGE BASE
+    # =========================================
+
+    knowledge_upload_dir: Path = Path("../uploads/knowledge")
+    dedup_similarity_threshold: float = 0.95
+    max_processing_retries: int = 3
+    chunk_size_tokens: int = 500
+    chunk_overlap_tokens: int = 50
+
+    gemini_vision_model: str = "gemini-1.5-flash"
 
     # =========================================
     # ADMIN
@@ -141,6 +150,11 @@ def get_settings() -> Settings:
     if not Path(settings.upload_dir).is_absolute():
         settings.upload_dir = (
             root / settings.upload_dir
+        ).resolve()
+
+    if not Path(settings.knowledge_upload_dir).is_absolute():
+        settings.knowledge_upload_dir = (
+            root / settings.knowledge_upload_dir
         ).resolve()
 
     return settings

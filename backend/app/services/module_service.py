@@ -1,13 +1,17 @@
+from __future__ import annotations
+
 import re
 from pathlib import Path
-from app.services.chapter_service import get_subject_dir
+
+from sqlalchemy.orm import Session
+
+from app.core.config import get_settings
+from app.models.knowledge_models import KnowledgeDocument
+
 
 class ModuleService:
-    def normalize_chapter_name(self, name: str) -> str:
-        """
-        Converts names like 'Coal and Petroleum Test - 10' or 'chapter-15-coal and petroleum.pdf'
-        into a normalized string 'coal and petroleum'.
-        """
+    @staticmethod
+    def normalize_chapter_name(name: str) -> str:
         name = name.lower()
         name = name.replace(".pdf", "")
         name = re.sub(r"^chapter-\d+-", "", name)
@@ -17,38 +21,78 @@ class ModuleService:
         name = re.sub(r"\s+", " ", name).strip()
         return name
 
-    def get_pdf_modules(self, subject: str, grade: int | None = None) -> dict[str, dict]:
-        """
-        Scans the subject directory to find PDFs and extracts module order.
-        Returns: { 'normalized_name': {'order': int, 'source_pdf': str} }
-        """
-        pdf_dir = get_subject_dir(subject, grade)
-        modules = {}
-        if not pdf_dir.exists():
-            return modules
+    def get_pdf_modules(
+        self,
+        subject: str,
+        grade: int | None = None,
+        db: Session | None = None,
+    ) -> dict[str, dict]:
+        """Discover modules from KB documents and filesystem PDFs (merged)."""
+        normalized = subject.lower().strip()
+        modules: dict[str, dict] = {}
+        order_counter = 0
 
-        def sort_key(path: Path) -> int:
-            match = re.search(r"^chapter-(\d+)-", path.name.lower())
-            return int(match.group(1)) if match else 999
+        # 1) KB — only documents with a chapter assigned
+        if db and grade:
+            docs = (
+                db.query(KnowledgeDocument)
+                .filter(
+                    KnowledgeDocument.doc_class == str(grade),
+                    KnowledgeDocument.doc_subject == normalized,
+                    KnowledgeDocument.doc_chapter.isnot(None),
+                    KnowledgeDocument.is_deleted.is_(False),
+                )
+                .order_by(KnowledgeDocument.id)
+                .all()
+            )
+            for doc in docs:
+                order_counter += 1
+                norm = self.normalize_chapter_name(
+                    doc.original_file_name or doc.file_name
+                )
+                if norm not in modules:
+                    modules[norm] = {
+                        "order": order_counter,
+                        "source_pdf": doc.original_file_name or doc.file_name,
+                        "display_name": (
+                            doc.doc_chapter
+                            or Path(doc.original_file_name).stem.replace("-", " ").title()
+                        ),
+                    }
 
-        for file_path in sorted(pdf_dir.glob("*.pdf"), key=sort_key):
-            filename = file_path.name
-            normalized = self.normalize_chapter_name(filename)
-            match = re.search(r"^chapter-(\d+)-", filename.lower())
-            order = int(match.group(1)) if match else 999
-            modules[normalized] = {
-                "order": order,
-                "source_pdf": filename,
-                "display_name": normalized.title()
-            }
+        # 2) Filesystem (adds PDFs not already covered by KB)
+        root = get_settings().source_root
+        dir_name = f"class_{grade}"
+        pdf_dir = root / dir_name / normalized
+        if pdf_dir.exists():
+            def sort_key(path: Path) -> int:
+                match = re.search(r"^chapter-(\d+)-", path.name.lower())
+                return int(match.group(1)) if match else 999
+
+            for file_path in sorted(pdf_dir.glob("*.pdf"), key=sort_key):
+                filename = file_path.name
+                norm = self.normalize_chapter_name(filename)
+                if norm in modules:
+                    continue
+                order_counter += 1
+                match = re.search(r"^chapter-(\d+)-", filename.lower())
+                order = int(match.group(1)) if match else 999
+                modules[norm] = {
+                    "order": order,
+                    "source_pdf": filename,
+                    "display_name": norm.title(),
+                }
+
         return modules
 
-    def group_quizzes_by_module(self, subject: str, raw_tests: list[dict], grade: int | None = None) -> list[dict]:
-        """
-        Groups raw mock tests by their normalized module name.
-        raw_tests: list of dicts like {'test_name': '...', 'question_count': ...}
-        """
-        pdf_modules = self.get_pdf_modules(subject, grade)
+    def group_quizzes_by_module(
+        self,
+        subject: str,
+        raw_tests: list[dict],
+        grade: int | None = None,
+        db: Session | None = None,
+    ) -> list[dict]:
+        pdf_modules = self.get_pdf_modules(subject, grade, db=db)
         grouped = {}
         mixed_group = []
 
@@ -76,7 +120,7 @@ class ModuleService:
                         "module_order": mod_data["order"],
                         "normalized_name": mod_norm,
                         "source_pdf": mod_data["source_pdf"],
-                        "quizzes": []
+                        "quizzes": [],
                     }
                 grouped[mod_norm]["quizzes"].append(test)
                 break
@@ -92,7 +136,7 @@ class ModuleService:
                 display_quizzes.append({
                     "raw_test_name": q["test_name"],
                     "display_name": f"Quiz {idx + 1}",
-                    "question_count": q["question_count"]
+                    "question_count": q["question_count"],
                 })
             mod_group["quizzes"] = display_quizzes
             result.append(mod_group)
@@ -106,16 +150,17 @@ class ModuleService:
                 display_mixed.append({
                     "raw_test_name": q["test_name"],
                     "display_name": f"Practice Set {idx + 1}",
-                    "question_count": q["question_count"]
+                    "question_count": q["question_count"],
                 })
             result.append({
                 "module_name": "Mixed Practice",
                 "module_order": 9999,
                 "normalized_name": "mixed practice",
                 "source_pdf": None,
-                "quizzes": display_mixed
+                "quizzes": display_mixed,
             })
 
         return result
+
 
 module_service = ModuleService()

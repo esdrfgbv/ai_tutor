@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   BookOpen, StickyNote, Bookmark, Clock, Search,
@@ -6,7 +6,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useStudyWorkspace } from "../../context/StudyWorkspaceContext";
-import { modulesMap } from "../../utils/modules";
+import { fetchModules } from "../../utils/modules";
 
 const TABS = [
   { id: "chapters", icon: BookOpen, label: "Chapters", emoji: "📖" },
@@ -24,8 +24,14 @@ export default function StudySidebar() {
 
   const [activeTab, setActiveTab] = useState("chapters");
   const [chapterSearch, setChapterSearch] = useState("");
+  const [modules, setModules] = useState([]);
 
-  const availableModules = (modulesMap[grade]?.[subject] || []).filter((m) =>
+  useEffect(() => {
+    if (!grade || !subject) return;
+    fetchModules(grade, subject).then(setModules);
+  }, [grade, subject]);
+
+  const availableModules = modules.filter((m) =>
     m.title.toLowerCase().includes(chapterSearch.toLowerCase())
   );
 

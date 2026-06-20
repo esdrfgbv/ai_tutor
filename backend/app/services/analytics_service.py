@@ -110,7 +110,7 @@ class AnalyticsService:
             for a in reversed(attempts[:12])
         ]
         daily_progress = self._daily_progress(db, student)
-        rank, percentile = leaderboard_service.student_rank(db, student.id, student.grade)
+        rank, percentile = leaderboard_service.student_rank(db, student.id)
         recommendations = self.recommendations(avg_accuracy, weak_topics, completion)
         study_plan = self._study_plan(weak_topics, completion, student.grade)
         mock_test_summary = [

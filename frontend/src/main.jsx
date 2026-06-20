@@ -16,11 +16,13 @@ import AdminStakeholderPage from "./pages/AdminStakeholderPage.jsx";
 import AdminQuestionBankPage from "./pages/AdminQuestionBankPage.jsx";
 import AdminMockTestCreator from "./pages/AdminMockTestCreator.jsx";
 import PDFUploadManager from "./pages/PDFUploadManager.jsx";
+import KnowledgeBasePage from "./pages/KnowledgeBasePage.jsx";
 import ChaptersPage from "./pages/ChaptersPage.jsx";
 import ChapterDetailPage from "./pages/ChapterDetailPage.jsx";
 import DoubtSolverPage from "./pages/DoubtSolverPage.jsx";
 import QuizPage from "./pages/QuizPage.jsx";
 import AnalyticsPage from "./pages/AnalyticsPage.jsx";
+import LeaderboardPage from "./pages/LeaderboardPage.jsx";
 import PdfViewerPage from "./pages/PdfViewerPage.jsx";
 import ModuleLearningPage from "./pages/ModuleLearningPage.jsx";
 import ProfilePage from "./pages/ProfilePage.jsx";
@@ -50,12 +52,14 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                 <Route path="/admin/mock-tests" element={<ProtectedRoute roles={["admin"]}><AdminMockTestCreator /></ProtectedRoute>} />
                 <Route path="/admin/stakeholder" element={<ProtectedRoute roles={["admin"]}><AdminStakeholderPage /></ProtectedRoute>} />
                 <Route path="/admin/pdf-manager" element={<ProtectedRoute roles={["admin"]}><PDFUploadManager /></ProtectedRoute>} />
+                <Route path="/admin/knowledge-base" element={<ProtectedRoute roles={["admin"]}><KnowledgeBasePage /></ProtectedRoute>} />
                 <Route path="/chapters" element={<ChaptersPage />} />
                 <Route path="/chapters/:chapterId" element={<ChapterDetailPage />} />
                 <Route path="/viewer/:subject/:slug" element={<PdfViewerPage />} />
                 <Route path="/study/:subject/:slug" element={<ModuleLearningPage />} />
                 <Route path="/doubts" element={<DoubtSolverPage />} />
                 <Route path="/quiz" element={<QuizPage />} />
+                <Route path="/leaderboard" element={<LeaderboardPage />} />
                 <Route path="/analytics" element={<AnalyticsPage />} />
                 <Route path="/profile" element={<ProfilePage />} />
                 <Route path="/settings" element={<SettingsPage />} />

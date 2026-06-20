@@ -9,7 +9,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import api from "../api/client";
 import Markdown from "../components/Markdown.jsx";
 import AIOrb from "../components/AIOrb.jsx";
-import { modulesMap } from "../utils/modules";
+import { fetchModules, fetchSubjects } from "../utils/modules";
 import { useAuth } from "../context/AuthContext.jsx";
 
 const ACTION_CHIPS = [
@@ -54,6 +54,8 @@ export default function DoubtSolverPage() {
   const [sessionTime, setSessionTime] = useState(0);
   const [selectedSubject, setSelectedSubject] = useState(subject);
   const [chapterSearch, setChapterSearch] = useState("");
+  const [availableSubjects, setAvailableSubjects] = useState([]);
+  const [availableModules, setAvailableModules] = useState([]);
 
   const chatEndRef = useRef(null);
   const inputRef = useRef(null);
@@ -64,6 +66,16 @@ export default function DoubtSolverPage() {
   useEffect(() => {
     api.get("/learning/profile").then((r) => setGrade(r.data.grade || 9)).catch(() => {});
   }, []);
+
+  useEffect(() => {
+    if (!resolvedGrade) return;
+    fetchSubjects(resolvedGrade).then(setAvailableSubjects);
+  }, [resolvedGrade]);
+
+  useEffect(() => {
+    if (!resolvedGrade || !selectedSubject) return;
+    fetchModules(resolvedGrade, selectedSubject).then(setAvailableModules);
+  }, [resolvedGrade, selectedSubject]);
 
   useEffect(() => {
     inputRef.current?.focus();
@@ -87,8 +99,8 @@ export default function DoubtSolverPage() {
 
   const contextLabel = [`Class ${resolvedGrade}`, subject.charAt(0).toUpperCase() + subject.slice(1), chapter].filter(Boolean).join(" · ");
 
-  // Available chapters for left panel
-  const availableModules = (modulesMap[resolvedGrade]?.[selectedSubject] || []).filter((m) =>
+  // Filtered modules for left panel
+  const filteredModules = availableModules.filter((m) =>
     m.title.toLowerCase().includes(chapterSearch.toLowerCase())
   );
 
@@ -164,7 +176,7 @@ export default function DoubtSolverPage() {
               <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#8a8a8a" }}>Study Navigator</p>
               {/* Subject tabs */}
               <div className="flex gap-1 p-0.5 rounded-xl mb-3" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)" }}>
-                {Object.keys(modulesMap[resolvedGrade] || { maths: [], science: [], english: [] }).slice(0, 3).map((s) => (
+                {(availableSubjects.length ? availableSubjects : ["maths", "science", "english"]).slice(0, 3).map((s) => (
                   <button
                     key={s}
                     onClick={() => setSelectedSubject(s)}
@@ -196,8 +208,8 @@ export default function DoubtSolverPage() {
             </div>
 
             <div className="flex-1 overflow-y-auto p-3 space-y-1">
-              {availableModules.length > 0 ? (
-                availableModules.map((mod, i) => (
+              {filteredModules.length > 0 ? (
+                filteredModules.map((mod, i) => (
                   <Link
                     key={mod.slug}
                     to={`/study/${selectedSubject}/${mod.slug}`}

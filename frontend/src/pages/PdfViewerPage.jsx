@@ -4,29 +4,14 @@ import { ArrowLeft, ClipboardList, ExternalLink, BookOpen, AlertCircle, Brain } 
 import api from "../api/client";
 import { useStudySession } from "../context/StudySessionContext.jsx";
 import { useAuth } from "../context/AuthContext.jsx";
-import { modulesMap } from "../utils/modules";
-
-function getModuleTitle(subject, slug) {
-  for (const grade in modulesMap) {
-    const list = modulesMap[grade][subject] || [];
-    const module = list.find((m) => m.slug === slug);
-    if (module) return module.title;
-  }
-
-  return slug
-    .split("-")
-    .map((word) => {
-      if (word.toLowerCase() === "nsao") return "Number System and Operations";
-      return word.charAt(0).toUpperCase() + word.slice(1);
-    })
-    .join(" ");
-}
+import { fetchModules } from "../utils/modules";
 
 export default function PdfViewerPage() {
   const { subject, slug } = useParams();
   const { startSession, endSession } = useStudySession();
   const { user } = useAuth();
   const [grade, setGrade] = useState(null);
+  const [title, setTitle] = useState("");
 
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
@@ -42,12 +27,25 @@ export default function PdfViewerPage() {
   }, [user]);
 
   useEffect(() => {
+    if (!grade || !subject || !slug) return;
+    fetchModules(grade, subject).then((mods) => {
+      const found = mods.find((m) => m.slug === slug);
+      setTitle(
+        found?.title ||
+          slug
+            .split("-")
+            .map((w) => (w.toLowerCase() === "nsao" ? "Number System and Operations" : w.charAt(0).toUpperCase() + w.slice(1)))
+            .join(" ")
+      );
+    });
+  }, [grade, subject, slug]);
+
+  useEffect(() => {
     startSession("pdf_reading", subject || "maths", slug);
     return () => endSession();
   }, [subject, slug]);
 
   const pdfUrl = grade ? `${api.defaults.baseURL}/learning/class-${grade}/${subject}/pdf/${slug}` : null;
-  const title = getModuleTitle(subject, slug);
 
   return (
     <div className="min-h-screen bg-[#f8fbf9] dark:bg-[#111816] flex flex-col">

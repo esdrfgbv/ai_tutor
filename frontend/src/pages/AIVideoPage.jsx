@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Loader2, Sparkles, ChevronDown } from "lucide-react";
 import { generateVideo, CATEGORIES } from "../lib/groq.js";
 import { VideoPlayer } from "../components/sparkle/VideoPlayer.jsx";
-import { FloatingShapes } from "../components/sparkle/FloatingShapes.jsx";
 
 const SAMPLE_TOPICS = [
   "What is Photosynthesis?",
@@ -48,139 +47,162 @@ export default function AIVideoPage() {
   };
 
   return (
-    <div className="relative min-h-screen">
-      <FloatingShapes variant={videoData ? "player" : "landing"} />
-
-      <div className="relative z-10">
+    // Clean, flat slate background. Zero gradients, zero ambient circles.
+    <div className="min-h-screen bg-[#09090b] text-slate-100 selection:bg-lime-400 selection:text-black">
+      
+      {/* Container wrapper */}
+      <div className="max-w-4xl mx-auto px-6 py-16 md:py-24">
         {!videoData ? (
-          <div className="max-w-3xl mx-auto">
+          <div className="space-y-12">
+            
             {/* Header */}
-            <div className="text-center mb-10">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs mb-5"
-                style={{ background: "rgba(173,255,68,0.1)", border: "1px solid rgba(173,255,68,0.2)", color: "rgba(173,255,68,0.8)" }}>
-                <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "#ADFF44" }} />
+            <div className="text-center space-y-4">
+              <div 
+                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider"
+                style={{ background: "rgba(173,255,68,0.05)", border: "1px solid rgba(173,255,68,0.2)", color: "#ADFF44" }}
+              >
+                <span className="w-1.5 h-1.5 rounded-full" style={{ background: "#ADFF44" }} />
                 AI Video Tutor · Powered by Groq
               </div>
-              <h1 className="text-4xl font-bold text-white mb-3 leading-tight">
+              
+              <h1 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight max-w-2xl mx-auto">
                 Learn Anything in{" "}
-                <span style={{ color: "#ADFF44" }}>60 Seconds</span>
+                <span className="inline-block" style={{ color: "#ADFF44" }}>60 Seconds</span>
               </h1>
-              <p className="text-white/40 text-base max-w-xl mx-auto">
-                Type any topic and get an interactive AI-narrated video lecture with slide-by-slide explanations,
-                perfectly tailored for JNV & Sainik School prep.
+              
+              <p className="text-slate-400 text-sm md:text-base max-w-lg mx-auto font-normal leading-relaxed">
+                Type any topic and get an interactive AI-narrated video lecture with slide-by-slide explanations, 
+                tailored perfectly for JNV & Sainik School prep.
               </p>
             </div>
 
-            {/* Input card */}
-            <div className="p-6 rounded-2xl mb-6" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }}>
-              <label className="block text-xs font-medium text-white/40 mb-3 uppercase tracking-wider">Enter your topic</label>
+            {/* Input Card Container */}
+            <div className="bg-[#121214] border border-white/[0.06] rounded-2xl p-6 relative shadow-xl">
+              <label className="block text-xs font-bold text-slate-400 mb-3 uppercase tracking-widest">
+                Enter your topic
+              </label>
+              
               <textarea
                 value={topic}
                 onChange={(e) => setTopic(e.target.value)}
                 onKeyDown={(e) => {
                   if (e.key === "Enter" && (e.ctrlKey || e.metaKey) && !loading) handleGenerate();
                 }}
-                placeholder="e.g. How to find HCF and LCM step by step"
-                className="w-full rounded-xl px-4 py-3 text-sm resize-none outline-none transition-all"
+                placeholder="e.g., How to find HCF and LCM step by step"
+                className="w-full rounded-xl px-4 py-3.5 text-sm resize-none bg-[#18181b] border border-white/[0.06] text-white placeholder-slate-600 outline-none transition-all duration-200 focus:border-white/20"
                 rows={3}
-                style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.85)", caretColor: "#ADFF44" }}
+                style={{ caretColor: "#ADFF44" }}
               />
 
-              <div className="flex flex-wrap gap-3 mt-4">
-                {/* Category selector */}
-                <div className="relative">
-                  <button
-                    onClick={() => setShowCatMenu((p) => !p)}
-                    className="flex items-center gap-2 px-3 py-2 rounded-xl text-sm transition-all"
-                    style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.6)" }}
-                  >
-                    <span>{selectedCat.icon}</span>
-                    <span>{selectedCat.label}</span>
-                    <ChevronDown className="w-3 h-3" />
-                  </button>
-                  {showCatMenu && (
-                    <div
-                      className="absolute top-full left-0 mt-1 z-50 p-1 rounded-xl min-w-[180px] space-y-0.5"
-                      style={{ background: "rgba(15,15,15,0.98)", border: "1px solid rgba(255,255,255,0.1)", boxShadow: "0 20px 60px rgba(0,0,0,0.8)" }}
-                    >
-                      {CATEGORIES.map((cat) => (
-                        <button
-                          key={cat.id}
-                          onClick={() => { setCategory(cat.id); setShowCatMenu(false); }}
-                          className="w-full text-left flex items-center gap-2 px-3 py-2 rounded-lg text-xs transition-all"
-                          style={{
-                            background: category === cat.id ? "rgba(173,255,68,0.1)" : "transparent",
-                            color: category === cat.id ? "#ADFF44" : "rgba(255,255,255,0.55)",
-                          }}
-                        >
-                          <span>{cat.icon}</span>
-                          <div>
-                            <div className="font-medium">{cat.label}</div>
-                            <div className="text-xs opacity-50">{cat.desc}</div>
-                          </div>
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </div>
-
-                {/* Language toggle */}
-                <div className="flex items-center gap-0 rounded-xl overflow-hidden" style={{ border: "1px solid rgba(255,255,255,0.1)" }}>
-                  {["english", "hindi"].map((lang) => (
+              <div className="flex flex-wrap items-center justify-between gap-4 mt-6">
+                <div className="flex flex-wrap items-center gap-3">
+                  
+                  {/* Category Dropdown */}
+                  <div className="relative">
                     <button
-                      key={lang}
-                      onClick={() => setLanguage(lang)}
-                      className="px-3 py-2 text-xs font-medium transition-all capitalize"
-                      style={{
-                        background: language === lang ? "#ADFF44" : "rgba(255,255,255,0.05)",
-                        color: language === lang ? "#000" : "rgba(255,255,255,0.4)",
-                      }}
+                      onClick={() => setShowCatMenu((p) => !p)}
+                      className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold transition-all duration-200 bg-[#18181b] border border-white/[0.06] text-slate-300 hover:text-white"
                     >
-                      {lang === "english" ? "🇬🇧 English" : "🇮🇳 Hindi"}
+                      <span>{selectedCat.icon}</span>
+                      <span>{selectedCat.label}</span>
+                      <ChevronDown className={`w-3.5 h-3.5 opacity-50 transition-transform duration-200 ${showCatMenu ? "rotate-180" : ""}`} />
                     </button>
-                  ))}
+                    
+                    {showCatMenu && (
+                      <>
+                        <div className="fixed inset-0 z-40" onClick={() => setShowCatMenu(false)} />
+                        <div className="absolute top-full mt-2 left-0 z-50 p-1.5 rounded-xl min-w-[240px] space-y-1 border border-white/[0.06] bg-[#121214] shadow-2xl">
+                          {CATEGORIES.map((cat) => (
+                            <button
+                              key={cat.id}
+                              onClick={() => { setCategory(cat.id); setShowCatMenu(false); }}
+                              className="w-full text-left flex items-start gap-3 px-3 py-2 rounded-lg transition-all duration-150 hover:bg-white/[0.02]"
+                              style={{
+                                background: category === cat.id ? "rgba(173,255,68,0.06)" : "transparent",
+                              }}
+                            >
+                              <span className="text-base mt-0.5">{cat.icon}</span>
+                              <div>
+                                <div className="font-semibold text-xs transition-colors" style={{ color: category === cat.id ? "#ADFF44" : "#FFF" }}>
+                                  {cat.label}
+                                </div>
+                                <div className="text-[11px] text-slate-400 mt-0.5">{cat.desc}</div>
+                              </div>
+                            </button>
+                          ))}
+                        </div>
+                      </>
+                    )}
+                  </div>
+
+                  {/* Language Selector */}
+                  <div className="flex items-center p-1 rounded-xl bg-[#18181b] border border-white/[0.06]">
+                    {["english", "hindi"].map((lang) => (
+                      <button
+                        key={lang}
+                        onClick={() => setLanguage(lang)}
+                        className="px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all duration-200 capitalize"
+                        style={{
+                          background: language === lang ? "#ADFF44" : "transparent",
+                          color: language === lang ? "#000" : "rgba(255,255,255,0.4)",
+                        }}
+                      >
+                        {lang === "english" ? "🇬🇧 Eng" : "🇮🇳 Hin"}
+                      </button>
+                    ))}
+                  </div>
                 </div>
 
+                {/* Primary Action Button */}
                 <button
                   onClick={handleGenerate}
                   disabled={!topic.trim() || loading}
-                  className="ml-auto flex items-center gap-2 px-6 py-2 rounded-xl font-medium text-sm transition-all disabled:opacity-40"
-                  style={{ background: "linear-gradient(135deg, #ADFF44, #adff44)", color: "#000" }}
+                  className="flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl font-bold text-xs active:scale-[0.98] disabled:opacity-30 disabled:pointer-events-none transition-all duration-200 w-full sm:w-auto"
+                  style={{ background: "#ADFF44", color: "#000" }}
                 >
                   {loading ? (
-                    <><Loader2 className="w-4 h-4 animate-spin" /> Generating…</>
+                    <><Loader2 className="w-3.5 h-3.5 animate-spin" /> Generating…</>
                   ) : (
-                    <><Sparkles className="w-4 h-4" /> Generate Video</>
+                    <><Sparkles className="w-3.5 h-3.5 fill-current" /> Generate Video</>
                   )}
                 </button>
               </div>
 
+              {/* Status and Errors */}
               {loading && (
-                <div className="mt-4 flex items-center gap-3 p-3 rounded-xl" style={{ background: "rgba(173,255,68,0.05)", border: "1px solid rgba(173,255,68,0.1)" }}>
-                  <Loader2 className="w-4 h-4 animate-spin" style={{ color: "#ADFF44" }} />
-                  <span className="text-xs text-white/50">AI is creating your personalized lecture slides…</span>
+                <div 
+                  className="mt-5 flex items-center gap-3 p-3 rounded-xl" 
+                  style={{ background: "rgba(173,255,68,0.02)", border: "1px solid rgba(173,255,68,0.1)" }}
+                >
+                  <Loader2 className="w-3.5 h-3.5 animate-spin" style={{ color: "#ADFF44" }} />
+                  <span className="text-xs font-medium" style={{ color: "rgba(173,255,68,0.7)" }}>AI is creating your personalized lecture slides…</span>
                 </div>
               )}
 
               {error && (
-                <div className="mt-4 p-3 rounded-xl text-xs text-red-300" style={{ background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.2)" }}>
+                <div className="mt-5 p-3 rounded-xl text-xs font-semibold text-red-400 bg-red-500/[0.02] border border-red-500/10">
                   {error}
                 </div>
               )}
             </div>
 
-            {/* Sample topics */}
-            <div>
-              <p className="text-xs text-white/30 mb-3 text-center">Or try a sample topic →</p>
-              <div className="flex flex-wrap gap-2 justify-center">
+            {/* Sample Topics Section */}
+            <div className="space-y-3">
+              <p className="text-[10px] font-bold text-slate-500 tracking-widest text-center uppercase">Or select a sample topic</p>
+              <div className="flex flex-wrap gap-2 justify-center max-w-xl mx-auto">
                 {SAMPLE_TOPICS.map((t) => (
                   <button
                     key={t}
                     onClick={() => { setTopic(t); }}
-                    className="text-xs px-3 py-1.5 rounded-full transition-all"
-                    style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)", color: "rgba(255,255,255,0.35)" }}
-                    onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(173,255,68,0.08)"; e.currentTarget.style.color = "rgba(173,255,68,0.8)"; e.currentTarget.style.borderColor = "rgba(173,255,68,0.2)"; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.04)"; e.currentTarget.style.color = "rgba(255,255,255,0.35)"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.07)"; }}
+                    className="text-xs font-medium px-3.5 py-1.5 rounded-full border bg-[#121214] border-white/[0.04] text-slate-400 hover:border-white/10 active:scale-[0.98] transition-all duration-200"
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.borderColor = "rgba(173,255,68,0.2)";
+                      e.currentTarget.style.color = "#ADFF44";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.borderColor = "rgba(255,255,255,0.04)";
+                      e.currentTarget.style.color = "rgba(255,255,255,0.4)";
+                    }}
                   >
                     {t}
                   </button>
@@ -188,17 +210,17 @@ export default function AIVideoPage() {
               </div>
             </div>
 
-            {/* Feature highlights */}
-            <div className="grid grid-cols-3 gap-4 mt-10">
+            {/* Feature Footers */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4">
               {[
-                { icon: "🎙️", title: "TTS Narration", desc: "Natural voice reads every slide — English & Hindi" },
-                { icon: "💬", title: "Ask Doubts", desc: "Chat sidebar lets you ask questions mid-video" },
-                { icon: "📊", title: "Smart Slides", desc: "Step-by-step logic with progressive text reveal" },
+                { icon: "🎙️", title: "Instant TTS Narration", desc: "Crisp voice lines generation reading through modules naturally." },
+                { icon: "💬", title: "In-Video Doubt Solving", desc: "Integrated chat interfaces help address custom student problems instantly." },
+                { icon: "📊", title: "Structured Slides", desc: "Logical, progressive concept cards customized for high retention." },
               ].map((f) => (
-                <div key={f.title} className="p-4 rounded-xl text-center" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
-                  <div className="text-2xl mb-2">{f.icon}</div>
-                  <p className="text-xs font-medium text-white/60 mb-1">{f.title}</p>
-                  <p className="text-xs text-white/25">{f.desc}</p>
+                <div key={f.title} className="p-4 rounded-xl bg-[#121214] border border-white/[0.04]">
+                  <div className="text-xl mb-2">{f.icon}</div>
+                  <h3 className="text-xs font-bold text-slate-300 mb-1">{f.title}</h3>
+                  <p className="text-[11px] text-slate-500 font-medium leading-relaxed">{f.desc}</p>
                 </div>
               ))}
             </div>

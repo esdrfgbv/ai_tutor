@@ -15,6 +15,7 @@ const studentNav = [
   { to: "/doubts", label: "AI Tutor", icon: Brain, shortLabel: "Tutor" },
   { to: "/quiz", label: "Tests", icon: ClipboardList, shortLabel: "Tests" },
   { to: "/analytics", label: "Analytics", icon: BarChart3, shortLabel: "Stats" },
+  { to: "/leaderboard", label: "Leaderboard", icon: Trophy, shortLabel: "Board" },
   { to: "/profile", label: "Profile", icon: User, shortLabel: "Profile" },
   // ── AI Power Tools section ──
   { to: "/ai-video", label: "AI Video Tutor", icon: Video, shortLabel: "Video", section: "AI Tools" },
@@ -35,6 +36,7 @@ const adminNav = [
   { to: "/admin/stakeholder", label: "Stakeholder Analytics", icon: Activity, shortLabel: "Stake" },
   { to: "/admin/questions", label: "Question Bank", icon: Database, shortLabel: "Q Bank" },
   { to: "/admin/mock-tests", label: "Mock Tests", icon: Target, shortLabel: "Mocks" },
+  { to: "/admin/knowledge-base", label: "Knowledge Base", icon: Layers, shortLabel: "KB" },
   { to: "/profile", label: "Profile", icon: User, shortLabel: "Profile" },
 ];
 
@@ -194,18 +196,7 @@ export default function AppLayout() {
 
         {/* User Section */}
         <div className="p-3 border-t border-white/[0.06]">
-          {/* XP Bar (students only) */}
-          {user.role === "student" && !collapsed && (
-            <div className="mb-3 px-1">
-              <div className="flex items-center justify-between mb-1.5">
-                <span className="text-[10px] text-muted font-medium">Daily XP</span>
-                <span className="text-[10px] text-neon font-bold">240 / 500</span>
-              </div>
-              <div className="progress-bar">
-                <div className="progress-fill" style={{ width: "48%" }} />
-              </div>
-            </div>
-          )}
+
 
           {/* Avatar + Logout */}
           <div className={`flex items-center gap-3 rounded-xl p-2 hover:bg-white/5 transition-all ${collapsed ? "justify-center" : ""}`}>

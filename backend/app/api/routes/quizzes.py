@@ -6,6 +6,8 @@ from app.db.session import get_db
 from app.models.enums import Role
 from app.models.models import Quiz, StudentProfile, User
 from app.schemas.schemas import AttemptIn, AttemptOut, MockTestOut, ModuleOut, QuizGenerateIn, QuizOut, TimerSyncIn
+from app.services.chapter_service import chapter_service
+from app.services.knowledge.metadata_service import metadata_service
 from app.services.mock_test_service import mock_test_service
 from app.services.quiz_service import quiz_service
 from app.services.module_service import module_service
@@ -13,15 +15,22 @@ from app.services.module_service import module_service
 router = APIRouter(prefix="/quizzes", tags=["quizzes"])
 
 @router.get("/subjects")
-def list_subjects():
-    # Based on the folders we have: maths and science
-    return ["maths", "science", "english", "mental-ability"]
+def list_subjects(db: Session = Depends(get_db)):
+    """Return valid subjects from metadata registry."""
+    registry = metadata_service.get_field_values(db, "subject")
+    if registry:
+        return [s["value"] for s in registry if s.get("value")]
+    return chapter_service.get_valid_subjects()
 
 @router.get("/subjects/{subject}/modules", response_model=list[ModuleOut])
-def list_subject_modules(subject: str, user: User = Depends(require_roles(Role.student))):
+def list_subject_modules(
+    subject: str,
+    user: User = Depends(require_roles(Role.student)),
+    db: Session = Depends(get_db),
+):
     grade = user.student_profile.grade if user.student_profile else 9
-    tests = mock_test_service.list_tests(subject, grade)
-    return module_service.group_quizzes_by_module(subject, tests)
+    tests = mock_test_service.list_tests(subject, grade, db=db)
+    return module_service.group_quizzes_by_module(subject, tests, grade, db=db)
 
 
 @router.get("", response_model=list[QuizOut])
@@ -35,9 +44,13 @@ def list_quizzes(grade: int | None = None, subject: str | None = None, db: Sessi
 
 
 @router.get("/mock-tests", response_model=list[MockTestOut])
-def list_mock_tests(subject: str, user: User = Depends(require_roles(Role.student))):
+def list_mock_tests(
+    subject: str,
+    user: User = Depends(require_roles(Role.student)),
+    db: Session = Depends(get_db),
+):
     grade = user.student_profile.grade if user.student_profile else 9
-    return mock_test_service.list_tests(subject, grade)
+    return mock_test_service.list_tests(subject, grade, db=db)
 
 
 @router.post("/module", response_model=QuizOut)

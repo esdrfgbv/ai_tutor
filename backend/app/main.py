@@ -15,6 +15,9 @@ from app.api.routes.bookmarks import router as bookmarks_router
 from app.core.config import get_settings
 from app.core.logging import LoggingMiddleware, get_logger
 from app.core.security import hash_password
+
+# Import knowledge models so tables are created by create_all()
+import app.models.knowledge_models  # noqa: F401
 from app.db.session import Base, SessionLocal, engine
 from app.models.enums import Role
 from app.models.models import Chapter, User
@@ -116,6 +119,10 @@ def create_app() -> FastAPI:
     app.include_router(bookmarks_router, prefix="/api")
     app.include_router(study_plan_router, prefix="/api")
 
+    # Knowledge Base routes (lazy import to avoid circular deps at startup)
+    from app.api.routes.knowledge_base import router as knowledge_base_router
+    app.include_router(knowledge_base_router, prefix="/api")
+
     @app.on_event("startup")
     def bootstrap() -> None:
         _ensure_student_schema()
@@ -149,6 +156,9 @@ def create_app() -> FastAPI:
                                 )
                             )
                 db.add_all(chapters)
+            # Seed knowledge base metadata registry
+            from app.services.knowledge.metadata_service import metadata_service
+            metadata_service.seed_defaults(db)
             db.commit()
         finally:
             db.close()

@@ -231,6 +231,9 @@ class QuizOut(BaseModel):
     chapter: str | None
     quiz_type: str
     duration_minutes: int
+    scheduled_date: datetime | None = None
+    total_marks: int | None = None
+    negative_marking: float = 0.0
     module_order: int | None = None
     quiz_order: int | None = None
     normalized_module_name: str | None = None
@@ -239,6 +242,7 @@ class QuizOut(BaseModel):
 
     class Config:
         from_attributes = True
+        json_encoders = {datetime: lambda v: v.isoformat()}
 
 
 class AttemptIn(BaseModel):
