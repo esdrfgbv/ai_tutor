@@ -329,6 +329,14 @@ class QuestionBankSource(Base, TimestampMixin):
     extraction_error: Mapped[str | None] = mapped_column(Text)
     processed_at: Mapped[datetime | None] = mapped_column(DateTime)
 
+    # ── New Pipeline Columns ──
+    document_hash: Mapped[str | None] = mapped_column(String(64), index=True)
+    classification_metadata: Mapped[dict | None] = mapped_column(JSON)
+    ocr_report: Mapped[dict | None] = mapped_column(JSON)
+    extraction_report: Mapped[dict | None] = mapped_column(JSON)
+    database_report: Mapped[dict | None] = mapped_column(JSON)
+    generated_markdown_path: Mapped[str | None] = mapped_column(String(700))
+
     questions: Mapped[list["QuestionBank"]] = relationship(back_populates="source", cascade="all, delete-orphan")
 
 
@@ -362,6 +370,10 @@ class QuestionBank(Base, TimestampMixin):
     )
     year: Mapped[int | None] = mapped_column(Integer, index=True)
     has_image: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
+
+    # ── New Pipeline Columns ──
+    question_hash: Mapped[str | None] = mapped_column(String(64), unique=True, index=True)
+    table_data: Mapped[dict | None] = mapped_column(JSON)
 
     # ── Relationships ──
     source: Mapped[QuestionBankSource | None] = relationship(back_populates="questions")

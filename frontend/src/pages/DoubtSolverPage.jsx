@@ -45,6 +45,7 @@ export default function DoubtSolverPage() {
   const paramGrade = searchParams.get("grade");
 
   const [grade, setGrade] = useState(9);
+  const [targetExam, setTargetExam] = useState("JNV");
   const [question, setQuestion] = useState("");
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -64,18 +65,23 @@ export default function DoubtSolverPage() {
   const resolvedGrade = paramGrade ? Number(paramGrade) : grade;
 
   useEffect(() => {
-    api.get("/learning/profile").then((r) => setGrade(r.data.grade || 9)).catch(() => {});
+    api.get("/learning/profile")
+      .then((r) => {
+        setGrade(r.data.grade || 9);
+        setTargetExam(r.data.target_exam || "JNV");
+      })
+      .catch(() => {});
   }, []);
 
   useEffect(() => {
     if (!resolvedGrade) return;
-    fetchSubjects(resolvedGrade).then(setAvailableSubjects);
-  }, [resolvedGrade]);
+    fetchSubjects(resolvedGrade, targetExam).then(setAvailableSubjects);
+  }, [resolvedGrade, targetExam]);
 
   useEffect(() => {
     if (!resolvedGrade || !selectedSubject) return;
-    fetchModules(resolvedGrade, selectedSubject).then(setAvailableModules);
-  }, [resolvedGrade, selectedSubject]);
+    fetchModules(resolvedGrade, selectedSubject, targetExam).then(setAvailableModules);
+  }, [resolvedGrade, selectedSubject, targetExam]);
 
   useEffect(() => {
     inputRef.current?.focus();

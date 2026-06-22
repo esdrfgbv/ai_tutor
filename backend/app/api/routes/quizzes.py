@@ -28,9 +28,11 @@ def list_subject_modules(
     user: User = Depends(require_roles(Role.student)),
     db: Session = Depends(get_db),
 ):
-    grade = user.student_profile.grade if user.student_profile else 9
+    profile = user.student_profile
+    grade = profile.grade if profile else 9
+    target_exam = profile.target_exam if profile else "JNV"
     tests = mock_test_service.list_tests(subject, grade, db=db)
-    return module_service.group_quizzes_by_module(subject, tests, grade, db=db)
+    return module_service.group_quizzes_by_module(subject, tests, grade, target_exam=target_exam, db=db)
 
 
 @router.get("", response_model=list[QuizOut])
@@ -70,7 +72,8 @@ def create_mock_quiz(
     user: User = Depends(require_roles(Role.student)),
     db: Session = Depends(get_db),
 ):
-    return quiz_service.create_mock_quiz(db, payload, user.id, test_name)
+    target_exam = user.student_profile.target_exam if user.student_profile else "JNV"
+    return quiz_service.create_mock_quiz(db, payload, user.id, test_name, target_exam=target_exam)
 
 
 @router.get("/{quiz_id}", response_model=QuizOut)

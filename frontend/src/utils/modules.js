@@ -148,17 +148,151 @@ export const class6MentalAbilityModules = [
   { title: "Series", slug: "chapter-16-series" }
 ];
 
-export const modulesMap = {
+/* ------------------------------------------------------------------ */
+/*  Sainik School — Class 6  (class 9 has no content yet)            */
+/* ------------------------------------------------------------------ */
+
+const sainikClass6EnglishModules = [
+  { title: "Noun", slug: "chapter-1-Noun" },
+  { title: "Pronoun", slug: "chapter-2-Pronoun" },
+  { title: "Verb And Modal", slug: "chapter-3-Verb-and-modal" },
+  { title: "Adjective", slug: "chapter-4-Adjective" },
+  { title: "Adverb", slug: "chapter-5-Adverb" },
+  { title: "Conjuction", slug: "chapter-6-conjuction" },
+  { title: "Preposition", slug: "chapter-7-preposition" },
+  { title: "Article", slug: "chapter-8-Article" },
+  { title: "Senetence", slug: "chapter-9-Senetence" },
+  { title: "Framing Of Questions", slug: "chapter-10-Framing-of-Questions" },
+  { title: "Tense", slug: "chapter-11-Tense" },
+  { title: "Question Tag", slug: "chapter-12-Question-Tag" },
+  { title: "One Word Substitution", slug: "chapter-13-One-word-substitution" },
+  { title: "General Vocabulary", slug: "chapter-14-General-Vocabulary" },
+  { title: "Jumble Word", slug: "chapter-15-Jumble-word" },
+  { title: "Reading Comprehension", slug: "chapter-16-Reading-comprehension" },
+  { title: "Noun", slug: "chapter-17-Noun" },
+  { title: "Pronoun", slug: "chapter-18-Pronoun" },
+  { title: "Verb Champs", slug: "chapter-19-verb-champs" },
+  { title: "Adverbs", slug: "chapter-20-Adverbs" },
+  { title: "Adjective", slug: "chapter-21-Adjective" },
+  { title: "Conjunction", slug: "chapter-22-conjunction" },
+  { title: "Preposition", slug: "chapter-23-Preposition" },
+  { title: "Tenses", slug: "chapter-24-Tenses" },
+  { title: "Jumbled Sentences", slug: "chapter-25-Jumbled-Sentences" },
+  { title: "Vocabulary", slug: "chapter-26-Vocabulary" },
+  { title: "Active And Passive Voice", slug: "chapter-27-Active-and-Passive-voice" },
+  { title: "Articles", slug: "chapter-28-Articles" },
+  { title: "Reported Speech", slug: "chapter-29-Reported-speech" },
+  { title: "Notice And Message Writing", slug: "chapter-30-Notice-and-Message-Writing" },
+  { title: "Voice", slug: "chapter-31-Voice" },
+  { title: "Direct And Indirect Speech", slug: "chapter-32-Direct-and-Indirect-speech" },
+  { title: "Idioms And Phrases Champs", slug: "chapter-33-Idioms-and-phrases-champs" },
+  { title: "Narration", slug: "chapter-34-Narration" },
+  { title: "Types Of Sentences", slug: "chapter-35-Types-of-sentences" },
+  { title: "Comprehension", slug: "chapter-36-comprehension" },
+];
+
+const sainikClass6GkModules = [
+  { title: "Indian History", slug: "chapter-1-Indian-History" },
+  { title: "Famous Personalities Of The Freedom Movement", slug: "chapter-2-Famous-Personalities-of-The-Freedom-Movement" },
+  { title: "Indian Constitution", slug: "chapter-3-Indian-Constitution" },
+  { title: "The Universe", slug: "chapter-4-The-Universe" },
+  { title: "World Geography", slug: "chapter-5-world-geography" },
+  { title: "Geography Of India", slug: "chapter-6-geography-of-india" },
+  { title: "Environment And Ecology", slug: "chapter-7-Environment-and-Ecology" },
+  { title: "United Nations", slug: "chapter-8-United-Nations" },
+  { title: "General Knowledge", slug: "chapter-9-General-Knowledge" },
+];
+
+const sainikClass6MathsModules = [
+  { title: "Number Systems", slug: "chapter-1-Number-Systems" },
+  { title: "Fraction And Decimal Fractions", slug: "chapter-2-fraction-and-decimal-fractions" },
+  { title: "Square And Square Roots", slug: "chapter-3-square-and-square-roots" },
+  { title: "Hcf And Lcm", slug: "chapter-3-HCF-and-LCM" },
+  { title: "Simplification", slug: "chapter-4-Simplification" },
+  { title: "Unitary Method", slug: "chapter-6-Unitary-Method" },
+  { title: "Average", slug: "chapter-7-Average" },
+  { title: "Ratio And Proportion", slug: "chapter-8-Ratio-and-Proportion" },
+  { title: "Percentage", slug: "chapter-9-Percentage" },
+  { title: "Profit And Loss", slug: "chapter-10-Profit-and-Loss" },
+  { title: "Simple Interest", slug: "chapter-11-Simple-Interest" },
+  { title: "Time Speed And Distance", slug: "chapter-12-Time-speed-and-distance" },
+  { title: "Algebra", slug: "chapter-13-Algebra" },
+  { title: "Geometry", slug: "chapter-14-Geometry" },
+  { title: "Area And Perimeter", slug: "chapter-15-Area-and-perimeter" },
+  { title: "Volume And Surface Area", slug: "chapter-16-Volume-and-Surface-Area" },
+  { title: "Measurement", slug: "chapter-17-Measurement" },
+  { title: "Knowing Our Numbers", slug: "chapter-18-knowing-our-numbers" },
+  { title: "Whole Numbers", slug: "chapter-19-whole-numbers" },
+  { title: "Playing With Numbers", slug: "chapter-20-playing-with-numbers" },
+  { title: "Basic Geometrical Ideas", slug: "chapter-21-basic-geometrical-ideas" },
+  { title: "Understanding Elementary Shapes", slug: "chapter-22-Understanding-Elementary-Shapes" },
+  { title: "Integers", slug: "chapter-23-Integers" },
+  { title: "Fractions", slug: "chapter-24-Fractions" },
+  { title: "Decimals", slug: "chapter-25-Decimals" },
+  { title: "Data Handling", slug: "chapter-26-Data-Handling" },
+  { title: "Mensuration", slug: "chapter-27-Mensuration" },
+  { title: "Algebra", slug: "chapter-28-Algebra" },
+  { title: "Ratios And Proportions", slug: "chapter-29-Ratios-and-Proportions" },
+  { title: "Symmetry", slug: "chapter-30-Symmetry" },
+  { title: "Practical Geometry", slug: "chapter-31-Practical-Geometry" },
+];
+
+const sainikClass6ReasoningModules = [
+  { title: "Analogy", slug: "chapter-1-Analogy" },
+  { title: "Classification", slug: "chapter-2-classification" },
+  { title: "Series", slug: "chapter-3-series" },
+  { title: "Coding Decoding", slug: "chapter-4-coding-decoding" },
+  { title: "Alphabetical Order Of Words", slug: "chapter-5-alphabetical-order-of-words" },
+  { title: "Ranking Test", slug: "chapter-6-ranking-test" },
+  { title: "Mathematical Operations", slug: "chapter-7-mathematical-operations" },
+  { title: "Blood Relations", slug: "chapter-8-blood-relations" },
+  { title: "Direct Sense Test", slug: "chapter-9-direct-sense-test" },
+  { title: "Logical Venn Diagram", slug: "chapter-10-logical-venn-diagram" },
+  { title: "Clock And Calendar", slug: "chapter-11-clock-and-calendar" },
+  { title: "Sitting Arrangement", slug: "chapter-12-sitting-arrangement" },
+  { title: "Non Verbal Intelligence", slug: "chapter-13-non-verbal-intelligence" },
+];
+
+const sainikClass6ScienceModules = [
+  { title: "Motion", slug: "chapter-1-motion" },
+  { title: "Sound", slug: "chapter-2-sound" },
+  { title: "Changes In Our Surroundings", slug: "chapter-3-changes-in-our-surroundings" },
+  { title: "Materials And Their Properties", slug: "chapter-4-materials-and-their-properties" },
+  { title: "Human System And Sense Organs", slug: "chapter-5-human-system-and-sense-organs" },
+  { title: "Human Health And Diseases", slug: "chapter-6-human-health-and-diseases" },
+  { title: "Heredity", slug: "chapter-7-heredity" },
+  { title: "Diversity In Living Organisms", slug: "chapter-8-diversity-in-living-organisms" },
+];
+
+export const jnvModulesMap = {
   9: {
     maths: class9MathModules,
     science: class9ScienceModules,
-    english: class9EnglishModules
+    english: class9EnglishModules,
   },
   6: {
     maths: class6MathModules,
     english: class6EnglishModules,
-    "mental-ability": class6MentalAbilityModules
-  }
+    "mental-ability": class6MentalAbilityModules,
+  },
+};
+
+export const sainikModulesMap = {
+  9: {
+    /* class 9 in Sainik School has no content yet — leave empty */
+  },
+  6: {
+    english: sainikClass6EnglishModules,
+    maths: sainikClass6MathsModules,
+    science: sainikClass6ScienceModules,
+    gk: sainikClass6GkModules,
+    reasoning: sainikClass6ReasoningModules,
+  },
+};
+
+export const modulesMapByExam = {
+  JNV: jnvModulesMap,
+  Sainik: sainikModulesMap,
 };
 
 /* ------------------------------------------------------------------ */
@@ -168,11 +302,11 @@ export const modulesMap = {
 
 const moduleCache = {};
 
-export async function fetchModules(grade, subject) {
-  const key = `${grade}:${subject}`;
+export async function fetchModules(grade, subject, target_exam = "JNV") {
+  const key = `${target_exam}:${grade}:${subject}`;
   if (moduleCache[key]) return moduleCache[key];
   try {
-    const { data } = await api.get("/learning/modules", { params: { grade, subject } });
+    const { data } = await api.get("/learning/modules", { params: { grade, subject, target_exam } });
     if (Array.isArray(data) && data.length > 0) {
       moduleCache[key] = data;
       return data;
@@ -180,16 +314,17 @@ export async function fetchModules(grade, subject) {
   } catch {
     /* fall through to static fallback */
   }
-  const fallback = modulesMap[grade]?.[subject] || [];
+  const map = modulesMapByExam[target_exam] || jnvModulesMap;
+  const fallback = map[grade]?.[subject] || [];
   moduleCache[key] = fallback;
   return fallback;
 }
 
-export async function fetchSubjects(grade) {
-  const key = `subjects:${grade}`;
+export async function fetchSubjects(grade, target_exam = "JNV") {
+  const key = `subjects:${target_exam}:${grade}`;
   if (moduleCache[key]) return moduleCache[key];
   try {
-    const { data } = await api.get("/learning/subjects", { params: { grade } });
+    const { data } = await api.get("/learning/subjects", { params: { grade, target_exam } });
     if (Array.isArray(data) && data.length > 0) {
       moduleCache[key] = data;
       return data;
@@ -197,7 +332,8 @@ export async function fetchSubjects(grade) {
   } catch {
     /* fall through to static fallback */
   }
-  const fallback = Object.keys(modulesMap[grade] || { maths: 1, science: 1, english: 1 });
+  const map = modulesMapByExam[target_exam] || jnvModulesMap;
+  const fallback = Object.keys(map[grade] || {});
   moduleCache[key] = fallback;
   return fallback;
 }

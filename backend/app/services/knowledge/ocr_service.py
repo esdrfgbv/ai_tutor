@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import logging
 import os
+import tempfile
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -18,12 +19,6 @@ import fitz  # PyMuPDF
 from app.models.enums import DocumentType
 
 logger = logging.getLogger(__name__)
-
-# ── Tesseract initialisation ───────────────────────────────────────────────
-_TESSERACT_PATHS = [
-    r"C:\Program Files\Tesseract-OCR\tesseract.exe",
-    r"C:\Program Files (x86)\Tesseract-OCR\tesseract.exe",
-]
 
 
 @dataclass
@@ -52,18 +47,14 @@ class OCRService:
     """Handles text extraction from all supported document types."""
 
     def __init__(self):
-        self._has_ocr = self._check_ocr_available()
-        if self._has_ocr:
-            self._setup_tesseract()
-
-    @staticmethod
-    def _setup_tesseract():
-        """Point pytesseract to the installed Tesseract binary."""
-        import pytesseract
-        for tp in _TESSERACT_PATHS:
-            if os.path.exists(tp):
-                pytesseract.pytesseract.tesseract_cmd = tp
-                break
+        try:
+            from app.services.knowledge.paddle_ocr_engine import paddle_ocr_engine
+            self._paddle_engine = paddle_ocr_engine
+            self._has_ocr = self._paddle_engine.available
+        except ImportError:
+            self._paddle_engine = None
+            self._has_ocr = False
+            logger.warning("PaddleOCR engine not available for OCRService")
 
     def extract(self, file_path: Path, document_type: DocumentType) -> ExtractionResult:
         """
@@ -182,65 +173,45 @@ class OCRService:
 
     def _ocr_image_bytes(self, image_bytes: bytes) -> str:
         """Run OCR on raw image bytes (JPEG/PNG from inside a PDF)."""
+        if not self._has_ocr:
+            return ""
         try:
-            import pytesseract
-            from PIL import Image
-            import io
+            with tempfile.NamedTemporaryFile(suffix=".png", delete=False) as tmp:
+                tmp.write(image_bytes)
+                tmp_path = tmp.name
 
-            img = Image.open(io.BytesIO(image_bytes))
-            img = self._preprocess_image(img)
-            # Assume single uniform block of text
-            text = pytesseract.image_to_string(
-                img, lang="eng+hin", config="--psm 6",
-            )
-            return text.strip()
+            try:
+                blocks = self._paddle_engine._parse_page_image(tmp_path, 1)
+                text = "\n".join([b.text for b in blocks if b.text])
+                return text.strip()
+            finally:
+                Path(tmp_path).unlink(missing_ok=True)
         except Exception as e:
             logger.debug("Image OCR failed: %s", e)
             return ""
 
-    @staticmethod
-    def _preprocess_image(img):
-        """Preprocess a PIL image for better OCR accuracy."""
-        from PIL import ImageFilter, ImageEnhance
-
-        if img.mode != "L":
-            img = img.convert("L")
-
-        enhancer = ImageEnhance.Contrast(img)
-        img = enhancer.enhance(1.5)
-        img = img.filter(ImageFilter.SHARPEN)
-
-        return img
-
     def _ocr_page(self, page) -> str:
         """Run OCR on a single PDF page at high resolution."""
+        if not self._has_ocr:
+            return ""
         try:
-            import pytesseract
-            from PIL import Image
-            import io
+            # Render page at 1.5x resolution for OCR
+            pix = page.get_pixmap(matrix=fitz.Matrix(1.5, 1.5))
+            img_data = pix.tobytes("png")
 
-            # Render page at 2x resolution for OCR
-            pix = page.get_pixmap(matrix=fitz.Matrix(2, 2))
-            img = Image.open(io.BytesIO(pix.tobytes("png")))
-            img = self._preprocess_image(img)
-            # Automatic page segmentation (handles multi-column layouts)
-            text = pytesseract.image_to_string(
-                img, lang="eng+hin", config="--psm 3",
-            )
-            return text
+            with tempfile.NamedTemporaryFile(suffix=".png", delete=False) as tmp:
+                tmp.write(img_data)
+                tmp_path = tmp.name
+
+            try:
+                blocks = self._paddle_engine._parse_page_image(tmp_path, page.number)
+                text = "\n".join([b.text for b in blocks if b.text])
+                return text.strip()
+            finally:
+                Path(tmp_path).unlink(missing_ok=True)
         except Exception as e:
             logger.warning("Page OCR failed: %s", e)
             return ""
-
-    def _check_ocr_available(self) -> bool:
-        """Check if OCR dependencies are available."""
-        try:
-            import pytesseract  # noqa: F401
-            from PIL import Image  # noqa: F401
-            return True
-        except ImportError:
-            logger.info("pytesseract/PIL not installed. OCR disabled.")
-            return False
 
     # ── DOCX Extraction ──────────────────────────────────────────────────
 
@@ -303,12 +274,8 @@ class OCRService:
             )
 
         try:
-            import pytesseract
-            from PIL import Image
-
-            img = Image.open(str(file_path))
-            img = self._preprocess_image(img)
-            text = pytesseract.image_to_string(img, lang="eng+hin")
+            blocks = self._paddle_engine._parse_page_image(str(file_path), 1)
+            text = "\n".join([b.text for b in blocks if b.text])
 
             pages = []
             if text and text.strip():
@@ -316,15 +283,15 @@ class OCRService:
                     page_number=1,
                     text=text,
                     is_ocr=True,
-                    width=float(img.width),
-                    height=float(img.height),
+                    width=0.0,
+                    height=0.0,
                 ))
 
             return ExtractionResult(
                 pages=pages,
                 total_pages=1 if pages else 0,
                 ocr_pages=1 if pages else 0,
-                extraction_method="pytesseract",
+                extraction_method="paddleocr",
             )
         except Exception as e:
             return ExtractionResult(

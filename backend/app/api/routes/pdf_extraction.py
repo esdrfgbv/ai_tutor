@@ -9,7 +9,7 @@ from app.core.config import get_settings
 from app.db.session import get_db
 from app.models.models import QuestionBank, QuestionBankSource
 from app.schemas.extraction_schemas import ExtractionJobOut, ExtractionStatsOut, LocalImportIn, PDFUploadIn
-from app.services.pdf_question_extractor import import_pdfs_from_directory, pdf_question_extractor
+from app.services.question_extraction.question_extraction_pipeline import question_extraction_pipeline
 
 router = APIRouter(prefix="/admin/pdf-extraction", tags=["admin", "pdf_extraction"])
 settings = get_settings()
@@ -18,7 +18,7 @@ settings = get_settings()
 def run_extraction_background(source_id: int, pdf_path: str, exam_type: str | None, year: int | None, grade: int | None, display_name: str | None):
     db = next(get_db())
     try:
-        pdf_question_extractor.extract_from_pdf(
+        question_extraction_pipeline.process_pdf(
             Path(pdf_path),
             db,
             exam_type=exam_type,
@@ -97,7 +97,27 @@ def import_local_directory(
     def run_batch_import():
         db_bg = next(get_db())
         try:
-            import_pdfs_from_directory(db_bg, dir_path, exam_type=payload.exam_type, grade=payload.grade)
+            import logging
+            logger = logging.getLogger(__name__)
+            directory = Path(dir_path)
+            if not directory.exists():
+                logger.warning("Directory not found: %s", directory)
+                return
+            
+            pdf_files = sorted(directory.glob("*.pdf"))
+            logger.info("Found %d PDFs in %s", len(pdf_files), directory)
+
+            for pdf_path in pdf_files:
+                logger.info("Processing: %s", pdf_path.name)
+                try:
+                    question_extraction_pipeline.process_pdf(
+                        pdf_path,
+                        db_bg,
+                        exam_type=payload.exam_type,
+                        grade=payload.grade,
+                    )
+                except Exception as e:
+                    logger.error("Failed to process %s: %s", pdf_path.name, e)
         finally:
             db_bg.close()
             

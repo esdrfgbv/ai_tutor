@@ -6,7 +6,7 @@ from pathlib import Path
 
 from sqlalchemy.orm import Session
 
-from app.core.config import get_settings
+from app.core.config import exam_dir_name, get_settings
 from app.models.enums import Difficulty, QuestionType
 from app.models.knowledge_models import CanonicalQuestion, KnowledgeDocument
 from app.models.models import Question, Quiz
@@ -65,8 +65,9 @@ class MockTestService:
         if not folder:
             return None
 
+        # Look inside JNV/class_{grade}/ — current mock test JSONs are only for JNV
         dir_name = f"class_{grade}"
-        path = root / dir_name / folder / "questions.json"
+        path = root / "JNV" / dir_name / folder / "questions.json"
         return path if path.exists() else None
 
     def list_tests(
@@ -213,6 +214,7 @@ class MockTestService:
         request: QuizGenerateIn,
         created_by_id: int | None,
         test_name: str,
+        target_exam: str = "JNV",
     ) -> Quiz:
         from app.services.module_service import module_service
 
@@ -223,7 +225,7 @@ class MockTestService:
 
         tests = self.list_tests(request.subject, request.grade, db=db)
         grouped = module_service.group_quizzes_by_module(
-            request.subject, tests, request.grade, db=db,
+            request.subject, tests, request.grade, target_exam=target_exam, db=db,
         )
 
         mod_order = None

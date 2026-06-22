@@ -17,7 +17,7 @@ const TABS = [
 
 export default function StudySidebar() {
   const {
-    sidebarOpen, setSidebarOpen, subject, slug, grade,
+    sidebarOpen, setSidebarOpen, subject, slug, grade, targetExam,
     notes, deleteNote, bookmarks, deleteBookmark, recentDoubts,
     sendMessage, setAiPanelOpen,
   } = useStudyWorkspace();
@@ -28,8 +28,8 @@ export default function StudySidebar() {
 
   useEffect(() => {
     if (!grade || !subject) return;
-    fetchModules(grade, subject).then(setModules);
-  }, [grade, subject]);
+    fetchModules(grade, subject, targetExam).then(setModules);
+  }, [grade, subject, targetExam]);
 
   const availableModules = modules.filter((m) =>
     m.title.toLowerCase().includes(chapterSearch.toLowerCase())

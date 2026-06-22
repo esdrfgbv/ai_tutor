@@ -4,18 +4,20 @@ from pathlib import Path
 
 from sqlalchemy.orm import Session
 
-from app.core.config import get_settings
+from app.core.config import exam_dir_name, get_settings
 from app.models.knowledge_models import KnowledgeDocument, MetadataRegistry
 from app.services.knowledge.metadata_service import metadata_service
 
 CHAPTER_FILE_PATTERN = None  # legacy — will be removed after module_service is updated
 
 
-def get_subject_dir(subject: str, grade: int) -> Path:
-    """Get the base source directory for a given subject (metadata-driven)."""
+def get_subject_dir(subject: str, grade: int, target_exam: str = "JNV") -> Path:
+    """Get the base source directory for a given subject (metadata-driven).
+    Directories are organised as {exam_dir}/class_{grade}/{subject}/.
+    """
     root = get_settings().source_root
     folder_name = f"class_{grade}"
-    return root / folder_name / subject.lower().strip()
+    return root / exam_dir_name(target_exam) / folder_name / subject.lower().strip()
 
 
 def slugify(name: str) -> str:
@@ -47,17 +49,24 @@ class ChapterService:
     empty — supporting incremental migration without breaking existing flows.
     """
 
-    def get_valid_subjects(self, db: Session | None = None) -> list[str]:
+    def get_valid_subjects(
+        self,
+        target_exam: str = "JNV",
+        db: Session | None = None,
+    ) -> list[str]:
         """Return valid subject slugs from MetadataRegistry or filesystem."""
         if db:
             registry = metadata_service.get_field_values(db, "subject")
             if registry:
                 return [s["value"] for s in registry if s.get("value")]
 
-        known = {"maths", "science", "english", "mental-ability"}
+        known: set[str] = set()
         root = get_settings().source_root
+        exam_root = root / exam_dir_name(target_exam)
+        if not exam_root.exists():
+            return sorted(known)
         for dir_name in ("class_9", "class_6"):
-            dir_path = root / dir_name
+            dir_path = exam_root / dir_name
             if dir_path.exists():
                 for item in dir_path.iterdir():
                     if item.is_dir() and "mock" not in item.name.lower():
@@ -68,6 +77,7 @@ class ChapterService:
         self,
         grade: int,
         subject: str,
+        target_exam: str = "JNV",
         db: Session | None = None,
     ) -> list[dict]:
         """List chapters/modules for a grade+subject.
@@ -97,11 +107,17 @@ class ChapterService:
                 if slug in seen_slugs:
                     continue
                 seen_slugs.add(slug)
+
+                # Prefer title parsed from filename over raw doc_chapter
+                file_name = doc.original_file_name or doc.file_name
+                _, parsed_title = parse_chapter_pdf(file_name) if file_name else (None, None)
+                title = parsed_title or doc.doc_chapter or Path(file_name).stem.replace("-", " ").title()
+
                 modules.append({
                     "chapter_number": 0,
-                    "title": doc.doc_chapter or Path(doc.original_file_name).stem.replace("-", " ").title(),
+                    "title": title,
                     "file_path": doc.file_path,
-                    "file_name": doc.original_file_name or doc.file_name,
+                    "file_name": file_name,
                     "slug": slug,
                     "subject": normalized,
                     "grade": grade,
@@ -109,7 +125,7 @@ class ChapterService:
                 })
 
         # 2) Filesystem scan (adds any PDFs not already covered by KB)
-        subject_dir = get_subject_dir(normalized, grade)
+        subject_dir = get_subject_dir(normalized, grade, target_exam)
         if subject_dir.exists():
             for path in sorted(subject_dir.glob("*.pdf"), key=lambda p: p.name.lower()):
                 slug = slugify(path.name)
@@ -135,6 +151,7 @@ class ChapterService:
         subject: str,
         slug: str,
         grade: int,
+        target_exam: str = "JNV",
         db: Session | None = None,
     ) -> Path | None:
         """Resolve a PDF path by subject + slug + grade.
@@ -160,7 +177,7 @@ class ChapterService:
                 return path if path.exists() else None
 
         # 2) Filesystem fallback
-        subject_dir = get_subject_dir(normalized, grade)
+        subject_dir = get_subject_dir(normalized, grade, target_exam)
         for path in subject_dir.glob("*.pdf"):
             if slugify(path.name) == slug:
                 return path

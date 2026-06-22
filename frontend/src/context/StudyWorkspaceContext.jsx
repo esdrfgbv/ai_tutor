@@ -4,7 +4,7 @@ import { useAuth } from "./AuthContext";
 
 const StudyWorkspaceContext = createContext(null);
 
-export function StudyWorkspaceProvider({ children, subject, slug, chapterTitle, grade }) {
+export function StudyWorkspaceProvider({ children, subject, slug, chapterTitle, grade, targetExam }) {
   const { user } = useAuth();
 
   // ── PDF State ──
@@ -232,6 +232,7 @@ export function StudyWorkspaceProvider({ children, subject, slug, chapterTitle, 
         slug,
         chapterTitle,
         grade,
+        targetExam,
 
         // PDF
         currentPage,

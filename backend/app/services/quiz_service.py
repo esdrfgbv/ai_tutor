@@ -21,8 +21,8 @@ class QuizService:
     def create_module_quiz(self, db: Session, request: QuizGenerateIn, created_by_id: int | None, chapter_number: int) -> Quiz:
         return mock_test_service.create_module_quiz(db, request, created_by_id, chapter_number)
 
-    def create_mock_quiz(self, db: Session, request: QuizGenerateIn, created_by_id: int | None, test_name: str) -> Quiz:
-        return mock_test_service.create_mock_quiz(db, request, created_by_id, test_name)
+    def create_mock_quiz(self, db: Session, request: QuizGenerateIn, created_by_id: int | None, test_name: str, target_exam: str = "JNV") -> Quiz:
+        return mock_test_service.create_mock_quiz(db, request, created_by_id, test_name, target_exam=target_exam)
 
     def score_attempt(
         self,

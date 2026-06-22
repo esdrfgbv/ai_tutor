@@ -11,6 +11,7 @@ export default function PdfViewerPage() {
   const { startSession, endSession } = useStudySession();
   const { user } = useAuth();
   const [grade, setGrade] = useState(null);
+  const [targetExam, setTargetExam] = useState("JNV");
   const [title, setTitle] = useState("");
 
   const [isLoading, setIsLoading] = useState(true);
@@ -19,7 +20,10 @@ export default function PdfViewerPage() {
   useEffect(() => {
     if (user?.role === "student") {
       api.get("/learning/profile")
-        .then((res) => setGrade(res.data.grade))
+        .then((res) => {
+          setGrade(res.data.grade);
+          setTargetExam(res.data.target_exam || "JNV");
+        })
         .catch(() => setGrade(9));
     } else {
       setGrade(9);
@@ -28,7 +32,7 @@ export default function PdfViewerPage() {
 
   useEffect(() => {
     if (!grade || !subject || !slug) return;
-    fetchModules(grade, subject).then((mods) => {
+    fetchModules(grade, subject, targetExam).then((mods) => {
       const found = mods.find((m) => m.slug === slug);
       setTitle(
         found?.title ||
@@ -38,14 +42,16 @@ export default function PdfViewerPage() {
             .join(" ")
       );
     });
-  }, [grade, subject, slug]);
+  }, [grade, subject, slug, targetExam]);
 
   useEffect(() => {
     startSession("pdf_reading", subject || "maths", slug);
     return () => endSession();
   }, [subject, slug]);
 
-  const pdfUrl = grade ? `${api.defaults.baseURL}/learning/class-${grade}/${subject}/pdf/${slug}` : null;
+  const pdfUrl = grade
+    ? `${api.defaults.baseURL}/learning/class-${grade}/${subject}/pdf/${slug}?target_exam=${encodeURIComponent(targetExam)}`
+    : null;
 
   return (
     <div className="min-h-screen bg-[#f8fbf9] dark:bg-[#111816] flex flex-col">

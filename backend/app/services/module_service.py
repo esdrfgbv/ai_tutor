@@ -5,7 +5,7 @@ from pathlib import Path
 
 from sqlalchemy.orm import Session
 
-from app.core.config import get_settings
+from app.core.config import exam_dir_name, get_settings
 from app.models.knowledge_models import KnowledgeDocument
 
 
@@ -25,6 +25,7 @@ class ModuleService:
         self,
         subject: str,
         grade: int | None = None,
+        target_exam: str = "JNV",
         db: Session | None = None,
     ) -> dict[str, dict]:
         """Discover modules from KB documents and filesystem PDFs (merged)."""
@@ -62,8 +63,7 @@ class ModuleService:
 
         # 2) Filesystem (adds PDFs not already covered by KB)
         root = get_settings().source_root
-        dir_name = f"class_{grade}"
-        pdf_dir = root / dir_name / normalized
+        pdf_dir = root / exam_dir_name(target_exam) / f"class_{grade}" / normalized
         if pdf_dir.exists():
             def sort_key(path: Path) -> int:
                 match = re.search(r"^chapter-(\d+)-", path.name.lower())
@@ -90,9 +90,10 @@ class ModuleService:
         subject: str,
         raw_tests: list[dict],
         grade: int | None = None,
+        target_exam: str = "JNV",
         db: Session | None = None,
     ) -> list[dict]:
-        pdf_modules = self.get_pdf_modules(subject, grade, db=db)
+        pdf_modules = self.get_pdf_modules(subject, grade, target_exam=target_exam, db=db)
         grouped = {}
         mixed_group = []
 

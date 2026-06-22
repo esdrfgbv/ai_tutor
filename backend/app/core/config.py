@@ -111,6 +111,21 @@ class Settings(BaseSettings):
 
 
 # =========================================
+# EXAM → DIRECTORY NAME MAPPING
+# =========================================
+
+EXAM_DIR_MAP: dict[str, str] = {
+    "JNV": "JNV",
+    "Sainik": "Sainik School",
+}
+
+
+def exam_dir_name(target_exam: str) -> str:
+    """Map stored target_exam value to the actual filesystem directory name."""
+    return EXAM_DIR_MAP.get(target_exam, target_exam)
+
+
+# =========================================
 # PROJECT ROOT DETECTION
 # =========================================
 
@@ -118,7 +133,7 @@ def _detect_project_root() -> Path:
     here = Path(__file__).resolve()
 
     for parent in here.parents:
-        if (parent / "class_9").exists():
+        if (parent / "JNV").exists() and (parent / "JNV" / "class_9").exists():
             return parent
 
     return here.parents[3]
@@ -139,7 +154,7 @@ def get_settings() -> Settings:
             Path.cwd() / root
         ).resolve()
 
-    if not (root / "class_9").exists():
+    if not (root / "JNV" / "class_9").exists():
         root = _detect_project_root()
 
     settings.source_root = root

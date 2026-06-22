@@ -117,11 +117,12 @@ export default function ModuleLearningPage() {
   const { startSession, endSession } = useStudySession();
   const { user } = useAuth();
   const [grade, setGrade] = useState(null);
+  const [targetExam, setTargetExam] = useState("JNV");
   const [title, setTitle] = useState("");
 
   useEffect(() => {
     if (!grade || !subject || !slug) return;
-    fetchModules(grade, subject).then((mods) => {
+    fetchModules(grade, subject, targetExam).then((mods) => {
       const found = mods.find((m) => m.slug === slug);
       setTitle(
         found?.title ||
@@ -131,12 +132,15 @@ export default function ModuleLearningPage() {
             .join(" ")
       );
     });
-  }, [grade, subject, slug]);
+  }, [grade, subject, slug, targetExam]);
 
   useEffect(() => {
     if (user?.role === "student") {
       api.get("/learning/profile")
-        .then((res) => setGrade(res.data.grade))
+        .then((res) => {
+          setGrade(res.data.grade);
+          setTargetExam(res.data.target_exam || "JNV");
+        })
         .catch(() => setGrade(9));
     } else {
       setGrade(9);
@@ -149,7 +153,7 @@ export default function ModuleLearningPage() {
   }, [subject, slug]);
 
   const pdfUrl = grade
-    ? `${api.defaults.baseURL}/learning/class-${grade}/${subject}/pdf/${slug}`
+    ? `${api.defaults.baseURL}/learning/class-${grade}/${subject}/pdf/${slug}?target_exam=${encodeURIComponent(targetExam)}`
     : null;
 
   if (!grade || !pdfUrl) {
@@ -167,6 +171,7 @@ export default function ModuleLearningPage() {
       slug={slug}
       chapterTitle={title}
       grade={grade}
+      targetExam={targetExam}
     >
       <WorkspaceContent pdfUrl={pdfUrl} title={title} />
     </StudyWorkspaceProvider>

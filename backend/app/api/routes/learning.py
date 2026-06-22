@@ -3,7 +3,7 @@ from fastapi.responses import Response
 from sqlalchemy.orm import Session
 
 from app.api.deps import get_current_user, get_student_profile
-from app.core.config import get_settings
+from app.core.config import exam_dir_name, get_settings
 from app.db.session import get_db
 from app.models.models import (
     Chapter,
@@ -29,23 +29,25 @@ router = APIRouter(
 @router.get("/subjects")
 def list_study_subjects(
     grade: int | None = None,
+    target_exam: str = "JNV",
     db: Session = Depends(get_db),
 ):
     """Return valid subjects for study modules."""
     registry = metadata_service.get_field_values(db, "subject")
     if registry:
         return [s["value"] for s in registry if s.get("value")]
-    return chapter_service.get_valid_subjects()
+    return chapter_service.get_valid_subjects(target_exam=target_exam)
 
 
 @router.get("/modules")
 def list_study_modules(
     grade: int,
     subject: str,
+    target_exam: str = "JNV",
     db: Session = Depends(get_db),
 ):
-    """Return modules/chapters for a grade+subject (metadata-driven)."""
-    return chapter_service.list_modules(grade, subject, db=db)
+    """Return modules/chapters for a grade+subject+exam (metadata-driven)."""
+    return chapter_service.list_modules(grade, subject, target_exam=target_exam, db=db)
 
 
 @router.get(
@@ -73,7 +75,12 @@ def list_chapters(
 
 
 @router.get("/class-{grade}/{subject}/pdf/{pdf_slug}")
-def get_class_pdf(grade: int, subject: str, pdf_slug: str):
+def get_class_pdf(
+    grade: int,
+    subject: str,
+    pdf_slug: str,
+    target_exam: str = "JNV",
+):
     if ".." in subject or "/" in subject or "\\" in subject:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -85,12 +92,17 @@ def get_class_pdf(grade: int, subject: str, pdf_slug: str):
             detail="Invalid PDF slug",
         )
 
-    # Determine folder from source_root
-    pdf_dir = get_settings().source_root / f"class_{grade}" / subject.lower().strip()
+    # Determine folder from source_root — organised as {exam_dir}/class_{grade}/{subject}/
+    pdf_dir = (
+        get_settings().source_root
+        / exam_dir_name(target_exam)
+        / f"class_{grade}"
+        / subject.lower().strip()
+    )
     if not pdf_dir.exists():
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Grade {grade} PDFs not found for subject '{subject}'",
+            detail=f"Grade {grade} {target_exam} PDFs not found for subject '{subject}'",
         )
     file_path = pdf_dir / f"{pdf_slug}.pdf"
 

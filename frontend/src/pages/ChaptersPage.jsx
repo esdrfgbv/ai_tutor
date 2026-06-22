@@ -21,6 +21,7 @@ const SUBJECT_ICONS = {
 export default function ChaptersPage() {
   const { user } = useAuth();
   const [userGrade, setUserGrade] = useState(null);
+  const [targetExam, setTargetExam] = useState("JNV");
   const [modules, setModules] = useState([]);
   const [availableSubjects, setAvailableSubjects] = useState([]);
   const [filters, setFilters] = useState({ subject: "" });
@@ -29,7 +30,12 @@ export default function ChaptersPage() {
 
   useEffect(() => {
     if (user?.role === "student") {
-      api.get("/learning/profile").then((res) => setUserGrade(res.data.grade)).catch(() => setUserGrade(9));
+      api.get("/learning/profile")
+        .then((res) => {
+          setUserGrade(res.data.grade);
+          setTargetExam(res.data.target_exam || "JNV");
+        })
+        .catch(() => setUserGrade(9));
     } else {
       setUserGrade(9);
     }
@@ -37,16 +43,16 @@ export default function ChaptersPage() {
 
   useEffect(() => {
     if (!userGrade) return;
-    fetchSubjects(userGrade).then(setAvailableSubjects);
-  }, [userGrade]);
+    fetchSubjects(userGrade, targetExam).then(setAvailableSubjects);
+  }, [userGrade, targetExam]);
 
   useEffect(() => {
     if (!userGrade || !filters.subject) return;
     setError("");
-    fetchModules(userGrade, filters.subject)
+    fetchModules(userGrade, filters.subject, targetExam)
       .then(setModules)
       .catch((err) => setError(err?.response?.data?.detail || "Could not load modules."));
-  }, [userGrade, filters.subject]);
+  }, [userGrade, filters.subject, targetExam]);
 
   const filteredModules = modules.filter((m) =>
     m.title.toLowerCase().includes(search.toLowerCase())
