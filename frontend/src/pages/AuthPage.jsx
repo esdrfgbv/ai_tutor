@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAuth } from "../context/AuthContext.jsx";
@@ -22,6 +22,11 @@ export default function AuthPage() {
   const [role, setRole] = useState("student");
   const [error, setError] = useState("");
   const [showPwd, setShowPwd] = useState(false);
+  const [connecting, setConnecting] = useState(false);
+  const [retryCountdown, setRetryCountdown] = useState(0);
+  const retryPayloadRef = useRef(null);
+  const connectingTimerRef = useRef(null);
+  const countdownRef = useRef(null);
 
   const { login, register, forgotPassword } = useAuth();
   const navigate = useNavigate();
@@ -68,39 +73,90 @@ export default function AuthPage() {
     }
   };
 
+  const stopRetry = () => {
+    setConnecting(false);
+    setRetryCountdown(0);
+    if (connectingTimerRef.current) clearInterval(connectingTimerRef.current);
+    if (countdownRef.current) clearInterval(countdownRef.current);
+    connectingTimerRef.current = null;
+    countdownRef.current = null;
+  };
+
+  const attemptLogin = async (payload) => {
+    try {
+      const user = mode === "login" ? await login(payload) : await register(payload);
+      stopRetry();
+      navigate(`/${user.role}`);
+      return true;
+    } catch {
+      return false;
+    }
+  };
+
+  const startRetryTimer = (payload) => {
+    setConnecting(true);
+    setRetryCountdown(60);
+    retryPayloadRef.current = payload;
+
+    const start = Date.now();
+
+    countdownRef.current = setInterval(() => {
+      const elapsed = Math.floor((Date.now() - start) / 1000);
+      const remaining = 60 - elapsed;
+      if (remaining <= 0) {
+        stopRetry();
+        setError("Cannot connect to server. Check your internet and try again.");
+        return;
+      }
+      setRetryCountdown(remaining);
+    }, 1000);
+
+    connectingTimerRef.current = setInterval(async () => {
+      const elapsed = Math.floor((Date.now() - start) / 1000);
+      if (elapsed >= 60) return;
+      const ok = await attemptLogin(retryPayloadRef.current);
+      if (ok) stopRetry();
+    }, 5000);
+  };
+
   const submit = async (event) => {
     event.preventDefault();
     setError("");
+    if (connecting) return;
+    let payload = {};
+    if (mode === "login") {
+      payload = { email: form.email, password: form.password };
+    } else if (role === "student") {
+      payload = { 
+        email: form.email, 
+        password: form.password, 
+        full_name: form.full_name, 
+        role: "student", 
+        grade: form.grade, 
+        target_exam: form.target_exam,
+        school_name: form.school_name,
+        state: form.state,
+        district: form.district,
+        city: form.city,
+        section: form.section,
+        medium: form.medium
+      };
+    } else {
+      payload = { email: form.email, password: form.password, full_name: form.full_name, role: "parent", phone: form.phone, student_identifier: form.student_identifier };
+    }
     try {
-      let payload = {};
-      if (mode === "login") {
-        payload = { email: form.email, password: form.password };
-      } else if (role === "student") {
-        payload = { 
-          email: form.email, 
-          password: form.password, 
-          full_name: form.full_name, 
-          role: "student", 
-          grade: form.grade, 
-          target_exam: form.target_exam,
-          school_name: form.school_name,
-          state: form.state,
-          district: form.district,
-          city: form.city,
-          section: form.section,
-          medium: form.medium
-        };
-      } else {
-        payload = { email: form.email, password: form.password, full_name: form.full_name, role: "parent", phone: form.phone, student_identifier: form.student_identifier };
-      }
       const user = mode === "login" ? await login(payload) : await register(payload);
       navigate(`/${user.role}`);
     } catch (err) {
       console.error("AUTH ERROR:", err);
-      const detail = err.response?.data?.detail;
-      if (Array.isArray(detail)) setError(detail[0]?.msg || "Authentication failed");
-      else if (typeof detail === "string") setError(detail);
-      else setError(err.message || "Authentication failed");
+      if (!err.response || err.code === "ERR_NETWORK" || err.code === "ECONNABORTED") {
+        startRetryTimer(payload);
+      } else {
+        const detail = err.response?.data?.detail;
+        if (Array.isArray(detail)) setError(detail[0]?.msg || "Authentication failed");
+        else if (typeof detail === "string") setError(detail);
+        else setError(err.message || "Authentication failed");
+      }
     }
   };
 
