@@ -61,6 +61,13 @@ export default function AuthPage() {
     setForm((prev) => ({ ...prev, role }));
   }, [role]);
 
+  useEffect(() => {
+    return () => {
+      if (connectingTimerRef.current) clearInterval(connectingTimerRef.current);
+      if (countdownRef.current) clearInterval(countdownRef.current);
+    };
+  }, []);
+
   const handleForgotPassword = async () => {
     if (!form.email) { setError("Please enter your email to reset your password."); return; }
     try {
@@ -95,14 +102,14 @@ export default function AuthPage() {
 
   const startRetryTimer = (payload) => {
     setConnecting(true);
-    setRetryCountdown(60);
+    setRetryCountdown(300);
     retryPayloadRef.current = payload;
 
     const start = Date.now();
 
     countdownRef.current = setInterval(() => {
       const elapsed = Math.floor((Date.now() - start) / 1000);
-      const remaining = 60 - elapsed;
+      const remaining = 300 - elapsed;
       if (remaining <= 0) {
         stopRetry();
         setError("Cannot connect to server. Check your internet and try again.");
@@ -113,7 +120,7 @@ export default function AuthPage() {
 
     connectingTimerRef.current = setInterval(async () => {
       const elapsed = Math.floor((Date.now() - start) / 1000);
-      if (elapsed >= 60) return;
+      if (elapsed >= 300) return;
       const ok = await attemptLogin(retryPayloadRef.current);
       if (ok) stopRetry();
     }, 5000);
@@ -288,9 +295,28 @@ export default function AuthPage() {
             </div>
 
             <form onSubmit={submit} className="space-y-4">
+              {/* Connecting timer */}
+              <AnimatePresence>
+                {connecting && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    className="rounded-xl px-4 py-3 text-sm flex items-center gap-2"
+                    style={{ background: "rgba(173,255,68,0.08)", border: "1px solid rgba(173,255,68,0.2)", color: "#adff44" }}
+                  >
+                    <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                    </svg>
+                    Connecting to server... {Math.floor(retryCountdown / 60)}:{String(retryCountdown % 60).padStart(2, "0")}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
               {/* Error */}
               <AnimatePresence>
-                {error && (
+                {error && !connecting && (
                   <motion.div
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: "auto" }}
@@ -431,8 +457,8 @@ export default function AuthPage() {
               )}
 
               {/* Submit */}
-              <button type="submit" className="btn-primary w-full py-3.5 text-base font-bold mt-2">
-                {mode === "login" ? "Sign In" : "Create Account"}
+              <button type="submit" className="btn-primary w-full py-3.5 text-base font-bold mt-2" disabled={connecting} style={connecting ? { opacity: 0.6, cursor: "not-allowed" } : {}}>
+                {connecting ? "Connecting..." : mode === "login" ? "Sign In" : "Create Account"}
               </button>
             </form>
 
