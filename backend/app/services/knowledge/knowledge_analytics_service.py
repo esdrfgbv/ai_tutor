@@ -13,6 +13,7 @@ from datetime import datetime, timedelta
 from sqlalchemy import func
 from sqlalchemy.orm import Session
 
+from app.db.compat import date_trunc_expr
 from app.models.enums import JobStatus, ProcessingStatus
 from app.models.models import QuestionBank
 from app.models.knowledge_models import (
@@ -182,14 +183,7 @@ class KnowledgeAnalyticsService:
             IngestionAuditLog.timestamp >= since,
         )
 
-        if period == "daily":
-            trunc = func.date(IngestionAuditLog.timestamp)
-        elif period == "weekly":
-            trunc = func.date_trunc("week", IngestionAuditLog.timestamp)
-        elif period == "monthly":
-            trunc = func.date_trunc("month", IngestionAuditLog.timestamp)
-        else:
-            trunc = func.date(IngestionAuditLog.timestamp)
+        trunc = date_trunc_expr(period, IngestionAuditLog.timestamp)
 
         rows = (
             base.with_entities(

@@ -9,7 +9,12 @@
 | `SECRET_KEY` | 64-char hex string for JWT signing. Generate with: `python -c "import secrets; print(secrets.token_hex(32))"` | Yes | — |
 | `ACCESS_TOKEN_EXPIRE_MINUTES` | JWT access token lifetime in minutes | No | `45` |
 | `REFRESH_TOKEN_EXPIRE_DAYS` | JWT refresh token lifetime in days | No | `14` |
-| `DATABASE_URL` | SQLAlchemy database URL. Supports MySQL (`mysql+pymysql://...`) or SQLite (`sqlite:///...`) | Yes | — |
+| `DATABASE_URL` | Full SQLAlchemy PostgreSQL connection string. Overrides SUPABASE_DB_* fields | No | — |
+| `SUPABASE_DB_HOST` | Supabase PostgreSQL host | Conditional | — |
+| `SUPABASE_DB_PORT` | Supabase PostgreSQL port | No | `5432` |
+| `SUPABASE_DB_NAME` | Supabase database name | Conditional | — |
+| `SUPABASE_DB_USER` | Supabase database user | Conditional | — |
+| `SUPABASE_DB_PASSWORD` | Supabase database password | Conditional | — |
 | `CORS_ORIGINS_RAW` | Comma-separated list of allowed CORS origins | No | `http://localhost:5173` |
 | `AI_PROVIDER` | Active AI provider: `groq`, `gemini`, or `openai` | Yes | `groq` |
 | `GROQ_API_KEY` | Groq API key (required when `AI_PROVIDER=groq`) | Conditional | — |
@@ -29,14 +34,5 @@
 
 | Variable | Description | Required | Default |
 |----------|-------------|----------|---------|
-| `VITE_API_URL` | Backend API base URL (without `/api` suffix) | No | `http://localhost:8000/api` |
-| `VITE_GROQ_API_KEY` | Groq API key for client-side AI features (⚠️ exposed to browser) | No | — |
-
-## Docker Compose (`docker-compose.yml`)
-
-| Variable | Description | Required | Default |
-|----------|-------------|----------|---------|
-| `MYSQL_DATABASE` | MySQL database name | Yes | `jnv_sainik_prep` |
-| `MYSQL_USER` | MySQL application user | Yes | `prep_user` |
-| `MYSQL_PASSWORD` | MySQL application password | Yes | `prep_password` |
-| `MYSQL_ROOT_PASSWORD` | MySQL root password | Yes | `root_password` |
+| `VITE_API_URL` | Backend API base URL | Yes | `http://localhost:8000/api` |
+| `VITE_GROQ_API_KEY` | Groq API key for client-side AI features (exposed to browser) | No | — |

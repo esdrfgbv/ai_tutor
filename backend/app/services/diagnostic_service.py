@@ -6,6 +6,7 @@ from datetime import datetime
 from sqlalchemy import text
 from sqlalchemy.orm import Session
 
+from app.db.compat import random_order
 from app.models.enums import Difficulty, QuestionType
 from app.models.knowledge_models import CanonicalQuestion
 from app.models.models import ProgressTracking, Question, QuestionBank, Quiz, QuizAttempt, StudentProfile
@@ -27,7 +28,7 @@ class DiagnosticService:
                 CanonicalQuestion.subject == subject,
                 CanonicalQuestion.doc_class == str(grade),
             )
-            .order_by(text("RAND()"))
+            .order_by(random_order())
             .limit(self.QUESTION_COUNT)
             .all()
         )
@@ -41,7 +42,7 @@ class DiagnosticService:
                     QuestionBank.subject == subject,
                     QuestionBank.question_type == QuestionType.mcq,
                 )
-                .order_by(text("RAND()"))
+                .order_by(random_order())
                 .limit(self.QUESTION_COUNT)
                 .all()
             )
@@ -58,7 +59,7 @@ class DiagnosticService:
                 questions = (
                     db.query(Question)
                     .filter(Question.quiz_id.in_(qids))
-                    .order_by(text("RAND()"))
+                    .order_by(random_order())
                     .limit(self.QUESTION_COUNT)
                     .all()
                 )

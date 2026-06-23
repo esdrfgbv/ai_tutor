@@ -181,7 +181,7 @@ class OCRService:
                 tmp_path = tmp.name
 
             try:
-                blocks = self._paddle_engine._parse_page_image(tmp_path, 1)
+                blocks = self._paddle_engine._parse_with_ocr_only(tmp_path, 1)
                 text = "\n".join([b.text for b in blocks if b.text])
                 return text.strip()
             finally:
@@ -204,7 +204,7 @@ class OCRService:
                 tmp_path = tmp.name
 
             try:
-                blocks = self._paddle_engine._parse_page_image(tmp_path, page.number)
+                blocks = self._paddle_engine._parse_with_ocr_only(tmp_path, page.number)
                 text = "\n".join([b.text for b in blocks if b.text])
                 return text.strip()
             finally:

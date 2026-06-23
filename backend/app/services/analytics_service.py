@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 
-from sqlalchemy import func
+from sqlalchemy import extract, func
 from sqlalchemy.orm import Session
 
 from app.models.models import ProgressTracking, Question, Quiz, QuizAttempt, StudentProfile, StudySession, User
@@ -356,19 +356,20 @@ class AnalyticsService:
                 "hours": round(seconds / 3600, 1),
             })
 
-        # Student growth (registrations by month)
+        # Student growth (registrations by month) – portable across MySQL/PostgreSQL/SQLite
         student_growth = (
             db.query(
-                func.strftime("%Y-%m", User.created_at).label("month"),
+                extract("year", User.created_at).label("year"),
+                extract("month", User.created_at).label("month"),
                 func.count(User.id).label("count"),
             )
             .join(StudentProfile, User.id == StudentProfile.user_id)
-            .group_by(func.strftime("%Y-%m", User.created_at))
-            .order_by(func.strftime("%Y-%m", User.created_at))
+            .group_by(extract("year", User.created_at), extract("month", User.created_at))
+            .order_by(extract("year", User.created_at), extract("month", User.created_at))
             .all()
         )
         growth_trend = [
-            {"month": row.month, "new_students": int(row.count)}
+            {"month": f"{int(row.year)}-{int(row.month):02d}", "new_students": int(row.count)}
             for row in student_growth
         ]
 

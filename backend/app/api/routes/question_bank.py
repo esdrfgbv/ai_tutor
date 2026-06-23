@@ -5,6 +5,7 @@ from sqlalchemy.orm import Session, joinedload
 from sqlalchemy import func
 
 from app.api.deps import require_roles
+from app.db.compat import random_order
 from app.db.session import get_db
 from app.models.enums import Role
 from app.models.models import QuestionBank, QuestionBankSource, QuestionOption, User
@@ -194,7 +195,7 @@ def generate_random_set(payload: RandomTestGenerateIn, db: Session = Depends(get
         query = query.filter(QuestionBank.source_id.in_(payload.source_ids))
         
     # Fetch random questions
-    questions = query.order_by(func.rand()).limit(payload.total_questions).all()
+    questions = query.order_by(random_order()).limit(payload.total_questions).all()
     
     if not questions:
         raise HTTPException(400, "No questions found matching criteria")

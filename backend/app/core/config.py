@@ -1,7 +1,7 @@
 from functools import lru_cache
 from pathlib import Path
 
-from pydantic import Field, field_validator
+from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -27,10 +27,20 @@ class Settings(BaseSettings):
     refresh_token_expire_days: int = 14
 
     # =========================================
-    # DATABASE
+    # DATABASE — Supabase PostgreSQL
+    # =========================================
+    #
+    # Set DATABASE_URL directly to the full connection string, OR provide
+    # the individual SUPABASE_DB_* fields and it will be auto-built.
     # =========================================
 
-    database_url: str
+    supabase_db_host: str | None = None
+    supabase_db_port: str = "5432"
+    supabase_db_name: str | None = None
+    supabase_db_user: str | None = None
+    supabase_db_password: str | None = None
+
+    raw_database_url: str | None = Field(None, alias="DATABASE_URL")
 
     # =========================================
     # CORS
@@ -92,6 +102,25 @@ class Settings(BaseSettings):
     bootstrap_admin_email: str = "admin@jnvprep.local"
 
     bootstrap_admin_password: str = "Admin@12345"
+
+    # =========================================
+    # COMPUTED PROPERTIES
+    # =========================================
+
+    @property
+    def database_url(self) -> str:
+        """Active database connection URL.
+
+        Priority:
+        1. Explicit ``DATABASE_URL`` env var (if set by user)
+        2. Auto-built from SUPABASE_DB_* fields
+        """
+        if self.raw_database_url:
+            return self.raw_database_url
+        return (
+            f"postgresql+psycopg2://{self.supabase_db_user}:{self.supabase_db_password}"
+            f"@{self.supabase_db_host}:{self.supabase_db_port}/{self.supabase_db_name}"
+        )
 
     # =========================================
     # PYDANTIC CONFIG
