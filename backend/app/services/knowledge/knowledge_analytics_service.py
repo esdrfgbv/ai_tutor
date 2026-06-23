@@ -14,8 +14,8 @@ from sqlalchemy import func
 from sqlalchemy.orm import Session
 
 from app.models.enums import JobStatus, ProcessingStatus
+from app.models.models import QuestionBank
 from app.models.knowledge_models import (
-    QuestionBank,
     DocumentVersion,
     IngestionAuditLog,
     KnowledgeChunk,
