@@ -51,8 +51,15 @@ class Settings(BaseSettings):
     # =========================================
     # CORS
     # =========================================
-
-    cors_origins_raw: str = "http://localhost:5173,http://localhost:5174,http://localhost:5175,https://ai-tutor-neon-kappa.vercel.app"
+    # IMPORTANT FOR PRODUCTION (Render, etc.):
+    # Set CORS_ORIGINS_RAW environment variable to comma-separated list of origins.
+    # Example: https://ai-tutor-neon-kappa.vercel.app,https://staging.ai-tutor.com
+    # If not set, defaults to hardcoded development origins.
+    
+    cors_origins_raw: str = Field(
+        default="http://localhost:5173,http://localhost:5174,http://localhost:5175,https://ai-tutor-neon-kappa.vercel.app",
+        description="Comma-separated list of allowed CORS origins. Override via CORS_ORIGINS_RAW env var."
+    )
 
     # =========================================
     # AI PROVIDER

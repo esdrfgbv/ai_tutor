@@ -1,0 +1,5244 @@
+[
+  {
+    "test_name": "Noun Test - 1",
+    "question": "Which of the following is a Proper Noun?",
+    "options": [
+      "A) city",
+      "B) river",
+      "C) Delhi",
+      "D) country"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Noun Test - 1",
+    "question": "Which noun is a Collective Noun?",
+    "options": [
+      "A) team",
+      "B) boy",
+      "C) chair",
+      "D) school"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Noun Test - 1",
+    "question": "Honesty is an example of:",
+    "options": [
+      "A) Material Noun",
+      "B) Abstract Noun",
+      "C) Common Noun",
+      "D) Proper Noun"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Noun Test - 1",
+    "question": "Gold is a:",
+    "options": [
+      "A) Material Noun",
+      "B) Collective Noun",
+      "C) Proper Noun",
+      "D) Abstract Noun"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Noun Test - 1",
+    "question": "Which is a Common Noun?",
+    "options": [
+      "A) India",
+      "B) Ganga",
+      "C) Teacher",
+      "D) Delhi"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Noun Test - 1",
+    "question": "A group of stars is called:",
+    "options": [
+      "A) pack",
+      "B) constellation",
+      "C) crowd",
+      "D) team"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Noun Test - 1",
+    "question": "Which word is an Abstract Noun?",
+    "options": [
+      "A) wisdom",
+      "B) chair",
+      "C) dog",
+      "D) bottle"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Noun Test - 1",
+    "question": "Which is a Material Noun?",
+    "options": [
+      "A) silver",
+      "B) army",
+      "C) honesty",
+      "D) school"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Noun Test - 1",
+    "question": "Rabindranath Tagore is a:",
+    "options": [
+      "A) Common Noun",
+      "B) Proper Noun",
+      "C) Abstract Noun",
+      "D) Collective Noun"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Noun Test - 1",
+    "question": "Which noun names a quality?",
+    "options": [
+      "A) kindness",
+      "B) apple",
+      "C) city",
+      "D) teacher"
+    ],
+    "correct_answer": "A"
+  },
+
+  {
+    "test_name": "Pronoun Test - 1",
+    "question": "Simran bought ice cream and ___ ate it.",
+    "options": [
+      "A) he",
+      "B) she",
+      "C) they",
+      "D) we"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Pronoun Test - 1",
+    "question": "Which is a Personal Pronoun?",
+    "options": [
+      "A) who",
+      "B) this",
+      "C) they",
+      "D) each"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Pronoun Test - 1",
+    "question": "I completed the project myself. 'Myself' is:",
+    "options": [
+      "A) Relative Pronoun",
+      "B) Demonstrative Pronoun",
+      "C) Reflexive Pronoun",
+      "D) Distributive Pronoun"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Pronoun Test - 1",
+    "question": "This is my book. 'This' is:",
+    "options": [
+      "A) Demonstrative Pronoun",
+      "B) Relative Pronoun",
+      "C) Personal Pronoun",
+      "D) Reflexive Pronoun"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Pronoun Test - 1",
+    "question": "The boy who won the race is my friend. 'Who' is:",
+    "options": [
+      "A) Demonstrative Pronoun",
+      "B) Relative Pronoun",
+      "C) Personal Pronoun",
+      "D) Reflexive Pronoun"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Pronoun Test - 1",
+    "question": "Each of the students received a prize. 'Each' is:",
+    "options": [
+      "A) Personal Pronoun",
+      "B) Relative Pronoun",
+      "C) Distributive Pronoun",
+      "D) Reflexive Pronoun"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Pronoun Test - 1",
+    "question": "We enjoyed ourselves at the picnic. 'Ourselves' is:",
+    "options": [
+      "A) Reflexive Pronoun",
+      "B) Relative Pronoun",
+      "C) Demonstrative Pronoun",
+      "D) Personal Pronoun"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Pronoun Test - 1",
+    "question": "Which is a Demonstrative Pronoun?",
+    "options": [
+      "A) who",
+      "B) these",
+      "C) myself",
+      "D) either"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Pronoun Test - 1",
+    "question": "Neither of the answers is correct. 'Neither' is:",
+    "options": [
+      "A) Relative",
+      "B) Personal",
+      "C) Demonstrative",
+      "D) Distributive"
+    ],
+    "correct_answer": "D"
+  },
+  {
+    "test_name": "Pronoun Test - 1",
+    "question": "Which pronoun refers to the speaker?",
+    "options": [
+      "A) He",
+      "B) She",
+      "C) I",
+      "D) They"
+    ],
+    "correct_answer": "C"
+  },
+
+  {
+    "test_name": "Verb Test - 1",
+    "question": "Identify the verb: 'The doctor wrote a prescription.'",
+    "options": [
+      "A) doctor",
+      "B) wrote",
+      "C) prescription",
+      "D) the"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Verb Test - 1",
+    "question": "A verb expresses:",
+    "options": [
+      "A) action",
+      "B) state",
+      "C) mental activity",
+      "D) all of these"
+    ],
+    "correct_answer": "D"
+  },
+  {
+    "test_name": "Verb Test - 1",
+    "question": "Which verb shows mental action?",
+    "options": [
+      "A) jump",
+      "B) run",
+      "C) think",
+      "D) swim"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Verb Test - 1",
+    "question": "Which verb shows a state of being?",
+    "options": [
+      "A) run",
+      "B) write",
+      "C) is",
+      "D) climb"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Verb Test - 1",
+    "question": "The word 'guessed' in a sentence is:",
+    "options": [
+      "A) noun",
+      "B) adjective",
+      "C) verb",
+      "D) pronoun"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Noun Test - 2",
+    "question": "Which of the following is a Collective Noun?",
+    "options": [
+      "A) flock",
+      "B) bird",
+      "C) tree",
+      "D) river"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Noun Test - 2",
+    "question": "The word 'committee' is a:",
+    "options": [
+      "A) Proper Noun",
+      "B) Collective Noun",
+      "C) Abstract Noun",
+      "D) Material Noun"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Noun Test - 2",
+    "question": "Which is an Abstract Noun?",
+    "options": [
+      "A) courage",
+      "B) table",
+      "C) apple",
+      "D) school"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Noun Test - 2",
+    "question": "Which sentence contains a Proper Noun?",
+    "options": [
+      "A) The boy is playing.",
+      "B) Ram lives in Delhi.",
+      "C) The teacher is kind.",
+      "D) The dog barked."
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Noun Test - 2",
+    "question": "A group of soldiers is called:",
+    "options": [
+      "A) crowd",
+      "B) parade",
+      "C) team",
+      "D) squad"
+    ],
+    "correct_answer": "D"
+  },
+  {
+    "test_name": "Noun Test - 2",
+    "question": "Which is a Material Noun?",
+    "options": [
+      "A) cotton",
+      "B) honesty",
+      "C) family",
+      "D) child"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Noun Test - 2",
+    "question": "Knowledge is a:",
+    "options": [
+      "A) Common Noun",
+      "B) Proper Noun",
+      "C) Abstract Noun",
+      "D) Collective Noun"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Noun Test - 2",
+    "question": "Which noun names a place?",
+    "options": [
+      "A) Delhi",
+      "B) honesty",
+      "C) gold",
+      "D) crowd"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Noun Test - 2",
+    "question": "A collection of pictures is called:",
+    "options": [
+      "A) gallery",
+      "B) army",
+      "C) class",
+      "D) team"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Noun Test - 2",
+    "question": "Which is NOT an Abstract Noun?",
+    "options": [
+      "A) wisdom",
+      "B) patience",
+      "C) bravery",
+      "D) pencil"
+    ],
+    "correct_answer": "D"
+  },
+
+  {
+    "test_name": "Noun Test - 3",
+    "question": "Which noun is always written with a capital letter?",
+    "options": [
+      "A) Common Noun",
+      "B) Abstract Noun",
+      "C) Proper Noun",
+      "D) Material Noun"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Noun Test - 3",
+    "question": "Iron and steel are examples of:",
+    "options": [
+      "A) Material Nouns",
+      "B) Abstract Nouns",
+      "C) Collective Nouns",
+      "D) Proper Nouns"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Noun Test - 3",
+    "question": "Which word is a Common Noun?",
+    "options": [
+      "A) India",
+      "B) Taj Mahal",
+      "C) river",
+      "D) Ganga"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Noun Test - 3",
+    "question": "A group of musicians is called a:",
+    "options": [
+      "A) team",
+      "B) band",
+      "C) class",
+      "D) crowd"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Noun Test - 3",
+    "question": "Which is a noun of quality?",
+    "options": [
+      "A) honesty",
+      "B) chair",
+      "C) cat",
+      "D) school"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Noun Test - 3",
+    "question": "Which word names a thing?",
+    "options": [
+      "A) Delhi",
+      "B) book",
+      "C) courage",
+      "D) team"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Noun Test - 3",
+    "question": "A collection of stars is called:",
+    "options": [
+      "A) cluster",
+      "B) constellation",
+      "C) army",
+      "D) group"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Noun Test - 3",
+    "question": "Which is a Proper Noun?",
+    "options": [
+      "A) city",
+      "B) boy",
+      "C) India",
+      "D) river"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Noun Test - 3",
+    "question": "Which is an Abstract Noun?",
+    "options": [
+      "A) freedom",
+      "B) desk",
+      "C) tree",
+      "D) road"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Noun Test - 3",
+    "question": "Which is a Collective Noun?",
+    "options": [
+      "A) audience",
+      "B) boy",
+      "C) pen",
+      "D) honesty"
+    ],
+    "correct_answer": "A"
+  },
+
+  {
+    "test_name": "Pronoun Test - 2",
+    "question": "Which is a Relative Pronoun?",
+    "options": [
+      "A) who",
+      "B) this",
+      "C) myself",
+      "D) either"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Pronoun Test - 2",
+    "question": "That is my bicycle. 'That' is:",
+    "options": [
+      "A) Relative Pronoun",
+      "B) Demonstrative Pronoun",
+      "C) Reflexive Pronoun",
+      "D) Personal Pronoun"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Pronoun Test - 2",
+    "question": "We prepared the food ourselves. 'Ourselves' is:",
+    "options": [
+      "A) Personal",
+      "B) Demonstrative",
+      "C) Reflexive",
+      "D) Relative"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Pronoun Test - 2",
+    "question": "Either of the two boys may win. 'Either' is:",
+    "options": [
+      "A) Demonstrative",
+      "B) Relative",
+      "C) Distributive",
+      "D) Personal"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Pronoun Test - 2",
+    "question": "Which pronoun is used for things?",
+    "options": [
+      "A) he",
+      "B) she",
+      "C) it",
+      "D) they"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Pronoun Test - 2",
+    "question": "The book which I bought is interesting. 'Which' is:",
+    "options": [
+      "A) Relative Pronoun",
+      "B) Reflexive Pronoun",
+      "C) Demonstrative Pronoun",
+      "D) Personal Pronoun"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Pronoun Test - 2",
+    "question": "Identify the Personal Pronoun.",
+    "options": [
+      "A) this",
+      "B) who",
+      "C) we",
+      "D) each"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Pronoun Test - 2",
+    "question": "These are beautiful flowers. 'These' is:",
+    "options": [
+      "A) Demonstrative Pronoun",
+      "B) Relative Pronoun",
+      "C) Reflexive Pronoun",
+      "D) Personal Pronoun"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Pronoun Test - 2",
+    "question": "I myself solved the puzzle. 'Myself' is used as:",
+    "options": [
+      "A) Emphatic Pronoun",
+      "B) Relative Pronoun",
+      "C) Personal Pronoun",
+      "D) Demonstrative Pronoun"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Pronoun Test - 2",
+    "question": "Which pronoun refers to the listener?",
+    "options": [
+      "A) I",
+      "B) We",
+      "C) You",
+      "D) They"
+    ],
+    "correct_answer": "C"
+  },
+
+  {
+    "test_name": "Verb Test - 2",
+    "question": "Which verb expresses physical action?",
+    "options": [
+      "A) think",
+      "B) know",
+      "C) climb",
+      "D) believe"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Verb Test - 2",
+    "question": "Identify the verb: 'Alison bought a ticket.'",
+    "options": [
+      "A) Alison",
+      "B) ticket",
+      "C) bought",
+      "D) a"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Verb Test - 2",
+    "question": "Which verb shows mental activity?",
+    "options": [
+      "A) run",
+      "B) guess",
+      "C) jump",
+      "D) write"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Verb Test - 2",
+    "question": "Which word is a verb?",
+    "options": [
+      "A) happiness",
+      "B) beautiful",
+      "C) write",
+      "D) quickly"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Verb Test - 2",
+    "question": "The verb 'am' belongs to:",
+    "options": [
+      "A) action verbs",
+      "B) helping verbs",
+      "C) verb to be",
+      "D) modal verbs"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Adjective Test - 1",
+    "question": "An adjective modifies:",
+    "options": [
+      "A) Verb",
+      "B) Noun or Pronoun",
+      "C) Adverb",
+      "D) Conjunction"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Adjective Test - 1",
+    "question": "Identify the adjective: 'The tall boy won the race.'",
+    "options": [
+      "A) boy",
+      "B) race",
+      "C) tall",
+      "D) won"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Adjective Test - 1",
+    "question": "Which is an adjective?",
+    "options": [
+      "A) quickly",
+      "B) beautiful",
+      "C) run",
+      "D) honesty"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Adjective Test - 1",
+    "question": "Comparative form of 'rich' is:",
+    "options": [
+      "A) richest",
+      "B) rich",
+      "C) richer",
+      "D) more rich"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Adjective Test - 1",
+    "question": "Superlative form of 'happy' is:",
+    "options": [
+      "A) happier",
+      "B) happiest",
+      "C) happy",
+      "D) more happy"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Adjective Test - 1",
+    "question": "Which sentence contains an adjective?",
+    "options": [
+      "A) He runs fast.",
+      "B) She sang loudly.",
+      "C) The red car stopped.",
+      "D) They arrived early."
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Adjective Test - 1",
+    "question": "Positive degree of 'better' is:",
+    "options": [
+      "A) best",
+      "B) good",
+      "C) well",
+      "D) fine"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Adjective Test - 1",
+    "question": "Which is the superlative form?",
+    "options": [
+      "A) taller",
+      "B) tall",
+      "C) tallest",
+      "D) more tall"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Adjective Test - 1",
+    "question": "Identify the adjective: 'A brave soldier fought well.'",
+    "options": [
+      "A) brave",
+      "B) soldier",
+      "C) fought",
+      "D) well"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Adjective Test - 1",
+    "question": "Which is an irregular adjective form?",
+    "options": [
+      "A) rich-richer-richest",
+      "B) tall-taller-tallest",
+      "C) good-better-best",
+      "D) brave-braver-bravest"
+    ],
+    "correct_answer": "C"
+  },
+
+  {
+    "test_name": "Adjective Test - 2",
+    "question": "The adjective in 'an honest man' is:",
+    "options": [
+      "A) honest",
+      "B) man",
+      "C) an",
+      "D) none"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Adjective Test - 2",
+    "question": "Which degree of adjective compares three or more things?",
+    "options": [
+      "A) Positive",
+      "B) Comparative",
+      "C) Superlative",
+      "D) Equal"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Adjective Test - 2",
+    "question": "The _____ mountain in India is Everest.",
+    "options": [
+      "A) high",
+      "B) higher",
+      "C) highest",
+      "D) highly"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Adjective Test - 2",
+    "question": "Which word describes quality?",
+    "options": [
+      "A) beautiful",
+      "B) quickly",
+      "C) run",
+      "D) honesty"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Adjective Test - 2",
+    "question": "Comparative form of 'bad' is:",
+    "options": [
+      "A) badder",
+      "B) worst",
+      "C) worse",
+      "D) more bad"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Adjective Test - 2",
+    "question": "Identify the adjective phrase: 'The man in blue shirt'.",
+    "options": [
+      "A) man",
+      "B) blue shirt",
+      "C) in blue shirt",
+      "D) shirt"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Adjective Test - 2",
+    "question": "Which is the positive degree?",
+    "options": [
+      "A) better",
+      "B) best",
+      "C) good",
+      "D) finest"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Adjective Test - 2",
+    "question": "An adjective can describe:",
+    "options": [
+      "A) Number",
+      "B) Quality",
+      "C) Appearance",
+      "D) All of these"
+    ],
+    "correct_answer": "D"
+  },
+  {
+    "test_name": "Adjective Test - 2",
+    "question": "Which sentence contains two adjectives?",
+    "options": [
+      "A) The small red ball bounced.",
+      "B) He runs quickly.",
+      "C) She sings beautifully.",
+      "D) We arrived yesterday."
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Adjective Test - 2",
+    "question": "Superlative form of 'little' is:",
+    "options": [
+      "A) lesser",
+      "B) least",
+      "C) littlest",
+      "D) less"
+    ],
+    "correct_answer": "B"
+  },
+
+  {
+    "test_name": "Adjective Test - 3",
+    "question": "Which adjective indicates size?",
+    "options": [
+      "A) blue",
+      "B) huge",
+      "C) wooden",
+      "D) Indian"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Adjective Test - 3",
+    "question": "Which adjective indicates colour?",
+    "options": [
+      "A) red",
+      "B) tall",
+      "C) young",
+      "D) brave"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Adverb Test - 1",
+    "question": "An adverb modifies:",
+    "options": [
+      "A) Noun only",
+      "B) Verb only",
+      "C) Verb, adjective or another adverb",
+      "D) Pronoun only"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Adverb Test - 1",
+    "question": "He drove slowly. 'Slowly' is an adverb of:",
+    "options": [
+      "A) Place",
+      "B) Manner",
+      "C) Time",
+      "D) Frequency"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Adverb Test - 1",
+    "question": "She often visits her grandmother. 'Often' is:",
+    "options": [
+      "A) Adverb of Frequency",
+      "B) Adverb of Place",
+      "C) Adverb of Time",
+      "D) Adverb of Manner"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Adverb Test - 1",
+    "question": "Identify the adverb: 'He arrived early.'",
+    "options": [
+      "A) He",
+      "B) arrived",
+      "C) early",
+      "D) none"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Adverb Test - 1",
+    "question": "Which word is an adverb?",
+    "options": [
+      "A) lovely",
+      "B) friendly",
+      "C) quickly",
+      "D) beautiful"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Adverb Test - 1",
+    "question": "She lives there. 'There' is an adverb of:",
+    "options": [
+      "A) Place",
+      "B) Time",
+      "C) Frequency",
+      "D) Degree"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Adverb Test - 1",
+    "question": "Which sentence contains an adverb?",
+    "options": [
+      "A) The tall tree fell.",
+      "B) She sang sweetly.",
+      "C) A red ball rolled.",
+      "D) The boy smiled."
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Adverb Test - 1",
+    "question": "Adverbs often end with:",
+    "options": [
+      "A) -ful",
+      "B) -ness",
+      "C) -ly",
+      "D) -tion"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Adverb Test - 1",
+    "question": "Which is an adverb of time?",
+    "options": [
+      "A) yesterday",
+      "B) here",
+      "C) quickly",
+      "D) often"
+    ],
+    "correct_answer": "A"
+  },
+
+  {
+    "test_name": "Adverb Test - 2",
+    "question": "She moved quite slowly. 'Quite' modifies:",
+    "options": [
+      "A) Noun",
+      "B) Verb",
+      "C) Another adverb",
+      "D) Pronoun"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Adverb Test - 2",
+    "question": "Which is NOT an adverb?",
+    "options": [
+      "A) quickly",
+      "B) silently",
+      "C) beautiful",
+      "D) carefully"
+    ],
+    "correct_answer": "C"
+  },
+
+  {
+    "test_name": "Conjunction Test - 1",
+    "question": "A conjunction is used to:",
+    "options": [
+      "A) Describe nouns",
+      "B) Join words and sentences",
+      "C) Show action",
+      "D) Replace nouns"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Conjunction Test - 1",
+    "question": "Ravi and Mohan are friends. 'And' is:",
+    "options": [
+      "A) Pronoun",
+      "B) Adverb",
+      "C) Conjunction",
+      "D) Adjective"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Conjunction Test - 1",
+    "question": "He is poor but honest. 'But' joins:",
+    "options": [
+      "A) Similar ideas",
+      "B) Opposite ideas",
+      "C) Choices",
+      "D) Questions"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Conjunction Test - 1",
+    "question": "You can have tea or coffee. 'Or' expresses:",
+    "options": [
+      "A) Cause",
+      "B) Choice",
+      "C) Result",
+      "D) Time"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Conjunction Test - 1",
+    "question": "It was raining, so we stayed home. 'So' shows:",
+    "options": [
+      "A) Result",
+      "B) Choice",
+      "C) Time",
+      "D) Contrast"
+    ],
+    "correct_answer": "A"
+  },
+
+  {
+    "test_name": "Conjunction Test - 2",
+    "question": "Both Ram and Shyam are present. This is an example of:",
+    "options": [
+      "A) Correlative conjunction",
+      "B) Relative pronoun",
+      "C) Adverb",
+      "D) Preposition"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Conjunction Test - 2",
+    "question": "Either work hard or fail. 'Either...or' indicates:",
+    "options": [
+      "A) Addition",
+      "B) Choice",
+      "C) Contrast",
+      "D) Time"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Conjunction Test - 2",
+    "question": "Neither tea nor coffee is available. This means:",
+    "options": [
+      "A) Both available",
+      "B) One available",
+      "C) None available",
+      "D) Choice available"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Preposition Test - 1",
+    "question": "The river flows _____ the bridge.",
+    "options": [
+      "A) over",
+      "B) below",
+      "C) above",
+      "D) into"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Preposition Test - 1",
+    "question": "A preposition is placed before a:",
+    "options": [
+      "A) Verb",
+      "B) Adverb",
+      "C) Noun or Pronoun",
+      "D) Conjunction"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Preposition Test - 1",
+    "question": "Alex is pulling _____ the trolley.",
+    "options": [
+      "A) beside",
+      "B) along",
+      "C) under",
+      "D) above"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Preposition Test - 1",
+    "question": "Harry is talking _____ his phone.",
+    "options": [
+      "A) over",
+      "B) below",
+      "C) behind",
+      "D) beside"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Preposition Test - 1",
+    "question": "The cat is sitting _____ the table.",
+    "options": [
+      "A) under",
+      "B) quickly",
+      "C) happily",
+      "D) because"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Preposition Test - 1",
+    "question": "Which is a Simple Preposition?",
+    "options": [
+      "A) because of",
+      "B) according to",
+      "C) at",
+      "D) in spite of"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Preposition Test - 1",
+    "question": "Which is a Phrase Preposition?",
+    "options": [
+      "A) from",
+      "B) among",
+      "C) because of",
+      "D) beside"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Preposition Test - 1",
+    "question": "The bird flew _____ the tree.",
+    "options": [
+      "A) into",
+      "B) beautifully",
+      "C) loudly",
+      "D) wisely"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Preposition Test - 1",
+    "question": "Choose the correct preposition: He arrived _____ time.",
+    "options": [
+      "A) at",
+      "B) on",
+      "C) in",
+      "D) with"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Preposition Test - 1",
+    "question": "She sat _____ her friend.",
+    "options": [
+      "A) between",
+      "B) beside",
+      "C) across",
+      "D) among"
+    ],
+    "correct_answer": "B"
+  },
+
+  {
+    "test_name": "Preposition Test - 2",
+    "question": "Which is a Compound Preposition?",
+    "options": [
+      "A) at",
+      "B) by",
+      "C) beneath",
+      "D) for"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Preposition Test - 2",
+    "question": "The ball rolled _____ the chair.",
+    "options": [
+      "A) under",
+      "B) loudly",
+      "C) happily",
+      "D) quickly"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Preposition Test - 2",
+    "question": "He walked _____ the road.",
+    "options": [
+      "A) along",
+      "B) carefully",
+      "C) tomorrow",
+      "D) soon"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Preposition Test - 2",
+    "question": "The airplane flew _____ the clouds.",
+    "options": [
+      "A) above",
+      "B) quickly",
+      "C) softly",
+      "D) slowly"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Preposition Test - 2",
+    "question": "We sat _____ the fire.",
+    "options": [
+      "A) around",
+      "B) beautifully",
+      "C) brightly",
+      "D) softly"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Preposition Test - 2",
+    "question": "Choose the correct preposition: She is interested _____ music.",
+    "options": [
+      "A) in",
+      "B) on",
+      "C) at",
+      "D) by"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Preposition Test - 2",
+    "question": "The boy jumped _____ the wall.",
+    "options": [
+      "A) over",
+      "B) happily",
+      "C) gently",
+      "D) neatly"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Preposition Test - 2",
+    "question": "They walked _____ the forest.",
+    "options": [
+      "A) through",
+      "B) sweetly",
+      "C) neatly",
+      "D) wisely"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Preposition Test - 2",
+    "question": "The train passed _____ the tunnel.",
+    "options": [
+      "A) through",
+      "B) before",
+      "C) beside",
+      "D) above"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Preposition Test - 2",
+    "question": "He stood _____ the gate.",
+    "options": [
+      "A) near",
+      "B) softly",
+      "C) brightly",
+      "D) loudly"
+    ],
+    "correct_answer": "A"
+  },
+
+  {
+    "test_name": "Preposition Test - 3",
+    "question": "The picture hangs _____ the wall.",
+    "options": [
+      "A) on",
+      "B) in",
+      "C) under",
+      "D) through"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Preposition Test - 3",
+    "question": "The dog ran _____ the house.",
+    "options": [
+      "A) around",
+      "B) softly",
+      "C) brightly",
+      "D) wisely"
+    ],
+    "correct_answer": "A"
+  },
+
+  {
+    "test_name": "Tenses Test - 1",
+    "question": "Simple Present Tense is used for:",
+    "options": [
+      "A) Habitual actions",
+      "B) Past events only",
+      "C) Future events only",
+      "D) Imaginary actions"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Tenses Test - 1",
+    "question": "The earth _____ around the sun.",
+    "options": [
+      "A) moved",
+      "B) moves",
+      "C) moving",
+      "D) move"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Tenses Test - 1",
+    "question": "She _____ coffee every morning.",
+    "options": [
+      "A) drink",
+      "B) drinks",
+      "C) drank",
+      "D) drinking"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Tenses Test - 1",
+    "question": "Which tense is used for universal truths?",
+    "options": [
+      "A) Past Continuous",
+      "B) Present Perfect",
+      "C) Simple Present",
+      "D) Future Perfect"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Tenses Test - 1",
+    "question": "I _____ a brother.",
+    "options": [
+      "A) have",
+      "B) had",
+      "C) having",
+      "D) has"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Tenses Test - 1",
+    "question": "The match _____ at 9 a.m. tomorrow.",
+    "options": [
+      "A) start",
+      "B) started",
+      "C) starts",
+      "D) starting"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Tenses Test - 1",
+    "question": "Which tense is used for habits?",
+    "options": [
+      "A) Simple Present",
+      "B) Past Perfect",
+      "C) Present Continuous",
+      "D) Future Continuous"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Tenses Test - 1",
+    "question": "They _____ cricket every Sunday.",
+    "options": [
+      "A) plays",
+      "B) play",
+      "C) played",
+      "D) playing"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Tenses Test - 1",
+    "question": "Necessity is the mother of invention. This is:",
+    "options": [
+      "A) Proverb in Simple Present",
+      "B) Past Tense",
+      "C) Future Tense",
+      "D) Present Continuous"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Tenses Test - 1",
+    "question": "Which tense is 'She is singing'?",
+    "options": [
+      "A) Present Perfect",
+      "B) Present Continuous",
+      "C) Simple Present",
+      "D) Past Continuous"
+    ],
+    "correct_answer": "B"
+  },
+
+  {
+    "test_name": "Tenses Test - 2",
+    "question": "I _____ a book now.",
+    "options": [
+      "A) read",
+      "B) reads",
+      "C) am reading",
+      "D) reading"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Tenses Test - 2",
+    "question": "She has written a poem. This is:",
+    "options": [
+      "A) Present Continuous",
+      "B) Present Perfect",
+      "C) Simple Present",
+      "D) Past Perfect"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Tenses Test - 2",
+    "question": "Which helping verbs are used in Present Perfect?",
+    "options": [
+      "A) am/is/are",
+      "B) was/were",
+      "C) has/have",
+      "D) had"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Tenses Test - 2",
+    "question": "It _____ tonight.",
+    "options": [
+      "A) rains",
+      "B) rained",
+      "C) is going to rain",
+      "D) rain"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Tenses Test - 2",
+    "question": "We _____ all assignments.",
+    "options": [
+      "A) have completed",
+      "B) completed",
+      "C) complete",
+      "D) completing"
+    ],
+    "correct_answer": "A"
+  },
+
+  {
+    "test_name": "Jumbled Sentences Test - 1",
+    "question": "Arrange: sings / she / sweetly",
+    "options": [
+      "A) She sings sweetly",
+      "B) Sweetly she sings",
+      "C) Sings she sweetly",
+      "D) She sweetly sings"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Jumbled Sentences Test - 1",
+    "question": "Arrange: school / goes / he / daily / to",
+    "options": [
+      "A) He goes daily to school",
+      "B) He daily goes school to",
+      "C) Goes he daily to school",
+      "D) School daily he goes to"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Jumbled Sentences Test - 1",
+    "question": "Arrange: cannot be / happy / people who / quarrelling / are always",
+    "options": [
+      "A) People who are always quarrelling cannot be happy",
+      "B) Happy people who cannot be always quarrelling",
+      "C) Are always people quarrelling cannot be happy",
+      "D) People happy cannot be always quarrelling"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Jumbled Sentences Test - 1",
+    "question": "Arrange: apples / likes / eating / Rohan",
+    "options": [
+      "A) Rohan likes eating apples",
+      "B) Likes Rohan eating apples",
+      "C) Apples Rohan likes eating",
+      "D) Eating apples likes Rohan"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Jumbled Sentences Test - 1",
+    "question": "Arrange: playing / children / the / are",
+    "options": [
+      "A) The children are playing",
+      "B) Children the are playing",
+      "C) Playing the children are",
+      "D) Are playing children the"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Tenses Test - 3",
+    "question": "I have known him _____ childhood.",
+    "options": [
+      "A) for",
+      "B) since",
+      "C) from",
+      "D) by"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Tenses Test - 3",
+    "question": "Which tense is used for actions continuing from the past to the present?",
+    "options": [
+      "A) Simple Present",
+      "B) Present Perfect",
+      "C) Past Perfect",
+      "D) Future Perfect"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Tenses Test - 3",
+    "question": "She _____ her homework already.",
+    "options": [
+      "A) has finished",
+      "B) finish",
+      "C) finishing",
+      "D) finished yesterday"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Tenses Test - 3",
+    "question": "Present Continuous uses:",
+    "options": [
+      "A) has/have + V3",
+      "B) am/is/are + ing",
+      "C) had + V3",
+      "D) will + V1"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Tenses Test - 3",
+    "question": "They _____ football now.",
+    "options": [
+      "A) play",
+      "B) played",
+      "C) are playing",
+      "D) have played"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Tenses Test - 3",
+    "question": "Which sentence is in Present Perfect Tense?",
+    "options": [
+      "A) She is singing.",
+      "B) She sings.",
+      "C) She has sung.",
+      "D) She sang."
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Tenses Test - 3",
+    "question": "The children _____ in the park right now.",
+    "options": [
+      "A) play",
+      "B) are playing",
+      "C) played",
+      "D) have played"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Tenses Test - 3",
+    "question": "I _____ this book many times.",
+    "options": [
+      "A) have read",
+      "B) am reading",
+      "C) read yesterday",
+      "D) reading"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Tenses Test - 3",
+    "question": "Which helping verb is used with 'he' in Present Perfect?",
+    "options": [
+      "A) have",
+      "B) had",
+      "C) has",
+      "D) am"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Tenses Test - 3",
+    "question": "Look! The baby _____.",
+    "options": [
+      "A) cries",
+      "B) cried",
+      "C) is crying",
+      "D) has cried"
+    ],
+    "correct_answer": "C"
+  },
+
+  {
+    "test_name": "Jumbled Sentences Test - 2",
+    "question": "Arrange: market / went / to / mother / the",
+    "options": [
+      "A) Mother went to the market",
+      "B) Went mother to the market",
+      "C) Market mother went to the",
+      "D) To the market mother went"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Jumbled Sentences Test - 2",
+    "question": "Arrange: reading / is / book / a / she",
+    "options": [
+      "A) She is reading a book",
+      "B) Reading she is a book",
+      "C) A book she reading is",
+      "D) Is she reading a book"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Jumbled Sentences Test - 2",
+    "question": "Arrange: garden / flowers / beautiful / has / the",
+    "options": [
+      "A) The garden has beautiful flowers",
+      "B) Garden beautiful has the flowers",
+      "C) Beautiful flowers the garden has",
+      "D) Has the garden beautiful flowers"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Jumbled Sentences Test - 2",
+    "question": "Arrange: playing / park / in / children / are / the",
+    "options": [
+      "A) The children are playing in the park",
+      "B) Children playing are park in the",
+      "C) Park children are playing in the",
+      "D) Are playing children in the park"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Jumbled Sentences Test - 2",
+    "question": "Arrange: teacher / lesson / explained / the / the",
+    "options": [
+      "A) The teacher explained the lesson",
+      "B) Teacher the explained lesson the",
+      "C) The lesson explained teacher the",
+      "D) Explained the teacher lesson the"
+    ],
+    "correct_answer": "A"
+  },
+
+  {
+    "test_name": "Jumbled Sentences Test - 3",
+    "question": "Arrange: homework / completed / I / my",
+    "options": [
+      "A) I completed my homework",
+      "B) Homework I completed my",
+      "C) My homework completed I",
+      "D) Completed I my homework"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Jumbled Sentences Test - 3",
+    "question": "Arrange: river / flows / the / slowly",
+    "options": [
+      "A) The river flows slowly",
+      "B) River the slowly flows",
+      "C) Slowly river the flows",
+      "D) Flows river slowly the"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Jumbled Sentences Test - 3",
+    "question": "Arrange: every / exercise / morning / they",
+    "options": [
+      "A) They exercise every morning",
+      "B) Every they exercise morning",
+      "C) Morning every they exercise",
+      "D) Exercise they every morning"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Jumbled Sentences Test - 3",
+    "question": "Arrange: bought / a / pen / new / he",
+    "options": [
+      "A) He bought a new pen",
+      "B) Bought he a new pen",
+      "C) A new pen he bought",
+      "D) New pen bought he a"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Jumbled Sentences Test - 3",
+    "question": "Arrange: sky / blue / the / is",
+    "options": [
+      "A) The sky is blue",
+      "B) Blue sky the is",
+      "C) Is blue the sky",
+      "D) Sky blue is the"
+    ],
+    "correct_answer": "A"
+  },
+
+  {
+    "test_name": "Vocabulary Test - 1",
+    "question": "Synonym of 'Happy' is:",
+    "options": [
+      "A) Sad",
+      "B) Joyful",
+      "C) Angry",
+      "D) Tired"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Vocabulary Test - 1",
+    "question": "Antonym of 'Brave' is:",
+    "options": [
+      "A) Bold",
+      "B) Fearless",
+      "C) Cowardly",
+      "D) Strong"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Vocabulary Test - 1",
+    "question": "Choose the homophone of 'Sea'.",
+    "options": [
+      "A) See",
+      "B) Say",
+      "C) Sew",
+      "D) She"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Vocabulary Test - 1",
+    "question": "A person who looks at the bright side of life is called:",
+    "options": [
+      "A) Pessimist",
+      "B) Novice",
+      "C) Optimist",
+      "D) Altruist"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Vocabulary Test - 1",
+    "question": "One who walks on foot is called:",
+    "options": [
+      "A) Driver",
+      "B) Pedestrian",
+      "C) Cyclist",
+      "D) Pilot"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Vocabulary Test - 1",
+    "question": "Meaning of 'All ears' is:",
+    "options": [
+      "A) Angry",
+      "B) Listening carefully",
+      "C) Sleeping",
+      "D) Shouting"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Vocabulary Test - 1",
+    "question": "Meaning of 'Couch Potato' is:",
+    "options": [
+      "A) Farmer",
+      "B) Lazy person",
+      "C) Teacher",
+      "D) Athlete"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Vocabulary Test - 1",
+    "question": "Choose the correct analogy: Kitchen : Cooking :: Bedroom : ?",
+    "options": [
+      "A) Playing",
+      "B) Sleeping",
+      "C) Running",
+      "D) Reading"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Vocabulary Test - 1",
+    "question": "Prefix added to 'happy' is:",
+    "options": [
+      "A) re",
+      "B) un",
+      "C) dis",
+      "D) mis"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Vocabulary Test - 1",
+    "question": "Suffix added to 'happy' is:",
+    "options": [
+      "A) ness",
+      "B) ly",
+      "C) ful",
+      "D) tion"
+    ],
+    "correct_answer": "A"
+  },
+
+  {
+    "test_name": "Vocabulary Test - 2",
+    "question": "Antonym of 'Ancient' is:",
+    "options": [
+      "A) Old",
+      "B) Historic",
+      "C) Modern",
+      "D) Past"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Vocabulary Test - 2",
+    "question": "Synonym of 'Quick' is:",
+    "options": [
+      "A) Slow",
+      "B) Rapid",
+      "C) Weak",
+      "D) Quiet"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Vocabulary Test - 2",
+    "question": "One who knows everything is:",
+    "options": [
+      "A) Pedestrian",
+      "B) Optimist",
+      "C) Omniscient",
+      "D) Novice"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Vocabulary Test - 2",
+    "question": "A person inexperienced in a field is called:",
+    "options": [
+      "A) Novice",
+      "B) Expert",
+      "C) Genius",
+      "D) Veteran"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Vocabulary Test - 2",
+    "question": "Meaning of 'From A to Z' is:",
+    "options": [
+      "A) Slowly",
+      "B) Completely",
+      "C) Partially",
+      "D) Secretly"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Vocabulary Test - 3",
+    "question": "A person who looks at the dark side of life is called:",
+    "options": [
+      "A) Optimist",
+      "B) Pessimist",
+      "C) Altruist",
+      "D) Novice"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Vocabulary Test - 3",
+    "question": "One who works for the welfare of others is:",
+    "options": [
+      "A) Altruist",
+      "B) Pessimist",
+      "C) Pedestrian",
+      "D) Novice"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Vocabulary Test - 3",
+    "question": "Meaning of 'At the drop of a hat' is:",
+    "options": [
+      "A) Immediately",
+      "B) Slowly",
+      "C) Carefully",
+      "D) Secretly"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Vocabulary Test - 3",
+    "question": "Choose the homophone pair:",
+    "options": [
+      "A) rose - flower / rose - past of rise",
+      "B) cat - dog",
+      "C) pen - pencil",
+      "D) tree - plant"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Vocabulary Test - 3",
+    "question": "Synonym of 'Intelligent' is:",
+    "options": [
+      "A) Clever",
+      "B) Dull",
+      "C) Weak",
+      "D) Slow"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Vocabulary Test - 3",
+    "question": "Antonym of 'Victory' is:",
+    "options": [
+      "A) Success",
+      "B) Defeat",
+      "C) Achievement",
+      "D) Progress"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Vocabulary Test - 3",
+    "question": "A person who cannot pay debts is called:",
+    "options": [
+      "A) Omniscient",
+      "B) Ambassador",
+      "C) Insolvent",
+      "D) Contemporary"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Vocabulary Test - 3",
+    "question": "Meaning of 'Don't have a cow' is:",
+    "options": [
+      "A) Buy a cow",
+      "B) Don't overreact",
+      "C) Feed animals",
+      "D) Be silent"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Vocabulary Test - 3",
+    "question": "The word added before a root word is called:",
+    "options": [
+      "A) Suffix",
+      "B) Prefix",
+      "C) Phrase",
+      "D) Clause"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Vocabulary Test - 3",
+    "question": "The word added after a root word is called:",
+    "options": [
+      "A) Prefix",
+      "B) Idiom",
+      "C) Suffix",
+      "D) Analogy"
+    ],
+    "correct_answer": "C"
+  },
+
+  {
+    "test_name": "Vocabulary Test - 4",
+    "question": "Choose the correct analogy: Bird : Fly :: Fish : ?",
+    "options": [
+      "A) Jump",
+      "B) Swim",
+      "C) Walk",
+      "D) Run"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Vocabulary Test - 4",
+    "question": "Synonym of 'Large' is:",
+    "options": [
+      "A) Tiny",
+      "B) Huge",
+      "C) Weak",
+      "D) Narrow"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Vocabulary Test - 4",
+    "question": "Antonym of 'Rich' is:",
+    "options": [
+      "A) Wealthy",
+      "B) Prosperous",
+      "C) Poor",
+      "D) Strong"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Vocabulary Test - 4",
+    "question": "A political representative of one country in another is:",
+    "options": [
+      "A) Teacher",
+      "B) Ambassador",
+      "C) Doctor",
+      "D) Pilot"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Vocabulary Test - 4",
+    "question": "Two persons living in the same age are called:",
+    "options": [
+      "A) Contemporaries",
+      "B) Pedestrians",
+      "C) Optimists",
+      "D) Novices"
+    ],
+    "correct_answer": "A"
+  },
+
+  {
+    "test_name": "Vocabulary Test - 5",
+    "question": "An assembly of listeners is called:",
+    "options": [
+      "A) Congregation",
+      "B) Audience",
+      "C) Crowd",
+      "D) Team"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Vocabulary Test - 5",
+    "question": "An assembly of worshippers is called:",
+    "options": [
+      "A) Audience",
+      "B) Committee",
+      "C) Congregation",
+      "D) Team"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Vocabulary Test - 5",
+    "question": "Meaning of 'As a matter of fact' is:",
+    "options": [
+      "A) Actually",
+      "B) Suddenly",
+      "C) Secretly",
+      "D) Rarely"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Vocabulary Test - 5",
+    "question": "Meaning of 'Back and forth' is:",
+    "options": [
+      "A) Once",
+      "B) Upward",
+      "C) Backwards and forwards",
+      "D) Downward"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Vocabulary Test - 5",
+    "question": "Homophone of 'Two' is:",
+    "options": [
+      "A) To",
+      "B) Tree",
+      "C) Tow",
+      "D) Tea"
+    ],
+    "correct_answer": "A"
+  },
+
+  {
+    "test_name": "Articles Test - 1",
+    "question": "Which article is used before a consonant sound?",
+    "options": [
+      "A) An",
+      "B) The",
+      "C) A",
+      "D) No article"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Articles Test - 1",
+    "question": "Choose the correct article: ___ apple",
+    "options": [
+      "A) A",
+      "B) An",
+      "C) The",
+      "D) No article"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Articles Test - 1",
+    "question": "Choose the correct article: ___ book",
+    "options": [
+      "A) A",
+      "B) An",
+      "C) The",
+      "D) No article"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Articles Test - 1",
+    "question": "Which article is definite?",
+    "options": [
+      "A) A",
+      "B) An",
+      "C) The",
+      "D) None"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Articles Test - 1",
+    "question": "Choose the correct article: ___ honest man",
+    "options": [
+      "A) A",
+      "B) An",
+      "C) The",
+      "D) No article"
+    ],
+    "correct_answer": "B"
+  },
+
+  {
+    "test_name": "Articles Test - 2",
+    "question": "We use 'the' with:",
+    "options": [
+      "A) Rivers",
+      "B) Oceans",
+      "C) Holy books",
+      "D) All of these"
+    ],
+    "correct_answer": "D"
+  },
+  {
+    "test_name": "Articles Test - 2",
+    "question": "Choose the correct article: ___ Himalayas",
+    "options": [
+      "A) A",
+      "B) An",
+      "C) The",
+      "D) No article"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Articles Test - 2",
+    "question": "Choose the correct article: ___ Gita",
+    "options": [
+      "A) The",
+      "B) A",
+      "C) An",
+      "D) No article"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Articles Test - 2",
+    "question": "A and An are called:",
+    "options": [
+      "A) Definite Articles",
+      "B) Indefinite Articles",
+      "C) Pronouns",
+      "D) Adverbs"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Articles Test - 2",
+    "question": "Choose the correct article: ___ umbrella",
+    "options": [
+      "A) A",
+      "B) The",
+      "C) An",
+      "D) No article"
+    ],
+    "correct_answer": "C"
+  },
+
+  {
+    "test_name": "Articles Test - 3",
+    "question": "Which article is used when mentioning something again?",
+    "options": [
+      "A) A",
+      "B) An",
+      "C) The",
+      "D) No article"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Articles Test - 3",
+    "question": "A stranger came. ___ stranger wanted water.",
+    "options": [
+      "A) A",
+      "B) An",
+      "C) The",
+      "D) No article"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Articles Test - 3",
+    "question": "Choose the correct article: ___ one-rupee note",
+    "options": [
+      "A) A",
+      "B) An",
+      "C) The",
+      "D) No article"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Articles Test - 3",
+    "question": "Choose the correct article: ___ USA",
+    "options": [
+      "A) A",
+      "B) The",
+      "C) An",
+      "D) No article"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Articles Test - 3",
+    "question": "Choose the correct article: ___ hour",
+    "options": [
+      "A) A",
+      "B) The",
+      "C) An",
+      "D) No article"
+    ],
+    "correct_answer": "C"
+  },
+
+  {
+    "test_name": "Active Passive Voice Test - 1",
+    "question": "In Active Voice, the subject:",
+    "options": [
+      "A) Receives the action",
+      "B) Performs the action",
+      "C) Is ignored",
+      "D) Becomes an object"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Active Passive Voice Test - 1",
+    "question": "John hit the ball. This sentence is:",
+    "options": [
+      "A) Passive Voice",
+      "B) Active Voice",
+      "C) Interrogative",
+      "D) Imperative"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Active Passive Voice Test - 1",
+    "question": "The ball was hit by John. This sentence is:",
+    "options": [
+      "A) Active Voice",
+      "B) Passive Voice",
+      "C) Assertive",
+      "D) Exclamatory"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Active Passive Voice Test - 1",
+    "question": "Choose the Passive Voice form: 'Atul is writing a letter.'",
+    "options": [
+      "A) Letter is written by Atul",
+      "B) Letter is being written by Atul",
+      "C) Atul wrote a letter",
+      "D) A letter writes Atul"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Active Passive Voice Test - 1",
+    "question": "In Passive Voice, importance is given to:",
+    "options": [
+      "A) Subject performing action",
+      "B) Object receiving action",
+      "C) Adverb",
+      "D) Conjunction"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Active Passive Voice Test - 2",
+    "question": "Choose the Passive Voice: 'The teacher teaches English.'",
+    "options": [
+      "A) English teaches the teacher.",
+      "B) English is taught by the teacher.",
+      "C) The teacher is taught English.",
+      "D) English was taught by the teacher."
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Active Passive Voice Test - 2",
+    "question": "Which sentence is in Active Voice?",
+    "options": [
+      "A) The cake was baked by Riya.",
+      "B) The match was won by India.",
+      "C) Riya baked the cake.",
+      "D) The homework was completed."
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Active Passive Voice Test - 2",
+    "question": "Passive Voice uses:",
+    "options": [
+      "A) be + past participle",
+      "B) verb + ing",
+      "C) noun + adjective",
+      "D) subject + adverb"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Active Passive Voice Test - 2",
+    "question": "Which sentence is Passive Voice?",
+    "options": [
+      "A) She sings well.",
+      "B) They play football.",
+      "C) The letter was written by Mohan.",
+      "D) We read books."
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Active Passive Voice Test - 2",
+    "question": "The object in Active Voice becomes _____ in Passive Voice.",
+    "options": [
+      "A) Verb",
+      "B) Subject",
+      "C) Adverb",
+      "D) Conjunction"
+    ],
+    "correct_answer": "B"
+  },
+
+  {
+    "test_name": "Active Passive Voice Test - 3",
+    "question": "Change into Passive Voice: 'Ravi opens the door.'",
+    "options": [
+      "A) The door is opened by Ravi.",
+      "B) The door opens Ravi.",
+      "C) Ravi is opened by the door.",
+      "D) The door opened Ravi."
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Active Passive Voice Test - 3",
+    "question": "Choose the Active Voice:",
+    "options": [
+      "A) The song was sung by her.",
+      "B) She sang the song.",
+      "C) The work was done.",
+      "D) The ball was kicked."
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Active Passive Voice Test - 3",
+    "question": "Passive Voice is often used when:",
+    "options": [
+      "A) Doer is unknown",
+      "B) Subject is important",
+      "C) Action receiver is important",
+      "D) Both A and C"
+    ],
+    "correct_answer": "D"
+  },
+  {
+    "test_name": "Active Passive Voice Test - 3",
+    "question": "Which verb can generally be changed into Passive Voice?",
+    "options": [
+      "A) Intransitive Verb",
+      "B) Transitive Verb",
+      "C) Modal Verb",
+      "D) Helping Verb"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Active Passive Voice Test - 3",
+    "question": "The cake was eaten by the child. The subject is:",
+    "options": [
+      "A) child",
+      "B) eaten",
+      "C) cake",
+      "D) by"
+    ],
+    "correct_answer": "C"
+  },
+
+  {
+    "test_name": "Reported Speech Test - 1",
+    "question": "Reported Speech is also called:",
+    "options": [
+      "A) Direct Speech",
+      "B) Indirect Speech",
+      "C) Active Speech",
+      "D) Passive Speech"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Reported Speech Test - 1",
+    "question": "In Reported Speech, quotation marks are:",
+    "options": [
+      "A) Added",
+      "B) Doubled",
+      "C) Removed",
+      "D) Highlighted"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Reported Speech Test - 1",
+    "question": "Reema said, 'I am going to the market.' Correct indirect speech is:",
+    "options": [
+      "A) Reema said that she was going to the market.",
+      "B) Reema said she go market.",
+      "C) Reema said market going.",
+      "D) Reema said that I am going."
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Reported Speech Test - 1",
+    "question": "The conjunction commonly used in reported statements is:",
+    "options": [
+      "A) because",
+      "B) but",
+      "C) that",
+      "D) or"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Reported Speech Test - 1",
+    "question": "'It is cold,' said Mohit. Indirect speech begins with:",
+    "options": [
+      "A) Mohit told",
+      "B) Mohit asked",
+      "C) Mohit said that",
+      "D) Mohit replied if"
+    ],
+    "correct_answer": "C"
+  },
+
+  {
+    "test_name": "Reported Speech Test - 2",
+    "question": "When reporting Yes/No questions, we use:",
+    "options": [
+      "A) because",
+      "B) if/whether",
+      "C) that",
+      "D) although"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Reported Speech Test - 2",
+    "question": "Direct: 'Have you completed the work?' Indirect speech usually begins with:",
+    "options": [
+      "A) asked if",
+      "B) said that",
+      "C) told that",
+      "D) replied because"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Reported Speech Test - 2",
+    "question": "Reported speech conveys:",
+    "options": [
+      "A) Exact words only",
+      "B) Meaning in own words",
+      "C) Only questions",
+      "D) Only commands"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Reported Speech Test - 2",
+    "question": "Which punctuation is removed in indirect speech?",
+    "options": [
+      "A) Full stop",
+      "B) Quotation marks",
+      "C) Comma only",
+      "D) Colon"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Reported Speech Test - 2",
+    "question": "Indirect speech is used to:",
+    "options": [
+      "A) Report a message",
+      "B) Narrate an idea",
+      "C) Convey information",
+      "D) All of these"
+    ],
+    "correct_answer": "D"
+  },
+
+  {
+    "test_name": "Direct and Indirect Speech Test - 1",
+    "question": "Which sentence is Direct Speech?",
+    "options": [
+      "A) Ravi said that he was tired.",
+      "B) Ravi said, 'I am tired.'",
+      "C) Ravi told me he was tired.",
+      "D) Ravi informed that he was tired."
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Direct and Indirect Speech Test - 1",
+    "question": "Direct Speech uses:",
+    "options": [
+      "A) Brackets",
+      "B) Quotation marks",
+      "C) Hyphens",
+      "D) Semicolons"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Direct and Indirect Speech Test - 1",
+    "question": "When reporting verb is in present tense, tense of reported speech:",
+    "options": [
+      "A) Always changes",
+      "B) Never changes",
+      "C) Usually remains unchanged",
+      "D) Becomes future"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Direct and Indirect Speech Test - 1",
+    "question": "Direct: Sneha says, 'It is four o'clock.' Indirect:",
+    "options": [
+      "A) Sneha says that it is four o'clock.",
+      "B) Sneha said that it was four o'clock.",
+      "C) Sneha says that it was four o'clock.",
+      "D) Sneha told four o'clock."
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Direct and Indirect Speech Test - 1",
+    "question": "The exact words of a speaker are called:",
+    "options": [
+      "A) Reported verb",
+      "B) Reporting clause",
+      "C) Direct speech",
+      "D) Narration clause"
+    ],
+    "correct_answer": "C"
+  },
+
+  {
+    "test_name": "Narration Test - 1",
+    "question": "Narration means:",
+    "options": [
+      "A) Solving equations",
+      "B) Presenting words of a speaker",
+      "C) Writing poems",
+      "D) Reading silently"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Narration Test - 1",
+    "question": "There are mainly _____ types of narration.",
+    "options": [
+      "A) One",
+      "B) Two",
+      "C) Three",
+      "D) Four"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Narration Test - 1",
+    "question": "When exact words are used, it is:",
+    "options": [
+      "A) Indirect Speech",
+      "B) Passive Voice",
+      "C) Direct Speech",
+      "D) Active Voice"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Narration Test - 1",
+    "question": "The first part of a direct speech sentence is called:",
+    "options": [
+      "A) Subject",
+      "B) Reported Speech",
+      "C) Reporting Verb",
+      "D) Predicate"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Narration Test - 1",
+    "question": "In indirect speech, inverted commas are:",
+    "options": [
+      "A) Added",
+      "B) Removed",
+      "C) Doubled",
+      "D) Colored"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Active Passive Voice Test - 4",
+    "question": "Choose the Passive Voice: 'The chef cooked the meal.'",
+    "options": [
+      "A) The meal cooked the chef.",
+      "B) The meal was cooked by the chef.",
+      "C) The chef was cooked by the meal.",
+      "D) The meal is cooked by the chef."
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Active Passive Voice Test - 4",
+    "question": "Which sentence is Active Voice?",
+    "options": [
+      "A) The letter was delivered by the postman.",
+      "B) The window was broken by the boy.",
+      "C) The postman delivered the letter.",
+      "D) The cake was eaten."
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Active Passive Voice Test - 4",
+    "question": "Passive Voice focuses on:",
+    "options": [
+      "A) The doer",
+      "B) The receiver of action",
+      "C) The adverb",
+      "D) The conjunction"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Active Passive Voice Test - 4",
+    "question": "The homework was completed by Rina. Who is the doer?",
+    "options": [
+      "A) homework",
+      "B) completed",
+      "C) Rina",
+      "D) by"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Active Passive Voice Test - 4",
+    "question": "Choose the Passive Voice form of 'They clean the room.'",
+    "options": [
+      "A) The room is cleaned by them.",
+      "B) The room cleans them.",
+      "C) They are cleaned by the room.",
+      "D) The room cleaned them."
+    ],
+    "correct_answer": "A"
+  },
+
+  {
+    "test_name": "Active Passive Voice Test - 5",
+    "question": "The song was sung by Lata. This sentence is:",
+    "options": [
+      "A) Active Voice",
+      "B) Passive Voice",
+      "C) Imperative",
+      "D) Interrogative"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Active Passive Voice Test - 5",
+    "question": "Choose the Active Voice: 'The book was read by Mohan.'",
+    "options": [
+      "A) Mohan read the book.",
+      "B) Mohan was read by the book.",
+      "C) The book read Mohan.",
+      "D) Mohan reading book."
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Active Passive Voice Test - 5",
+    "question": "Passive Voice commonly uses which helping verb?",
+    "options": [
+      "A) Do",
+      "B) Have",
+      "C) Be",
+      "D) Shall"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Active Passive Voice Test - 5",
+    "question": "Which sentence is Passive Voice?",
+    "options": [
+      "A) Rahul kicked the ball.",
+      "B) The ball was kicked by Rahul.",
+      "C) Rahul kicks well.",
+      "D) Rahul is playing."
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Active Passive Voice Test - 5",
+    "question": "Only _____ verbs can usually be changed into Passive Voice.",
+    "options": [
+      "A) Helping",
+      "B) Modal",
+      "C) Transitive",
+      "D) Linking"
+    ],
+    "correct_answer": "C"
+  },
+
+  {
+    "test_name": "Reported Speech Test - 3",
+    "question": "In reported speech, 'said to' often changes to:",
+    "options": [
+      "A) asked",
+      "B) told",
+      "C) replied",
+      "D) shouted"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Reported Speech Test - 3",
+    "question": "Direct: Raj said, 'I am happy.' Indirect:",
+    "options": [
+      "A) Raj said that he was happy.",
+      "B) Raj said that I was happy.",
+      "C) Raj said he happy.",
+      "D) Raj told happy."
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Reported Speech Test - 3",
+    "question": "Indirect speech generally reports:",
+    "options": [
+      "A) Exact words",
+      "B) Meaning of words",
+      "C) Punctuation",
+      "D) Pronunciation"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Reported Speech Test - 3",
+    "question": "Which word is commonly used in indirect statements?",
+    "options": [
+      "A) because",
+      "B) since",
+      "C) that",
+      "D) while"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Reported Speech Test - 3",
+    "question": "Question marks are usually _____ in indirect speech.",
+    "options": [
+      "A) doubled",
+      "B) removed",
+      "C) highlighted",
+      "D) underlined"
+    ],
+    "correct_answer": "B"
+  },
+
+  {
+    "test_name": "Direct and Indirect Speech Test - 2",
+    "question": "When reporting verb is in past tense, Present Simple changes to:",
+    "options": [
+      "A) Future",
+      "B) Present Perfect",
+      "C) Past Simple",
+      "D) Present Continuous"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Direct and Indirect Speech Test - 2",
+    "question": "Direct: He said, 'I play cricket.' Indirect:",
+    "options": [
+      "A) He said that he played cricket.",
+      "B) He said that he plays cricket.",
+      "C) He said cricket.",
+      "D) He told cricket."
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Direct and Indirect Speech Test - 2",
+    "question": "In indirect speech, 'today' often changes to:",
+    "options": [
+      "A) tomorrow",
+      "B) yesterday",
+      "C) that day",
+      "D) next day"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Direct and Indirect Speech Test - 2",
+    "question": "In indirect speech, 'here' changes to:",
+    "options": [
+      "A) there",
+      "B) where",
+      "C) near",
+      "D) around"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Direct and Indirect Speech Test - 2",
+    "question": "Universal truths in indirect speech:",
+    "options": [
+      "A) Always change tense",
+      "B) Never change tense",
+      "C) Become future tense",
+      "D) Become continuous tense"
+    ],
+    "correct_answer": "B"
+  },
+
+  {
+    "test_name": "Direct and Indirect Speech Test - 3",
+    "question": "Direct: The teacher said, 'The earth is round.' Indirect:",
+    "options": [
+      "A) The teacher said that the earth was round.",
+      "B) The teacher said that the earth is round.",
+      "C) The teacher said earth round.",
+      "D) The teacher told the earth is round."
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Direct and Indirect Speech Test - 3",
+    "question": "'Tomorrow' changes to:",
+    "options": [
+      "A) previous day",
+      "B) that day",
+      "C) next day",
+      "D) following day"
+    ],
+    "correct_answer": "D"
+  },
+  {
+    "test_name": "Direct and Indirect Speech Test - 3",
+    "question": "'These' changes to:",
+    "options": [
+      "A) those",
+      "B) them",
+      "C) this",
+      "D) they"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Direct and Indirect Speech Test - 3",
+    "question": "Which reporting verb is often used for questions?",
+    "options": [
+      "A) asked",
+      "B) built",
+      "C) played",
+      "D) wrote"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Direct and Indirect Speech Test - 3",
+    "question": "Indirect speech usually does NOT use:",
+    "options": [
+      "A) that",
+      "B) quotation marks",
+      "C) reporting verbs",
+      "D) pronoun changes"
+    ],
+    "correct_answer": "B"
+  },
+
+  {
+    "test_name": "Narration Test - 2",
+    "question": "Narration can be:",
+    "options": [
+      "A) Direct only",
+      "B) Indirect only",
+      "C) Direct and Indirect",
+      "D) Active and Passive"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Narration Test - 2",
+    "question": "The actual words spoken are called:",
+    "options": [
+      "A) Reported Speech",
+      "B) Subject",
+      "C) Predicate",
+      "D) Object"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Narration Test - 2",
+    "question": "Indirect narration presents:",
+    "options": [
+      "A) Exact words",
+      "B) Meaning of speech",
+      "C) Punctuation only",
+      "D) Grammar rules only"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Narration Test - 2",
+    "question": "The conjunction generally used after 'said' is:",
+    "options": [
+      "A) and",
+      "B) but",
+      "C) that",
+      "D) or"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Narration Test - 2",
+    "question": "Direct speech uses:",
+    "options": [
+      "A) Quotation marks",
+      "B) Brackets",
+      "C) Hyphens",
+      "D) Semicolons"
+    ],
+    "correct_answer": "A"
+  },
+
+  {
+    "test_name": "Types of Sentences Test - 1",
+    "question": "A sentence that states something is called:",
+    "options": [
+      "A) Interrogative",
+      "B) Assertive",
+      "C) Imperative",
+      "D) Exclamatory"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Types of Sentences Test - 1",
+    "question": "A sentence that asks a question is:",
+    "options": [
+      "A) Imperative",
+      "B) Assertive",
+      "C) Interrogative",
+      "D) Optative"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Types of Sentences Test - 1",
+    "question": "Which sentence is Interrogative?",
+    "options": [
+      "A) Open the door.",
+      "B) The sky is blue.",
+      "C) Where are you going?",
+      "D) Hurrah! We won."
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Types of Sentences Test - 1",
+    "question": "An Interrogative sentence ends with:",
+    "options": [
+      "A) .",
+      "B) !",
+      "C) ?",
+      "D) ;"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Types of Sentences Test - 1",
+    "question": "A sentence expressing command is:",
+    "options": [
+      "A) Imperative",
+      "B) Optative",
+      "C) Exclamatory",
+      "D) Assertive"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Narration Test - 3",
+    "question": "The verb before the quotation marks is called:",
+    "options": [
+      "A) Main Verb",
+      "B) Reporting Verb",
+      "C) Helping Verb",
+      "D) Action Verb"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Narration Test - 3",
+    "question": "In indirect speech, commas and quotation marks are:",
+    "options": [
+      "A) Added",
+      "B) Removed",
+      "C) Doubled",
+      "D) Highlighted"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Narration Test - 3",
+    "question": "Direct Speech presents:",
+    "options": [
+      "A) Meaning only",
+      "B) Summary only",
+      "C) Exact words",
+      "D) Questions only"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Narration Test - 3",
+    "question": "Indirect Speech presents:",
+    "options": [
+      "A) Exact words",
+      "B) Substance of speech",
+      "C) Punctuation",
+      "D) Pronunciation"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Narration Test - 3",
+    "question": "Which conjunction is commonly introduced in indirect statements?",
+    "options": [
+      "A) but",
+      "B) because",
+      "C) that",
+      "D) although"
+    ],
+    "correct_answer": "C"
+  },
+
+  {
+    "test_name": "Types of Sentences Test - 2",
+    "question": "Which sentence is Imperative?",
+    "options": [
+      "A) Where are you going?",
+      "B) Bring me a glass of water.",
+      "C) The sun rises in the east.",
+      "D) Hurrah! We won."
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Types of Sentences Test - 2",
+    "question": "A sentence expressing strong feelings is:",
+    "options": [
+      "A) Assertive",
+      "B) Interrogative",
+      "C) Exclamatory",
+      "D) Imperative"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Types of Sentences Test - 2",
+    "question": "Which sentence is Exclamatory?",
+    "options": [
+      "A) Open the window.",
+      "B) How beautiful the garden is!",
+      "C) She is reading.",
+      "D) Where do you live?"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Types of Sentences Test - 2",
+    "question": "A sentence expressing a wish is:",
+    "options": [
+      "A) Imperative",
+      "B) Interrogative",
+      "C) Assertive",
+      "D) Optative"
+    ],
+    "correct_answer": "D"
+  },
+  {
+    "test_name": "Types of Sentences Test - 2",
+    "question": "May you succeed in life. This is:",
+    "options": [
+      "A) Optative",
+      "B) Imperative",
+      "C) Assertive",
+      "D) Interrogative"
+    ],
+    "correct_answer": "A"
+  },
+
+  {
+    "test_name": "Types of Sentences Test - 3",
+    "question": "The sentence 'Do your homework.' is:",
+    "options": [
+      "A) Assertive",
+      "B) Imperative",
+      "C) Exclamatory",
+      "D) Optative"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Types of Sentences Test - 3",
+    "question": "'What a great victory!' is:",
+    "options": [
+      "A) Assertive",
+      "B) Imperative",
+      "C) Exclamatory",
+      "D) Interrogative"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Types of Sentences Test - 3",
+    "question": "'Who are you?' is:",
+    "options": [
+      "A) Interrogative",
+      "B) Assertive",
+      "C) Optative",
+      "D) Imperative"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Types of Sentences Test - 3",
+    "question": "Which sentence is Assertive?",
+    "options": [
+      "A) Please help me.",
+      "B) The train arrived on time.",
+      "C) What a surprise!",
+      "D) May God bless you."
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Types of Sentences Test - 3",
+    "question": "A sentence ending with '?' is generally:",
+    "options": [
+      "A) Exclamatory",
+      "B) Imperative",
+      "C) Interrogative",
+      "D) Optative"
+    ],
+    "correct_answer": "C"
+  },
+
+  {
+    "test_name": "Notice and Message Writing Test - 1",
+    "question": "A notice is usually written in:",
+    "options": [
+      "A) Story form",
+      "B) Formal style",
+      "C) Poetic style",
+      "D) Informal chat style"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Notice and Message Writing Test - 1",
+    "question": "A notice should generally not exceed:",
+    "options": [
+      "A) 20 words",
+      "B) 50-60 words",
+      "C) 100 words",
+      "D) 200 words"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Notice and Message Writing Test - 1",
+    "question": "Which of these is essential in a notice?",
+    "options": [
+      "A) Venue",
+      "B) Date",
+      "C) Time",
+      "D) All of these"
+    ],
+    "correct_answer": "D"
+  },
+  {
+    "test_name": "Notice and Message Writing Test - 1",
+    "question": "Messages are commonly used to:",
+    "options": [
+      "A) Convey information to another person",
+      "B) Write stories",
+      "C) Write poems",
+      "D) Solve grammar questions"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Notice and Message Writing Test - 1",
+    "question": "Government notices are often published in:",
+    "options": [
+      "A) Newspapers",
+      "B) Comic books",
+      "C) Diaries",
+      "D) Novels"
+    ],
+    "correct_answer": "A"
+  },
+
+  {
+    "test_name": "Notice and Message Writing Test - 2",
+    "question": "A notice for a meeting should include:",
+    "options": [
+      "A) Purpose",
+      "B) Time",
+      "C) Venue",
+      "D) All of these"
+    ],
+    "correct_answer": "D"
+  },
+  {
+    "test_name": "Notice and Message Writing Test - 2",
+    "question": "Lost and Found notices should contain:",
+    "options": [
+      "A) Identification marks",
+      "B) Date",
+      "C) Contact details",
+      "D) All of these"
+    ],
+    "correct_answer": "D"
+  },
+  {
+    "test_name": "Notice and Message Writing Test - 2",
+    "question": "Which item is important in a tour notice?",
+    "options": [
+      "A) Duration",
+      "B) Place",
+      "C) Contact address",
+      "D) All of these"
+    ],
+    "correct_answer": "D"
+  },
+  {
+    "test_name": "Notice and Message Writing Test - 2",
+    "question": "A message is usually:",
+    "options": [
+      "A) Long and detailed",
+      "B) Short and clear",
+      "C) Written in poetry",
+      "D) Written as a novel"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Notice and Message Writing Test - 2",
+    "question": "The purpose of a notice is to:",
+    "options": [
+      "A) Entertain",
+      "B) Inform concerned people",
+      "C) Confuse readers",
+      "D) Advertise movies only"
+    ],
+    "correct_answer": "B"
+  },
+
+  {
+    "test_name": "Comprehension Test - 1",
+    "passage": "Ravi loved reading books. Every evening he visited the village library. He borrowed books about science, animals and history. Reading helped him learn many new things.",
+    "question": "Where did Ravi go every evening?",
+    "options": [
+      "A) School",
+      "B) Market",
+      "C) Library",
+      "D) Playground"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Comprehension Test - 1",
+    "passage": "Ravi loved reading books. Every evening he visited the village library. He borrowed books about science, animals and history. Reading helped him learn many new things.",
+    "question": "What kind of books did Ravi borrow?",
+    "options": [
+      "A) Science, animals and history",
+      "B) Only science",
+      "C) Only stories",
+      "D) Only comics"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Comprehension Test - 1",
+    "passage": "Ravi loved reading books. Every evening he visited the village library. He borrowed books about science, animals and history. Reading helped him learn many new things.",
+    "question": "Reading helped Ravi:",
+    "options": [
+      "A) Sleep more",
+      "B) Learn new things",
+      "C) Play games",
+      "D) Travel abroad"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Comprehension Test - 1",
+    "passage": "Ravi loved reading books. Every evening he visited the village library. He borrowed books about science, animals and history. Reading helped him learn many new things.",
+    "question": "Ravi visited the library:",
+    "options": [
+      "A) Every morning",
+      "B) Every evening",
+      "C) Once a month",
+      "D) Every Sunday"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Comprehension Test - 1",
+    "passage": "Ravi loved reading books. Every evening he visited the village library. He borrowed books about science, animals and history. Reading helped him learn many new things.",
+    "question": "The passage is mainly about:",
+    "options": [
+      "A) Sports",
+      "B) Reading habits",
+      "C) Cooking",
+      "D) Travel"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Adverb Test - 3",
+    "question": "He answered the question correctly.",
+    "options": [
+      "A) question",
+      "B) answered",
+      "C) correctly",
+      "D) he"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Adverb Test - 3",
+    "question": "Which is an adverb of frequency?",
+    "options": [
+      "A) always",
+      "B) quickly",
+      "C) here",
+      "D) yesterday"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Adverb Test - 3",
+    "question": "She spoke softly.",
+    "options": [
+      "A) Noun",
+      "B) Verb",
+      "C) Adverb",
+      "D) Pronoun"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Adverb Test - 3",
+    "question": "The train arrived late.",
+    "options": [
+      "A) late",
+      "B) train",
+      "C) arrived",
+      "D) the"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Adverb Test - 3",
+    "question": "Choose the adverb.",
+    "options": [
+      "A) beautiful",
+      "B) quickly",
+      "C) mountain",
+      "D) teacher"
+    ],
+    "correct_answer": "B"
+  },
+
+  {
+    "test_name": "Adverb Test - 4",
+    "question": "He rarely misses school.",
+    "options": [
+      "A) Adverb of place",
+      "B) Adverb of manner",
+      "C) Adverb of frequency",
+      "D) Adverb of time"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Adverb Test - 4",
+    "question": "The children played outside.",
+    "options": [
+      "A) outside",
+      "B) played",
+      "C) children",
+      "D) the"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Adverb Test - 4",
+    "question": "Which is an adverb of place?",
+    "options": [
+      "A) there",
+      "B) quickly",
+      "C) often",
+      "D) yesterday"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Adverb Test - 4",
+    "question": "She completed the work carefully.",
+    "options": [
+      "A) work",
+      "B) carefully",
+      "C) completed",
+      "D) she"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Adverb Test - 4",
+    "question": "Which word modifies a verb?",
+    "options": [
+      "A) Noun",
+      "B) Pronoun",
+      "C) Adverb",
+      "D) Article"
+    ],
+    "correct_answer": "C"
+  },
+
+  {
+    "test_name": "Adverb Test - 5",
+    "question": "The baby cried loudly.",
+    "options": [
+      "A) baby",
+      "B) cried",
+      "C) loudly",
+      "D) the"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Adverb Test - 5",
+    "question": "Choose the adverb of time.",
+    "options": [
+      "A) tomorrow",
+      "B) here",
+      "C) slowly",
+      "D) always"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Adverb Test - 5",
+    "question": "He almost won the race.",
+    "options": [
+      "A) race",
+      "B) almost",
+      "C) won",
+      "D) he"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Adverb Test - 5",
+    "question": "Which is an adverb?",
+    "options": [
+      "A) brave",
+      "B) kindness",
+      "C) silently",
+      "D) school"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Adverb Test - 5",
+    "question": "She sings beautifully.",
+    "options": [
+      "A) adjective",
+      "B) adverb",
+      "C) noun",
+      "D) pronoun"
+    ],
+    "correct_answer": "B"
+  },
+
+  {
+    "test_name": "Conjunction Test - 3",
+    "question": "Ram and Shyam are friends.",
+    "options": [
+      "A) Ram",
+      "B) Shyam",
+      "C) and",
+      "D) friends"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Conjunction Test - 3",
+    "question": "I was tired but I finished my work.",
+    "options": [
+      "A) and",
+      "B) but",
+      "C) or",
+      "D) so"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Conjunction Test - 3",
+    "question": "You can take tea or coffee.",
+    "options": [
+      "A) but",
+      "B) so",
+      "C) or",
+      "D) because"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Conjunction Test - 3",
+    "question": "He was absent because he was ill.",
+    "options": [
+      "A) because",
+      "B) but",
+      "C) so",
+      "D) and"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Conjunction Test - 3",
+    "question": "Conjunctions are used to:",
+    "options": [
+      "A) describe",
+      "B) join",
+      "C) replace",
+      "D) compare"
+    ],
+    "correct_answer": "B"
+  },
+
+  {
+    "test_name": "Conjunction Test - 4",
+    "question": "Neither Ram nor Mohan was present.",
+    "options": [
+      "A) Correlative conjunction",
+      "B) Pronoun",
+      "C) Adjective",
+      "D) Verb"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Conjunction Test - 4",
+    "question": "Either study hard or fail.",
+    "options": [
+      "A) Addition",
+      "B) Choice",
+      "C) Result",
+      "D) Time"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Conjunction Test - 4",
+    "question": "She is poor yet happy.",
+    "options": [
+      "A) yet",
+      "B) happy",
+      "C) poor",
+      "D) she"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Conjunction Test - 4",
+    "question": "Both Ravi and Mohan participated.",
+    "options": [
+      "A) Correlative conjunction",
+      "B) Relative pronoun",
+      "C) Verb",
+      "D) Adverb"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Conjunction Test - 4",
+    "question": "He was late, so he missed the bus.",
+    "options": [
+      "A) Contrast",
+      "B) Cause and effect",
+      "C) Choice",
+      "D) Time"
+    ],
+    "correct_answer": "B"
+  },
+
+  {
+    "test_name": "Conjunction Test - 5",
+    "question": "Choose the conjunction.",
+    "options": [
+      "A) because",
+      "B) mountain",
+      "C) quickly",
+      "D) teacher"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Conjunction Test - 5",
+    "question": "I stayed home because it was raining.",
+    "options": [
+      "A) and",
+      "B) but",
+      "C) because",
+      "D) or"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Conjunction Test - 5",
+    "question": "She is smart and hardworking.",
+    "options": [
+      "A) and",
+      "B) smart",
+      "C) hardworking",
+      "D) she"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Conjunction Test - 5",
+    "question": "Which conjunction shows contrast?",
+    "options": [
+      "A) and",
+      "B) but",
+      "C) because",
+      "D) so"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Conjunction Test - 5",
+    "question": "Which conjunction shows reason?",
+    "options": [
+      "A) because",
+      "B) and",
+      "C) or",
+      "D) yet"
+    ],
+    "correct_answer": "A"
+  },
+
+  {
+    "test_name": "Jumbled Sentences Test - 4",
+    "question": "Arrange: football / boys / playing / are / the",
+    "options": [
+      "A) The boys are playing football",
+      "B) Boys the football are playing",
+      "C) Playing football boys the are",
+      "D) Football the boys are"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Jumbled Sentences Test - 4",
+    "question": "Arrange: morning / early / gets / he / up",
+    "options": [
+      "A) He gets up early morning",
+      "B) Gets he up early morning",
+      "C) Early morning gets he up",
+      "D) Up gets he morning"
+    ],
+    "correct_answer": "A"
+  },
+
+  {
+    "test_name": "Comprehension Test - 2",
+    "passage": "A farmer had a small field near his village. Every day he worked hard and grew vegetables. People from nearby villages bought fresh vegetables from him.",
+    "question": "What did the farmer grow?",
+    "options": [
+      "A) Flowers",
+      "B) Vegetables",
+      "C) Fruits",
+      "D) Trees"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Comprehension Test - 2",
+    "passage": "A farmer had a small field near his village. Every day he worked hard and grew vegetables. People from nearby villages bought fresh vegetables from him.",
+    "question": "Where was the field?",
+    "options": [
+      "A) Near the village",
+      "B) In the city",
+      "C) Near the river",
+      "D) In the forest"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Comprehension Test - 2",
+    "passage": "A farmer had a small field near his village. Every day he worked hard and grew vegetables. People from nearby villages bought fresh vegetables from him.",
+    "question": "Why did people visit him?",
+    "options": [
+      "A) To buy vegetables",
+      "B) To play games",
+      "C) To study",
+      "D) To travel"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Jumbled Sentences Test - 5",
+    "question": "Arrange: books / reading / likes / she",
+    "options": [
+      "A) She likes reading books",
+      "B) Reading books she likes",
+      "C) Likes she reading books",
+      "D) Books reading likes she"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Jumbled Sentences Test - 5",
+    "question": "Arrange: India / country / is / a / great",
+    "options": [
+      "A) India is a great country",
+      "B) Great country India is a",
+      "C) A India country is great",
+      "D) Country India is great a"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Jumbled Sentences Test - 5",
+    "question": "Arrange: hard / success / brings / work",
+    "options": [
+      "A) Hard work brings success",
+      "B) Success hard work brings",
+      "C) Work hard success brings",
+      "D) Brings hard work success"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Jumbled Sentences Test - 5",
+    "question": "Arrange: teacher / respected / our / is",
+    "options": [
+      "A) Our teacher is respected",
+      "B) Teacher our respected is",
+      "C) Respected teacher our is",
+      "D) Is respected teacher our"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Jumbled Sentences Test - 5",
+    "question": "Arrange: garden / beautiful / the / looks",
+    "options": [
+      "A) The garden looks beautiful",
+      "B) Garden beautiful the looks",
+      "C) Looks beautiful the garden",
+      "D) Beautiful garden looks the"
+    ],
+    "correct_answer": "A"
+  },
+
+  {
+    "test_name": "Comprehension Test - 3",
+    "passage": "Neha planted a mango tree in her backyard. She watered it every day. After a few years, the tree started giving sweet mangoes.",
+    "question": "What did Neha plant?",
+    "options": [
+      "A) Rose plant",
+      "B) Mango tree",
+      "C) Coconut tree",
+      "D) Tulsi plant"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Comprehension Test - 3",
+    "passage": "Neha planted a mango tree in her backyard. She watered it every day. After a few years, the tree started giving sweet mangoes.",
+    "question": "Why did the tree grow well?",
+    "options": [
+      "A) She watered it daily",
+      "B) She ignored it",
+      "C) It rained daily",
+      "D) Nobody touched it"
+    ],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Comprehension Test - 4",
+    "passage": "The sun is the main source of energy for Earth. Plants use sunlight to prepare food. Animals and humans depend on plants directly or indirectly.",
+    "question": "What is the main source of energy?",
+    "options": [
+      "A) Moon",
+      "B) Wind",
+      "C) Sun",
+      "D) Water"
+    ],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Comprehension Test - 4",
+    "passage": "The sun is the main source of energy for Earth. Plants use sunlight to prepare food. Animals and humans depend on plants directly or indirectly.",
+    "question": "Who prepares food using sunlight?",
+    "options": [
+      "A) Animals",
+      "B) Humans",
+      "C) Plants",
+      "D) Birds"
+    ],
+    "correct_answer": "C"
+  },
+
+  {
+    "test_name": "Comprehension Test - 5",
+    "passage": "Water is essential for life. We use it for drinking, cooking and cleaning. Saving water is important because fresh water is limited.",
+    "question": "Why should we save water?",
+    "options": [
+      "A) It is expensive",
+      "B) Fresh water is limited",
+      "C) It tastes good",
+      "D) It is salty"
+    ],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Comprehension Test - 6",
+    "passage": "Rohit woke up early and went for a morning walk. The fresh air made him feel energetic throughout the day.",
+    "question": "Why did Rohit feel energetic?",
+    "options": [
+      "A) He slept again",
+      "B) He watched TV",
+      "C) Fresh air from morning walk",
+      "D) He played games"
+    ],
+    "correct_answer": "C"
+  },
+
+  {
+    "test_name": "Comprehension Test - 7",
+    "passage": "Honesty is a valuable quality. Honest people earn trust and respect from others. It helps build strong relationships.",
+    "question": "What do honest people earn?",
+    "options": [
+      "A) Money only",
+      "B) Trust and respect",
+      "C) Gifts only",
+      "D) Fame only"
+    ],
+    "correct_answer": "B"
+  },
+
+  {
+    "test_name": "Mixed English Mock Test - 1",
+    "question": "Which of the following is a Proper Noun?",
+    "options": ["A) city","B) river","C) Delhi","D) village"],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 1",
+    "question": "Choose the correct pronoun: Riya is absent because ___ is sick.",
+    "options": ["A) he","B) she","C) they","D) we"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 1",
+    "question": "Identify the verb: The bird flies high.",
+    "options": ["A) bird","B) flies","C) high","D) the"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 1",
+    "question": "Choose the adjective.",
+    "options": ["A) quickly","B) beautiful","C) slowly","D) often"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 1",
+    "question": "Choose the adverb.",
+    "options": ["A) brave","B) mountain","C) carefully","D) school"],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 1",
+    "question": "Ram and Mohan are brothers. Identify the conjunction.",
+    "options": ["A) Ram","B) and","C) Mohan","D) brothers"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 1",
+    "question": "The cat is under the table. Identify the preposition.",
+    "options": ["A) cat","B) table","C) under","D) the"],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 1",
+    "question": "She ___ to school every day.",
+    "options": ["A) go","B) goes","C) going","D) gone"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 1",
+    "question": "Synonym of 'Happy' is:",
+    "options": ["A) Sad","B) Joyful","C) Angry","D) Weak"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 1",
+    "question": "What do honest people earn?",
+    "options": ["A) Trust","B) Fear","C) Anger","D) Jealousy"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 2",
+    "question": "Which of the following is an Abstract Noun?",
+    "options": ["A) honesty","B) chair","C) dog","D) city"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 2",
+    "question": "Choose the correct pronoun: Rahul and I went to the market. ___ bought fruits.",
+    "options": ["A) We","B) They","C) He","D) She"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 2",
+    "question": "Identify the verb: The children laughed loudly.",
+    "options": ["A) children","B) laughed","C) loudly","D) the"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 2",
+    "question": "Choose the adjective.",
+    "options": ["A) red","B) quickly","C) softly","D) often"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 2",
+    "question": "Choose the adverb.",
+    "options": ["A) beautiful","B) carefully","C) tree","D) teacher"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 2",
+    "question": "Which conjunction shows contrast?",
+    "options": ["A) and","B) but","C) because","D) so"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 2",
+    "question": "The ball rolled under the chair. Identify the preposition.",
+    "options": ["A) rolled","B) ball","C) under","D) chair"],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 2",
+    "question": "They ___ cricket every Sunday.",
+    "options": ["A) plays","B) play","C) playing","D) played"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 2",
+    "question": "Antonym of 'Victory' is:",
+    "options": ["A) Success","B) Defeat","C) Gain","D) Win"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 2",
+    "question": "Why should we save water?",
+    "options": ["A) It is colorful","B) Fresh water is limited","C) It is heavy","D) It is hot"],
+    "correct_answer": "B"
+  },
+
+  {
+    "test_name": "Mixed English Mock Test - 3",
+    "question": "Which is a Collective Noun?",
+    "options": ["A) team","B) boy","C) book","D) city"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 3",
+    "question": "Which is a Demonstrative Pronoun?",
+    "options": ["A) these","B) he","C) we","D) who"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 3",
+    "question": "Identify the verb: Birds sing sweetly.",
+    "options": ["A) Birds","B) sing","C) sweetly","D) none"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 3",
+    "question": "Choose the adjective.",
+    "options": ["A) brave","B) silently","C) quickly","D) always"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 3",
+    "question": "Choose the adverb of time.",
+    "options": ["A) tomorrow","B) tree","C) brave","D) house"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 3",
+    "question": "Either tea ___ coffee.",
+    "options": ["A) and","B) but","C) or","D) because"],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 3",
+    "question": "The bird flew over the tree. Identify the preposition.",
+    "options": ["A) bird","B) flew","C) over","D) tree"],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 3",
+    "question": "The sun ___ in the east.",
+    "options": ["A) rise","B) rises","C) rising","D) rose"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 3",
+    "question": "Synonym of 'Quick' is:",
+    "options": ["A) Slow","B) Rapid","C) Weak","D) Small"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 3",
+    "question": "Where did Ravi go every evening?",
+    "options": ["A) School","B) Market","C) Library","D) Hospital"],
+    "correct_answer": "C"
+  },
+
+  {
+    "test_name": "Mixed English Mock Test - 4",
+    "question": "Which is a Proper Noun?",
+    "options": ["A) mountain","B) India","C) river","D) teacher"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 4",
+    "question": "Choose the correct pronoun: The dog wagged ___ tail.",
+    "options": ["A) his","B) her","C) its","D) their"],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 4",
+    "question": "Identify the verb: She dances well.",
+    "options": ["A) she","B) dances","C) well","D) none"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 4",
+    "question": "Choose the adjective.",
+    "options": ["A) intelligent","B) softly","C) yesterday","D) often"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 4",
+    "question": "Choose the adverb.",
+    "options": ["A) mountain","B) school","C) quietly","D) kindness"],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 4",
+    "question": "He was absent because he was ill.",
+    "options": ["A) because","B) and","C) but","D) yet"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 4",
+    "question": "The picture hangs on the wall.",
+    "options": ["A) hangs","B) picture","C) on","D) wall"],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 4",
+    "question": "She ___ a book now.",
+    "options": ["A) reads","B) read","C) is reading","D) reading"],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 4",
+    "question": "Antonym of 'Ancient' is:",
+    "options": ["A) Historic","B) Old","C) Modern","D) Traditional"],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 4",
+    "question": "What did Neha plant?",
+    "options": ["A) Rose","B) Mango tree","C) Tulsi","D) Banana"],
+    "correct_answer": "B"
+  },
+
+  {
+    "test_name": "Mixed English Mock Test - 5",
+    "question": "Gold is a:",
+    "options": ["A) Abstract Noun","B) Material Noun","C) Proper Noun","D) Collective Noun"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 5",
+    "question": "Which is a Relative Pronoun?",
+    "options": ["A) who","B) she","C) we","D) these"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 5",
+    "question": "Identify the verb: The train arrived late.",
+    "options": ["A) train","B) arrived","C) late","D) the"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 5",
+    "question": "Choose the adjective.",
+    "options": ["A) huge","B) quietly","C) tomorrow","D) slowly"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 5",
+    "question": "Choose the adverb of frequency.",
+    "options": ["A) always","B) red","C) table","D) brave"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 5",
+    "question": "Ram is poor but honest.",
+    "options": ["A) and","B) because","C) but","D) or"],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 5",
+    "question": "The cat sat beside the dog.",
+    "options": ["A) cat","B) sat","C) beside","D) dog"],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 5",
+    "question": "We ___ completed our work.",
+    "options": ["A) have","B) has","C) had","D) having"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 5",
+    "question": "Synonym of 'Large' is:",
+    "options": ["A) Tiny","B) Huge","C) Weak","D) Thin"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 5",
+    "question": "What is the main source of energy for Earth?",
+    "options": ["A) Moon","B) Sun","C) Wind","D) Water"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 6",
+    "question": "Which is an Abstract Noun?",
+    "options": ["A) honesty","B) table","C) river","D) school"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 6",
+    "question": "Choose the correct pronoun: Mohan is absent because ___ is ill.",
+    "options": ["A) he","B) she","C) they","D) we"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 6",
+    "question": "Identify the verb: The baby cried loudly.",
+    "options": ["A) baby","B) cried","C) loudly","D) the"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 6",
+    "question": "Choose the adjective.",
+    "options": ["A) brave","B) softly","C) quickly","D) always"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 6",
+    "question": "Choose the adverb.",
+    "options": ["A) mountain","B) silently","C) school","D) teacher"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 6",
+    "question": "He was hungry, so he ate food.",
+    "options": ["A) because","B) and","C) so","D) but"],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 6",
+    "question": "The ball is under the bed.",
+    "options": ["A) ball","B) bed","C) under","D) is"],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 6",
+    "question": "They ___ football every evening.",
+    "options": ["A) plays","B) play","C) playing","D) played"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 6",
+    "question": "Antonym of 'Rich' is:",
+    "options": ["A) Wealthy","B) Prosperous","C) Poor","D) Strong"],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 6",
+    "question": "Where did the farmer have his field?",
+    "options": ["A) Near the village","B) City","C) Forest","D) Market"],
+    "correct_answer": "A"
+  },
+
+  {
+    "test_name": "Mixed English Mock Test - 7",
+    "question": "Which is a Proper Noun?",
+    "options": ["A) city","B) India","C) teacher","D) village"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 7",
+    "question": "Which is a Reflexive Pronoun?",
+    "options": ["A) who","B) myself","C) this","D) we"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 7",
+    "question": "Identify the verb: The dog barked loudly.",
+    "options": ["A) dog","B) barked","C) loudly","D) the"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 7",
+    "question": "Choose the adjective.",
+    "options": ["A) red","B) slowly","C) carefully","D) often"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 7",
+    "question": "Choose the adverb of frequency.",
+    "options": ["A) always","B) tree","C) book","D) red"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 7",
+    "question": "Tea or coffee?",
+    "options": ["A) and","B) because","C) or","D) so"],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 7",
+    "question": "The bird flew over the wall.",
+    "options": ["A) bird","B) flew","C) over","D) wall"],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 7",
+    "question": "The earth ___ around the sun.",
+    "options": ["A) move","B) moves","C) moved","D) moving"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 7",
+    "question": "Synonym of 'Intelligent' is:",
+    "options": ["A) Clever","B) Weak","C) Dull","D) Slow"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 7",
+    "question": "What did Neha plant?",
+    "options": ["A) Mango tree","B) Rose","C) Wheat","D) Grass"],
+    "correct_answer": "A"
+  },
+
+  {
+    "test_name": "Mixed English Mock Test - 8",
+    "question": "Which is a Collective Noun?",
+    "options": ["A) army","B) boy","C) pen","D) honesty"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 8",
+    "question": "Choose the Personal Pronoun.",
+    "options": ["A) this","B) they","C) who","D) either"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 8",
+    "question": "Identify the verb: She sings beautifully.",
+    "options": ["A) she","B) sings","C) beautifully","D) none"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 8",
+    "question": "Choose the adjective.",
+    "options": ["A) huge","B) softly","C) tomorrow","D) loudly"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 8",
+    "question": "Choose the adverb of place.",
+    "options": ["A) there","B) beautiful","C) mountain","D) teacher"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 8",
+    "question": "She is poor but honest.",
+    "options": ["A) because","B) and","C) but","D) so"],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 8",
+    "question": "The cat sat beside the dog.",
+    "options": ["A) cat","B) sat","C) beside","D) dog"],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 8",
+    "question": "I ___ reading a book now.",
+    "options": ["A) am","B) is","C) are","D) has"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 8",
+    "question": "Antonym of 'Brave' is:",
+    "options": ["A) Bold","B) Fearless","C) Cowardly","D) Strong"],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 8",
+    "question": "What is the main source of energy for Earth?",
+    "options": ["A) Sun","B) Moon","C) Wind","D) Water"],
+    "correct_answer": "A"
+  },
+
+  {
+    "test_name": "Mixed English Mock Test - 9",
+    "question": "Gold is a:",
+    "options": ["A) Material Noun","B) Abstract Noun","C) Proper Noun","D) Collective Noun"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 9",
+    "question": "Which is a Relative Pronoun?",
+    "options": ["A) who","B) she","C) we","D) these"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 9",
+    "question": "Identify the verb: Children play games.",
+    "options": ["A) Children","B) play","C) games","D) none"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 9",
+    "question": "Choose the adjective.",
+    "options": ["A) intelligent","B) quietly","C) always","D) there"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 9",
+    "question": "Choose the adverb.",
+    "options": ["A) quickly","B) city","C) mountain","D) honesty"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 9",
+    "question": "He was tired, yet he worked.",
+    "options": ["A) and","B) because","C) yet","D) so"],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 9",
+    "question": "The picture is on the wall.",
+    "options": ["A) picture","B) wall","C) on","D) is"],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 9",
+    "question": "She ___ completed her work.",
+    "options": ["A) has","B) have","C) had","D) having"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 9",
+    "question": "Synonym of 'Large' is:",
+    "options": ["A) Huge","B) Tiny","C) Weak","D) Thin"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 9",
+    "question": "What do honest people earn?",
+    "options": ["A) Trust and respect","B) Fear","C) Anger","D) Jealousy"],
+    "correct_answer": "A"
+  },
+
+  {
+    "test_name": "Mixed English Mock Test - 10",
+    "question": "Which noun names a quality?",
+    "options": ["A) bravery","B) chair","C) dog","D) river"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 10",
+    "question": "Choose the Demonstrative Pronoun.",
+    "options": ["A) this","B) we","C) they","D) who"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 10",
+    "question": "Identify the verb: Birds fly high.",
+    "options": ["A) birds","B) fly","C) high","D) the"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 10",
+    "question": "Choose the adjective.",
+    "options": ["A) beautiful","B) slowly","C) carefully","D) often"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 10",
+    "question": "Choose the adverb of time.",
+    "options": ["A) yesterday","B) red","C) teacher","D) book"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 10",
+    "question": "Both Ram and Mohan participated.",
+    "options": ["A) Correlative conjunction","B) Pronoun","C) Verb","D) Adjective"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 10",
+    "question": "The train passed through the tunnel.",
+    "options": ["A) train","B) passed","C) through","D) tunnel"],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 10",
+    "question": "We ___ football every Sunday.",
+    "options": ["A) play","B) plays","C) playing","D) played"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 10",
+    "question": "Antonym of 'Ancient' is:",
+    "options": ["A) Old","B) Historic","C) Modern","D) Traditional"],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 10",
+    "question": "Why did Ravi visit the library?",
+    "options": ["A) To learn new things","B) To sleep","C) To play","D) To travel"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 11",
+    "question": "Which is a Common Noun?",
+    "options": ["A) India","B) Delhi","C) teacher","D) Ganga"],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 11",
+    "question": "Choose the Personal Pronoun.",
+    "options": ["A) we","B) this","C) who","D) either"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 11",
+    "question": "Identify the verb: The baby sleeps peacefully.",
+    "options": ["A) baby","B) sleeps","C) peacefully","D) the"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 11",
+    "question": "Choose the adjective.",
+    "options": ["A) green","B) quietly","C) always","D) there"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 11",
+    "question": "Choose the adverb.",
+    "options": ["A) softly","B) school","C) city","D) kindness"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 11",
+    "question": "He is poor but honest.",
+    "options": ["A) and","B) but","C) because","D) so"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 11",
+    "question": "The cat jumped over the wall.",
+    "options": ["A) cat","B) jumped","C) over","D) wall"],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 11",
+    "question": "She ___ to school daily.",
+    "options": ["A) go","B) goes","C) going","D) gone"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 11",
+    "question": "Synonym of 'Brave' is:",
+    "options": ["A) Fearless","B) Weak","C) Cowardly","D) Shy"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 11",
+    "question": "Who watered the mango tree every day?",
+    "options": ["A) Ravi","B) Mohan","C) Neha","D) Rina"],
+    "correct_answer": "C"
+  },
+
+  {
+    "test_name": "Mixed English Mock Test - 12",
+    "question": "Which is a Material Noun?",
+    "options": ["A) silver","B) honesty","C) crowd","D) city"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 12",
+    "question": "Which is a Reflexive Pronoun?",
+    "options": ["A) myself","B) who","C) these","D) we"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 12",
+    "question": "Identify the verb: Students study hard.",
+    "options": ["A) students","B) study","C) hard","D) none"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 12",
+    "question": "Choose the adjective.",
+    "options": ["A) tall","B) slowly","C) yesterday","D) often"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 12",
+    "question": "Choose the adverb of frequency.",
+    "options": ["A) rarely","B) tree","C) book","D) house"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 12",
+    "question": "Tea and coffee are available.",
+    "options": ["A) because","B) and","C) but","D) so"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 12",
+    "question": "The children sat near the fire.",
+    "options": ["A) children","B) sat","C) near","D) fire"],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 12",
+    "question": "I ___ reading a story now.",
+    "options": ["A) am","B) is","C) are","D) have"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 12",
+    "question": "Antonym of 'Victory' is:",
+    "options": ["A) Win","B) Success","C) Defeat","D) Gain"],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 12",
+    "question": "Plants use sunlight to prepare:",
+    "options": ["A) Water","B) Food","C) Air","D) Soil"],
+    "correct_answer": "B"
+  },
+
+  {
+    "test_name": "Mixed English Mock Test - 13",
+    "question": "Which is a Proper Noun?",
+    "options": ["A) country","B) India","C) river","D) teacher"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 13",
+    "question": "Choose the Demonstrative Pronoun.",
+    "options": ["A) this","B) they","C) we","D) who"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 13",
+    "question": "Identify the verb: Birds build nests.",
+    "options": ["A) birds","B) build","C) nests","D) none"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 13",
+    "question": "Choose the adjective.",
+    "options": ["A) intelligent","B) quietly","C) there","D) often"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 13",
+    "question": "Choose the adverb.",
+    "options": ["A) carefully","B) mountain","C) school","D) city"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 13",
+    "question": "He was tired, yet he continued.",
+    "options": ["A) and","B) because","C) yet","D) so"],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 13",
+    "question": "The picture hangs on the wall.",
+    "options": ["A) picture","B) hangs","C) on","D) wall"],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 13",
+    "question": "They ___ football every weekend.",
+    "options": ["A) play","B) plays","C) playing","D) played"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 13",
+    "question": "Synonym of 'Large' is:",
+    "options": ["A) Huge","B) Tiny","C) Thin","D) Weak"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 13",
+    "question": "Why is honesty valuable?",
+    "options": ["A) It earns trust","B) It makes people sleep","C) It grows trees","D) It cooks food"],
+    "correct_answer": "A"
+  },
+
+  {
+    "test_name": "Mixed English Mock Test - 14",
+    "question": "Which is an Abstract Noun?",
+    "options": ["A) courage","B) chair","C) table","D) city"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 14",
+    "question": "Choose the Relative Pronoun.",
+    "options": ["A) who","B) we","C) they","D) myself"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 14",
+    "question": "Identify the verb: The teacher explained the lesson.",
+    "options": ["A) teacher","B) explained","C) lesson","D) the"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 14",
+    "question": "Choose the adjective.",
+    "options": ["A) red","B) softly","C) often","D) there"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 14",
+    "question": "Choose the adverb of time.",
+    "options": ["A) yesterday","B) brave","C) city","D) school"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 14",
+    "question": "You can have tea or coffee.",
+    "options": ["A) and","B) because","C) or","D) but"],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 14",
+    "question": "The ball rolled under the chair.",
+    "options": ["A) rolled","B) ball","C) under","D) chair"],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 14",
+    "question": "She ___ her homework already.",
+    "options": ["A) has completed","B) complete","C) completing","D) completes"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 14",
+    "question": "Antonym of 'Happy' is:",
+    "options": ["A) Joyful","B) Sad","C) Glad","D) Cheerful"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 14",
+    "question": "Where did Ravi go every evening?",
+    "options": ["A) Library","B) School","C) Market","D) Park"],
+    "correct_answer": "A"
+  },
+
+  {
+    "test_name": "Mixed English Mock Test - 15",
+    "question": "Which is a Collective Noun?",
+    "options": ["A) audience","B) boy","C) city","D) tree"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 15",
+    "question": "Choose the correct pronoun: ___ are my best friends.",
+    "options": ["A) They","B) He","C) She","D) It"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 15",
+    "question": "Identify the verb: The children laughed happily.",
+    "options": ["A) children","B) laughed","C) happily","D) the"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 15",
+    "question": "Choose the adjective.",
+    "options": ["A) beautiful","B) quickly","C) always","D) there"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 15",
+    "question": "Choose the adverb.",
+    "options": ["A) silently","B) teacher","C) mountain","D) honesty"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 15",
+    "question": "He was ill, so he stayed home.",
+    "options": ["A) because","B) so","C) but","D) and"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 15",
+    "question": "The train passed through the tunnel.",
+    "options": ["A) train","B) passed","C) through","D) tunnel"],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 15",
+    "question": "The earth ___ around the sun.",
+    "options": ["A) move","B) moves","C) moving","D) moved"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 15",
+    "question": "Synonym of 'Quick' is:",
+    "options": ["A) Rapid","B) Slow","C) Weak","D) Small"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 15",
+    "question": "What do honest people earn?",
+    "options": ["A) Trust and respect","B) Fear","C) Anger","D) Jealousy"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 16",
+    "question": "Which is a Proper Noun?",
+    "options": ["A) city","B) river","C) Hyderabad","D) country"],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 16",
+    "question": "Choose the correct pronoun: Rina and Meena are sisters. ___ study together.",
+    "options": ["A) He","B) She","C) They","D) It"],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 16",
+    "question": "Identify the verb: The boy kicked the ball.",
+    "options": ["A) boy","B) kicked","C) ball","D) the"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 16",
+    "question": "Choose the adjective.",
+    "options": ["A) strong","B) quickly","C) softly","D) there"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 16",
+    "question": "Choose the adverb.",
+    "options": ["A) mountain","B) carefully","C) school","D) honesty"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 16",
+    "question": "She was tired but she continued working.",
+    "options": ["A) and","B) but","C) because","D) so"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 16",
+    "question": "The bird is sitting on the branch.",
+    "options": ["A) bird","B) sitting","C) on","D) branch"],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 16",
+    "question": "They ___ completed the assignment.",
+    "options": ["A) has","B) have","C) had","D) having"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 16",
+    "question": "Synonym of 'Happy' is:",
+    "options": ["A) Sad","B) Joyful","C) Angry","D) Weak"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 16",
+    "question": "What did the farmer grow?",
+    "options": ["A) Flowers","B) Vegetables","C) Trees","D) Cotton"],
+    "correct_answer": "B"
+  },
+
+  {
+    "test_name": "Mixed English Mock Test - 17",
+    "question": "Which is an Abstract Noun?",
+    "options": ["A) courage","B) pen","C) book","D) river"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 17",
+    "question": "Choose the Demonstrative Pronoun.",
+    "options": ["A) this","B) he","C) they","D) we"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 17",
+    "question": "Identify the verb: Students write neatly.",
+    "options": ["A) Students","B) write","C) neatly","D) none"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 17",
+    "question": "Choose the adjective.",
+    "options": ["A) beautiful","B) loudly","C) often","D) tomorrow"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 17",
+    "question": "Choose the adverb of place.",
+    "options": ["A) there","B) red","C) tree","D) teacher"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 17",
+    "question": "Tea or coffee?",
+    "options": ["A) because","B) and","C) or","D) yet"],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 17",
+    "question": "The cat hid under the sofa.",
+    "options": ["A) cat","B) hid","C) under","D) sofa"],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 17",
+    "question": "The earth ___ around the sun.",
+    "options": ["A) move","B) moves","C) moving","D) moved"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 17",
+    "question": "Antonym of 'Victory' is:",
+    "options": ["A) Success","B) Defeat","C) Win","D) Gain"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 17",
+    "question": "Why should we save water?",
+    "options": ["A) Fresh water is limited","B) Water is heavy","C) Water is blue","D) Water is hot"],
+    "correct_answer": "A"
+  },
+
+  {
+    "test_name": "Mixed English Mock Test - 18",
+    "question": "Which is a Collective Noun?",
+    "options": ["A) audience","B) tree","C) city","D) child"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 18",
+    "question": "Choose the Relative Pronoun.",
+    "options": ["A) who","B) she","C) we","D) they"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 18",
+    "question": "Identify the verb: The sun shines brightly.",
+    "options": ["A) sun","B) shines","C) brightly","D) the"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 18",
+    "question": "Choose the adjective.",
+    "options": ["A) tall","B) softly","C) quickly","D) always"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 18",
+    "question": "Choose the adverb.",
+    "options": ["A) silently","B) mountain","C) honesty","D) city"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 18",
+    "question": "He was hungry, so he ate.",
+    "options": ["A) and","B) because","C) so","D) but"],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 18",
+    "question": "The plane flew above the clouds.",
+    "options": ["A) plane","B) flew","C) above","D) clouds"],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 18",
+    "question": "She ___ reading a novel now.",
+    "options": ["A) is","B) are","C) am","D) have"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 18",
+    "question": "Synonym of 'Quick' is:",
+    "options": ["A) Rapid","B) Slow","C) Weak","D) Small"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 18",
+    "question": "Who planted the mango tree?",
+    "options": ["A) Ravi","B) Neha","C) Mohan","D) Raju"],
+    "correct_answer": "B"
+  },
+
+  {
+    "test_name": "Mixed English Mock Test - 19",
+    "question": "Gold is a:",
+    "options": ["A) Material Noun","B) Proper Noun","C) Abstract Noun","D) Collective Noun"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 19",
+    "question": "Choose the correct pronoun: ___ am going to school.",
+    "options": ["A) He","B) She","C) I","D) They"],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 19",
+    "question": "Identify the verb: The children played cricket.",
+    "options": ["A) children","B) played","C) cricket","D) the"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 19",
+    "question": "Choose the adjective.",
+    "options": ["A) intelligent","B) carefully","C) often","D) there"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 19",
+    "question": "Choose the adverb of frequency.",
+    "options": ["A) always","B) tree","C) red","D) house"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 19",
+    "question": "Ram and Shyam are friends.",
+    "options": ["A) Ram","B) and","C) Shyam","D) friends"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 19",
+    "question": "The picture hangs on the wall.",
+    "options": ["A) hangs","B) picture","C) on","D) wall"],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 19",
+    "question": "We ___ football every Sunday.",
+    "options": ["A) play","B) plays","C) playing","D) played"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 19",
+    "question": "Antonym of 'Ancient' is:",
+    "options": ["A) Historic","B) Old","C) Modern","D) Traditional"],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 19",
+    "question": "What is the main source of energy for Earth?",
+    "options": ["A) Moon","B) Wind","C) Sun","D) Water"],
+    "correct_answer": "C"
+  },
+
+  {
+    "test_name": "Mixed English Mock Test - 20",
+    "question": "Which is a Proper Noun?",
+    "options": ["A) river","B) country","C) Delhi","D) mountain"],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 20",
+    "question": "Choose the correct pronoun: Riya is absent because ___ is sick.",
+    "options": ["A) he","B) she","C) they","D) we"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 20",
+    "question": "Identify the verb: Birds fly high.",
+    "options": ["A) birds","B) fly","C) high","D) the"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 20",
+    "question": "Choose the adjective.",
+    "options": ["A) brave","B) slowly","C) often","D) quietly"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 20",
+    "question": "Choose the adverb.",
+    "options": ["A) carefully","B) city","C) teacher","D) mountain"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 20",
+    "question": "He was absent because he was ill.",
+    "options": ["A) because","B) and","C) but","D) or"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 20",
+    "question": "The ball rolled under the chair.",
+    "options": ["A) rolled","B) ball","C) under","D) chair"],
+    "correct_answer": "C"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 20",
+    "question": "They ___ cricket every weekend.",
+    "options": ["A) plays","B) play","C) playing","D) played"],
+    "correct_answer": "B"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 20",
+    "question": "Synonym of 'Large' is:",
+    "options": ["A) Huge","B) Tiny","C) Weak","D) Thin"],
+    "correct_answer": "A"
+  },
+  {
+    "test_name": "Mixed English Mock Test - 20",
+    "question": "What do honest people earn?",
+    "options": ["A) Trust and respect","B) Fear","C) Anger","D) Jealousy"],
+    "correct_answer": "A"
+  }
+]

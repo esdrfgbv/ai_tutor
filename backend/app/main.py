@@ -77,16 +77,29 @@ def create_app() -> FastAPI:
     settings = get_settings()
     app = FastAPI(title=settings.app_name, version="1.0.0")
     
-    # Add logging middleware FIRST so it catches everything
+    # ============================================================================
+    # MIDDLEWARE STACK (Execution order is REVERSE of add_middleware calls)
+    # ============================================================================
+    # IMPORTANT: Middleware executes in REVERSE order of add_middleware() calls.
+    # The LAST middleware added is the FIRST to execute (outermost).
+    # ============================================================================
+    
+    # Add LoggingMiddleware last so it executes LAST (innermost)
     app.add_middleware(LoggingMiddleware)
     
-    # CORS middleware
+    # Add CORSMiddleware second-to-last so it executes FIRST (outermost)
+    # This is CRITICAL: CORSMiddleware must intercept OPTIONS requests BEFORE
+    # any other middleware or route handlers see them.
     app.add_middleware(
         CORSMiddleware,
         allow_origins=settings.cors_origins,
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
+    )
+    
+    logger.info(
+        f"CORS Middleware initialized with origins: {settings.cors_origins}"
     )
     
     # Exception handlers
@@ -129,6 +142,20 @@ def create_app() -> FastAPI:
 
     @app.on_event("startup")
     def bootstrap() -> None:
+        # ====================================================================
+        # CORS DIAGNOSTIC LOGGING
+        # ====================================================================
+        logger.info("=" * 80)
+        logger.info("CORS CONFIGURATION AT STARTUP")
+        logger.info("=" * 80)
+        logger.info(f"Environment: {settings.environment}")
+        logger.info(f"CORS Origins Raw (from config): {settings.cors_origins_raw}")
+        logger.info(f"CORS Origins Parsed: {settings.cors_origins}")
+        logger.info(f"Number of allowed origins: {len(settings.cors_origins)}")
+        for idx, origin in enumerate(settings.cors_origins, 1):
+            logger.info(f"  [{idx}] {origin}")
+        logger.info("=" * 80)
+        
         _ensure_student_schema()
         Base.metadata.create_all(bind=engine)
         db = SessionLocal()
@@ -170,6 +197,23 @@ def create_app() -> FastAPI:
     @app.get("/health")
     def health() -> dict:
         return {"status": "ok", "service": settings.app_name}
+
+    @app.get("/cors-debug")
+    def cors_debug() -> dict:
+        """DEBUG ENDPOINT: Expose current CORS configuration.
+        
+        This endpoint helps diagnose CORS preflight issues in production.
+        Remove or restrict this endpoint after debugging.
+        """
+        return {
+            "cors_origins_raw": settings.cors_origins_raw,
+            "cors_origins_parsed": settings.cors_origins,
+            "cors_allow_credentials": True,
+            "cors_allow_methods": ["*"],
+            "cors_allow_headers": ["*"],
+            "environment": settings.environment,
+            "app_name": settings.app_name,
+        }
 
     return app
 
