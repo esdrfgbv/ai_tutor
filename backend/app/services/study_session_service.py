@@ -60,7 +60,8 @@ class StudySessionService:
 
     def expire_inactive_sessions(self, db: Session) -> int:
         """
-        Auto-expire sessions with no heartbeat for more than 90 seconds.
+        Auto-expire ALL sessions with no heartbeat for more than 90 seconds.
+        Intended for background cleanup tasks, NOT called per-heartbeat.
         Sets active_status to False and ended_at to the last_heartbeat_at.
         """
         threshold = datetime.utcnow() - timedelta(seconds=INACTIVE_SESSION_SECONDS)
@@ -86,6 +87,28 @@ class StudySessionService:
                 self.recalculate_streak(db, student)
 
         return len(expired_sessions)
+
+    def _expire_student_inactive_sessions(self, db: Session, student_id: int) -> None:
+        """
+        Lightweight variant: expire only THIS student's stale sessions.
+        Called on every heartbeat — avoids a global table scan across all students.
+        """
+        threshold = datetime.utcnow() - timedelta(seconds=INACTIVE_SESSION_SECONDS)
+        expired = (
+            db.query(StudySession)
+            .filter(
+                StudySession.student_id == student_id,
+                StudySession.active_status == True,
+                StudySession.last_heartbeat_at < threshold,
+            )
+            .all()
+        )
+        if not expired:
+            return
+        for session in expired:
+            session.active_status = False
+            session.ended_at = session.last_heartbeat_at
+        db.commit()
 
     def start_session(
         self,
@@ -141,8 +164,9 @@ class StudySessionService:
         """
         Processes a heartbeat for an active session, incrementing its duration
         based on elapsed time (up to 40 seconds).
+        Uses per-student cleanup to avoid a global table scan on every heartbeat.
         """
-        self.expire_inactive_sessions(db)
+        self._expire_student_inactive_sessions(db, student_id)
 
         session = db.get(StudySession, session_id)
         if not session or session.student_id != student_id:

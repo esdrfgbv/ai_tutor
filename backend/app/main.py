@@ -1,3 +1,5 @@
+import time
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
@@ -27,10 +29,36 @@ from app.models.models import Chapter, User
 logger = get_logger(__name__)
 
 
+def _ensure_performance_indexes() -> None:
+    """
+    Ensure the performance-critical composite indexes added in this release
+    exist on the running database.  create_all() does not add indexes to
+    pre-existing tables, so we issue CREATE INDEX IF NOT EXISTS directly.
+    """
+    index_ddl = [
+        # QuizAttempt: fast ordered fetch for analytics dashboard
+        "CREATE INDEX IF NOT EXISTS ix_attempt_student_created ON quiz_attempts (student_id, created_at)",
+        # StudySession: fast per-student date-range queries
+        "CREATE INDEX IF NOT EXISTS ix_study_session_student_started ON study_sessions (student_id, started_at)",
+        # StudySession: fast per-student active-session lookup for heartbeat
+        "CREATE INDEX IF NOT EXISTS ix_study_session_student_active ON study_sessions (student_id, active_status)",
+        # ProgressTracking: fast per-student fetch
+        "CREATE INDEX IF NOT EXISTS ix_progress_student ON progress_tracking (student_id)",
+    ]
+    try:
+        with engine.begin() as conn:
+            for ddl in index_ddl:
+                conn.execute(text(ddl))
+        logger.info("Performance indexes verified/created successfully.")
+    except Exception as exc:
+        logger.warning(f"Could not create performance indexes (non-fatal): {exc}")
+
+
 def _ensure_student_schema() -> None:
     inspector = inspect(engine)
     if "students" not in inspector.get_table_names():
         return
+
 
     existing_columns = {column["name"] for column in inspector.get_columns("students")}
     statements = []
@@ -158,6 +186,7 @@ def create_app() -> FastAPI:
         
         _ensure_student_schema()
         Base.metadata.create_all(bind=engine)
+        _ensure_performance_indexes()
         db = SessionLocal()
         try:
             admin_user = db.query(User).filter(User.email == settings.bootstrap_admin_email).first()

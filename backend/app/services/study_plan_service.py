@@ -6,9 +6,9 @@ Study Plan Service
 import json
 from datetime import datetime, timedelta
 
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 
-from app.models.models import ProgressTracking, QuizAttempt, StudyPlan, StudySession
+from app.models.models import Chapter, ProgressTracking, QuizAttempt, StudyPlan, StudySession
 
 
 WEEKDAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
@@ -90,6 +90,7 @@ class StudyPlanService:
 
         progress_rows = (
             db.query(ProgressTracking)
+            .options(joinedload(ProgressTracking.chapter))
             .filter(ProgressTracking.student_id == student.id)
             .all()
         )

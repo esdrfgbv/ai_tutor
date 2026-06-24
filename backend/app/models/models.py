@@ -191,7 +191,12 @@ class Question(Base, TimestampMixin):
 
 class QuizAttempt(Base, TimestampMixin):
     __tablename__ = "quiz_attempts"
-    __table_args__ = (Index("ix_attempt_student_quiz", "student_id", "quiz_id"),)
+    __table_args__ = (
+        # Existing: speeds up JOIN lookups in leaderboard queries
+        Index("ix_attempt_student_quiz", "student_id", "quiz_id"),
+        # New: speeds up ordered fetch for analytics dashboard (ORDER BY created_at DESC LIMIT 200)
+        Index("ix_attempt_student_created", "student_id", "created_at"),
+    )
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     student_id: Mapped[int] = mapped_column(ForeignKey("students.id"), nullable=False)
@@ -207,7 +212,10 @@ class QuizAttempt(Base, TimestampMixin):
 
 class ProgressTracking(Base, TimestampMixin):
     __tablename__ = "progress_tracking"
-    __table_args__ = (UniqueConstraint("student_id", "chapter_id", name="uq_student_chapter_progress"),)
+    __table_args__ = (
+        UniqueConstraint("student_id", "chapter_id", name="uq_student_chapter_progress"),
+        Index("ix_progress_student", "student_id"),
+    )
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     student_id: Mapped[int] = mapped_column(ForeignKey("students.id"), nullable=False)
@@ -215,6 +223,8 @@ class ProgressTracking(Base, TimestampMixin):
     completion_percentage: Mapped[float] = mapped_column(Float, default=0, nullable=False)
     time_spent_minutes: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
     mastery_score: Mapped[float] = mapped_column(Float, default=0, nullable=False)
+
+    chapter: Mapped["Chapter"] = relationship()
 
 
 class StudentModuleProgress(Base, TimestampMixin):
@@ -234,6 +244,12 @@ class StudentModuleProgress(Base, TimestampMixin):
 
 class StudySession(Base, TimestampMixin):
     __tablename__ = "study_sessions"
+    __table_args__ = (
+        # Used by daily_progress and count_meaningful_days_since queries
+        Index("ix_study_session_student_started", "student_id", "started_at"),
+        # Used by per-student heartbeat cleanup (_expire_student_inactive_sessions)
+        Index("ix_study_session_student_active", "student_id", "active_status"),
+    )
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     student_id: Mapped[int] = mapped_column(ForeignKey("students.id"), nullable=False, index=True)

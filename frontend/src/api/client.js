@@ -6,62 +6,86 @@ const api = axios.create({
   baseURL: BASE_API,
 });
 
-// Request interceptor - Add token and log
+// ─── Refresh-token deduplication ────────────────────────────────────────────
+// Only ONE refresh request may be in flight at any time.
+// All concurrent 401s queue behind this promise and share the result.
+let _refreshPromise = null;
+
+function _doRefresh() {
+  if (_refreshPromise) return _refreshPromise;
+
+  const refreshToken = localStorage.getItem("refreshToken");
+  if (!refreshToken) return Promise.reject(new Error("No refresh token"));
+
+  _refreshPromise = axios
+    .post(`${BASE_API}/auth/refresh`, { refresh_token: refreshToken })
+    .then(({ data }) => {
+      localStorage.setItem("accessToken", data.access_token);
+      localStorage.setItem("refreshToken", data.refresh_token);
+      return data.access_token;
+    })
+    .catch((err) => {
+      // Refresh itself failed — clear auth and force login
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+      localStorage.removeItem("user");
+      window.location.assign("/auth");
+      return Promise.reject(err);
+    })
+    .finally(() => {
+      // Always clear the singleton so the next legitimate 401 can refresh again
+      _refreshPromise = null;
+    });
+
+  return _refreshPromise;
+}
+// ────────────────────────────────────────────────────────────────────────────
+
+// Request interceptor — attach access token
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem("accessToken");
   if (token) config.headers.Authorization = `Bearer ${token}`;
-  
-  // Log request in development
-  if (process.env.NODE_ENV === "development" || import.meta.env.DEV) {
-    console.log(`[API] → ${config.method?.toUpperCase()} ${config.baseURL}${config.url}`, {
-      headers: config.headers,
-      params: config.params,
-      data: config.data,
-    });
+
+  if (import.meta.env.DEV) {
+    console.log(`[API] → ${config.method?.toUpperCase()} ${config.baseURL}${config.url}`);
   }
-  
+
   return config;
 });
 
-// Response interceptor - Log and handle errors
+// Response interceptor — handle 401 with deduplicated refresh
 api.interceptors.response.use(
   (response) => {
-    // Log successful response in development
-    if (process.env.NODE_ENV === "development" || import.meta.env.DEV) {
-      console.log(`[API] ← ${response.status} ${response.config.method?.toUpperCase()} ${response.config.url}`, {
-        data: response.data,
-      });
+    if (import.meta.env.DEV) {
+      console.log(`[API] ← ${response.status} ${response.config.method?.toUpperCase()} ${response.config.url}`);
     }
     return response;
   },
   async (error) => {
-    // Log error details
-    console.error(`[API] ✗ ERROR ${error.response?.status || "???"} ${error.config?.method?.toUpperCase()} ${error.config?.url}`, {
-      status: error.response?.status,
-      data: error.response?.data,
-      message: error.message,
-    });
-    
-    const refreshToken = localStorage.getItem("refreshToken");
-    if (error.response?.status === 401 && refreshToken && !error.config._retry) {
-      error.config._retry = true;
+    const status = error.response?.status;
+    const originalRequest = error.config;
+
+    console.error(
+      `[API] ✗ ${status ?? "ERR"} ${originalRequest?.method?.toUpperCase()} ${originalRequest?.url}`,
+      error.response?.data ?? error.message,
+    );
+
+    // Only attempt refresh once per original request (_retry guard)
+    if (status === 401 && !originalRequest._retry && localStorage.getItem("refreshToken")) {
+      originalRequest._retry = true;
+
       try {
-        const { data } = await axios.post(`${api.defaults.baseURL}/auth/refresh`, { refresh_token: refreshToken });
-        localStorage.setItem("accessToken", data.access_token);
-        localStorage.setItem("refreshToken", data.refresh_token);
-        error.config.headers.Authorization = `Bearer ${data.access_token}`;
-        return api(error.config);
+        const newAccessToken = await _doRefresh();
+        originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+        return api(originalRequest);
       } catch (refreshError) {
-        console.error("[API] Token refresh failed, logging out", refreshError);
-        localStorage.removeItem("accessToken");
-        localStorage.removeItem("refreshToken");
-        localStorage.removeItem("user");
-        window.location.assign("/auth");
+        // _doRefresh already cleared localStorage and redirected
         return Promise.reject(refreshError);
       }
     }
+
     return Promise.reject(error);
-  }
+  },
 );
 
 export default api;
