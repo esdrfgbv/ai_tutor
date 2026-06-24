@@ -80,6 +80,7 @@ def get_class_pdf(
     subject: str,
     pdf_slug: str,
     target_exam: str = "JNV",
+    db: Session = Depends(get_db),
 ):
     if ".." in subject or "/" in subject or "\\" in subject:
         raise HTTPException(
@@ -92,21 +93,9 @@ def get_class_pdf(
             detail="Invalid PDF slug",
         )
 
-    # Determine folder from source_root — organised as {exam_dir}/class_{grade}/{subject}/
-    pdf_dir = (
-        get_settings().source_root
-        / exam_dir_name(target_exam)
-        / f"class_{grade}"
-        / subject.lower().strip()
-    )
-    if not pdf_dir.exists():
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Grade {grade} {target_exam} PDFs not found for subject '{subject}'",
-        )
-    file_path = pdf_dir / f"{pdf_slug}.pdf"
+    file_path = chapter_service.resolve_pdf(subject, pdf_slug.lower(), grade, target_exam=target_exam, db=db)
 
-    if not file_path.exists() or not file_path.is_file():
+    if not file_path:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="PDF not available",
