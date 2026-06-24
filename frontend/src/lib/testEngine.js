@@ -116,7 +116,7 @@ function filterQuestions(qs) {
 
 export async function extractQuestions(text) {
   const cleaned = cleanExtractedText(text).slice(0, 25000);
-  const res = await fetch(`${API_BASE}/extract-questions`, {
+  const res = await fetch(`${API_BASE}/ai/extract-questions`, {
     method: "POST",
     headers: authHeaders(),
     body: JSON.stringify({ text: cleaned }),
@@ -132,7 +132,7 @@ export async function analyzePattern(questions) {
   const summary = questions
     .map((q) => `${q.subject}/${q.topic}: ${q.text.slice(0, 60)}`)
     .join("\n");
-  const res = await fetch(`${API_BASE}/analyze-pattern`, {
+  const res = await fetch(`${API_BASE}/ai/analyze-pattern`, {
     method: "POST",
     headers: authHeaders(),
     body: JSON.stringify({ summary }),
@@ -157,7 +157,7 @@ export async function generateQuestions(referenceQuestions, count, mode = "exam"
           .map((t, i) => `${i + 1}. ${t}`)
           .join("\n")
       : "";
-  const res = await fetch(`${API_BASE}/generate-questions`, {
+  const res = await fetch(`${API_BASE}/ai/generate-questions`, {
     method: "POST",
     headers: authHeaders(),
     body: JSON.stringify({
@@ -203,7 +203,7 @@ export async function generateMultipleTests(
 
 // ─── AI Explanation ───────────────────────────────────
 export async function generateExplanation(question, selectedAnswer, correctAnswer) {
-  const res = await fetch(`${API_BASE}/generate-explanation`, {
+  const res = await fetch(`${API_BASE}/ai/generate-explanation`, {
     method: "POST",
     headers: authHeaders(),
     body: JSON.stringify({

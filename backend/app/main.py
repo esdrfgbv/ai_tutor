@@ -13,6 +13,7 @@ from app.api.routes.pdf_extraction import router as pdf_extraction_router
 from app.api.routes.conversations import router as conversations_router
 from app.api.routes.notes import router as notes_router
 from app.api.routes.bookmarks import router as bookmarks_router
+from app.api.routes.study_sessions import router as study_sessions_router
 from app.core.config import get_settings
 from app.core.logging import LoggingMiddleware, get_logger
 from app.core.security import hash_password
@@ -119,6 +120,7 @@ def create_app() -> FastAPI:
     app.include_router(notes_router, prefix="/api")
     app.include_router(bookmarks_router, prefix="/api")
     app.include_router(study_plan_router, prefix="/api")
+    app.include_router(study_sessions_router, prefix="/api")
     app.include_router(ai_proxy_router, prefix="/api")
 
     # Knowledge Base routes (lazy import to avoid circular deps at startup)
