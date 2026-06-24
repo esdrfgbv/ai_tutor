@@ -52,7 +52,7 @@ export default function ChapterDetailPage() {
       title: "Take Quiz",
       desc: "Test your understanding with adaptive questions",
       color: "#adff44",
-      onClick: () => navigate(`/quiz?chapter=${chapter.id}&subject=${chapter.subject}`),
+      onClick: () => navigate(`/quiz?mode=module&chapter=${chapter.chapter_number}&subject=${chapter.subject}`),
     },
     {
       icon: BookOpen,

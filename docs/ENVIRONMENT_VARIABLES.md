@@ -16,13 +16,10 @@
 | `SUPABASE_DB_USER` | Supabase database user | Conditional | — |
 | `SUPABASE_DB_PASSWORD` | Supabase database password | Conditional | — |
 | `CORS_ORIGINS_RAW` | Comma-separated list of allowed CORS origins | No | `http://localhost:5173` |
-| `AI_PROVIDER` | Active AI provider: `groq`, `gemini`, or `openai` | Yes | `groq` |
-| `GROQ_API_KEY` | Groq API key (required when `AI_PROVIDER=groq`) | Conditional | — |
-| `GROQ_MODEL` | Groq model name | No | `llama-3.1-8b-instant` |
-| `GEMINI_API_KEY` | Google Gemini API key (required when `AI_PROVIDER=gemini`) | Conditional | — |
-| `GEMINI_MODEL` | Gemini model name | No | `gemini-1.5-flash-latest` |
-| `OPENAI_API_KEY` | OpenAI API key (required when `AI_PROVIDER=openai`) | Conditional | — |
-| `OPENAI_MODEL` | OpenAI model name | No | `gpt-4.1-mini` |
+| `AI_PROVIDER` | Active AI provider (only `groq` supported) | Yes | `groq` |
+| `GROQ_API_KEY` | Groq API key | Yes | — |
+| `GROQ_MODEL` | Groq text generation model | No | `llama-3.1-8b-instant` |
+| `GROQ_VISION_MODEL` | Groq vision model for image analysis | No | `meta-llama/llama-4-scout-17b-16e-instruct` |
 | `EMBEDDING_MODEL` | Sentence-transformers model for vector embeddings | No | `sentence-transformers/all-MiniLM-L6-v2` |
 | `CHROMA_PATH` | Path to ChromaDB vector store directory | No | `../vector_db/chroma` |
 | `UPLOAD_DIR` | Path to uploaded files directory | No | `../uploads` |

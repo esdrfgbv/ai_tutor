@@ -40,7 +40,6 @@ from app.models.knowledge_models import (
 from app.services.knowledge.deduplication_service import deduplication_service
 from app.services.knowledge.image_processor import image_processor
 from app.services.knowledge.layout_parser import layout_parser
-from app.services.knowledge.ocr_service import ocr_service
 from app.services.knowledge.smart_chunker import smart_chunker
 from app.services.knowledge.table_extractor import table_extractor
 from app.services.vector_service import vector_service
@@ -193,6 +192,7 @@ class PipelineOrchestrator:
         self._update_stage(db, doc, job, "extracting", 20)
         start = time.time()
 
+        from app.services.knowledge.ocr_service import ocr_service
         extraction = ocr_service.extract(file_path, doc.document_type)
 
         if extraction.errors:

@@ -81,10 +81,10 @@ export default function QuizPage() {
       const chapter = Number(params.get("chapter") || 1);
       let data;
       if (mode === "module") {
-        const r = await api.post("/quizzes/module", { grade: 9, subject, chapter: String(chapter), question_count: 5, duration_minutes: 15, quiz_type: "module" }, { params: { chapter_number: chapter } });
+        const r = await api.post("/quizzes/module", { grade: userGrade || 9, subject, chapter: String(chapter), question_count: 5, duration_minutes: 15, quiz_type: "module" }, { params: { chapter_number: chapter } });
         data = r.data;
       } else if (params.get("test")) {
-        const r = await api.post("/quizzes/mock", { grade: 9, subject, question_count: 20, duration_minutes: 45, quiz_type: "mock" }, { params: { test_name: params.get("test") } });
+        const r = await api.post("/quizzes/mock", { grade: userGrade || 9, subject, question_count: 20, duration_minutes: 45, quiz_type: "mock" }, { params: { test_name: params.get("test") } });
         data = r.data;
       } else if (params.get("quiz_id")) {
         const r = await api.get(`/quizzes/${params.get("quiz_id")}`);

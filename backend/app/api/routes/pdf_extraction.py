@@ -9,13 +9,13 @@ from app.core.config import get_settings
 from app.db.session import get_db
 from app.models.models import QuestionBank, QuestionBankSource
 from app.schemas.extraction_schemas import ExtractionJobOut, ExtractionStatsOut, LocalImportIn, PDFUploadIn
-from app.services.question_extraction.question_extraction_pipeline import question_extraction_pipeline
 
 router = APIRouter(prefix="/admin/pdf-extraction", tags=["admin", "pdf_extraction"])
 settings = get_settings()
 
 
 def run_extraction_background(source_id: int, pdf_path: str, exam_type: str | None, year: int | None, grade: int | None, display_name: str | None):
+    from app.services.question_extraction.question_extraction_pipeline import question_extraction_pipeline
     db = next(get_db())
     try:
         question_extraction_pipeline.process_pdf(
@@ -95,6 +95,7 @@ def import_local_directory(
     dir_path = valid_dirs[payload.directory]
     
     def run_batch_import():
+        from app.services.question_extraction.question_extraction_pipeline import question_extraction_pipeline
         db_bg = next(get_db())
         try:
             import logging
