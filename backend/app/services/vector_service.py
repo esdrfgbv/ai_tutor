@@ -101,7 +101,10 @@ class VectorService:
             if ids:
                 coll.delete(ids=ids)
             elif where:
-                existing = coll.get(where=where)
+                where_filter = where
+                if len(where_filter) > 1:
+                    where_filter = {"$and": [{k: v} for k, v in where_filter.items()]}
+                existing = coll.get(where=where_filter)
                 if existing["ids"]:
                     coll.delete(ids=existing["ids"])
         except Exception:
@@ -121,6 +124,8 @@ class VectorService:
         where = None
         if filters:
             where = {k: v for k, v in filters.items() if v is not None}
+            if len(where) > 1:
+                where = {"$and": [{k: v} for k, v in where.items()]}
         try:
             results = coll.query(
                 query_texts=[query_text],

@@ -5,6 +5,7 @@ from fastapi.exceptions import RequestValidationError
 from sqlalchemy import inspect, text
 
 from app.api.routes import admin, analytics, auth, diagnostic, leaderboard, learning, parents, quizzes
+from app.api.routes.ai_proxy import router as ai_proxy_router
 from app.api.routes.study_plan import router as study_plan_router
 from app.api.routes.admin_mock_tests import router as admin_mock_tests_router
 from app.api.routes.question_bank import router as question_bank_router
@@ -118,6 +119,7 @@ def create_app() -> FastAPI:
     app.include_router(notes_router, prefix="/api")
     app.include_router(bookmarks_router, prefix="/api")
     app.include_router(study_plan_router, prefix="/api")
+    app.include_router(ai_proxy_router, prefix="/api")
 
     # Knowledge Base routes (lazy import to avoid circular deps at startup)
     from app.api.routes.knowledge_base import router as knowledge_base_router

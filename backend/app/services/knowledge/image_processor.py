@@ -127,22 +127,29 @@ class ImageProcessor:
 
     def _describe_with_vision(self, image_path: Path) -> dict:
         """
-        Use Gemini Vision to describe an image.
+        Use Groq Vision (LLaMA) to describe an image.
         Returns: {"description": str, "image_type": str, "detected_elements": list}
         """
         try:
             from app.core.config import get_settings
-            import google.generativeai as genai
-            from PIL import Image
+            from openai import OpenAI
+            import base64
+            import json
 
             settings = get_settings()
-            if not settings.gemini_api_key:
+            if not settings.groq_api_key:
                 return {"description": "", "image_type": "figure", "detected_elements": []}
 
-            genai.configure(api_key=settings.gemini_api_key)
-            model = genai.GenerativeModel(settings.gemini_vision_model)
+            client = OpenAI(
+                api_key=settings.groq_api_key,
+                base_url="https://api.groq.com/openai/v1",
+            )
 
-            img = Image.open(str(image_path))
+            with open(image_path, "rb") as f:
+                image_data = base64.b64encode(f.read()).decode("utf-8")
+
+            ext = image_path.suffix[1:] or "png"
+            data_url = f"data:image/{ext};base64,{image_data}"
 
             prompt = (
                 "Analyze this image from an educational exam or textbook. "
@@ -153,11 +160,23 @@ class ImageProcessor:
                 "Be concise but thorough. This description will be used for search retrieval."
             )
 
-            response = model.generate_content([prompt, img])
-            text = response.text.strip()
+            response = client.chat.completions.create(
+                model=settings.groq_vision_model,
+                messages=[
+                    {
+                        "role": "user",
+                        "content": [
+                            {"type": "text", "text": prompt},
+                            {"type": "image_url", "image_url": {"url": data_url}},
+                        ],
+                    }
+                ],
+                temperature=0.2,
+                max_tokens=2048,
+            )
 
-            # Try to parse as JSON
-            import json
+            text = response.choices[0].message.content.strip()
+
             # Strip markdown code fences if present
             if text.startswith("```"):
                 text = text.split("\n", 1)[1] if "\n" in text else text[3:]
@@ -182,7 +201,7 @@ class ImageProcessor:
                 }
 
         except ImportError:
-            logger.info("google-generativeai or PIL not available for vision")
+            logger.info("openai package not available for vision")
             return {"description": "", "image_type": "figure", "detected_elements": []}
         except Exception as e:
             logger.warning("Vision model error: %s", e)

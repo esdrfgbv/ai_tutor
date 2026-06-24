@@ -6,7 +6,7 @@ import {
 } from "lucide-react";
 import { SlideText } from "./SlideText.jsx";
 import { SlideImage } from "./SlideImage.jsx";
-import { chatAboutSlide } from "../../lib/groq.js";
+import api from "../../api/client";
 import { sanitizeForSpeech } from "../../lib/speech.js";
 import { Mascot } from "./Mascot.jsx";
 
@@ -189,12 +189,13 @@ export function VideoPlayer({ data, onExit, language = "english", category }) {
     setDoubt("");
     setThinking(true);
     try {
-      const ans = await chatAboutSlide({
+      const { data: chatResp } = await api.post("/ai/chat-slide", {
         title: data.title,
-        displayText: slide.display_text,
-        voiceScript: slide.voice_script,
+        display_text: slide.display_text,
+        voice_script: slide.voice_script,
         doubt: q,
       });
+      const ans = chatResp.answer;
       setChat((c) => [...c, { role: "assistant", content: ans }]);
     } catch (e) {
       setChat((c) => [...c, { role: "assistant", content: `Error: ${e.message}` }]);

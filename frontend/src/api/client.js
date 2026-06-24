@@ -1,7 +1,9 @@
 import axios from "axios";
 
+const BASE_API = (import.meta.env.VITE_API_URL || "http://localhost:8000").replace(/\/+$/, "") + "/api";
+
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "http://localhost:8000/api"
+  baseURL: BASE_API,
 });
 
 // Request interceptor - Add token and log

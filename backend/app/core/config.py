@@ -46,7 +46,7 @@ class Settings(BaseSettings):
     # CORS
     # =========================================
 
-    cors_origins_raw: str = "http://localhost:5173,http://localhost:5174,http://localhost:5175"
+    cors_origins_raw: str = "http://localhost:5173,http://localhost:5174,http://localhost:5175,https://ai-tutor-neon-kappa.vercel.app"
 
     # =========================================
     # AI PROVIDER
@@ -58,13 +58,7 @@ class Settings(BaseSettings):
 
     groq_model: str = "llama-3.1-8b-instant"
 
-    # =========================================
-    # GEMINI (OPTIONAL)
-    # =========================================
-
-    gemini_api_key: str | None = None
-
-    gemini_model: str = "gemini-1.5-flash"
+    groq_vision_model: str = "meta-llama/llama-4-scout-17b-16e-instruct"
 
     # =========================================
     # FILES
@@ -92,8 +86,6 @@ class Settings(BaseSettings):
     max_processing_retries: int = 3
     chunk_size_tokens: int = 500
     chunk_overlap_tokens: int = 50
-
-    gemini_vision_model: str = "gemini-1.5-flash"
 
     # =========================================
     # ADMIN

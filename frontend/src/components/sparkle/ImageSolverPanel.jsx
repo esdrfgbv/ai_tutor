@@ -1,7 +1,7 @@
 // ImageSolverPanel.jsx - AI Image Analysis using Groq Llama 4 Scout Vision
 import { useState, useRef } from "react";
 import { Upload, Loader2, AlertCircle, CheckCircle2, RefreshCw, Sparkles, X } from "lucide-react";
-import { analyzeImage } from "../../lib/groq.js";
+import api from "../../api/client";
 
 function renderInline(text) {
   const parts = text.split(/(\*\*[^*]+\*\*)/g);
@@ -187,7 +187,8 @@ export function ImageSolverPanel() {
     setError(null);
     setResult(null);
     try {
-      const answer = await analyzeImage(image);
+      const { data } = await api.post("/ai/analyze-image", { image });
+      const answer = data.answer;
       setResult(answer);
     } catch (e) {
       const msg = e.message;

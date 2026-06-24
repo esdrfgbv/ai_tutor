@@ -1,7 +1,8 @@
 // AIVideoPage.jsx - AI Video Tutor page
 import { useState } from "react";
 import { Loader2, Sparkles, ChevronDown } from "lucide-react";
-import { generateVideo, CATEGORIES } from "../lib/groq.js";
+import api from "../api/client";
+import { CATEGORIES } from "../lib/groq.js";
 import { VideoPlayer } from "../components/sparkle/VideoPlayer.jsx";
 
 const SAMPLE_TOPICS = [
@@ -32,10 +33,14 @@ export default function AIVideoPage() {
     setError("");
     setVideoData(null);
     try {
-      const data = await generateVideo(topic.trim(), language, category);
+      const { data } = await api.post("/ai/video-generate", {
+        question: topic.trim(),
+        language,
+        category,
+      });
       setVideoData(data);
     } catch (e) {
-      setError(e.message.includes("401") ? "API key error — please check your Groq key." : e.message);
+      setError(e.response?.data?.detail || e.message || "Failed to generate video");
     } finally {
       setLoading(false);
     }
