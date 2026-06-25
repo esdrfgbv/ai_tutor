@@ -1,5 +1,5 @@
 """
-AnalyticsService — performance-optimised version.
+AnalyticsService — performance-optimised version with corrected analytics.
 
 Key changes vs. original:
   1. recalculate_streak() removed from student_dashboard() GET handler.
@@ -13,7 +13,22 @@ Key changes vs. original:
      subquery instead of rebuilding the full 500-row leaderboard.
 
   4. attempts capped at 200 for dashboard (trend only shows last 12 anyway).
+
+  5. Chapter alias mapping merges duplicate topics (e.g. "Solid Shapes" and
+     "Visualising Solid Shapes") using CHAPTER_ALIASES.
+
+  6. Overall accuracy uses total_correct / total_questions across all attempts
+     instead of averaging per-attempt accuracies.
+
+  7. Topic accuracy uses total_correct / total_questions per canonical topic.
+
+  8. Weak/Focus threshold corrected: < 60 % (was < 70 %).
+
+  9. Abandoned / empty attempts (no questions) are excluded.
+
+ 10. A topic never appears in both strong and focus lists.
 """
+import logging
 from datetime import datetime, timedelta
 
 from sqlalchemy import extract, func
@@ -31,6 +46,21 @@ from app.models.models import (
 from app.schemas.schemas import DashboardStats
 from app.services.leaderboard_service import clamp_percent, leaderboard_service
 from app.services.study_session_service import MIN_MEANINGFUL_STUDY_SECONDS, study_session_service
+
+logger = logging.getLogger(__name__)
+
+# ── Chapter alias map ────────────────────────────────────────────────────
+# Merges alternative names / partial names to a single canonical chapter.
+CHAPTER_ALIASES: dict[str, str] = {
+    "solid shapes": "Visualising Solid Shapes",
+    "visualising solid shapes": "Visualising Solid Shapes",
+    "solid shapes quiz 5": "Visualising Solid Shapes",
+}
+
+def _canonical_topic(topic: str) -> str:
+    """Return the canonical chapter name for *topic*."""
+    key = topic.strip().lower()
+    return CHAPTER_ALIASES.get(key, topic)
 
 
 class AnalyticsService:
@@ -55,11 +85,39 @@ class AnalyticsService:
             .all()
         )
 
+        # ── Filter: only completed attempts with questions ──────────────────
+        valid_attempts = [
+            a for a in attempts
+            if a.quiz and a.quiz.questions and len(a.quiz.questions) > 0
+        ]
+        logger.info("Analytics: loaded %d attempts total, %d valid (non-empty)",
+                     len(attempts), len(valid_attempts))
+
+        # ── Overall accuracy: total_correct / total_questions ───────────────
+        overall_correct = 0
+        overall_total = 0
+        for a in valid_attempts:
+            questions = a.quiz.questions
+            answers = a.answers if isinstance(a.answers, dict) else {}
+            if isinstance(a.answers, list):
+                answers = {
+                    str(q.id): ans
+                    for q, ans in zip(questions, a.answers)
+                }
+            for q in questions:
+                overall_total += 1
+                submitted = str(answers.get(str(q.id), "")).strip().lower()
+                expected = str(q.correct_answer).strip().lower()
+                if submitted == expected:
+                    overall_correct += 1
+
         avg_accuracy = (
-            clamp_percent(sum(a.accuracy for a in attempts) / len(attempts))
-            if attempts
+            clamp_percent((overall_correct / overall_total) * 100)
+            if overall_total
             else 0
         )
+        logger.info("Analytics: overall accuracy = %d / %d = %.2f%%",
+                     overall_correct, overall_total, avg_accuracy)
 
         # ── Study time ──────────────────────────────────────────────────────
         session_seconds = int(
@@ -123,53 +181,82 @@ class AnalyticsService:
 
         # ── Topic / subject analysis from attempts ──────────────────────────
         # All quiz + question data is already loaded eagerly — no lazy queries.
-        topic_scores: dict[str, list[float]] = {}
-        subject_scores: dict[str, list[float]] = {}
+        topic_correct: dict[str, int] = {}
+        topic_total: dict[str, int] = {}
+        subject_correct: dict[str, int] = {}
+        subject_total: dict[str, int] = {}
         mistake_topics: dict[str, int] = {}
 
-        for attempt in attempts:
+        for attempt in valid_attempts:
             subject = attempt.quiz.subject if attempt.quiz else "general"
-            subject_scores.setdefault(subject, []).append(attempt.accuracy)
-
-            answers_dict = attempt.answers if isinstance(attempt.answers, dict) else {}
+            questions = attempt.quiz.questions if attempt.quiz else []
+            answers = attempt.answers if isinstance(attempt.answers, dict) else {}
             if isinstance(attempt.answers, list):
-                answers_dict = {
+                answers = {
                     str(q.id): ans
-                    for q, ans in zip(
-                        (attempt.quiz.questions if attempt.quiz else []),
-                        attempt.answers,
-                    )
+                    for q, ans in zip(questions, attempt.answers)
                 }
 
-            for question in attempt.quiz.questions if attempt.quiz else []:
-                submitted = str(answers_dict.get(str(question.id), "")).strip().lower()
+            for question in questions:
+                submitted = str(answers.get(str(question.id), "")).strip().lower()
                 expected = str(question.correct_answer).strip().lower()
-                topic = question.topic or subject
-                topic_scores.setdefault(topic, []).append(100 if submitted == expected else 0)
-                if submitted != expected:
+                topic_raw = question.topic or subject
+                topic = _canonical_topic(topic_raw)
+
+                subject_correct.setdefault(subject, 0)
+                subject_total.setdefault(subject, 0)
+                topic_correct.setdefault(topic, 0)
+                topic_total.setdefault(topic, 0)
+
+                subject_total[subject] += 1
+                topic_total[topic] += 1
+                if submitted == expected:
+                    subject_correct[subject] += 1
+                    topic_correct[topic] += 1
+                else:
                     mistake_topics[topic] = mistake_topics.get(topic, 0) + 1
 
         topic_mastery = [
             {
                 "topic": topic,
-                "accuracy": clamp_percent(sum(scores) / len(scores)),
-                "attempts": len(scores),
-                "mastery": clamp_percent(sum(scores) / len(scores)),
+                "accuracy": clamp_percent((topic_correct[topic] / topic_total[topic]) * 100),
+                "attempts": topic_total[topic],
+                "mastery": clamp_percent((topic_correct[topic] / topic_total[topic]) * 100),
             }
-            for topic, scores in topic_scores.items()
+            for topic in topic_correct
         ]
-        topic_mastery.sort(key=lambda item: item["accuracy"])
+        logger.info("Analytics: topic_mastery = %s",
+                     [f"{t['topic']}: {t['accuracy']:.1f}%" for t in topic_mastery])
 
-        weak_topics = [item for item in topic_mastery if item["accuracy"] < 70][:6]
-        strong_topics = [item for item in reversed(topic_mastery) if item["accuracy"] >= 80][:6]
+        # Strongest Topics: accuracy >= 80 %, descending
+        # Focus Areas: accuracy < 60 %, ascending
+        # A topic must NEVER appear in both lists
+        strong_threshold = 80
+        weak_threshold = 60
+
+        strong_topics = sorted(
+            [t for t in topic_mastery if t["accuracy"] >= strong_threshold],
+            key=lambda x: x["accuracy"],
+            reverse=True,
+        )[:6]
+
+        weak_topics = sorted(
+            [t for t in topic_mastery if t["accuracy"] < weak_threshold],
+            key=lambda x: x["accuracy"],
+        )[:6]
+
+        logger.info("Analytics: strong_topics = %s", [t["topic"] for t in strong_topics])
+        logger.info("Analytics: weak_topics   = %s", [t["topic"] for t in weak_topics])
+
         subject_performance = [
             {
                 "subject": subject,
-                "accuracy": clamp_percent(sum(scores) / len(scores)),
-                "attempts": len(scores),
+                "accuracy": clamp_percent((subject_correct[subject] / subject_total[subject]) * 100),
+                "attempts": subject_total[subject],
             }
-            for subject, scores in subject_scores.items()
+            for subject in subject_correct
         ]
+
         trend = [
             {"date": a.created_at.strftime("%d %b"), "accuracy": clamp_percent(a.accuracy), "score": a.score}
             for a in reversed(attempts[:12])

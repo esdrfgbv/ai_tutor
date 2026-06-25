@@ -101,6 +101,51 @@ def _ensure_student_schema() -> None:
             ))
 
 
+def _validate_mock_test_folders(settings) -> None:
+    """Scan all expected mock_test JSON directories at startup and report issues."""
+    logger.info("=" * 80)
+    logger.info("MOCK TEST FOLDER VALIDATION")
+    logger.info("=" * 80)
+    root = settings.source_root
+    subjects = {
+        "maths": "maths mock tests",
+        "science": "science mock tests",
+        "english": "english mock tests",
+        "mental-ability": "mental ability mock tests",
+    }
+    alt_filenames = ["questions.json", "navodaya_100_mock_tests.json"]
+    found_any = False
+    for grade in (6, 9):
+        for subject_key, folder_name in subjects.items():
+            dir_path = root / "JNV" / f"class_{grade}" / folder_name
+            if not dir_path.exists():
+                logger.warning(
+                    "  [MISSING] %s/class_%s/%s — directory does not exist",
+                    root.resolve(), grade, folder_name,
+                )
+                continue
+            found_file = None
+            for alt in alt_filenames:
+                candidate = dir_path / alt
+                if candidate.exists():
+                    found_file = candidate
+                    break
+            if found_file:
+                found_any = True
+                logger.info(
+                    "  [OK]      %s/class_%s/%s/%s",
+                    root.resolve(), grade, folder_name, found_file.name,
+                )
+            else:
+                logger.warning(
+                    "  [MISSING] %s/class_%s/%s — no questions.json or alternate found",
+                    root.resolve(), grade, folder_name,
+                )
+    if not found_any:
+        logger.warning("  No mock test JSON files found at all!")
+    logger.info("=" * 80)
+
+
 def create_app() -> FastAPI:
     settings = get_settings()
     app = FastAPI(title=settings.app_name, version="1.0.0")
@@ -183,7 +228,12 @@ def create_app() -> FastAPI:
         for idx, origin in enumerate(settings.cors_origins, 1):
             logger.info(f"  [{idx}] {origin}")
         logger.info("=" * 80)
-        
+
+        # ====================================================================
+        # MOCK TEST FOLDER VALIDATION
+        # ====================================================================
+        _validate_mock_test_folders(settings)
+
         _ensure_student_schema()
         Base.metadata.create_all(bind=engine)
         _ensure_performance_indexes()

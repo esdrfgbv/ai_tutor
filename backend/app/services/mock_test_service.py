@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import logging
 from datetime import datetime
 from pathlib import Path
 
@@ -12,6 +13,11 @@ from app.models.knowledge_models import CanonicalQuestion, KnowledgeDocument
 from app.models.models import Question, Quiz
 from app.schemas.schemas import QuizGenerateIn
 
+logger = logging.getLogger(__name__)
+
+# ── Alternate JSON filenames to try if questions.json is missing ──────────
+ALT_JSON_FILENAMES = ["navodaya_100_mock_tests.json"]
+
 
 class MockTestService:
     def load_questions(
@@ -21,6 +27,8 @@ class MockTestService:
         db: Session | None = None,
     ) -> list[dict]:
         """Load questions from KB (CanonicalQuestion) or fall back to JSON files."""
+        logger.info("MockTestService.load_questions(subject=%s, grade=%s)", subject, grade)
+
         # 1) KB
         if db and grade:
             canonical = (
@@ -33,6 +41,7 @@ class MockTestService:
                 .all()
             )
             if canonical:
+                logger.info("  -> loaded %d questions from CanonicalQuestion KB", len(canonical))
                 return [
                     {
                         "id": cq.id,
@@ -49,26 +58,75 @@ class MockTestService:
         # 2) JSON file fallback
         path = self._questions_path(subject, grade)
         if not path:
-            return []
+            err_msg = (
+                f"No questions.json found for subject='{subject}', grade={grade}. "
+                f"Check folder_map in _questions_path and ensure the JSON file exists."
+            )
+            logger.error("MockTestService: " + err_msg)
+            raise FileNotFoundError(err_msg)
+
+        logger.info("  -> loading JSON from %s", path.resolve())
         with path.open(encoding="utf-8") as handle:
-            return json.load(handle)
+            data = json.load(handle)
+        logger.info("  -> loaded %d questions from JSON", len(data))
+        return data
 
     def _questions_path(self, subject: str, grade: int | None = None) -> Path | None:
-        root = get_settings().source_root
-        folder_map = {
+        settings = get_settings()
+        root = settings.source_root
+        logger.debug("MockTestService._questions_path: source_root=%s", root.resolve())
+
+        folder_map: dict[str, str] = {
             "maths": "maths mock tests",
             "science": "science mock tests",
+            "english": "english mock tests",
             "mental-ability": "mental ability mock tests",
             "mental ability": "mental ability mock tests",
         }
         folder = folder_map.get(subject)
         if not folder:
+            logger.warning(
+                "MockTestService._questions_path: subject '%s' not in folder_map. "
+                "Add a mapping for this subject.", subject
+            )
             return None
 
-        # Look inside JNV/class_{grade}/ — current mock test JSONs are only for JNV
         dir_name = f"class_{grade}"
-        path = root / "JNV" / dir_name / folder / "questions.json"
-        return path if path.exists() else None
+        base_dir = root / "JNV" / dir_name / folder
+        if not base_dir.exists():
+            logger.warning(
+                "MockTestService._questions_path: base directory does not exist: %s",
+                base_dir.resolve(),
+            )
+            return None
+
+        # Try primary filename
+        primary = base_dir / "questions.json"
+        if primary.exists():
+            logger.info(
+                "MockTestService._questions_path: found %s",
+                primary.resolve(),
+            )
+            return primary
+
+        # Try alternate filenames
+        for alt_name in ALT_JSON_FILENAMES:
+            alt = base_dir / alt_name
+            if alt.exists():
+                logger.info(
+                    "MockTestService._questions_path: questions.json not found, "
+                    "using alternate %s",
+                    alt.resolve(),
+                )
+                return alt
+
+        logger.warning(
+            "MockTestService._questions_path: no JSON file found in %s "
+            "(tried questions.json and %s)",
+            base_dir.resolve(),
+            ALT_JSON_FILENAMES,
+        )
+        return None
 
     def list_tests(
         self,
@@ -76,15 +134,22 @@ class MockTestService:
         grade: int | None = None,
         db: Session | None = None,
     ) -> list[dict]:
-        questions = self.load_questions(subject, grade, db=db)
+        logger.info("MockTestService.list_tests(subject=%s, grade=%s)", subject, grade)
+        try:
+            questions = self.load_questions(subject, grade, db=db)
+        except FileNotFoundError:
+            logger.error("MockTestService.list_tests: no questions loaded — returning empty list")
+            return []
         grouped: dict[str, int] = {}
         for item in questions:
             name = item.get("test_name", "General Test")
             grouped[name] = grouped.get(name, 0) + 1
-        return [
+        result = [
             {"test_name": name, "question_count": count, "subject": subject}
             for name, count in sorted(grouped.items())
         ]
+        logger.info("  -> found %d distinct tests", len(result))
+        return result
 
     def get_test_questions(
         self,
@@ -94,14 +159,19 @@ class MockTestService:
         limit: int | None = None,
         db: Session | None = None,
     ) -> list[dict]:
-        rows = [
-            q
-            for q in self.load_questions(subject, grade, db=db)
-            if q.get("test_name") == test_name
-        ]
+        logger.info(
+            "MockTestService.get_test_questions(subject=%s, test_name=%s, grade=%s)",
+            subject, test_name, grade,
+        )
+        try:
+            all_qs = self.load_questions(subject, grade, db=db)
+        except FileNotFoundError:
+            logger.error("MockTestService.get_test_questions: no questions loaded — returning empty list")
+            return []
+        rows = [q for q in all_qs if q.get("test_name") == test_name]
         if limit:
             rows = rows[:limit]
-        return [
+        result = [
             {
                 "id": index + 1,
                 "test_name": test_name,
@@ -111,6 +181,8 @@ class MockTestService:
             }
             for index, row in enumerate(rows)
         ]
+        logger.info("  -> returning %d questions", len(result))
+        return result
 
     def module_questions(
         self,
