@@ -11,11 +11,12 @@ import StudySidebar from "../components/study/StudySidebar.jsx";
 import PdfCanvasViewer from "../components/study/PdfCanvasViewer.jsx";
 import AiTutorPanel from "../components/study/AiTutorPanel.jsx";
 import ResizeHandle from "../components/study/ResizeHandle.jsx";
+import VideoExplanationView from "../components/study/VideoExplanationView.jsx";
 
 function WorkspaceContent({ pdfUrl, title }) {
   const {
     aiPanelOpen, setAiPanelOpen, sidebarOpen,
-    currentPage, totalPages, subject,
+    currentPage, totalPages, subject, currentView,
   } = useStudyWorkspace();
 
   const [pdfRatio, setPdfRatio] = useState(65); // percentage of content area for PDF
@@ -66,12 +67,16 @@ function WorkspaceContent({ pdfUrl, title }) {
 
         {/* ── Content Split ── */}
         <div className="study-content-split">
-          {/* PDF Viewer */}
+          {/* Main View Area */}
           <div
-            className="study-pdf-area"
+            className={`study-main-area ${currentView === 'pdf' ? 'study-pdf-area' : ''}`}
             style={{ flex: aiPanelOpen ? `0 0 ${pdfRatio}%` : "1 1 100%" }}
           >
-            <PdfCanvasViewer pdfUrl={pdfUrl} />
+            {currentView === 'pdf' ? (
+              <PdfCanvasViewer pdfUrl={pdfUrl} />
+            ) : currentView === 'video_explanation' ? (
+              <VideoExplanationView pdfUrl={pdfUrl} />
+            ) : null}
           </div>
 
           {/* Resize Handle */}

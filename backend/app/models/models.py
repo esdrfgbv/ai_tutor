@@ -109,6 +109,25 @@ class Chapter(Base, TimestampMixin):
     title: Mapped[str] = mapped_column(String(220), nullable=False)
     description: Mapped[str | None] = mapped_column(Text)
 
+    video_recommendations: Mapped[list["VideoRecommendation"]] = relationship(back_populates="chapter", cascade="all, delete-orphan")
+
+
+class VideoRecommendation(Base, TimestampMixin):
+    __tablename__ = "video_recommendations"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    chapter_id: Mapped[int] = mapped_column(ForeignKey("chapters.id"), index=True, nullable=False)
+    language: Mapped[str] = mapped_column(String(50), nullable=False, default="english")
+    query: Mapped[str] = mapped_column(Text, nullable=False)
+    video_id: Mapped[str] = mapped_column(String(50), nullable=False)
+    title: Mapped[str] = mapped_column(String(255), nullable=False)
+    thumbnail: Mapped[str] = mapped_column(Text, nullable=False)
+    channel: Mapped[str] = mapped_column(String(255), nullable=False)
+    duration: Mapped[str] = mapped_column(String(20), nullable=False)
+    score: Mapped[float] = mapped_column(Float, default=0.0)
+
+    chapter: Mapped[Chapter] = relationship(back_populates="video_recommendations")
+
 
 class PdfMetadata(Base, TimestampMixin):
     __tablename__ = "pdf_metadata"

@@ -7,6 +7,9 @@ const StudyWorkspaceContext = createContext(null);
 export function StudyWorkspaceProvider({ children, subject, slug, chapterTitle, grade, targetExam }) {
   const { user } = useAuth();
 
+  // ── View State ──
+  const [currentView, setCurrentView] = useState("pdf");
+
   // ── PDF State ──
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
@@ -235,6 +238,9 @@ export function StudyWorkspaceProvider({ children, subject, slug, chapterTitle, 
         targetExam,
 
         // PDF
+        currentView,
+        setCurrentView,
+        
         currentPage,
         setCurrentPage,
         totalPages,

@@ -74,6 +74,13 @@ class Settings(BaseSettings):
     groq_vision_model: str = "meta-llama/llama-4-scout-17b-16e-instruct"
 
     # =========================================
+    # EXTERNAL APIS
+    # =========================================
+
+    youtube_api_key: str | None = None
+    paddleocr_api_key: str | None = None
+
+    # =========================================
     # FILES
     # =========================================
 

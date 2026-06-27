@@ -9,17 +9,18 @@ import { useStudyWorkspace } from "../../context/StudyWorkspaceContext";
 import { fetchModules } from "../../utils/modules";
 
 const TABS = [
-  { id: "chapters", icon: BookOpen, label: "Chapters", emoji: "📖" },
+  { id: "chapters", icon: BookOpen, label: "Chapters", emoji: "📚" },
+  { id: "video_explanation", isAction: true, label: "Video Explanation", emoji: "🎥", isAi: true },
   { id: "notes", icon: StickyNote, label: "Notes", emoji: "📝" },
   { id: "bookmarks", icon: Bookmark, label: "Bookmarks", emoji: "⭐" },
-  { id: "doubts", icon: Clock, label: "Recent Doubts", emoji: "🕒" },
+  { id: "doubts", icon: Clock, label: "Recent Doubts", emoji: "💬" },
 ];
 
 export default function StudySidebar() {
   const {
     sidebarOpen, setSidebarOpen, subject, slug, grade, targetExam,
     notes, deleteNote, bookmarks, deleteBookmark, recentDoubts,
-    sendMessage, setAiPanelOpen,
+    sendMessage, setAiPanelOpen, currentView, setCurrentView,
   } = useStudyWorkspace();
 
   const [activeTab, setActiveTab] = useState("chapters");
@@ -65,11 +66,22 @@ export default function StudySidebar() {
 
         {/* Tab Buttons */}
         <div className={`ss-tabs ${sidebarOpen ? "" : "ss-tabs-collapsed"}`}>
-          {TABS.map((tab) => (
+          {TABS.map((tab) => {
+            const isVideoTab = tab.id === "video_explanation";
+            const isActive = isVideoTab ? currentView === "video_explanation" : (activeTab === tab.id && currentView !== "video_explanation");
+            return (
             <button
               key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className={`ss-tab ${activeTab === tab.id ? "ss-tab-active" : ""}`}
+              onClick={() => {
+                if (isVideoTab) {
+                  setCurrentView("video_explanation");
+                } else {
+                  setCurrentView("pdf");
+                  setActiveTab(tab.id);
+                }
+              }}
+              className={`ss-tab ${isActive ? "ss-tab-active" : ""}`}
+              style={isVideoTab ? { backgroundColor: isActive ? "#adff4433" : "transparent", color: isActive ? "#adff44" : "inherit" } : {}}
               title={tab.label}
             >
               <span className="ss-tab-emoji">{tab.emoji}</span>
@@ -78,12 +90,18 @@ export default function StudySidebar() {
                   initial={{ opacity: 0, width: 0 }}
                   animate={{ opacity: 1, width: "auto" }}
                   className="ss-tab-label"
+                  style={{ display: "flex", alignItems: "center", gap: "6px" }}
                 >
                   {tab.label}
+                  {tab.isAi && (
+                    <span style={{ fontSize: "0.65rem", backgroundColor: "#adff44", color: "#000", padding: "1px 4px", borderRadius: "4px", fontWeight: "bold" }}>
+                      ⭐ AI
+                    </span>
+                  )}
                 </motion.span>
               )}
             </button>
-          ))}
+          )})}
         </div>
 
         {/* Tab Content (only when expanded) */}
