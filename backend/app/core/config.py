@@ -79,6 +79,7 @@ class Settings(BaseSettings):
 
     youtube_api_key: str | None = None
     paddleocr_api_key: str | None = None
+    openrouter_api_key: str | None = None
 
     # =========================================
     # FILES

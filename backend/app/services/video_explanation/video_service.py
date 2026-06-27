@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 
 from app.core.config import get_settings
 from app.models.models import Chapter, VideoRecommendation
-from app.services.ai_service import get_ai_provider
+from openai import OpenAI
 
 logger = logging.getLogger(__name__)
 
@@ -26,7 +26,15 @@ def parse_duration(iso: str) -> dict:
 class VideoExplanationService:
     def __init__(self):
         self.settings = get_settings()
-        self.ai = get_ai_provider()
+        api_key = self.settings.openrouter_api_key or "no-key"
+        self.openrouter = OpenAI(
+            base_url="https://openrouter.ai/api/v1",
+            api_key=api_key,
+            default_headers={
+                "HTTP-Referer": "https://ai-tutor.local",
+                "X-Title": "AI Tutor",
+            }
+        )
         
     def get_recommendations(self, db: Session, chapter_id: int):
         chapter = db.query(Chapter).filter(Chapter.id == chapter_id).first()
@@ -141,8 +149,15 @@ OCR Text (first 2000 chars):
 {ocr_text[:2000]}
 """
         try:
-            resp = self.ai.generate_text(prompt)
-            json_str = resp[resp.find("{"):resp.rfind("}")+1]
+            response = self.openrouter.chat.completions.create(
+                model="meta-llama/llama-3.3-70b-instruct",
+                max_tokens=300,
+                messages=[
+                    {"role": "user", "content": prompt}
+                ]
+            )
+            content = response.choices[0].message.content or "{}"
+            json_str = content[content.find("{"):content.rfind("}")+1]
             data = json.loads(json_str)
             return data
         except Exception as e:
@@ -166,8 +181,15 @@ Language: {metadata.get('language', 'english')}
 Generate one optimized educational YouTube search query.
 """
         try:
-            query = self.ai.generate_text(prompt)
-            return query.strip().replace('"', '')
+            response = self.openrouter.chat.completions.create(
+                model="meta-llama/llama-3.3-70b-instruct",
+                max_tokens=100,
+                messages=[
+                    {"role": "user", "content": prompt}
+                ]
+            )
+            content = response.choices[0].message.content or ""
+            return content.strip().replace('"', '')
         except Exception:
             return f"Class {chapter.grade} {chapter.subject} {chapter.title} explained lecture"
 
@@ -266,8 +288,15 @@ Videos:
 {video_list_str}
 """
         try:
-            resp = self.ai.generate_text(prompt)
-            json_str = resp[resp.find("["):resp.rfind("]")+1]
+            response = self.openrouter.chat.completions.create(
+                model="meta-llama/llama-3.3-70b-instruct",
+                max_tokens=500,
+                messages=[
+                    {"role": "user", "content": prompt}
+                ]
+            )
+            content = response.choices[0].message.content or "[]"
+            json_str = content[content.find("["):content.rfind("]")+1]
             return json.loads(json_str)
         except Exception:
             return [{"videoId": v["videoId"], "score": 50} for v in videos]
