@@ -202,17 +202,17 @@ export default function QuizPage() {
           </div>
 
           <div className="flex flex-wrap justify-center gap-3">
-            <Link to="/analytics" className="btn-primary">View Analytics</Link>
+            <Link to="/analytics" className="btn-primary">View Progress</Link>
             <Link to="/chapters" className="btn-ghost">Back to Modules</Link>
             <button className="btn-ghost flex items-center gap-1.5" onClick={() => { setQuiz(null); setResult(null); setAnswers({}); }}>
-              <RotateCcw size={14} /> Retry
+              <RotateCcw size={14} /> Try Again
             </button>
           </div>
         </div>
 
         {/* Question Review */}
         <div className="rounded-2xl p-5" style={{ background: "rgba(17,17,17,0.9)", border: "1px solid rgba(255,255,255,0.07)" }}>
-          <h3 className="font-display font-bold text-white mb-4">Question Review</h3>
+          <h3 className="font-display font-bold text-white mb-4">Review Answers</h3>
           <div className="space-y-3">
             {quiz.questions.map((q, i) => {
               const submitted = String(answers[q.id] || "").trim().toLowerCase();
@@ -345,7 +345,7 @@ export default function QuizPage() {
           {/* Admin-created mock tests */}
           {adminMockTests.length > 0 && (
             <div className="mt-8">
-              <p className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: "#ffd700" }}>Scheduled Mock Tests</p>
+              <p className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: "#ffd700" }}>Upcoming Mock Tests</p>
               <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
                 {adminMockTests.map((test) => (
                   <motion.a
@@ -460,7 +460,7 @@ export default function QuizPage() {
                 className="rounded-2xl p-4 overflow-hidden"
                 style={{ background: "rgba(17,17,17,0.9)", border: "1px solid rgba(255,255,255,0.07)" }}
               >
-                <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#8a8a8a" }}>Question Palette</p>
+                <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#8a8a8a" }}>Question List</p>
                 <div className="flex flex-wrap gap-2">
                   {quiz.questions.map((q, i) => {
                     const isAnswered = !!answers[q.id];
@@ -485,8 +485,8 @@ export default function QuizPage() {
                 <div className="flex gap-4 mt-3">
                   {[
                     { color: "#adff44", border: "rgba(173,255,68,0.3)", label: "Answered" },
-                    { color: "#ffd700", border: "rgba(255,215,0,0.3)", label: "Flagged" },
-                    { color: "#8a8a8a", border: "rgba(255,255,255,0.08)", label: "Unattempted" },
+                    { color: "#ffd700", border: "rgba(255,215,0,0.3)", label: "Review Later" },
+                    { color: "#8a8a8a", border: "rgba(255,255,255,0.08)", label: "Not Answered" },
                   ].map(({ color, border, label }) => (
                     <div key={label} className="flex items-center gap-1.5 text-xs" style={{ color: "#8a8a8a" }}>
                       <div className="w-3 h-3 rounded" style={{ background: `${color}20`, border: `1px solid ${border}` }} />

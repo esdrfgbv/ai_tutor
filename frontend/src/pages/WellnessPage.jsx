@@ -7,7 +7,7 @@ import api from "../api/client";
 
 const TABS = [
   { id: "anxiety", label: "Calm & Focus", icon: Heart },
-  { id: "inspiration", label: "Daily Inspiration", icon: Sparkles },
+  { id: "inspiration", label: "Daily Motivation", icon: Sparkles },
   { id: "plan", label: "Study Plan", icon: Zap },
 ];
 
@@ -138,7 +138,7 @@ function StudyPlanPanel() {
             color: generating ? "rgba(173,255,68,0.5)" : "#ADFF44",
           }}
         >
-          {generating ? "Generating..." : "Generate New Plan"}
+          {generating ? "Generating..." : "Create New Plan"}
         </button>
       </div>
     </>
@@ -155,7 +155,7 @@ function StudyPlanPanel() {
           color: generating ? "rgba(173,255,68,0.5)" : "#000",
         }}
       >
-        {generating ? "Generating..." : "Generate Study Plan"}
+        {generating ? "Generating..." : "Create Study Plan"}
       </button>
     </div>
   )}
@@ -178,7 +178,7 @@ export default function WellnessPage() {
             <Heart className="w-5 h-5" style={{ color: "#ADFF44" }} />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-white/90">Wellness & Goals</h1>
+            <h1 className="text-xl font-bold text-white/90">Focus Zone</h1>
             <p className="text-xs text-white/40">Calm your mind · Stay inspired · Track your plan</p>
           </div>
         </div>

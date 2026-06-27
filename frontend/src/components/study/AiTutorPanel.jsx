@@ -83,7 +83,7 @@ export default function AiTutorPanel() {
         <div className="atp-header-left">
           <AIOrb size={28} />
           <div className="atp-header-info">
-            <p className="atp-header-title">AI Tutor</p>
+            <p className="atp-header-title">AI Buddy</p>
             <p className="atp-header-context">{contextLabel || "Ready to help"}</p>
           </div>
           <div className="atp-status-badge">

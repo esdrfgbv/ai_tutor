@@ -7,7 +7,7 @@ export default function SettingsPage() {
 
   const settings = [
     { icon: Bell, label: "Notifications", description: "Manage push and email alerts", action: null },
-    { icon: Shield, label: "Privacy & Security", description: "Control your data and account security", action: null },
+    { icon: Shield, label: "Account & Privacy", description: "Control your data and account security", action: null },
   ];
 
   return (

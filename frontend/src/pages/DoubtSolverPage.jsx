@@ -132,7 +132,7 @@ export default function DoubtSolverPage() {
       const answer = response.data?.answer || "No response returned from AI";
       setMessages((prev) => [
         ...prev,
-        { id: Date.now() + 1, role: "ai", text: answer, source: response.data?.source || "AI Tutor" },
+        { id: Date.now() + 1, role: "ai", text: answer, source: response.data?.source || "AI Buddy" },
       ]);
     } catch (err) {
       const backendMessage = err.response?.data?.detail;
@@ -179,7 +179,7 @@ export default function DoubtSolverPage() {
             }}
           >
             <div className="p-4 border-b" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
-              <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#8a8a8a" }}>Study Navigator</p>
+              <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#8a8a8a" }}>Chapters</p>
               {/* Subject tabs */}
               <div className="flex gap-1 p-0.5 rounded-xl mb-3" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)" }}>
                 {(availableSubjects.length ? availableSubjects : ["maths", "science", "english"]).slice(0, 3).map((s) => (
@@ -308,7 +308,7 @@ export default function DoubtSolverPage() {
             >
               <AIOrb size={72} />
               <div>
-                <h3 className="font-display font-bold text-xl text-white mb-2">Your AI Tutor is Ready</h3>
+                <h3 className="font-display font-bold text-xl text-white mb-2">Your AI Buddy is Ready</h3>
                 <p className="text-sm max-w-xs" style={{ color: "#8a8a8a" }}>
                   Ask any doubt about{" "}
                   <span className="font-semibold text-white">{chapter || subject}</span>.
@@ -467,7 +467,7 @@ export default function DoubtSolverPage() {
                   maxHeight: 120,
                   transition: "border-color 0.2s, box-shadow 0.2s",
                 }}
-                placeholder="Ask your doubt... (e.g. Explain Newton's 2nd law)"
+                placeholder="Ask anything... (e.g. Explain Newton's 2nd law)"
                 value={question}
                 onChange={(e) => {
                   setQuestion(e.target.value);
@@ -534,7 +534,7 @@ export default function DoubtSolverPage() {
             }}
           >
             <div className="p-4 border-b" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
-              <p className="text-xs font-bold uppercase tracking-widest" style={{ color: "#8a8a8a" }}>Session Stats</p>
+              <p className="text-xs font-bold uppercase tracking-widest" style={{ color: "#8a8a8a" }}>Session Summary</p>
             </div>
 
             <div className="flex-1 overflow-y-auto p-4 space-y-3">
@@ -571,7 +571,7 @@ export default function DoubtSolverPage() {
               <div className="rounded-2xl p-4" style={{ background: "rgba(173,255,68,0.06)", border: "1px solid rgba(173,255,68,0.15)" }}>
                 <div className="flex items-center gap-2 mb-2">
                   <Zap size={14} style={{ color: "#adff44" }} />
-                  <span className="text-xs font-semibold" style={{ color: "#8a8a8a" }}>XP Earned</span>
+                  <span className="text-xs font-semibold" style={{ color: "#8a8a8a" }}>Learning Points</span>
                 </div>
                 <p className="font-display font-black text-2xl" style={{ color: "#adff44" }}>
                   +{messages.filter((m) => m.role === "user").length * 10}
@@ -580,14 +580,14 @@ export default function DoubtSolverPage() {
 
               {/* Quick actions */}
               <div className="mt-4">
-                <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#8a8a8a" }}>Quick Actions</p>
+                <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#8a8a8a" }}>Shortcuts</p>
                 <div className="space-y-2">
                   {slug && (
                     <Link to={`/study/${subject}/${slug}`} className="flex items-center gap-2 px-3 py-2.5 rounded-xl text-xs font-semibold transition-all w-full"
                       style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)", color: "#bdbdbd" }}
                       onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(173,255,68,0.3)"; e.currentTarget.style.color = "#adff44"; }}
                       onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.07)"; e.currentTarget.style.color = "#bdbdbd"; }}>
-                      <BookOpen size={13} /> Open Textbook
+                      <BookOpen size={13} /> Open PDF
                     </Link>
                   )}
                   <Link to={`/quiz?subject=${subject}`} className="flex items-center gap-2 px-3 py-2.5 rounded-xl text-xs font-semibold transition-all w-full"

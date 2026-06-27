@@ -97,7 +97,7 @@ export default function ChaptersPage() {
           </p>
         </div>
         <Link to="/doubts" className="btn-primary text-sm flex-shrink-0">
-          <Brain size={15} /> Ask AI Tutor
+          <Brain size={15} /> Ask AI Buddy
         </Link>
       </motion.div>
 

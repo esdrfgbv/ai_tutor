@@ -91,7 +91,7 @@ export default function ProfilePage() {
                   color: "#bdbdbd",
                 }}
               >
-                {studentProfile.target_exam} Aspirant
+                {studentProfile.target_exam} — Preparing for Exam
               </span>
             )}
           </div>
@@ -107,7 +107,7 @@ export default function ProfilePage() {
           className="grid grid-cols-3 gap-3"
         >
           {[
-            { label: "Current XP", value: "1,240", icon: Zap, color: "#adff44" },
+            { label: "Learning Points", value: "1,240", icon: Zap, color: "#adff44" },
             { label: "Achievements", value: "7", icon: Award, color: "#ffd700" },
             { label: "Days Active", value: "21", icon: Target, color: "#adff44" },
           ].map(({ label, value, icon: Icon, color }) => (
@@ -153,7 +153,7 @@ export default function ProfilePage() {
             }}
           >
             <div className="absolute top-0 right-0 w-24 h-24 rounded-full opacity-10 pointer-events-none" style={{ background: "#adff44", transform: "translate(40%, -40%)" }} />
-            <p className="text-xs font-bold mb-1" style={{ color: "#adff44" }}>🔗 STUDENT ID — Share with Parents</p>
+            <p className="text-xs font-bold mb-1" style={{ color: "#adff44" }}>🔗 STUDENT CODE — Share with Parents</p>
             <p className="text-xs mb-3" style={{ color: "#8a8a8a" }}>Parents use this ID to link their account and view your progress</p>
             <div className="flex items-center gap-3">
               <span className="font-display font-black text-3xl" style={{ color: "#adff44", letterSpacing: "0.08em" }}>

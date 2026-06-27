@@ -10,7 +10,7 @@ import { STATES, STATES_AND_DISTRICTS, CITIES_BY_STATE, SECTIONS } from "../util
 const portalRoles = ["student", "parent", "admin"];
 
 const FEATURES = [
-  { icon: Brain, text: "AI Tutor powered by NCERT textbooks" },
+  { icon: Brain, text: "AI Buddy powered by NCERT textbooks" },
   { icon: BookOpen, text: "Adaptive PYQ-style quiz engine" },
   { icon: BarChart3, text: "Real-time performance analytics" },
   { icon: Zap, text: "Instant AI doubt resolution" },

@@ -15,7 +15,7 @@ export default function ImageAnalysisPage() {
             <Camera className="w-5 h-5" style={{ color: "#ADFF44" }} />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-white/90">Image Analysis</h1>
+            <h1 className="text-xl font-bold text-white/90">Snap &amp; Solve</h1>
             <p className="text-xs text-white/40">AI Vision · Groq Llama 4 Scout</p>
           </div>
           <div
@@ -23,7 +23,7 @@ export default function ImageAnalysisPage() {
             style={{ background: "rgba(173,255,68,0.08)", border: "1px solid rgba(173,255,68,0.15)", color: "rgba(173,255,68,0.7)" }}
           >
             <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "#ADFF44" }} />
-            AI Vision Online
+            AI Ready
           </div>
         </div>
         <p className="text-sm text-white/40 ml-13">
@@ -35,7 +35,7 @@ export default function ImageAnalysisPage() {
       <div className="grid grid-cols-3 gap-3 mb-6">
         {[
           { step: "1", icon: "📸", title: "Upload Image", desc: "Photo, screenshot, or scan" },
-          { step: "2", icon: "🧠", title: "AI Analyzes", desc: "Reads text, shapes & patterns" },
+          { step: "2", icon: "🧠", title: "AI Reads Your Photo", desc: "Reads text, shapes & patterns" },
           { step: "3", icon: "✅", title: "Get Solution", desc: "Step-by-step explanation" },
         ].map((s) => (
           <div key={s.step} className="p-3 rounded-xl text-center" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>

@@ -171,7 +171,7 @@ export default function StudentDashboard() {
         <StatCard icon={Clock} label="Study Time" value={stats?.study_minutes || 0} suffix="m" />
         <StatCard icon={Flame} label="Current Streak" value={stats?.streak_days || 0} suffix="d" accentColor="#ff6b6b" />
         <StatCard icon={Award} label="Best Streak" value={stats?.longest_streak || 0} suffix="d" accentColor="#ffd700" />
-        <StatCard icon={Calendar} label="7d Consistency" value={`${stats?.weekly_consistency || 0}/7`} animate={false} />
+        <StatCard icon={Calendar} label="Weekly Consistency" value={`${stats?.weekly_consistency || 0}/7`} animate={false} />
       </motion.div>
 
       {/* ══ AI POWER TOOLS ══ */}
@@ -185,18 +185,18 @@ export default function StudentDashboard() {
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
             <Sparkles size={16} style={{ color: "#adff44" }} />
-            <h2 className="font-display font-bold text-white">AI Power Tools</h2>
+            <h2 className="font-display font-bold text-white">Smart Learning</h2>
             <span className="text-xs px-2 py-0.5 rounded-full font-medium" style={{ background: "rgba(173,255,68,0.1)", color: "rgba(173,255,68,0.7)", border: "1px solid rgba(173,255,68,0.15)" }}>NEW</span>
           </div>
           <span className="text-xs text-white/25">Powered by Groq AI</span>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
           {[
-            { to: "/ai-video", icon: Video, label: "AI Video Tutor", desc: "Topic → Narrated slides", color: "#ADFF44" },
-            { to: "/image-analysis", icon: Camera, label: "Image Analysis", desc: "Photo → AI solution", color: "#adff44" },
-            { to: "/ai-test-engine", icon: Layers, label: "AI Test Engine", desc: "PDF → Mock tests", color: "rgba(173,255,68,0.7)" },
-            { to: "/adaptive", icon: Target, label: "Adaptive Learning", desc: "Skill graph + diagnostic", color: "#ADFF44" },
-            { to: "/wellness", icon: Heart, label: "Wellness & Goals", desc: "Calm · Inspire · Plan", color: "#adff44" },
+            { to: "/ai-video", icon: Video, label: "AI Video Lessons", desc: "Watch chapter explanations.", color: "#ADFF44" },
+            { to: "/image-analysis", icon: Camera, label: "Snap & Solve", desc: "Take a photo to get instant help.", color: "#adff44" },
+            { to: "/ai-test-engine", icon: Layers, label: "Mock Test Builder", desc: "Create practice exams from previous papers.", color: "rgba(173,255,68,0.7)" },
+            { to: "/adaptive", icon: Target, label: "Smart Practice", desc: "Practice questions made just for you.", color: "#ADFF44" },
+            { to: "/wellness", icon: Heart, label: "Focus Zone", desc: "Improve focus and build better study habits.", color: "#adff44" },
           ].map((tool) => (
             <Link
               key={tool.to}
@@ -230,7 +230,7 @@ export default function StudentDashboard() {
         <div className="rounded-2xl p-5" style={{ background: "rgba(17,17,17,0.9)", border: "1px solid rgba(255,255,255,0.07)", minHeight: 300 }}>
           <div className="flex items-center gap-2 mb-4">
             <TrendingUp size={16} style={{ color: "#adff44" }} />
-            <h2 className="font-display font-bold text-white">Score Trends</h2>
+            <h2 className="font-display font-bold text-white">Progress Over Time</h2>
           </div>
           {stats?.trend && stats.trend.length > 0 ? (
             <ResponsiveContainer width="100%" height={230}>

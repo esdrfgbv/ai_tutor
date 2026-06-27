@@ -60,7 +60,7 @@ function WorkspaceContent({ pdfUrl, title }) {
             >
               {aiPanelOpen ? <PanelRightClose size={16} /> : <PanelRightOpen size={16} />}
               <Brain size={14} className="study-ai-toggle-brain" />
-              <span className="study-ai-toggle-label">AI Tutor</span>
+              <span className="study-ai-toggle-label">AI Buddy</span>
             </button>
           </div>
         </div>

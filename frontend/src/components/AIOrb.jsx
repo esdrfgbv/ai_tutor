@@ -34,7 +34,7 @@ export default function AIOrb({ size = 48, className = "", pulse = true }) {
       {/* Core orb */}
       <motion.img
         src="/profile.jpeg"
-        alt="AI Tutor"
+        alt="AI Buddy"
         className="relative w-full h-full rounded-full object-cover z-10"
         animate={pulse ? {
           scale: [1, 1.06, 1],

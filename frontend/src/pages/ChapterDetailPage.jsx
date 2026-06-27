@@ -42,7 +42,7 @@ export default function ChapterDetailPage() {
   const actions = [
     {
       icon: MessageSquare,
-      title: "Ask AI Tutor",
+      title: "Ask AI Buddy",
       desc: "Get instant answers about this chapter",
       color: "#adff44",
       onClick: () => navigate(`/doubts?chapter=${encodeURIComponent(chapter.title)}&subject=${chapter.subject}`),
@@ -135,7 +135,7 @@ export default function ChapterDetailPage() {
         <div className="space-y-3">
           {[
             "Read through the chapter content carefully",
-            "Use AI Tutor to clarify concepts you don't understand",
+            "Use AI Buddy to clarify concepts you don't understand",
             "Practice with the adaptive quiz to test your knowledge",
             "Review weak topics before moving to the next chapter",
           ].map((tip, i) => (

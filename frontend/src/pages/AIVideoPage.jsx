@@ -67,7 +67,7 @@ export default function AIVideoPage() {
                 style={{ background: "rgba(173,255,68,0.05)", border: "1px solid rgba(173,255,68,0.2)", color: "#ADFF44" }}
               >
                 <span className="w-1.5 h-1.5 rounded-full" style={{ background: "#ADFF44" }} />
-                AI Video Tutor · Powered by Groq
+                AI Video Lessons · Powered by Groq
               </div>
               
               <h1 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight max-w-2xl mx-auto">
@@ -84,7 +84,7 @@ export default function AIVideoPage() {
             {/* Input Card Container */}
             <div className="bg-[#121214] border border-white/[0.06] rounded-2xl p-6 relative shadow-xl">
               <label className="block text-xs font-bold text-slate-400 mb-3 uppercase tracking-widest">
-                Enter your topic
+                What do you want to learn?
               </label>
               
               <textarea
@@ -218,9 +218,9 @@ export default function AIVideoPage() {
             {/* Feature Footers */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4">
               {[
-                { icon: "🎙️", title: "Instant TTS Narration", desc: "Crisp voice lines generation reading through modules naturally." },
-                { icon: "💬", title: "In-Video Doubt Solving", desc: "Integrated chat interfaces help address custom student problems instantly." },
-                { icon: "📊", title: "Structured Slides", desc: "Logical, progressive concept cards customized for high retention." },
+                { icon: "🎙️", title: "Voice Explanation", desc: "Crisp voice lines generation reading through modules naturally." },
+                { icon: "💬", title: "Ask Questions While Watching", desc: "Integrated chat interfaces help address custom student problems instantly." },
+                { icon: "📊", title: "Step-by-Step Lessons", desc: "Logical, progressive concept cards customized for high retention." },
               ].map((f) => (
                 <div key={f.title} className="p-4 rounded-xl bg-[#121214] border border-white/[0.04]">
                   <div className="text-xl mb-2">{f.icon}</div>

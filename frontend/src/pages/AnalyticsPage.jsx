@@ -80,8 +80,8 @@ export default function AnalyticsPage() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <h1 className="font-display font-black text-2xl text-white mb-1">Analytics</h1>
-        <p className="text-sm" style={{ color: "#8a8a8a" }}>Track your performance, identify weak areas, and improve faster</p>
+        <h1 className="font-display font-black text-2xl text-white mb-1">Progress</h1>
+        <p className="text-sm" style={{ color: "#8a8a8a" }}>Track your performance, spot what needs work, and improve faster</p>
       </motion.div>
 
       {/* KPI Cards */}
@@ -108,7 +108,7 @@ export default function AnalyticsPage() {
           {/* Weaknesses */}
           <div>
             <h3 className="flex items-center gap-2 font-display font-bold mb-3" style={{ color: "#ff6b6b" }}>
-              <TrendingDown size={16} /> Focus Areas
+              <TrendingDown size={16} /> Needs Practice
             </h3>
             <div className="space-y-3">
               {weakTopics.length > 0 ? weakTopics.map((t, i) => (
@@ -134,7 +134,7 @@ export default function AnalyticsPage() {
           {/* Strengths */}
           <div>
             <h3 className="flex items-center gap-2 font-display font-bold mb-3" style={{ color: "#adff44" }}>
-              <TrendingUp size={16} /> Strongest Topics
+              <TrendingUp size={16} /> Best Topics
             </h3>
             <div className="space-y-3">
               {strongTopics.length > 0 ? strongTopics.map((t, i) => (
@@ -160,7 +160,7 @@ export default function AnalyticsPage() {
 
         {/* Radar Chart */}
         <div className="rounded-2xl p-5" style={{ background: "rgba(17,17,17,0.9)", border: "1px solid rgba(255,255,255,0.07)", minHeight: 380 }}>
-          <h2 className="font-display font-bold text-white mb-4">Topic Mastery Radar</h2>
+          <h2 className="font-display font-bold text-white mb-4">Skill Overview</h2>
           {topicMastery.length > 0 ? (
             <ResponsiveContainer width="100%" height={320}>
               <RadarChart data={topicMastery} margin={{ top: 10, right: 20, bottom: 10, left: 20 }}>
@@ -185,7 +185,7 @@ export default function AnalyticsPage() {
         <div className="rounded-2xl p-5" style={{ background: "rgba(17,17,17,0.9)", border: "1px solid rgba(255,255,255,0.07)", minHeight: 300 }}>
           <div className="flex items-center gap-2 mb-4">
             <TrendingUp size={16} style={{ color: "#adff44" }} />
-            <h2 className="font-display font-bold text-white">Score Trend</h2>
+            <h2 className="font-display font-bold text-white">Progress Over Time</h2>
           </div>
           {stats.trend?.length ? (
             <ResponsiveContainer width="100%" height={220}>
@@ -295,7 +295,7 @@ export default function AnalyticsPage() {
             <div className="flex items-center gap-4">
               <Trophy size={24} style={{ color: "#ffd700" }} />
               <div>
-                <p className="text-xs mb-0.5" style={{ color: "#8a8a8a" }}>Leaderboard Position</p>
+                <p className="text-xs mb-0.5" style={{ color: "#8a8a8a" }}>Your Rank</p>
                 <p className="font-display font-black text-3xl text-white">#{stats.leaderboard_rank}</p>
               </div>
             </div>

@@ -186,7 +186,7 @@ export default function LandingPage() {
             <div className="flex items-center gap-3 mb-6">
               <AIOrb size={40} />
               <div>
-                <p className="font-display font-bold text-white text-sm">Prep100 AI Tutor</p>
+                <p className="font-display font-bold text-white text-sm">Prep100 AI Buddy</p>
                 <div className="flex items-center gap-1.5 mt-0.5">
                   <div className="w-1.5 h-1.5 rounded-full bg-neon animate-pulse" />
                   <p className="text-xs" style={{ color: "#8a8a8a" }}>Online · Ready to teach</p>

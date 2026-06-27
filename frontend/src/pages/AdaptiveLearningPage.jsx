@@ -5,8 +5,8 @@ import { ZeroBasePanel } from "../components/sparkle/ZeroBasePanel.jsx";
 import { DiagnosticPanel } from "../components/sparkle/DiagnosticPanel.jsx";
 
 const TABS = [
-  { id: "adaptive", label: "Skill Graph", icon: Brain },
-  { id: "diagnostic", label: "Diagnostic", icon: BarChart3 },
+  { id: "adaptive", label: "Skill Progress", icon: Brain },
+  { id: "diagnostic", label: "Skill Check", icon: BarChart3 },
 ];
 
 export default function AdaptiveLearningPage() {
@@ -24,8 +24,8 @@ export default function AdaptiveLearningPage() {
             <Brain className="w-5 h-5" style={{ color: "#ADFF44" }} />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-white/90">Adaptive Learning</h1>
-            <p className="text-xs text-white/40">Skill-graph guided practice & diagnostic assessment</p>
+            <h1 className="text-xl font-bold text-white/90">Smart Practice</h1>
+            <p className="text-xs text-white/40">Track your skills and practise what you need most</p>
           </div>
         </div>
         <p className="text-sm text-white/35">
@@ -59,11 +59,11 @@ export default function AdaptiveLearningPage() {
       {/* Info */}
       <div className="mt-4 grid grid-cols-2 gap-3">
         <div className="p-3 rounded-xl" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
-          <p className="text-xs font-medium text-white/50 mb-1">🎯 Skill Graph</p>
+          <p className="text-xs font-medium text-white/50 mb-1">🎯 Skill Progress</p>
           <p className="text-xs text-white/25">See your mastery level across 8 skill areas. Click any skill to practice targeted questions.</p>
         </div>
         <div className="p-3 rounded-xl" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
-          <p className="text-xs font-medium text-white/50 mb-1">📊 Diagnostic</p>
+          <p className="text-xs font-medium text-white/50 mb-1">📊 Skill Check</p>
           <p className="text-xs text-white/25">Take a quick diagnostic test per subject. Get instant feedback with score breakdown.</p>
         </div>
       </div>

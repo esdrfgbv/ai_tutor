@@ -26,7 +26,7 @@ export default function AiLandingState() {
         <AIOrb size={64} />
       </div>
 
-      <h3 className="atp-landing-title">🤖 Your AI Tutor is Ready</h3>
+      <h3 className="atp-landing-title">🤖 Your AI Buddy is Ready</h3>
       <p className="atp-landing-desc">
         Ask any doubt about{" "}
         <span className="atp-landing-chapter">

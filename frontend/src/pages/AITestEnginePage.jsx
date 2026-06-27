@@ -15,8 +15,8 @@ export default function AITestEnginePage() {
             <Layers className="w-5 h-5" style={{ color: "#ADFF44" }} />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-white/90">AI Test Engine</h1>
-            <p className="text-xs text-white/40">Upload PYQ Paper → AI Extracts → Generates Unlimited Mock Tests</p>
+            <h1 className="text-xl font-bold text-white/90">Mock Test Builder</h1>
+            <p className="text-xs text-white/40">Upload a past paper PDF → AI builds unlimited mock tests</p>
           </div>
           <div
             className="ml-auto flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs"
@@ -35,10 +35,10 @@ export default function AITestEnginePage() {
       {/* Feature grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
         {[
-          { icon: "📄", title: "PDF Extraction", desc: "AI reads any exam paper format" },
-          { icon: "🧠", title: "Pattern Analysis", desc: "Finds topic weights & trends" },
-          { icon: "⚡", title: "Bulk Generation", desc: "Up to 50 unique tests at once" },
-          { icon: "🎯", title: "CBT Exam Mode", desc: "Real exam interface with timer" },
+          { icon: "📄", title: "Read PDF", desc: "AI reads any exam paper format" },
+          { icon: "🧠", title: "Question Pattern", desc: "Finds topic weights & trends" },
+          { icon: "⚡", title: "Generate Multiple Tests", desc: "Up to 50 unique tests at once" },
+          { icon: "🎯", title: "Exam Mode", desc: "Real exam interface with timer" },
         ].map((f) => (
           <div key={f.title} className="p-3 rounded-xl" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
             <div className="text-xl mb-1.5">{f.icon}</div>

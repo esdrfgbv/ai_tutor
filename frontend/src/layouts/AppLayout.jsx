@@ -12,17 +12,17 @@ import { useAuth } from "../context/AuthContext.jsx";
 const studentNav = [
   { to: "/student", label: "Dashboard", icon: Home, shortLabel: "Home" },
   { to: "/chapters", label: "Study Modules", icon: BookOpen, shortLabel: "Study" },
-  { to: "/doubts", label: "AI Tutor", icon: Brain, shortLabel: "Tutor" },
+  { to: "/doubts", label: "AI Buddy", icon: Brain, shortLabel: "AI Buddy", tooltip: "Ask questions anytime." },
   { to: "/quiz", label: "Tests", icon: ClipboardList, shortLabel: "Tests" },
-  { to: "/analytics", label: "Analytics", icon: BarChart3, shortLabel: "Stats" },
-  { to: "/leaderboard", label: "Leaderboard", icon: Trophy, shortLabel: "Board" },
+  { to: "/analytics", label: "Progress", icon: BarChart3, shortLabel: "Progress", tooltip: "Track how you're improving." },
+  { to: "/leaderboard", label: "Leaderboard", icon: Trophy, shortLabel: "Rank" },
   { to: "/profile", label: "Profile", icon: User, shortLabel: "Profile" },
-  // ── AI Power Tools section ──
-  { to: "/ai-video", label: "AI Video Tutor", icon: Video, shortLabel: "Video", section: "AI Tools" },
-  { to: "/image-analysis", label: "Image Analysis", icon: Camera, shortLabel: "Vision" },
-  { to: "/ai-test-engine", label: "AI Test Engine", icon: Layers, shortLabel: "AI Tests" },
-  { to: "/adaptive", label: "Adaptive Learning", icon: Target, shortLabel: "Adaptive" },
-  { to: "/wellness", label: "Wellness & Goals", icon: Heart, shortLabel: "Wellness" },
+  // ── Smart Learning section ──
+  { to: "/ai-video", label: "AI Video Lessons", icon: Video, shortLabel: "Videos", section: "Smart Learning", tooltip: "Watch chapter explanations." },
+  { to: "/image-analysis", label: "Snap & Solve", icon: Camera, shortLabel: "Snap", tooltip: "Take a photo to get instant help." },
+  { to: "/ai-test-engine", label: "Mock Test Builder", icon: Layers, shortLabel: "Tests", tooltip: "Create practice exams from previous papers." },
+  { to: "/adaptive", label: "Smart Practice", icon: Target, shortLabel: "Practice", tooltip: "Practice questions made just for you." },
+  { to: "/wellness", label: "Focus Zone", icon: Heart, shortLabel: "Focus", tooltip: "Improve focus and build better study habits." },
 ];
 
 const parentNav = [
@@ -132,9 +132,9 @@ export default function AppLayout() {
         {/* Nav Items */}
         <nav className="flex-1 px-3 space-y-1 mt-4 overflow-y-auto">
           {nav.map((item, idx) => {
-            // Section separator before AI Tools
+            // Section separator before Smart Learning
             const prevItem = nav[idx - 1];
-            const showSeparator = item.section === "AI Tools" && (!prevItem || !prevItem.section);
+            const showSeparator = item.section === "Smart Learning" && (!prevItem || !prevItem.section);
             return (
               <div key={item.to}>
                 {showSeparator && (
@@ -148,7 +148,7 @@ export default function AppLayout() {
                           className="flex items-center gap-2 mb-1"
                         >
                           <div className="flex-1 h-px" style={{ background: "rgba(173,255,68,0.1)" }} />
-                          <span className="text-[9px] font-bold uppercase tracking-[0.15em]" style={{ color: "rgba(173,255,68,0.45)" }}>AI Tools</span>
+                          <span className="text-[9px] font-bold uppercase tracking-[0.15em]" style={{ color: "rgba(173,255,68,0.45)" }}>Smart Learning</span>
                           <div className="flex-1 h-px" style={{ background: "rgba(173,255,68,0.1)" }} />
                         </motion.div>
                       )}
@@ -276,13 +276,13 @@ export default function AppLayout() {
               <nav className="flex-1 px-4 space-y-1">
                 {nav.map((item, idx) => {
                   const prevItem = nav[idx - 1];
-                  const showSep = item.section === "AI Tools" && (!prevItem || !prevItem.section);
+                  const showSep = item.section === "Smart Learning" && (!prevItem || !prevItem.section);
                   return (
                     <div key={item.to}>
                       {showSep && (
                         <div className="flex items-center gap-2 py-2">
                           <div className="flex-1 h-px" style={{ background: "rgba(173,255,68,0.1)" }} />
-                          <span className="text-[9px] font-bold uppercase tracking-[0.15em]" style={{ color: "rgba(173,255,68,0.45)" }}>AI Tools</span>
+                          <span className="text-[9px] font-bold uppercase tracking-[0.15em]" style={{ color: "rgba(173,255,68,0.45)" }}>Smart Learning</span>
                           <div className="flex-1 h-px" style={{ background: "rgba(173,255,68,0.1)" }} />
                         </div>
                       )}
