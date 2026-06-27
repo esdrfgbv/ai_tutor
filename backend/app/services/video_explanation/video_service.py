@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 
 from app.core.config import get_settings
 from app.models.models import Chapter, VideoRecommendation
-from openai import OpenAI
+from openai import AsyncOpenAI
 
 logger = logging.getLogger(__name__)
 
@@ -27,7 +27,7 @@ class VideoExplanationService:
     def __init__(self):
         self.settings = get_settings()
         api_key = self.settings.openrouter_api_key or "no-key"
-        self.openrouter = OpenAI(
+        self.openrouter = AsyncOpenAI(
             base_url="https://openrouter.ai/api/v1",
             api_key=api_key,
             default_headers={
@@ -59,17 +59,17 @@ class VideoExplanationService:
         logger.info(f"Extracting OCR from PDF {pdf_url}")
         ocr_text = await self._extract_ocr_from_pdf_url(pdf_url)
             
-        metadata = self._extract_metadata(ocr_text)
-        search_query = self._generate_search_query(chapter, metadata, ocr_text)
+        metadata = await self._extract_metadata(ocr_text)
+        search_query = await self._generate_search_query(chapter, metadata, ocr_text)
         
         videos = await self._search_youtube(search_query, metadata.get("language", "english"))
         if not videos:
             return []
             
-        ranked = self._rank_videos(videos, chapter.title, chapter.subject, ", ".join(metadata.get("keywords", [])))
+        ranked = await self._rank_videos(videos, chapter.title, chapter.subject, ", ".join(metadata.get("keywords", [])))
         
         # Merge scores and sort
-        score_map = {r["videoId"]: r["score"] for r in ranked}
+        score_map = {r.get("videoId"): r.get("score", 50) for r in ranked if isinstance(r, dict)}
         for v in videos:
             v["score"] = score_map.get(v["videoId"], 50)
             
@@ -79,14 +79,14 @@ class VideoExplanationService:
         for v in videos[:5]:
             rec = VideoRecommendation(
                 chapter_id=chapter_id,
-                language=metadata.get("language", "english"),
-                query=search_query,
-                video_id=v["videoId"],
-                title=v["title"],
-                thumbnail=v["thumbnail"],
-                channel=v["channelTitle"],
-                duration=v["duration"],
-                score=v["score"]
+                language=metadata.get("language", "english")[:80],
+                query=search_query[:220],
+                video_id=v["videoId"][:100],
+                title=v["title"][:220],
+                thumbnail=v["thumbnail"][:260],
+                channel=v["channelTitle"][:220],
+                duration=v["duration"][:50],
+                score=v.get("score", 50)
             )
             db.add(rec)
             results.append(rec)
@@ -133,24 +133,18 @@ class VideoExplanationService:
             logger.error(f"OCR extraction failed: {e}")
             return f"OCR failed: {e}"
         
-    def _extract_metadata(self, ocr_text: str) -> dict:
+    async def _extract_metadata(self, ocr_text: str) -> dict:
         prompt = f"""You are an expert at analyzing educational textbook content. Extract metadata from OCR text.
 
 Return ONLY a JSON object with these fields:
-{{
-  "title": "chapter title",
-  "subject": "subject name",
-  "classLevel": "class number",
-  "language": "english or hindi",
-  "keywords": ["array", "of", "key", "concepts"]
-}}
+{{"title": "chapter title", "subject": "subject name", "classLevel": "class number", "language": "english or hindi", "keywords": ["array", "of", "key", "concepts"]}}
 
 OCR Text (first 2000 chars):
 {ocr_text[:2000]}
 """
         try:
-            response = self.openrouter.chat.completions.create(
-                model="meta-llama/llama-3.3-70b-instruct",
+            response = await self.openrouter.chat.completions.create(
+                model="meta-llama/llama-3.1-8b-instruct",
                 max_tokens=300,
                 messages=[
                     {"role": "user", "content": prompt}
@@ -164,7 +158,7 @@ OCR Text (first 2000 chars):
             logger.error(f"Metadata extraction failed: {e}")
             return {"language": "english", "keywords": []}
             
-    def _generate_search_query(self, chapter: Chapter, metadata: dict, ocr_text: str) -> str:
+    async def _generate_search_query(self, chapter: Chapter, metadata: dict, ocr_text: str) -> str:
         prompt = f"""You are an expert educational content curator. Generate a single optimized YouTube search query for finding the best educational video.
 
 Rules:
@@ -181,8 +175,8 @@ Language: {metadata.get('language', 'english')}
 Generate one optimized educational YouTube search query.
 """
         try:
-            response = self.openrouter.chat.completions.create(
-                model="meta-llama/llama-3.3-70b-instruct",
+            response = await self.openrouter.chat.completions.create(
+                model="meta-llama/llama-3.1-8b-instruct",
                 max_tokens=100,
                 messages=[
                     {"role": "user", "content": prompt}
@@ -263,7 +257,7 @@ Generate one optimized educational YouTube search query.
             
         return videos
 
-    def _rank_videos(self, videos: list[dict], title: str, subject: str, concepts: str) -> list[dict]:
+    async def _rank_videos(self, videos: list[dict], title: str, subject: str, concepts: str) -> list[dict]:
         video_list_str = "\n\n".join([
             f"{i+1}. ID: {v['videoId']}\nTitle: {v['title']}\nChannel: {v['channelTitle']}\nViews: {v['viewCount']}\nDuration: {v['duration']}\nDescription: {v['description'][:200]}"
             for i, v in enumerate(videos)
@@ -288,8 +282,8 @@ Videos:
 {video_list_str}
 """
         try:
-            response = self.openrouter.chat.completions.create(
-                model="meta-llama/llama-3.3-70b-instruct",
+            response = await self.openrouter.chat.completions.create(
+                model="meta-llama/llama-3.1-8b-instruct",
                 max_tokens=500,
                 messages=[
                     {"role": "user", "content": prompt}
