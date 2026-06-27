@@ -4,7 +4,7 @@ import { useStudyWorkspace } from "../../context/StudyWorkspaceContext";
 import api from "../../api/client";
 
 export default function VideoExplanationView({ pdfUrl }) {
-  const { setCurrentView, slug, chapterTitle, grade } = useStudyWorkspace();
+  const { setCurrentView, slug, subject, grade, chapterTitle } = useStudyWorkspace();
   
   const [loading, setLoading] = useState(true);
   const [statusText, setStatusText] = useState("Analyzing Chapter...");
@@ -16,13 +16,20 @@ export default function VideoExplanationView({ pdfUrl }) {
     setLoading(true);
     setError(null);
     try {
-      // First get module details to get the chapter_id
-      // In a real app we'd have chapter_id in context, but assuming we can fetch it or we use slug
-      // For this demo, let's assume we can query by some ID. The API expects chapter_id.
-      // Wait, StudyWorkspaceContext doesn't expose chapter_id directly.
-      // Let's get the module/chapter info
-      const modRes = await api.get(`/modules/${slug}`);
-      const chapterId = modRes.data.id;
+      let chapterId = 1; // fallback
+      const match = slug.match(/chapter-(\d+)/i);
+      if (match) {
+        const chapterNum = parseInt(match[1], 10);
+        try {
+          const chaptersRes = await api.get(`/learning/chapters`, {
+            params: { grade, subject }
+          });
+          const found = chaptersRes.data.find(c => c.chapter_number === chapterNum);
+          if (found) chapterId = found.id;
+        } catch (err) {
+          console.warn("Could not fetch chapters to map slug to ID", err);
+        }
+      }
 
       if (forceRefresh) {
         await api.delete(`/video-explanation/cache/${chapterId}`);
