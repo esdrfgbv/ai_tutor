@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
-from app.api.deps import get_current_active_user, get_db
+from app.api.deps import get_current_user, get_db
 from app.models.models import User
 from app.schemas.video_schemas import VideoRecommendationResponse
 from app.services.video_explanation.video_service import VideoExplanationService
@@ -13,7 +13,7 @@ video_service = VideoExplanationService()
 def get_recommendations(
     chapter_id: int,
     db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_active_user)
+    current_user: User = Depends(get_current_user)
 ):
     recs = video_service.get_recommendations(db, chapter_id)
     if not recs:
@@ -31,7 +31,7 @@ async def generate_recommendations(
     chapter_id: int,
     pdf_url: str,
     db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_active_user)
+    current_user: User = Depends(get_current_user)
 ):
     recs = await video_service.generate_recommendations(db, chapter_id, pdf_url)
     if not recs:
@@ -48,7 +48,7 @@ async def generate_recommendations(
 def clear_cache(
     chapter_id: int,
     db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_active_user)
+    current_user: User = Depends(get_current_user)
 ):
     video_service.clear_cache(db, chapter_id)
     return {"status": "success", "message": "Cache cleared"}
