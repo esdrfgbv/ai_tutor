@@ -102,20 +102,19 @@ export default function AuthPage() {
 
   const startRetryTimer = (payload) => {
     setConnecting(true);
-    setRetryCountdown(300);
+    setRetryCountdown(0);
     retryPayloadRef.current = payload;
 
     const start = Date.now();
 
     countdownRef.current = setInterval(() => {
       const elapsed = Math.floor((Date.now() - start) / 1000);
-      const remaining = 300 - elapsed;
-      if (remaining <= 0) {
+      if (elapsed >= 300) {
         stopRetry();
         setError("Cannot connect to server. Check your internet and try again.");
         return;
       }
-      setRetryCountdown(remaining);
+      setRetryCountdown(elapsed);
     }, 1000);
 
     connectingTimerRef.current = setInterval(async () => {
@@ -169,6 +168,42 @@ export default function AuthPage() {
 
   return (
     <div className="min-h-screen flex" style={{ background: "#000" }}>
+      {/* ── CONNECTION OVERLAY ── */}
+      <AnimatePresence>
+        {connecting && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-6"
+            style={{ background: "#000" }}
+          >
+            <div className="max-w-md w-full rounded-3xl p-8 text-center" style={{ background: "rgba(17,17,17,0.9)", border: "1px solid rgba(173,255,68,0.2)", boxShadow: "0 0 80px rgba(173,255,68,0.05)" }}>
+              <div className="w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center animate-pulse" style={{ background: "rgba(173,255,68,0.1)", border: "1px solid rgba(173,255,68,0.3)" }}>
+                <Zap size={24} style={{ color: "#adff44" }} />
+              </div>
+              <h2 className="font-display font-black text-2xl text-white mb-2">🚀 Preparing AI Tutor</h2>
+              <p className="text-sm mb-6" style={{ color: "#8a8a8a" }}>Connecting to server...</p>
+              
+              <div className="rounded-xl p-4 mb-6 text-left font-mono text-sm" style={{ background: "rgba(0,0,0,0.5)", border: "1px solid rgba(255,255,255,0.05)" }}>
+                <div className="flex justify-between mb-2">
+                  <span style={{ color: "#8a8a8a" }}>Elapsed Time</span>
+                  <span style={{ color: "#adff44" }}>{String(Math.floor(retryCountdown / 60)).padStart(2, '0')}:{String(retryCountdown % 60).padStart(2, '0')}</span>
+                </div>
+                <p style={{ color: "#bdbdbd" }} className="mb-1">The server is waking up.</p>
+                <p style={{ color: "#8a8a8a" }} className="text-xs mb-3">This usually happens after a period of inactivity.</p>
+                <div className="flex gap-0.5 overflow-hidden text-[10px]" style={{ color: "#adff44", opacity: 0.8 }}>
+                   {Array.from({ length: 40 }).map((_, i) => (
+                      <span key={i}>{i < (retryCountdown % 40) ? "█" : "░"}</span>
+                   ))}
+                </div>
+              </div>
+              <p className="text-xs" style={{ color: "#8a8a8a" }}>Please wait... No manual refresh required.</p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* ── LEFT BRAND PANEL (desktop only) ── */}
       <div
         className="hidden lg:flex lg:w-1/2 flex-col justify-between p-12 relative overflow-hidden"
@@ -295,24 +330,7 @@ export default function AuthPage() {
             </div>
 
             <form onSubmit={submit} className="space-y-4">
-              {/* Connecting timer */}
-              <AnimatePresence>
-                {connecting && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0 }}
-                    className="rounded-xl px-4 py-3 text-sm flex items-center gap-2"
-                    style={{ background: "rgba(173,255,68,0.08)", border: "1px solid rgba(173,255,68,0.2)", color: "#adff44" }}
-                  >
-                    <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-                    </svg>
-                    Connecting to server... {Math.floor(retryCountdown / 60)}:{String(retryCountdown % 60).padStart(2, "0")}
-                  </motion.div>
-                )}
-              </AnimatePresence>
+
 
               {/* Error */}
               <AnimatePresence>

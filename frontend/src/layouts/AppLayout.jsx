@@ -8,6 +8,7 @@ import {
   Trophy, Database, Target, Video, Camera, Layers, Heart, Sparkles
 } from "lucide-react";
 import { useAuth } from "../context/AuthContext.jsx";
+import { prefetch } from "../utils/apiCache.js";
 
 const studentNav = [
   { to: "/student", label: "Dashboard", icon: Home, shortLabel: "Home" },
@@ -63,6 +64,27 @@ export default function AppLayout() {
   const initials = user.full_name
     ? user.full_name.split(" ").map((n) => n[0]).join("").slice(0, 2).toUpperCase()
     : "U";
+
+  const handlePrefetch = (path) => {
+    if (path === "/student") {
+      prefetch("/analytics/student");
+      prefetch("/leaderboard");
+      prefetch("/learning/profile");
+      prefetch("/study-plan");
+    } else if (path === "/analytics") {
+      prefetch("/analytics/student");
+    } else if (path === "/leaderboard") {
+      prefetch("/leaderboard");
+    } else if (path === "/admin") {
+      prefetch("/analytics/admin/overview");
+    } else if (path === "/admin/leaderboard") {
+      prefetch("/leaderboard");
+    } else if (path === "/admin/stakeholder") {
+      prefetch("/analytics/stakeholder");
+    } else if (path === "/chapters") {
+      prefetch(`/quizzes/subjects/maths/modules`); // Prefetch common subject as example
+    }
+  };
 
   return (
     <div className="min-h-screen bg-[#000000] flex">
@@ -161,6 +183,7 @@ export default function AppLayout() {
                 <NavLink
                   to={item.to}
                   end={item.to === home}
+                  onMouseEnter={() => handlePrefetch(item.to)}
                   title={collapsed ? item.label : undefined}
                   className={({ isActive }) =>
                     `flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-200 group relative overflow-hidden
@@ -401,6 +424,7 @@ export default function AppLayout() {
               key={item.to}
               to={item.to}
               end={item.to === home}
+              onMouseEnter={() => handlePrefetch(item.to)}
               className={({ isActive }) =>
                 `bottom-nav-item ${isActive ? "active" : ""}`
               }

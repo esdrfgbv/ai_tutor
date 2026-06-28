@@ -32,7 +32,22 @@ import logging
 from datetime import datetime, timedelta
 
 from sqlalchemy import extract, func
+import time
 from sqlalchemy.orm import Session, joinedload
+
+_analytics_cache = {}
+def ttl_cache_admin(ttl: int):
+    def decorator(f):
+        def wrapper(self, db, *args, **kwargs):
+            key = f.__name__
+            now = time.time()
+            if key in _analytics_cache and now - _analytics_cache[key]['time'] < ttl:
+                return _analytics_cache[key]['data']
+            res = f(self, db, *args, **kwargs)
+            _analytics_cache[key] = {'data': res, 'time': now}
+            return res
+        return wrapper
+    return decorator
 
 from app.models.models import (
     ProgressTracking,
@@ -45,6 +60,7 @@ from app.models.models import (
 )
 from app.schemas.schemas import DashboardStats
 from app.services.leaderboard_service import clamp_percent, leaderboard_service
+from app.services.quiz_service import QuizService
 from app.services.study_session_service import MIN_MEANINGFUL_STUDY_SECONDS, study_session_service
 
 logger = logging.getLogger(__name__)
@@ -108,7 +124,8 @@ class AnalyticsService:
                 overall_total += 1
                 submitted = str(answers.get(str(q.id), "")).strip().lower()
                 expected = str(q.correct_answer).strip().lower()
-                if submitted == expected:
+                is_correct = QuizService._is_correct(submitted, expected)
+                if is_correct:
                     overall_correct += 1
 
         avg_accuracy = (
@@ -210,7 +227,9 @@ class AnalyticsService:
 
                 subject_total[subject] += 1
                 topic_total[topic] += 1
-                if submitted == expected:
+                is_correct = QuizService._is_correct(submitted, expected)
+                
+                if is_correct:
                     subject_correct[subject] += 1
                     topic_correct[topic] += 1
                 else:
@@ -231,8 +250,8 @@ class AnalyticsService:
         # Strongest Topics: accuracy >= 80 %, descending
         # Focus Areas: accuracy < 60 %, ascending
         # A topic must NEVER appear in both lists
-        strong_threshold = 80
-        weak_threshold = 40.01
+        strong_threshold = 80.0
+        weak_threshold = 60.0
 
         strong_topics = sorted(
             [t for t in topic_mastery if t["accuracy"] >= strong_threshold],
@@ -241,7 +260,7 @@ class AnalyticsService:
         )[:6]
 
         weak_topics = sorted(
-            [t for t in topic_mastery if t["accuracy"] <= weak_threshold],
+            [t for t in topic_mastery if t["accuracy"] < weak_threshold],
             key=lambda x: x["accuracy"],
         )[:6]
 
@@ -368,6 +387,7 @@ class AnalyticsService:
     # Admin endpoints (unchanged from original logic)
     # ──────────────────────────────────────────────────────────────────────────
 
+    @ttl_cache_admin(ttl=120)
     def admin_overview(self, db: Session) -> dict:
         attempts = db.query(QuizAttempt).all()
         quiz_qcounts = dict(db.query(Question.quiz_id, func.count(Question.id)).group_by(Question.quiz_id).all())
@@ -377,14 +397,15 @@ class AnalyticsService:
         avg_accuracy = clamp_percent((total_correct / total_questions) * 100) if total_questions else 0
         
         students = db.query(StudentProfile).count()
-        seven_days_ago = datetime.utcnow().date() - timedelta(days=6)
+        seven_days_ago_date = datetime.utcnow().date() - timedelta(days=6)
+        seven_days_ago_dt = datetime.combine(seven_days_ago_date, datetime.min.time())
         
-        session_users = db.query(StudySession.student_id).filter(func.date(StudySession.started_at) >= seven_days_ago.strftime("%Y-%m-%d"))
-        quiz_users = db.query(QuizAttempt.student_id).filter(func.date(QuizAttempt.created_at) >= seven_days_ago.strftime("%Y-%m-%d"))
+        session_users = db.query(StudySession.student_id).filter(StudySession.started_at >= seven_days_ago_dt)
+        quiz_users = db.query(QuizAttempt.student_id).filter(QuizAttempt.created_at >= seven_days_ago_dt)
         active_students = session_users.union(quiz_users).count()
         study_seconds_7d = int(
             db.query(func.coalesce(func.sum(StudySession.duration_seconds), 0))
-            .filter(func.date(StudySession.started_at) >= seven_days_ago.strftime("%Y-%m-%d"))
+            .filter(StudySession.started_at >= seven_days_ago_dt)
             .scalar()
             or 0
         )
@@ -420,6 +441,7 @@ class AnalyticsService:
             },
         }
 
+    @ttl_cache_admin(ttl=300)
     def stakeholder_analytics(self, db: Session) -> dict:
         now = datetime.utcnow()
         today = now.date()

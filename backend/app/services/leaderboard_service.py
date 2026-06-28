@@ -10,9 +10,24 @@ Key changes vs. original:
 """
 from sqlalchemy import func, select
 from sqlalchemy.orm import Session, joinedload
+import time
 
 from app.models.models import Quiz, QuizAttempt, StudentProfile, User
 from app.schemas.schemas import GroupedLeaderboardRow, LeaderboardRow
+
+_lb_cache = {}
+def ttl_cache_lb(ttl: int):
+    def decorator(f):
+        def wrapper(self, db, grade=None, subject=None, limit=50, *args, **kwargs):
+            key = f"{f.__name__}_{grade}_{subject}_{limit}"
+            now = time.time()
+            if key in _lb_cache and now - _lb_cache[key]['time'] < ttl:
+                return _lb_cache[key]['data']
+            res = f(self, db, grade, subject, limit, *args, **kwargs)
+            _lb_cache[key] = {'data': res, 'time': now}
+            return res
+        return wrapper
+    return decorator
 
 
 def clamp_percent(value: float) -> float:
@@ -23,6 +38,7 @@ class LeaderboardService:
     # ------------------------------------------------------------------
     # PUBLIC: student-facing leaderboard (dashboard + /leaderboard page)
     # ------------------------------------------------------------------
+    @ttl_cache_lb(ttl=60)
     def build(
         self,
         db: Session,
