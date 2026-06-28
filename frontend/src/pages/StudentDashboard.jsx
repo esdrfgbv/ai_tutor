@@ -30,6 +30,7 @@ const SkeletonStats = () => (
 );
 const SkeletonChart = () => <div className="h-72 rounded-2xl skeleton animate-pulse" />;
 const SkeletonBoard = () => <div className="h-64 rounded-2xl skeleton animate-pulse" />;
+const SkeletonPlan = () => <div className="h-56 rounded-2xl skeleton animate-pulse" />;
 
 const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
