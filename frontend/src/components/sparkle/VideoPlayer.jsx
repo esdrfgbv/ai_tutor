@@ -5,7 +5,7 @@ import {
   Sparkles, ChevronRight, PartyPopper, Brain,
 } from "lucide-react";
 import { SlideText } from "./SlideText.jsx";
-import { SlideImage } from "./SlideImage.jsx";
+import { VisualRouter } from "../video/VisualRouter";
 import api from "../../api/client";
 import { sanitizeForSpeech } from "../../lib/speech.js";
 import { Mascot } from "./Mascot.jsx";
@@ -334,10 +334,13 @@ export function VideoPlayer({ data, onExit, language = "english", category }) {
                 </div>
                 <SlideText text={slide.display_text} revealChars={revealed} />
               </div>
-              <div className="hidden sm:block w-48 shrink-0">
-                <div className="h-48 rounded-xl overflow-hidden">
-                  <SlideImage text={slide.display_text} speaking={speaking} />
-                </div>
+              <div className="hidden sm:block w-64 shrink-0">
+                <VisualRouter
+                  visual={slide.visual || { type: "diagram", description: "", style: "flat-2d educational", keywords: [], objects: [] }}
+                  animations={slide.animations || { entry: "fade-in-up", highlight: "glow", exit: "fade-out-left" }}
+                  camera={slide.camera}
+                  speaking={speaking}
+                />
               </div>
             </div>
 

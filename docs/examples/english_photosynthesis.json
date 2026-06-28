@@ -1,0 +1,112 @@
+{
+  "title": "Understanding Photosynthesis — How Plants Make Food",
+  "language": "english",
+  "estimated_duration": 105,
+  "slides": [
+    {
+      "id": 1,
+      "title": "A Plant's Secret Superpower",
+      "display_text": "**A Plant's Secret Superpower**\n- Have you ever wondered how plants eat?\n- They don't go to the store for food!\n- They make their OWN food — inside their leaves",
+      "voice_script": "Have you ever looked at a plant and wondered how it survives? Plants don't eat like we do. They don't go to the market or eat food from a plate. Instead, they have an amazing superpower — they make their own food right inside their leaves. This process is called photosynthesis.",
+      "learning_goal": "Hook the student by contrasting how animals get food vs how plants make their own",
+      "visual": {
+        "type": "illustration",
+        "description": "Side-by-side: a boy eating a sandwich vs a plant with sunlight hitting its leaves",
+        "style": "flat-2d educational",
+        "keywords": ["plant", "food", "sunlight", "leaf", "photosynthesis"],
+        "objects": ["sun", "leaf", "plant stem", "soil", "cloud"]
+      },
+      "animations": {
+        "entry": "fade-in-up",
+        "highlight": "glow",
+        "exit": "fade-out-left"
+      },
+      "camera": "wide-shot-showing-both-scenes",
+      "duration": 18
+    },
+    {
+      "id": 2,
+      "title": "What Does a Plant Need?",
+      "display_text": "**Recipe for Plant Food**\n- ☀️ Sunlight — energy source\n- 💧 Water — from the soil\n- 🌬️ Carbon Dioxide — from the air\n- 🟢 Chlorophyll — the green magic in leaves",
+      "voice_script": "Just like a chef needs ingredients to cook, a plant needs four things to make food. First, sunlight — that is the energy source. Second, water, which the roots absorb from the soil. Third, carbon dioxide, a gas that plants take from the air. And fourth, a special green pigment called chlorophyll, which is found in the leaves. These four ingredients together make photosynthesis possible.",
+      "learning_goal": "Identify the four essential inputs for photosynthesis: sunlight, water, carbon dioxide, chlorophyll",
+      "visual": {
+        "type": "diagram",
+        "description": "A plant with icons around it: sun at top, water droplets at roots, CO2 arrows from air, green chlorophyll dots inside leaf",
+        "style": "flat-2d educational",
+        "keywords": ["sunlight", "water", "carbon dioxide", "chlorophyll", "leaf"],
+        "objects": ["sun icon", "water drop", "CO2 molecule", "leaf cross-section", "roots"]
+      },
+      "animations": {
+        "entry": "pop",
+        "highlight": "pulse",
+        "exit": "fade-out-left"
+      },
+      "camera": "zoom-in-on-leaf-cross-section",
+      "duration": 18
+    },
+    {
+      "id": 3,
+      "title": "Inside the Leaf — The Magic Factory",
+      "display_text": "**Inside the Leaf Factory**\n- Chloroplasts = tiny food factories\n- Inside: chlorophyll captures sunlight\n- Water + CO₂ → Glucose + Oxygen\n- $$6CO_2 + 6H_2O \\rightarrow C_6H_{12}O_6 + 6O_2$$",
+      "voice_script": "Now let us look inside a leaf. Each leaf contains tiny structures called chloroplasts. These are the food factories of the plant. Inside each chloroplast, chlorophyll captures energy from sunlight. The plant then uses this energy to combine water and carbon dioxide to produce glucose, which is its food, and oxygen, which it releases into the air.",
+      "learning_goal": "Understand the photosynthesis chemical equation and where it happens (chloroplasts)",
+      "visual": {
+        "type": "diagram",
+        "description": "Plant cell cross-section showing chloroplasts, with magnified chloroplast showing thylakoid stacks, and the chemical equation below",
+        "style": "flat-2d educational",
+        "keywords": ["chloroplast", "chlorophyll", "glucose", "oxygen", "chemical equation"],
+        "objects": ["cell wall", "chloroplast", "nucleus", "CO2 arrow in", "O2 arrow out", "glucose molecule"]
+      },
+      "animations": {
+        "entry": "zoom-in",
+        "highlight": "glow",
+        "exit": "fade-out-left"
+      },
+      "camera": "zoom-in-from-leaf-to-chloroplast",
+      "duration": 20
+    },
+    {
+      "id": 4,
+      "title": "Real-Life Photosynthesis",
+      "display_text": "**Photosynthesis in Action**\n- A single tree produces ~260 lbs of oxygen per year\n- Enough for 2 people to breathe for a year!\n- All the food we eat comes from plants — directly or indirectly",
+      "voice_script": "Let us see photosynthesis in the real world. A single mature tree produces about 260 pounds of oxygen every year. That is enough for two people to breathe for an entire year. And here is something amazing — every single thing we eat comes from plants, either directly like fruits and vegetables, or indirectly like meat from animals that ate plants. Photosynthesis is the foundation of all life on Earth.",
+      "learning_goal": "Connect photosynthesis to real-world oxygen production and the food chain",
+      "visual": {
+        "type": "illustration",
+        "description": "A large tree with oxygen symbols floating out, two children breathing, and a food chain showing sun → plant → animal → human",
+        "style": "flat-2d educational",
+        "keywords": ["oxygen", "tree", "food chain", "life", "environment"],
+        "objects": ["tree", "oxygen bubbles", "children", "sun", "arrow-chain"]
+      },
+      "animations": {
+        "entry": "fade-in-up",
+        "highlight": "bounce",
+        "exit": "fade-out-left"
+      },
+      "camera": "pan-up-along-tree-trunk",
+      "duration": 18
+    },
+    {
+      "id": 5,
+      "title": "Why Photosynthesis Matters",
+      "display_text": "**Why Should We Care?**\n- 🌍 Produces the oxygen we breathe\n- 🌾 Creates all food on Earth\n- 🌳 Removes CO₂ from the atmosphere\n- 🔄 Drives the carbon cycle",
+      "voice_script": "So why should we care about photosynthesis? First, it produces the oxygen that every animal and human needs to breathe. Second, it is the foundation of the entire food chain. Third, plants remove carbon dioxide from the atmosphere, helping keep our planet cool. And finally, photosynthesis drives the carbon cycle that sustains all life on Earth. Without it, our planet would be a very different place.",
+      "learning_goal": "Summarize why photosynthesis is essential for life on Earth",
+      "visual": {
+        "type": "icon-grid",
+        "description": "Four large icons in a grid: lungs/breathing, food plate, CO2 recycling symbol, globe with arrows",
+        "style": "flat-2d educational",
+        "keywords": ["oxygen", "food", "carbon cycle", "environment", "life"],
+        "objects": ["lungs icon", "food icon", "recycling icon", "earth icon", "arrows"]
+      },
+      "animations": {
+        "entry": "pop",
+        "highlight": "pulse",
+        "exit": "fade-out-left"
+      },
+      "camera": "wide-shot-showing-all-four-icons",
+      "duration": 16
+    }
+  ]
+}

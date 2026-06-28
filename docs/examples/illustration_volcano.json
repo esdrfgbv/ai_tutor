@@ -1,0 +1,154 @@
+{
+  "title": "Volcanoes — Earth's Fiery Mountains",
+  "language": "english",
+  "estimated_duration": 105,
+  "slides": [
+    {
+      "id": 1,
+      "title": "What Is a Volcano?",
+      "display_text": "**What Is a Volcano?**\n- A mountain that erupts!\n- Hot molten rock from deep inside Earth\n- Can be active, dormant, or extinct\n- Found all over the world",
+      "voice_script": "A volcano is a mountain that can erupt, sending hot molten rock and gas from deep inside the Earth to the surface. Some volcanoes are active and erupt frequently, others are dormant or sleeping, and some are extinct, meaning they will never erupt again. Volcanoes are found all over the world, from the Pacific Ring of Fire to the islands of Hawaii.",
+      "learning_goal": "Introduce volcanoes as mountains that erupt molten rock from inside the Earth",
+      "visual": {
+        "type": "illustration",
+        "description": "Cross-section of a volcano showing magma chamber, vent, crater, and eruption cloud. Lava flows down the sides. Surrounding landscape with trees and a small village in the distance for scale.",
+        "style": "flat-2d educational",
+        "keywords": ["volcano", "eruption", "magma", "lava", "mountain"],
+        "objects": ["volcano cone", "magma chamber", "main vent", "crater", "eruption cloud", "lava flow", "ash cloud", "trees", "distance village"]
+      },
+      "animations": {
+        "entry": "fade-in-up",
+        "highlight": "glow",
+        "exit": "fade-out-left"
+      },
+      "camera": "wide-shot-entire-volcano-landscape",
+      "duration": 18
+    },
+    {
+      "id": 2,
+      "title": "Inside the Volcano",
+      "display_text": "**Inside a Volcano**\n- Magma Chamber: pool of molten rock\n- Main Vent: pipe for magma to rise\n- Crater: opening at the top\n- Side Vents: smaller openings on sides",
+      "voice_script": "Let us look inside a volcano. Deep underground is the magma chamber, a huge pool of molten rock called magma. When pressure builds up, the magma rises through the main vent, a pipe-like channel. It reaches the surface at the crater, the opening at the top. Sometimes magma also escapes through smaller side vents on the volcano's slopes.",
+      "learning_goal": "Learn the internal structure of a volcano: magma chamber, vent, crater, side vents",
+      "visual": {
+        "type": "illustration",
+        "description": "Detailed cross-section diagram of volcano with labelled internal layers: magma chamber at bottom (red/orange), main vent rising through center, crater at top, side vent branching off, ash cloud above",
+        "style": "flat-2d educational",
+        "keywords": ["magma chamber", "vent", "crater", "cross-section", "internal structure"],
+        "objects": ["magma chamber pool", "main vent tube", "crater opening", "side vent", "rock layers", "ash cloud", "lava pool", "labels with leaders"]
+      },
+      "animations": {
+        "entry": "zoom-in",
+        "highlight": "color-shift",
+        "exit": "fade-out-left"
+      },
+      "camera": "zoom-in-through-volcano-cross-section",
+      "duration": 18
+    },
+    {
+      "id": 3,
+      "title": "Magma vs Lava",
+      "display_text": "**Magma vs Lava**\n- Magma = molten rock INSIDE Earth\n- Lava = molten rock on the SURFACE\n- It's the same substance!\n- Just changes name when it erupts",
+      "voice_script": "Here is an interesting fact. The molten rock has two different names depending on where it is. When it is underground, it is called magma. But the moment it erupts and flows onto the surface, we call it lava. It is the same hot, liquid rock — just a different name based on location.",
+      "learning_goal": "Understand the difference between magma (underground) and lava (on the surface)",
+      "visual": {
+        "type": "illustration",
+        "description": "Split illustration: left side shows magma chamber underground with label 'Magma', right side shows lava flowing above ground with label 'Lava'. Arrow connects the two showing the transition during eruption.",
+        "style": "flat-2d educational",
+        "keywords": ["magma", "lava", "molten rock", "underground", "surface"],
+        "objects": ["magma chamber", "lava flow", "transition arrow", "ground level line", "label magma", "label lava", "heat glow"]
+      },
+      "animations": {
+        "entry": "slide-from-left",
+        "highlight": "pulse",
+        "exit": "fade-out-left"
+      },
+      "camera": "pan-from-underground-to-surface",
+      "duration": 15
+    },
+    {
+      "id": 4,
+      "title": "Types of Volcanoes",
+      "display_text": "**Three Types of Volcanoes**\n- 🌋 Shield: wide, gentle slopes (Hawaii)\n- 🏔️ Composite: tall, steep, explosive (Mount Fuji)\n- 🌄 Cinder Cone: small, steep, short-lived",
+      "voice_script": "Volcanoes come in different shapes and sizes. Shield volcanoes are wide with gentle slopes, like the volcanoes in Hawaii — they erupt gently. Composite volcanoes are tall and steep with explosive eruptions, like Mount Fuji in Japan. Cinder cone volcanoes are small and steep but usually only erupt for a short time before becoming dormant.",
+      "learning_goal": "Identify three types of volcanoes: shield, composite, and cinder cone",
+      "visual": {
+        "type": "illustration",
+        "description": "Three volcano silhouettes side by side for comparison: shield (wide and flat), composite (tall and symmetrical), cinder cone (small and steep). Each labelled with name and example location.",
+        "style": "flat-2d educational",
+        "keywords": ["shield volcano", "composite volcano", "cinder cone", "types", "comparison"],
+        "objects": ["shield volcano shape", "composite volcano shape", "cinder cone shape", "label cards", "Hawaii text", "Mount Fuji text", "size comparison lines"]
+      },
+      "animations": {
+        "entry": "pop",
+        "highlight": "glow",
+        "exit": "fade-out-left"
+      },
+      "camera": "pan-across-three-volcanoes",
+      "duration": 18
+    },
+    {
+      "id": 5,
+      "title": "Volcanic Eruption — Step by Step",
+      "display_text": "**How an Eruption Happens**\n- 1. Pressure builds in magma chamber\n- 2. Magma rises through the vent\n- 3. Gases expand and push upward\n- 4. Magma bursts out as lava\n- 5. Ash and gas shoot into the sky",
+      "voice_script": "Let us see how an eruption happens step by step. First, pressure builds up inside the magma chamber as gases get trapped in the molten rock. The magma starts rising through the vent. As it rises, the gases expand and push everything upward with tremendous force. Finally, the magma bursts out of the crater as lava, while ash and gases shoot high into the sky, sometimes reaching many kilometers into the atmosphere.",
+      "learning_goal": "Understand the step-by-step process of a volcanic eruption",
+      "visual": {
+        "type": "flowchart",
+        "description": "Five-step vertical flowchart showing the eruption sequence from pressure buildup to ash cloud, with each step illustrated",
+        "style": "flat-2d educational",
+        "keywords": ["eruption", "pressure", "magma rise", "explosion", "ash cloud"],
+        "objects": ["step 1: pressure arrows", "step 2: rising magma", "step 3: expanding gases", "step 4: lava fountain", "step 5: ash cloud", "connector arrows", "step numbers"]
+      },
+      "animations": {
+        "entry": "slide-from-left",
+        "highlight": "color-shift",
+        "exit": "fade-out-left"
+      },
+      "camera": "close-up-on-each-step-sequentially",
+      "duration": 20
+    },
+    {
+      "id": 6,
+      "title": "Volcanoes and Life",
+      "display_text": "**Volcanoes Help the Earth**\n- 🌱 Ash makes soil super fertile\n- 🌋 Create new land (Hawaii!)\n- 🔥 Geothermal energy for power\n- 🏔️ Form beautiful mountains",
+      "voice_script": "Volcanoes are not just destructive — they also help the Earth in many ways. Volcanic ash is rich in minerals and makes soil extremely fertile, which is why people farm near volcanoes. Volcanoes also create new land, like the Hawaiian islands which were formed entirely by volcanic eruptions. We can use geothermal energy from volcanic heat to generate electricity. And of course, volcanoes create some of the most beautiful landscapes on Earth.",
+      "learning_goal": "Learn the positive aspects of volcanoes: fertile soil, new land, geothermal energy",
+      "visual": {
+        "type": "illustration",
+        "description": "Split into four panels showing: (1) lush green farm near volcano, (2) new island forming in ocean, (3) geothermal power plant, (4) scenic volcanic landscape with tourists",
+        "style": "flat-2d educational",
+        "keywords": ["volcano benefits", "fertile soil", "new land", "geothermal", "scenery"],
+        "objects": ["fertile farm", "new island", "power plant", "scenic view", "tourists", "green plants", "ocean waves"]
+      },
+      "animations": {
+        "entry": "fade-in-up",
+        "highlight": "bounce",
+        "exit": "fade-out-left"
+      },
+      "camera": "pan-across-four-panels",
+      "duration": 18
+    },
+    {
+      "id": 7,
+      "title": "Key Takeaways",
+      "display_text": "**Remember This!**\n- ✅ Volcano = mountain that erupts\n- ✅ Magma = underground, Lava = surface\n- ✅ Three types: shield, composite, cinder\n- ✅ Eruption: pressure → rise → explode\n- ✅ Volcanoes create new land and soil",
+      "voice_script": "Let us review the key points. A volcano is a mountain that can erupt molten rock from inside the Earth. Magma is the molten rock underground, and lava is what we call it on the surface. There are three main types of volcanoes — shield, composite, and cinder cone. An eruption happens when pressure builds up, magma rises, and gases expand explosively. Finally, remember that volcanoes are not just destructive — they create new land and incredibly fertile soil.",
+      "learning_goal": "Review and consolidate all key concepts about volcanoes",
+      "visual": {
+        "type": "icon-grid",
+        "description": "Five key takeaways each represented by a large icon with a short label beneath, arranged in a 3x2 grid",
+        "style": "flat-2d educational",
+        "keywords": ["summary", "volcano", "magma", "lava", "eruption"],
+        "objects": ["mountain icon", "magma/lava icon", "three volcanoes icon", "eruption icon", "new land icon", "checkmark icons"]
+      },
+      "animations": {
+        "entry": "pop",
+        "highlight": "pulse",
+        "exit": "fade-out-left"
+      },
+      "camera": "wide-shot-all-icons-then-zoom-out",
+      "duration": 18
+    }
+  ]
+}

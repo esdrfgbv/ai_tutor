@@ -1,0 +1,133 @@
+{
+  "title": "The Water Cycle — Nature's Water Recycling System",
+  "language": "english",
+  "estimated_duration": 90,
+  "slides": [
+    {
+      "id": 1,
+      "title": "Where Does Rain Come From?",
+      "display_text": "**Where Does Rain Come From?**\n- Water falls as rain\n- Water flows to rivers and oceans\n- Water rises back to the sky\n- The cycle repeats forever!",
+      "voice_script": "Have you ever wondered where rain comes from? It might seem like magic, but it is actually a continuous cycle. Water falls from the sky as rain, flows through rivers to the ocean, and then rises back into the sky to form clouds again. This repeating process is called the water cycle.",
+      "learning_goal": "Introduce the water cycle as a continuous natural process",
+      "visual": {
+        "type": "svg",
+        "description": "Simple circular diagram of the water cycle with sun, clouds, ocean, mountains, and arrows showing evaporation, condensation, precipitation, and collection",
+        "style": "flat-2d educational",
+        "keywords": ["water cycle", "rain", "evaporation", "condensation", "precipitation"],
+        "objects": ["sun", "cloud", "rain drops", "ocean", "mountain", "evaporation arrow", "condensation arrow", "precipitation arrow", "runoff arrow"]
+      },
+      "animations": {
+        "entry": "fade-in-up",
+        "highlight": "glow",
+        "exit": "fade-out-left"
+      },
+      "camera": "wide-shot-entire-cycle",
+      "duration": 15
+    },
+    {
+      "id": 2,
+      "title": "Step 1: Evaporation",
+      "display_text": "**Evaporation — Water Rises**\n- Sun heats the ocean and rivers\n- Water turns into water vapor (gas)\n- Vapor rises up into the sky\n- $$H_2O (liquid) \\rightarrow H_2O (gas)$$",
+      "voice_script": "The first step is evaporation. When the sun heats water in oceans, rivers, and lakes, the water turns into an invisible gas called water vapor. This vapor is lighter than air, so it rises up into the sky. Think of it like steam rising from a hot cup of tea, but happening across entire oceans.",
+      "learning_goal": "Understand evaporation — liquid water becoming water vapor due to solar heat",
+      "visual": {
+        "type": "svg",
+        "description": "Ocean scene with sun rays hitting water surface, wavy vapor lines rising upward, thermometer showing heat, H2O molecules changing from liquid to gas state",
+        "style": "flat-2d educational",
+        "keywords": ["evaporation", "sun", "heat", "water vapor", "gas"],
+        "objects": ["sun with rays", "ocean surface", "water molecules (blue)", "vapor molecules (transparent)", "upward arrows", "thermometer"]
+      },
+      "animations": {
+        "entry": "zoom-in",
+        "highlight": "color-shift",
+        "exit": "fade-out-left"
+      },
+      "camera": "zoom-in-on-ocean-surface-molecules",
+      "duration": 15
+    },
+    {
+      "id": 3,
+      "title": "Step 2: Condensation",
+      "display_text": "**Condensation — Clouds Form**\n- Water vapor rises high\n- Air gets colder up there\n- Vapor turns back into tiny water drops\n- Millions of drops = a cloud!",
+      "voice_script": "The second step is condensation. As water vapor rises higher into the sky, the air becomes much colder. The cold air causes the vapor to turn back into tiny liquid water droplets. When millions of these tiny droplets gather together, they form the clouds we see in the sky.",
+      "learning_goal": "Understand condensation — water vapor becoming liquid water droplets forming clouds",
+      "visual": {
+        "type": "svg",
+        "description": "Vertical cross-section showing vapor rising, hitting cooler upper atmosphere, forming cloud droplets. Temperature gradient shown with color change from warm to cool.",
+        "style": "flat-2d educational",
+        "keywords": ["condensation", "cloud", "cold air", "water droplets", "vapor"],
+        "objects": ["rising vapor arrows", "cold air layer", "temperature gradient", "cloud shape", "tiny water dots", "condensation arrows"]
+      },
+      "animations": {
+        "entry": "slide-from-left",
+        "highlight": "pulse",
+        "exit": "fade-out-left"
+      },
+      "camera": "pan-up-from-vapor-to-cloud",
+      "duration": 15
+    },
+    {
+      "id": 4,
+      "title": "Step 3: Precipitation",
+      "display_text": "**Precipitation — Water Returns**\n- Cloud droplets get heavy\n- They fall as rain, snow, or hail\n- Most water falls back into oceans\n- Some falls on land for us!",
+      "voice_script": "The third step is precipitation. When cloud droplets become too heavy, they fall back to Earth. Depending on the temperature, this can be rain, snow, or hail. Most precipitation falls directly into the oceans, but the water that falls on land is what fills our rivers, lakes, and provides the water we drink.",
+      "learning_goal": "Understand precipitation — water falling from clouds as rain, snow, or hail",
+      "visual": {
+        "type": "svg",
+        "description": "Cloud releasing rain drops, snowflakes, and hail onto a landscape with mountains, trees, and ocean below",
+        "style": "flat-2d educational",
+        "keywords": ["precipitation", "rain", "snow", "hail", "cloud"],
+        "objects": ["dark cloud", "rain drops", "snowflakes", "hail stones", "mountain", "tree", "ocean surface", "falling arrows"]
+      },
+      "animations": {
+        "entry": "fade-in-up",
+        "highlight": "bounce",
+        "exit": "fade-out-left"
+      },
+      "camera": "top-down-following-droplets",
+      "duration": 15
+    },
+    {
+      "id": 5,
+      "title": "Step 4: Collection",
+      "display_text": "**Collection — Water Gathers**\n- Rain flows into rivers\n- Rivers carry water to oceans\n- Some water seeps into the ground\n- Groundwater feeds plants and wells",
+      "voice_script": "The final step is collection. After rain falls on land, it flows downhill through rivers and streams, eventually making its way back to the ocean. Some water also seeps into the ground, becoming groundwater that feeds plants and fills wells. And from the ocean, the whole cycle starts again with evaporation. The water cycle has no beginning or end — it is a perfect natural recycling system.",
+      "learning_goal": "Understand collection — how water returns to oceans and becomes groundwater",
+      "visual": {
+        "type": "svg",
+        "description": "Landscape showing rain flowing as runoff into river, river flowing to ocean, groundwater seeping underground, arrows completing the cycle back to evaporation",
+        "style": "flat-2d educational",
+        "keywords": ["collection", "river", "groundwater", "runoff", "ocean"],
+        "objects": ["mountain with runoff", "river channel", "ocean", "underground water table", "tree roots", "well cross-section", "flow arrows"]
+      },
+      "animations": {
+        "entry": "slide-from-left",
+        "highlight": "color-shift",
+        "exit": "fade-out-left"
+      },
+      "camera": "pan-down-mountain-to-ocean-to-underground",
+      "duration": 18
+    },
+    {
+      "id": 6,
+      "title": "The Complete Cycle",
+      "display_text": "**One Continuous Cycle**\n- ☀️ Evaporation: Sun heats → water rises\n- ☁️ Condensation: Cools → clouds form\n- 🌧️ Precipitation: Falls as rain/snow\n- 🌊 Collection: Flows back to oceans\n- 🔄 And it repeats forever!",
+      "voice_script": "Let us put it all together. The water cycle has four main steps. Evaporation — the sun heats water and turns it into vapor. Condensation — the vapor cools and forms clouds. Precipitation — water falls back as rain or snow. Collection — water flows back to oceans and the cycle begins again. This cycle has been happening for billions of years and is essential for all life on Earth.",
+      "learning_goal": "Summarize the complete water cycle with all four steps",
+      "visual": {
+        "type": "svg",
+        "description": "Complete circular water cycle diagram with all four stages connected by arrows forming a loop, labels, and icons for each stage",
+        "style": "flat-2d educational",
+        "keywords": ["water cycle", "evaporation", "condensation", "precipitation", "collection"],
+        "objects": ["sun", "cloud", "rain", "ocean", "mountain", "circular arrows", "stage labels", "evaporation arrow", "condensation arrow", "precipitation arrow", "collection arrow"]
+      },
+      "animations": {
+        "entry": "zoom-in",
+        "highlight": "pulse",
+        "exit": "fade-out-left"
+      },
+      "camera": "zoom-out-to-show-whole-cycle",
+      "duration": 18
+    }
+  ]
+}

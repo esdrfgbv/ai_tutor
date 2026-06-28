@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 from app.api.deps import get_current_user
 from app.models.models import User
 from app.core.config import get_settings
@@ -15,9 +15,48 @@ def _get_groq_client():
     return OpenAI(api_key=api_key, base_url="https://api.groq.com/openai/v1")
 
 GROQ_MODEL = "llama-3.1-8b-instant"
+GROQ_VIDEO_MODEL = "llama-3.3-70b-versatile"
 VISION_MODEL = "meta-llama/llama-4-scout-17b-16e-instruct"
 EXTRACT_MODEL = "llama-3.3-70b-versatile"
 GEN_MODEL = "llama-3.3-70b-versatile"
+
+# ─── Enhanced Video Generation Models ──────────────────────────────
+
+class VisualPlan(BaseModel):
+    type: str = "diagram"
+    description: str = ""
+    style: str = "flat-2d educational"
+    keywords: list[str] = Field(default_factory=list)
+    objects: list[str] = Field(default_factory=list)
+
+class AnimationPlan(BaseModel):
+    entry: str = "fade-in-up"
+    highlight: str = "glow"
+    exit: str = "fade-out-left"
+
+class SlideOut(BaseModel):
+    id: int
+    title: str = ""
+    display_text: str
+    voice_script: str
+    learning_goal: str = ""
+    visual: VisualPlan = Field(default_factory=VisualPlan)
+    animations: AnimationPlan = Field(default_factory=AnimationPlan)
+    camera: str = ""
+    duration: int = 15
+
+class VideoGenerateOut(BaseModel):
+    title: str
+    language: str = "english"
+    estimated_duration: int = Field(default=0, ge=0)
+    slides: list[SlideOut]
+
+    @field_validator("slides")
+    @classmethod
+    def slides_nonempty(cls, v):
+        if not v:
+            raise ValueError("At least one slide required")
+        return v
 
 # ─── Video Generation ─────────────────────────────────────────────
 
@@ -27,59 +66,206 @@ class VideoGenerateIn(BaseModel):
     category: str = "general"
     category_prompt: str | None = None
 
-SYSTEM_PROMPT = """You are a world-class creative tutor who makes stunning lecture slides. Break the explanation into 5 to 7 logical steps.
+SYSTEM_PROMPT = """You are a world-class educational instructional designer who creates stunning animated video lessons. Each lesson must feel like a premium educational animation — NOT a PowerPoint presentation.
 
-For each step return TWO fields:
+## EDUCATIONAL PEDAGOGY — Follow this exact story arc:
 
-1. "display_text": visually rich, well-structured lecture-board content. Guidelines:
-   - Use **bold** for key terms and important concepts
-   - Use "- " for bullet points to create structured lists
-   - Use LaTeX inside $...$ for inline math/chemistry and $$...$$ for block equations
-   - IMPORTANT: Every slide MUST start with a **bold heading** line that summarizes the step (e.g. "**What is Photosynthesis?**" or "**The Key Formula**")
-   - Use sub-headings separated by blank lines for multi-part slides
-   - For chemistry use $H_2O$, $OH^-$, $CO_2$, $H^+ + OH^- \\rightarrow H_2O$
-   - Use arrows like $\\rightarrow$, $\\Leftrightarrow$, $\\leftarrow$ for relationships
-   - Keep each slide 4 to 8 lines, well-spaced and scannable
+Hook (capture attention) → Concept introduction → Diagram/Visual explanation → Example → Real-life application → Summary
 
-2. "voice_script": warm, conversational narration for text-to-speech.
-   CRITICAL — plain English or Hindi prose ONLY depending on the language requested. NO symbols, LaTeX, markdown, or formulas.
-   Rules:
-   - Spell out chemicals: "H+" = "hydrogen ion", "OH-" = "hydroxide ion", "H2O" = "water"
-   - Spell math: "x^2" = "x squared", "a/b" = "a over b", "->" = "gives" or "produces"
-   - Only use: letters, numbers, spaces, commas, periods, ? and !
-   - 3 to 6 warm, clear sentences like a teacher explaining one-on-one
+Never jump directly into definitions. Always start by connecting to what the student already knows.
 
-Output STRICTLY valid JSON only:
-{ "title": "Topic Name", "slides": [ { "display_text": "...", "voice_script": "..." } ] }"""
+## SLIDE DESIGN RULES — Every slide:
 
-@router.post("/video-generate")
+1. Maximum 5 lines of text — NO paragraphs, NO walls of text
+2. Large bold heading (the core idea of this step)
+3. Short bullet points (2-4 max) using "- " prefix
+4. One concept only per slide — if you need more, add another slide
+5. Use **bold** for key terms and important vocabulary only
+6. Use LaTeX inside $...$ for inline math and $$...$$ for block equations
+7. For chemistry: $H_2O$, $OH^-$, $CO_2$, $H^+ + OH^- \\rightarrow H_2O$
+8. Use arrows like $\\rightarrow$, $\\Leftrightarrow$, $\\leftarrow$ for relationships
+
+## VISUAL PLANNING — For EVERY slide, decide what visual helps students understand:
+
+Choose the BEST visual type for the concept:
+- Math → number line, pie chart, triangle diagram, coordinate graph, area model
+- Science → atom diagram, plant cell, animal cell, heart, circuit, leaf, water cycle, volcano
+- English → sentence tree, flowchart, mind map, grammar diagram, comparison table
+- Social Studies → timeline, map, kingdom chart, history flow, cause-effect chain
+- Geography → map, river diagram, climate chart, globe cross-section
+- GK → icons grid, flag chart, country map, comparison cards
+- Other → diagram, svg, illustration, icon-grid, flowchart, graph
+
+The "visual" field must include:
+- "type": one of "diagram", "svg", "illustration", "timeline", "flowchart", "graph", "map", "icon-grid"
+- "description": what the student should see (e.g. "Number line from -5 to 5 with integers marked")
+- "objects": list of specific objects/elements that should appear (e.g. ["sun", "leaf", "water drop", "CO2 arrow"])
+- "keywords": visual keywords for the renderer
+
+## VOICE SCRIPT — CRITICAL: Do NOT read the slide text verbatim.
+
+The SLIDE shows keywords and bullet points.
+The VOICE explains naturally like a teacher.
+
+- 3 to 6 warm, conversational sentences per slide
+- Explain the concept in your own words — expand, don't repeat
+- For math: spell out "x squared", "a over b", "hydrogen ion", "water"
+- NO symbols, NO LaTeX, NO markdown, NO formulas in voice_script
+- Only use: letters, numbers, spaces, commas, periods, ? and !
+
+## ANIMATION & CAMERA — Plan how the slide comes alive:
+
+- entry: "fade-in-up", "zoom-in", "slide-from-left", "pop", "typewriter"
+- highlight: "glow", "pulse", "bounce", "color-shift", "underline"
+- exit: "fade-out-left", "zoom-out", "slide-to-right"
+- camera: "zoom-in-on-diagram", "pan-to-text", "wide-shot", "close-up-on-keyword"
+
+## LANGUAGE RULES FOR HINDI:
+
+When language is "hindi":
+- Use 100% pure Hindi in Devanagari script — NO Hinglish, NO English letters
+- Use standard NCERT Hindi terminology:
+  * LCM → लघुत्तम समापवर्त्य, HCF → महत्तम समापवर्तक
+  * Fraction → भिन्न, Triangle → त्रिभुज, Rectangle → आयत
+  * Addition → योग, Subtraction → घटाव, Multiplication → गुणा, Division → भाग
+  * Photosynthesis → प्रकाश संश्लेषण, Respiration → श्वसन
+  * All subject terms in pure Hindi
+- The voice_script must sound like an NCERT Hindi teacher — NOT YouTube Hinglish
+- If no standard Hindi translation exists, only then keep the original term in Devanagari
+
+## OUTPUT JSON SCHEMA — Return STRICTLY valid JSON only:
+
+{
+  "title": "Lesson Title",
+  "language": "english or hindi",
+  "estimated_duration": 90,
+  "slides": [
+    {
+      "id": 1,
+      "title": "Slide heading (brief)",
+      "display_text": "Formatted text with **bold** and bullets using -",
+      "voice_script": "Warm narration — expands on the slide without reading it",
+      "learning_goal": "What the student learns in this step",
+      "visual": {
+        "type": "diagram|svg|illustration|timeline|flowchart|graph|map|icon-grid",
+        "description": "Description of the visual",
+        "style": "flat-2d educational",
+        "keywords": ["concept", "keywords"],
+        "objects": ["object1", "object2"]
+      },
+      "animations": {
+        "entry": "fade-in-up",
+        "highlight": "glow",
+        "exit": "fade-out-left"
+      },
+      "camera": "zoom-in-on-leaf",
+      "duration": 15
+    }
+  ]
+}
+
+Generate 5 to 7 slides following the Hook → Concept → Diagram → Example → Real-life → Summary arc. Every slide must have display_text, voice_script, and a visual plan."""
+
+@router.post("/video-generate", response_model=VideoGenerateOut)
 def video_generate(payload: VideoGenerateIn, _: User = Depends(get_current_user)):
     cat_instr = ""
     if payload.category_prompt:
         cat_instr = "\nCATEGORY: " + payload.category_prompt
     lang_instr = (
-        "\nIMPORTANT: Write ALL voice_script fields in Hindi (Hinglish/Devanagari). Students want Hindi explanation."
+        (
+            "\n\nCRITICAL LANGUAGE INSTRUCTION — The topic is in Hindi.\n"
+            "You MUST follow these rules STRICTLY:\n"
+            "1. display_text: Write in Hindi using ONLY Devanagari script (हिंदी). "
+            "Use pure NCERT Hindi terminology. NO English letters. NO Hinglish.\n"
+            "   - LCM → लघुत्तम समापवर्त्य, HCF → महत्तम समापवर्तक\n"
+            "   - Fraction → भिन्न, Triangle → त्रिभुज, Rectangle → आयत\n"
+            "   - Addition → योग, Subtraction → घटाव, Multiplication → गुणा, Division → भाग\n"
+            "   - Photosynthesis → प्रकाश संश्लेषण, Respiration → श्वसन\n"
+            "2. voice_script: Pure Hindi narration in Devanagari. "
+            "Sound like an NCERT Hindi teacher, NOT YouTube Hinglish.\n"
+            "3. All visual.description, learning_goal, keywords, objects titles in pure Hindi.\n"
+            "4. If no standard Hindi translation exists, write the term in Devanagari phonetically."
+        )
         if payload.language == "hindi"
-        else "\nIMPORTANT: Write ALL voice_script fields in English."
+        else "\n\nIMPORTANT: Write all content in English. Use standard English educational terminology."
     )
     client = _get_groq_client()
     response = client.chat.completions.create(
-        model=GROQ_MODEL,
+        model=GROQ_VIDEO_MODEL,
         messages=[
             {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user", "content": payload.question + lang_instr + cat_instr},
+            {"role": "user", "content": f"Create a video lesson explaining: {payload.question}" + lang_instr + cat_instr},
         ],
         response_format={"type": "json_object"},
-        temperature=0.5,
+        temperature=0.4,
+        max_tokens=8192,
     )
     content = response.choices[0].message.content
     if not content:
         raise HTTPException(502, "AI returned empty response")
     import json
-    parsed = json.loads(content)
-    if not parsed.get("slides") or not isinstance(parsed["slides"], list):
-        raise HTTPException(502, "Invalid response shape from AI")
-    return parsed
+    try:
+        parsed = json.loads(content)
+    except json.JSONDecodeError:
+        raise HTTPException(502, "AI returned malformed JSON")
+    return _parse_video_response(parsed)
+
+# ─── Response Parser & Validator ───────────────────────────────────
+
+def _parse_video_response(raw: dict) -> dict:
+    """Robustly parse and validate AI video response with fallbacks for every field.
+
+    Returns a dict that conforms to VideoGenerateOut schema while being
+    resilient to partial or malformed AI output.
+    """
+    result = {
+        "title": raw.get("title", "Untitled Lesson"),
+        "language": raw.get("language", "english"),
+        "estimated_duration": raw.get("estimated_duration", 0),
+        "slides": [],
+    }
+
+    raw_slides = raw.get("slides", [])
+    if not raw_slides or not isinstance(raw_slides, list):
+        raw_slides = [{
+            "display_text": raw.get("display_text", "No content could be generated. Please try again."),
+            "voice_script": raw.get("voice_script", ""),
+        }]
+
+    for i, s in enumerate(raw_slides):
+        if not isinstance(s, dict):
+            s = {}
+        vis = s.get("visual", {}) or {}
+        anim = s.get("animations", {}) or {}
+        slide = {
+            "id": s.get("id", i + 1),
+            "title": s.get("title", ""),
+            "display_text": s.get("display_text", ""),
+            "voice_script": s.get("voice_script", ""),
+            "learning_goal": s.get("learning_goal", ""),
+            "visual": {
+                "type": vis.get("type", "diagram"),
+                "description": vis.get("description", ""),
+                "style": vis.get("style", "flat-2d educational"),
+                "keywords": vis.get("keywords", []),
+                "objects": vis.get("objects", []),
+            },
+            "animations": {
+                "entry": anim.get("entry", "fade-in-up"),
+                "highlight": anim.get("highlight", "glow"),
+                "exit": anim.get("exit", "fade-out-left"),
+            },
+            "camera": s.get("camera", ""),
+            "duration": s.get("duration", 15),
+        }
+        # Ensure backward-compat fields are never empty
+        if not slide["display_text"]:
+            slide["display_text"] = f"Step {i + 1}"
+        if not slide["voice_script"]:
+            slide["voice_script"] = f"Let us understand this concept step by step."
+        result["slides"].append(slide)
+
+    return result
 
 # ─── Chat About Slide ─────────────────────────────────────────────
 
