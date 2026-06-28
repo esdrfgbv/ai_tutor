@@ -205,7 +205,7 @@ export default function StudentDashboard() {
       {!loadingStats && !loadingProfile && (
         <AIBuddyWidget 
           studentName={user.full_name.split(' ')[0]} 
-          recommendedTopic={stats?.weak_topics?.[0] || "Fractions"} 
+          recommendedTopic={stats?.weak_topics?.[0]?.topic || "Fractions"}
         />
       )}
 
