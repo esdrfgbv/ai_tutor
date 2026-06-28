@@ -72,7 +72,7 @@ class LeaderboardService:
             key=lambda r: (-float(r.best_score or 0), float(r.best_time or 999999)),
         )[:limit]
 
-        total = len(ranked) or 1
+        total = len(rows) or 1
         output: list[LeaderboardRow] = []
         for index, row in enumerate(ranked):
             percentile = clamp_percent(((total - index) / total) * 100)

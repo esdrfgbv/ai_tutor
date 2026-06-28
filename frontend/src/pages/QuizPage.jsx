@@ -92,7 +92,12 @@ export default function QuizPage() {
       } else { setLoading(false); return; }
       setQuiz(data);
       const saved = JSON.parse(localStorage.getItem(TIMER_KEY) || "{}");
-      const initial = saved.quizId === data.id ? saved.remaining : data.duration_minutes * 60;
+      let initial = data.duration_minutes * 60;
+      if (saved.quizId === data.id && saved.startedAt) {
+        if (Date.now() - saved.startedAt < data.duration_minutes * 60 * 1000) {
+          initial = saved.remaining;
+        }
+      }
       setRemaining(initial);
       startedAt.current = Date.now();
       setCurrentQuestion(0);
@@ -157,7 +162,7 @@ export default function QuizPage() {
   // ── RESULT SCREEN ──────────────────────────────────────────
   if (result && quiz) {
     const total = quiz.questions.length;
-    const correct = Math.round((result.accuracy / 100) * total);
+    const correct = result.score;
     return (
       <motion.div
         initial={{ opacity: 0, scale: 0.97 }}

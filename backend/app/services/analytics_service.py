@@ -232,7 +232,7 @@ class AnalyticsService:
         # Focus Areas: accuracy < 60 %, ascending
         # A topic must NEVER appear in both lists
         strong_threshold = 80
-        weak_threshold = 60
+        weak_threshold = 40.01
 
         strong_topics = sorted(
             [t for t in topic_mastery if t["accuracy"] >= strong_threshold],
@@ -241,7 +241,7 @@ class AnalyticsService:
         )[:6]
 
         weak_topics = sorted(
-            [t for t in topic_mastery if t["accuracy"] < weak_threshold],
+            [t for t in topic_mastery if t["accuracy"] <= weak_threshold],
             key=lambda x: x["accuracy"],
         )[:6]
 
@@ -370,23 +370,18 @@ class AnalyticsService:
 
     def admin_overview(self, db: Session) -> dict:
         attempts = db.query(QuizAttempt).all()
-        accuracies = [clamp_percent(a.accuracy) for a in attempts]
-        avg_accuracy = round(sum(accuracies) / len(accuracies), 2) if accuracies else 0
+        quiz_qcounts = dict(db.query(Question.quiz_id, func.count(Question.id)).group_by(Question.quiz_id).all())
+        
+        total_correct = sum(a.score for a in attempts)
+        total_questions = sum(quiz_qcounts.get(a.quiz_id, 0) for a in attempts)
+        avg_accuracy = clamp_percent((total_correct / total_questions) * 100) if total_questions else 0
+        
         students = db.query(StudentProfile).count()
         seven_days_ago = datetime.utcnow().date() - timedelta(days=6)
-        session_active_students = (
-            db.query(StudySession.student_id)
-            .filter(func.date(StudySession.started_at) >= seven_days_ago.strftime("%Y-%m-%d"))
-            .distinct()
-            .count()
-        )
-        active_students = session_active_students or (
-            db.query(StudentProfile.id)
-            .join(QuizAttempt, QuizAttempt.student_id == StudentProfile.id)
-            .filter(QuizAttempt.created_at >= datetime.utcnow() - timedelta(days=7))
-            .distinct()
-            .count()
-        )
+        
+        session_users = db.query(StudySession.student_id).filter(func.date(StudySession.started_at) >= seven_days_ago.strftime("%Y-%m-%d"))
+        quiz_users = db.query(QuizAttempt.student_id).filter(func.date(QuizAttempt.created_at) >= seven_days_ago.strftime("%Y-%m-%d"))
+        active_students = session_users.union(quiz_users).count()
         study_seconds_7d = int(
             db.query(func.coalesce(func.sum(StudySession.duration_seconds), 0))
             .filter(func.date(StudySession.started_at) >= seven_days_ago.strftime("%Y-%m-%d"))
@@ -401,6 +396,7 @@ class AnalyticsService:
             .all()
         ]
         top_performers = leaderboard_service.build(db, limit=10)
+        accuracies = [clamp_percent(a.accuracy) for a in attempts]
         weak_students = sorted(accuracies)[:5] if accuracies else []
         return {
             "students": students,
@@ -427,6 +423,7 @@ class AnalyticsService:
     def stakeholder_analytics(self, db: Session) -> dict:
         now = datetime.utcnow()
         today = now.date()
+        quiz_qcounts = dict(db.query(Question.quiz_id, func.count(Question.id)).group_by(Question.quiz_id).all())
 
         dau_trend = []
         for offset in range(6, -1, -1):
@@ -467,13 +464,10 @@ class AnalyticsService:
                 .scalar()
                 or 0
             )
-            avg_accuracy = (
-                db.query(func.coalesce(func.avg(QuizAttempt.accuracy), 0))
-                .join(StudentProfile, QuizAttempt.student_id == StudentProfile.id)
-                .filter(StudentProfile.grade == grade)
-                .scalar()
-                or 0
-            )
+            attempts_in_grade = db.query(QuizAttempt.score, QuizAttempt.quiz_id).join(StudentProfile, QuizAttempt.student_id == StudentProfile.id).filter(StudentProfile.grade == grade).all()
+            total_correct = sum(a.score for a in attempts_in_grade)
+            total_qs = sum(quiz_qcounts.get(a.quiz_id, 0) for a in attempts_in_grade)
+            avg_accuracy = clamp_percent((total_correct / total_qs) * 100) if total_qs else 0
             completion_by_grade.append(
                 {
                     "grade": grade,
@@ -488,13 +482,10 @@ class AnalyticsService:
             if not subject:
                 continue
             attempts_count = db.query(QuizAttempt).join(Quiz).filter(Quiz.subject == subject).count()
-            avg_acc = (
-                db.query(func.coalesce(func.avg(QuizAttempt.accuracy), 0))
-                .join(Quiz, QuizAttempt.quiz_id == Quiz.id)
-                .filter(Quiz.subject == subject)
-                .scalar()
-                or 0
-            )
+            attempts_in_subj = db.query(QuizAttempt.score, QuizAttempt.quiz_id).join(Quiz, QuizAttempt.quiz_id == Quiz.id).filter(Quiz.subject == subject).all()
+            total_correct = sum(a.score for a in attempts_in_subj)
+            total_qs = sum(quiz_qcounts.get(a.quiz_id, 0) for a in attempts_in_subj)
+            avg_acc = clamp_percent((total_correct / total_qs) * 100) if total_qs else 0
             subject_metrics.append(
                 {
                     "subject": subject,
