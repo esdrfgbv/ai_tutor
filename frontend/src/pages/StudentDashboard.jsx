@@ -12,6 +12,7 @@ import StatCard from "../components/StatCard.jsx";
 import ProgressRing from "../components/ProgressRing.jsx";
 import AIOrb from "../components/AIOrb.jsx";
 import { fetchWithCache } from "../utils/apiCache.js";
+import AIBuddyWidget from "../components/AIBuddy/AIBuddyWidget.jsx";
 
 const cap = (v) => Math.min(100, Math.max(0, Number(v) || 0));
 
@@ -198,6 +199,14 @@ export default function StudentDashboard() {
             </div>
           </div>
         </motion.div>
+      )}
+
+      {/* ══ AI BUDDY WIDGET ══ */}
+      {!loadingStats && !loadingProfile && (
+        <AIBuddyWidget 
+          studentName={user.full_name.split(' ')[0]} 
+          recommendedTopic={stats?.weak_topics?.[0] || "Fractions"} 
+        />
       )}
 
       {/* ══ METRICS GRID ══ */}

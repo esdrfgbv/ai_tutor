@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext.jsx";
 import { StudySessionProvider } from "./context/StudySessionContext.jsx";
+import { AIBuddyProvider } from "./context/AIBuddyContext.jsx";
 import { ErrorBoundary } from "./components/ErrorBoundary.jsx";
 import AppLayout from "./layouts/AppLayout.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
@@ -40,7 +41,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <BrowserRouter>
         <AuthProvider>
           <StudySessionProvider>
-            <Routes>
+            <AIBuddyProvider>
+              <Routes>
               <Route path="/" element={<LandingPage />} />
               <Route path="/auth" element={<AuthPage />} />
               <Route element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>
@@ -71,7 +73,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                 <Route path="/wellness" element={<WellnessPage />} />
               </Route>
               <Route path="*" element={<Navigate to="/" replace />} />
-            </Routes>
+              </Routes>
+            </AIBuddyProvider>
           </StudySessionProvider>
         </AuthProvider>
       </BrowserRouter>

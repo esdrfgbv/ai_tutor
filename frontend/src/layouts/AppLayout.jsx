@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { useAuth } from "../context/AuthContext.jsx";
 import { prefetch } from "../utils/apiCache.js";
+import AIBuddyPanel from "../components/AIBuddy/AIBuddyPanel.jsx";
 
 const studentNav = [
   { to: "/student", label: "Dashboard", icon: Home, shortLabel: "Home" },
@@ -445,6 +446,9 @@ export default function AppLayout() {
           ))}
         </div>
       </nav>
+
+      {/* ── AI BUDDY PANEL ── */}
+      {user.role === 'student' && <AIBuddyPanel />}
     </div>
   );
 }

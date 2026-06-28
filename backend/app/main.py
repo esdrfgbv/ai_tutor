@@ -17,6 +17,7 @@ from app.api.routes.video_explanation import router as video_explanation_router
 from app.api.routes.notes import router as notes_router
 from app.api.routes.bookmarks import router as bookmarks_router
 from app.api.routes.study_sessions import router as study_sessions_router
+from app.api.routes.ai_buddy import router as ai_buddy_router
 from app.core.config import get_settings
 from app.core.logging import LoggingMiddleware, get_logger
 from app.core.security import hash_password
@@ -210,6 +211,7 @@ def create_app() -> FastAPI:
     app.include_router(study_sessions_router, prefix="/api")
     app.include_router(ai_proxy_router, prefix="/api")
     app.include_router(video_explanation_router, prefix="/api/video-explanation")
+    app.include_router(ai_buddy_router, prefix="/api")
 
     # Knowledge Base routes (lazy import to avoid circular deps at startup)
     from app.api.routes.knowledge_base import router as knowledge_base_router
