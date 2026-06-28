@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import api from '../api/client';
 
 const AIBuddyContext = createContext();
 
@@ -47,8 +48,9 @@ export const AIBuddyProvider = ({ children }) => {
 
     try {
       const token = localStorage.getItem('token');
+      const baseURL = api.defaults.baseURL || "http://localhost:8000/api";
       // Using fetch for SSE/StreamingResponse simulation
-      const response = await fetch('http://localhost:8000/api/ai-buddy/chat/stream', {
+      const response = await fetch(`${baseURL}/ai-buddy/chat/stream`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

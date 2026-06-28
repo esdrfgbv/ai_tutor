@@ -141,7 +141,7 @@ export const AIBuddyPanel = () => {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Ask me to navigate, explain, or generate..."
-                  className="w-full bg-gray-100 border-transparent focus:bg-white focus:ring-2 focus:ring-indigo-500 rounded-full py-3 pl-4 pr-12 outline-none transition-all text-sm"
+                  className="w-full bg-gray-100 border-transparent focus:bg-white focus:ring-2 focus:ring-indigo-500 rounded-full py-3 pl-4 pr-12 outline-none transition-all text-sm text-gray-900 placeholder-gray-500"
                   disabled={isTyping}
                 />
                 <button
